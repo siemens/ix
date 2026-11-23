@@ -48,7 +48,7 @@ regressionTest(
 
     await mount(`
       <ix-content-header
-        style="width: 14rem"
+        style="width: 224px"
         header-title="${title}"
       ></ix-content-header>
     `);
@@ -175,7 +175,7 @@ regressionTest(
   'collapses at large viewports based on container width and expands without stale measurements',
   async ({ mount, page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await mount(`<div style="width: 20rem">${responsiveHeader}</div>`);
+    await mount(`<div style="width: 320px">${responsiveHeader}</div>`);
     const header = page.locator('ix-content-header');
     const trigger = page.getByRole('button', { name: 'More actions' });
     await expect(trigger).toBeVisible();
@@ -184,7 +184,7 @@ regressionTest(
       '8px'
     );
 
-    for (const width of ['70rem', '20rem', '70rem']) {
+    for (const width of ['1120px', '320px', '1120px']) {
       await header.evaluate((element, width) => {
         const parent = element.parentElement;
         if (!parent) {
@@ -192,7 +192,7 @@ regressionTest(
         }
         parent.style.width = width;
       }, width);
-      if (width === '20rem') {
+      if (width === '320px') {
         await expect(trigger).toBeVisible();
       } else {
         await expect(trigger).toHaveCount(0);
@@ -407,18 +407,18 @@ regressionTest(
   'preserves keyboard focus when actions collapse and expand',
   async ({ mount, page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await mount(`<div style="width: 70rem">${responsiveHeader}</div>`);
+    await mount(`<div style="width: 1120px">${responsiveHeader}</div>`);
     const container = page.locator('ix-content-header').locator('..');
     const action = page.getByRole('button', { name: 'Export report' });
     await action.focus();
-    await container.evaluate((element) => (element.style.width = '20rem'));
+    await container.evaluate((element) => (element.style.width = '320px'));
     const trigger = page.getByRole('button', { name: 'More actions' });
     await expect(trigger).toBeFocused();
     await page.keyboard.press('ArrowDown');
     await expect(
       page.getByRole('menuitem', { name: 'Export report' })
     ).toBeFocused();
-    await container.evaluate((element) => (element.style.width = '70rem'));
+    await container.evaluate((element) => (element.style.width = '1120px'));
     await expect(action).toBeFocused();
   }
 );
@@ -459,7 +459,7 @@ regressionTest(
   'remeasures actions changed while collapsed and reconnects observers',
   async ({ mount, page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await mount(`<div style="width: 20rem">${responsiveHeader}</div>`);
+    await mount(`<div style="width: 320px">${responsiveHeader}</div>`);
     const header = page.locator('ix-content-header');
     const trigger = page.getByRole('button', { name: 'More actions' });
     await expect(trigger).toBeVisible();
@@ -470,7 +470,7 @@ regressionTest(
       }
       element.remove();
       parent.appendChild(element);
-      parent.style.width = '30rem';
+      parent.style.width = '480px';
       element
         .querySelectorAll('[slot="secondary-actions"]')
         .forEach((action) => {

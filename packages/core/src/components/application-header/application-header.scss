@@ -19,7 +19,7 @@
   position: relative;
   width: 100%;
   min-height: cv.get-var('application-header--min-height');
-  padding-top: var(--ix-safe-area-inset-top, 0rem);
+  padding-top: var(--ix-safe-area-inset-top, 0px);
   padding-right: cv.get-var('application-header--padding-right');
   padding-left: cv.get-var('application-header--padding-left');
 
@@ -133,7 +133,7 @@
       position: relative;
       height: cv.get-var('application-header-logo--height');
       overflow: hidden;
-      line-height: 0rem;
+      line-height: 0px;
       color: cv.get-var('application-header-logo--color');
       margin-right: cv.get-var('application-header-logo--margin-right');
       margin-left: cv.get-var('application-header-logo--margin-left');

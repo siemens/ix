@@ -35,14 +35,15 @@
     (
       'avatar--outline-offset--focus':
         calc(-1 * #{cv.get-var('avatar--outline-width--focus')}),
-      'avatar-image--height': sys.$si-sys-sizing-size-80,
-      'avatar-image--width': sys.$si-sys-sizing-size-80,
-      'avatar-image--min-height': sys.$si-sys-sizing-size-80,
-      'avatar-image--min-width': sys.$si-sys-sizing-size-80,
-      'avatar-initials--height': sys.$si-sys-sizing-size-80,
-      'avatar-initials--width': sys.$si-sys-sizing-size-80,
-      'avatar-initials--min-height': sys.$si-sys-sizing-size-80,
-      'avatar-initials--min-width': sys.$si-sys-sizing-size-80,
+      'avatar-image--height': sys.$si-sys-sizing-rem-size-80,
+      'avatar-image--width': sys.$si-sys-sizing-rem-size-80,
+      'avatar-image--min-height': sys.$si-sys-sizing-rem-size-80,
+      'avatar-image--min-width': sys.$si-sys-sizing-rem-size-80,
+      'avatar-initials--height': sys.$si-sys-sizing-rem-size-80,
+      'avatar-initials--width': sys.$si-sys-sizing-rem-size-80,
+      'avatar-initials--min-height': sys.$si-sys-sizing-rem-size-80,
+      'avatar-initials--min-width': sys.$si-sys-sizing-rem-size-80,
+      'avatar-header--size': sys.$si-sys-sizing-size-80,
       'avatar-initials--margin-top':
         calc(#{sys.$si-sys-sizing-spacing-y-10} / 2),
       'avatar-user-info--height': sys.$si-sys-sizing-size-90,

@@ -34,7 +34,7 @@
     position: absolute;
     inset-block-start: -100%;
     inset-inline-start: calc(
-      var(--ix-safe-area-inset-left, 0rem) + #{cv.get-var(
+      var(--ix-safe-area-inset-left, 0px) + #{cv.get-var(
           'application-skip-link--outline-width--focus'
         )} + #{cv.get-var('application-skip-link--outline-offset--focus')}
     );
@@ -46,7 +46,7 @@
 
     &:focus {
       inset-block-start: calc(
-        var(--ix-safe-area-inset-top, 0rem) + #{cv.get-var(
+        var(--ix-safe-area-inset-top, 0px) + #{cv.get-var(
             'application-skip-link--outline-width--focus'
           )} + #{cv.get-var('application-skip-link--outline-offset--focus')}
       );
@@ -112,7 +112,7 @@
 
 :host(:dir(rtl)) .skip-link {
   inset-inline-start: calc(
-    var(--ix-safe-area-inset-right, 0rem) + #{cv.get-var(
+    var(--ix-safe-area-inset-right, 0px) + #{cv.get-var(
         'application-skip-link--outline-width--focus'
       )} + #{cv.get-var('application-skip-link--outline-offset--focus')}
   );
@@ -142,5 +142,5 @@
 }
 
 :host(.breakpoint-sm) {
-  @include cv.set-var('application-menu--margin-left', 0rem);
+  @include cv.set-var('application-menu--margin-left', 0px);
 }

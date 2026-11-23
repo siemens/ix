@@ -109,8 +109,6 @@ $CardList__Title__Height: cv.get-var('card-list-title--height');
     width: cv.get-var('card-list-show-all-card--width');
 
     min-height: cv.get-var('card-list-show-all-card--min-height');
-    max-height: cv.get-var('card-list-show-all-card--max-height');
-    height: cv.get-var('card-list-show-all-card--height');
 
     @include cv.set-var(
       'card--border-color',
@@ -166,6 +164,7 @@ $CardList__Title__Height: cv.get-var('card-list-title--height');
     gap: #{sys.$si-sys-sizing-spacing-y-40};
     box-sizing: border-box;
     height: 100%;
+    min-height: cv.get-var('card-list-show-all-card-content--min-height');
     width: 100%;
     padding: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-60};
   }

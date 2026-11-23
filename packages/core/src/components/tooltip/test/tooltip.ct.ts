@@ -193,7 +193,7 @@ regressionTest('show tooltip after delay', async ({ mount, page }) => {
 regressionTest('hide tooltip after delay', async ({ mount, page }) => {
   await page.clock.install({ time: CLOCK_START });
   await mount(`
-    <div style="margin: 2rem">
+    <div style="margin: 32px">
       <ix-tooltip for=".test" hide-delay="1000">tooltip</ix-tooltip>
       <ix-button class="test">button</ix-button>
     </div>
@@ -271,7 +271,7 @@ regressionTest.describe('handles all reference types', () => {
 
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(`
-      <div style="margin: 2rem">
+      <div style="margin: 32px">
         <ix-tooltip id="tooltip">Tooltip</ix-tooltip>
         <ix-button id="button">Button</ix-button>
       </div>
@@ -336,7 +336,7 @@ regressionTest.describe('handles multiple references', () => {
 
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(`
-      <div style="margin: 2rem">
+      <div style="margin: 32px">
         <ix-tooltip id="tooltip">Tooltip</ix-tooltip>
         <ix-button id="button1">Button1</ix-button>
         <ix-button id="button2">Button2</ix-button>

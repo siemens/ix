@@ -40,9 +40,6 @@ export { ElementReference } from './components/utils/element-reference';
 export * from './components/utils/modal';
 export * from './components/utils/typed-event';
 export { NotificationColor } from './components/utils/notification-color';
-export {
-  convertToAbbreviationString,
-  convertToRemString,
-} from './components/utils/rwd.util';
+export { convertToAbbreviationString } from './components/utils/rwd.util';
 export * from './components/utils/theme-switcher';
 export type { ChatAttachmentStatus } from './components/chat-attachment/chat-attachment.types';

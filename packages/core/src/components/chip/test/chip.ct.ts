@@ -16,7 +16,7 @@ declare global {
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(`
-    <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:flex-start;">
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
       <ix-chip>Label</ix-chip>
       <ix-chip variant="accent" closable>Accent closable</ix-chip>
       <ix-chip variant="accent" outline closable>Accent outline closable</ix-chip>
@@ -160,7 +160,7 @@ regressionTest(
   'keeps inactive closable chip text from overlapping the close button',
   async ({ mount, page }) => {
     await mount(
-      `<ix-chip inactive closable style="width: 8rem">Long inactive chip text</ix-chip>`
+      `<ix-chip inactive closable style="width: 128px">Long inactive chip text</ix-chip>`
     );
 
     const chip = page.locator('ix-chip');
@@ -184,7 +184,7 @@ regressionTest(
   'truncates overflowing chip text with an ellipsis',
   async ({ mount, page }) => {
     await mount(
-      `<ix-chip closable style="width: 8rem">Long overflowing chip text</ix-chip>`
+      `<ix-chip closable style="width: 128px">Long overflowing chip text</ix-chip>`
     );
 
     const slotContainer = page.locator('ix-chip').locator('.slot-container');

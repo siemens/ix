@@ -13,6 +13,7 @@
 
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
+@use 'mixins/menu-rail';
 
 :host {
   @include cv.define-vars(
@@ -48,8 +49,7 @@
       'menu-category-category-dropdown-header--min-width':
         sys.$si-sys-sizing-size-160,
       'menu-category-menu-item--height': sys.$si-sys-sizing-size-90,
-      'menu-category-category-dropdown--viewport-offset':
-        sys.$si-sys-sizing-size-100,
+      'menu-category-category-dropdown--viewport-offset': menu-rail.$width,
     )
   );
   @include cv.define-vars(

@@ -14,6 +14,7 @@
 @use 'tokens/system' as sys;
 @use 'sass:map';
 @use 'mixins/component-vars' as cv;
+@use 'mixins/icon-box' as ib;
 
 // si/sys token values per variant, per the SI Theme Token Migration Guide.
 // Naming isn't uniform across variants, so each needs an explicit mapping
@@ -154,12 +155,12 @@ $chip-color-sys-values: (
       'chip-close-button-container--padding-left':
         sys.$si-sys-sizing-spacing-x-40,
       'chip-inactive--padding-right--outline': sys.$si-sys-sizing-spacing-x-20,
-      'chip-close--size': sys.$si-sys-sizing-size-70,
+      'chip-close--size': ib.icon-box-16(),
       'chip-close--inset': sys.$si-sys-sizing-spacing-x-20,
-      'chip--height': sys.$si-sys-sizing-size-80,
-      'chip--max-height': sys.$si-sys-sizing-size-80,
-      'chip-wrap--min-height': sys.$si-sys-sizing-size-80,
-      'chip-wrap--max-height': sys.$si-sys-sizing-size-80,
+      'chip--height': ib.icon-box-32(),
+      'chip--max-height': ib.icon-box-32(),
+      'chip-wrap--min-height': ib.icon-box-32(),
+      'chip-wrap--max-height': ib.icon-box-32(),
       'chip-main--padding-block': sys.$si-sys-sizing-spacing-y-40,
       'chip-main--padding-right--outline': sys.$si-sys-sizing-spacing-x-30,
       'chip--border-radius': sys.$si-sys-sizing-border-radius-full,

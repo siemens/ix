@@ -9,7 +9,6 @@
 
 import { Component, Element, h, Host, Prop, Watch } from '@stencil/core';
 import { createMutationObserver } from '../utils/mutation-observer';
-import { convertToRemString } from '../utils/rwd.util';
 import { animate, Easing } from '../utils/animate';
 
 /**
@@ -38,8 +37,9 @@ export class EventList {
   /**
    * Determines the height of list items.
    * This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value.
-   * In case a number is supplied it will get converted to rem internally.
    * Defaults to 'S'.
+   *
+   * @breaking-change 6.0.0 Numeric values are applied as pixels instead of being converted to rem
    */
   @Prop() itemHeight: 'S' | 'L' | number = 'S';
 
@@ -69,7 +69,7 @@ export class EventList {
     }
 
     if (!Number.isNaN(Number(this.itemHeight))) {
-      const height = convertToRemString(this.itemHeight as number);
+      const height = `${this.itemHeight}px`;
       this.hostElement
         .querySelectorAll('ix-event-list-item')
         .forEach((item) => {
@@ -88,7 +88,7 @@ export class EventList {
   private onMutation(mutationRecords: Array<MutationRecord>) {
     this.triggerFadeOut().then(() => {
       if (!Number.isNaN(Number(this.itemHeight))) {
-        const height = convertToRemString(this.itemHeight as number);
+        const height = `${this.itemHeight}px`;
         const eventListItems = this.findEventListItems(mutationRecords);
         eventListItems.forEach((item) => this.setCustomHeight(item, height));
       }

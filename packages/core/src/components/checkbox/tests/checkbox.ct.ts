@@ -171,7 +171,7 @@ regressionTest(
   'label-less checkbox has 20px layout size and 24px active area',
   async ({ mount, page }) => {
     await mount(
-      `<div style="padding: 1rem"><ix-checkbox aria-label="Accept" name="no-label"></ix-checkbox></div>`
+      `<div style="padding: 16px"><ix-checkbox aria-label="Accept" name="no-label"></ix-checkbox></div>`
     );
     const checkbox = page.locator('ix-checkbox');
     await expect(checkbox).toHaveClass(/label-less/);

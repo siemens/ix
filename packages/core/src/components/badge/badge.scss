@@ -131,8 +131,8 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 
 :host([type='counter']) .indicator,
 :host([type='label']) .indicator {
-  height: cv.get-var('badge--height');
   min-width: cv.get-var('badge--min-width');
+  height: max(#{cv.get-var('badge--height')}, 1lh);
   min-height: cv.get-var('badge--min-height');
   flex-shrink: 0;
 }
@@ -140,14 +140,14 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 :host([type='counter']) .indicator {
   padding-inline: cv.get-var('badge-indicator--padding-inline');
   font-weight: cv.get-var('badge-counter--font-weight');
-  line-height: cv.get-var('badge--line-height');
+  line-height: max(#{cv.get-var('badge--line-height')}, 1.2em);
 }
 
 :host([type='label']) .indicator {
   padding-inline: cv.get-var('badge-label--padding-inline');
   gap: cv.get-var('badge-indicator--gap');
   font-weight: cv.get-var('badge-label--font-weight');
-  line-height: cv.get-var('badge--line-height');
+  line-height: max(#{cv.get-var('badge--line-height')}, 1.2em);
 }
 
 :host([type='label']:not(.attached)) .indicator {
@@ -167,9 +167,10 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
   flex-shrink: 0;
 }
 
+/* 1.2em keeps rem-scaled text from clipping at larger root font sizes. */
 :host([type='counter']) .label,
 :host([type='label']) .label {
-  line-height: cv.get-var('badge--line-height');
+  line-height: max(#{cv.get-var('badge--line-height')}, 1.2em);
 }
 
 /* Center digits optically (cap height) independent of font ascent/descent metrics. */

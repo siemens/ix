@@ -13,6 +13,7 @@
 
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
+@use 'mixins/menu-rail';
 
 :host {
   @include cv.define-vars(
@@ -35,7 +36,7 @@
   @include cv.define-vars(
     (
       'menu-item--height': sys.$si-sys-sizing-size-100,
-      'menu-item-tab-icon-slot--width': sys.$si-sys-sizing-icon-lg,
+      'menu-item-tab-icon-slot--width': menu-rail.$icon-slot-width,
     )
   );
   @include cv.define-vars(
@@ -43,7 +44,7 @@
       'menu-item--padding-inline':
         calc(
           (
-              #{sys.$si-sys-sizing-size-100} - #{cv.get-var(
+              #{menu-rail.$width} - #{cv.get-var(
                   'menu-item-tab-icon-slot--width'
                 )}
             ) / 2
@@ -66,9 +67,7 @@
         calc(-1 * #{cv.get-var('menu-item--outline-width--focus')}),
       'menu-item-notification--top': sys.$si-sys-sizing-spacing-y-20,
       'menu-item-notification--right':
-        calc(
-          100% - #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-20}
-        ),
+        calc(100% - #{menu-rail.$width} + #{sys.$si-sys-sizing-spacing-x-20}),
       'menu-item-tab--width': sys.$si-sys-sizing-border-width-emphasis,
       'menu-item-notification--padding-left': sys.$si-sys-sizing-spacing-x-40,
     )

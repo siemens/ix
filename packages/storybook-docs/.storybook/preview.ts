@@ -17,6 +17,7 @@ defineCustomElement();
 const additionalThemes: string[] = [];
 const colorSchemas = ['dark', 'light'] as const;
 const densities = ['default', 'compact'] as const;
+const sizings = ['px', 'rem'] as const;
 
 function addAdditionalThemeIfExist() {
   const hasAdditionalTheme = window['hasAdditionalTheme'];
@@ -70,11 +71,30 @@ const preview: Preview = {
         })),
       },
     },
+    ixSizing: {
+      name: 'Sizing',
+      description: 'IX sizing unit',
+      toolbar: {
+        icon: 'grow',
+        dynamicTitle: true,
+        items: sizings.map((sizing) => ({
+          title: sizing,
+          value: sizing,
+        })),
+      },
+    },
+    ixFontSize: {
+      name: 'Base font size',
+      description:
+        'Root font size in px, controlled by the "Base font size" tool. Empty uses the browser default.',
+    },
   },
   initialGlobals: {
     ixTheme: defaultTheme,
     ixColorSchema: 'dark',
     ixDensity: 'default',
+    ixSizing: 'px',
+    ixFontSize: '',
   },
   parameters: {
     options: {
@@ -118,6 +138,18 @@ const preview: Preview = {
         document.documentElement.setAttribute('data-ix-density', 'compact');
       } else {
         document.documentElement.removeAttribute('data-ix-density');
+      }
+      if (context.globals['ixSizing'] === 'rem') {
+        document.documentElement.setAttribute('data-ix-sizing', 'rem');
+      } else {
+        document.documentElement.removeAttribute('data-ix-sizing');
+      }
+      // Root font size from the "Base font size" toolbar tool (font-size-tool.ts)
+      const fontSize = Number(context.globals['ixFontSize']);
+      if (Number.isFinite(fontSize) && fontSize > 0) {
+        document.documentElement.style.fontSize = `${fontSize}px`;
+      } else {
+        document.documentElement.style.removeProperty('font-size');
       }
 
       return Story();

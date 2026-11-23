@@ -15,7 +15,7 @@
   @include cv.define-vars(
     (
       'playground--gap': sys.$si-sys-sizing-spacing-y-90,
-      'playground--max-width': 64rem,
+      'playground--max-width': 1024px,
       'playground--padding': sys.$si-sys-sizing-spacing-y-90,
       'playground-scenario--gap': sys.$si-sys-sizing-spacing-y-60,
       'playground--padding-inline-start': sys.$si-sys-sizing-spacing-x-80,

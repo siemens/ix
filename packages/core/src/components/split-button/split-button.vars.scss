@@ -13,13 +13,13 @@
 
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
+@use 'mixins/icon-box' as ib;
 
 :host {
   @include cv.define-vars(
     (
-      'split-button-left-button--width':
-        calc(100% - #{sys.$si-sys-sizing-size-80}),
-      'split-button-right-button--width': sys.$si-sys-sizing-size-80,
+      'split-button-left-button--width': calc(100% - #{ib.icon-box-32()}),
+      'split-button-right-button--width': ib.icon-box-32(),
       'split-button-left-button-border--border-top-width':
         sys.$si-sys-sizing-border-width-selected,
       'split-button-left-button-border--border-left-width':

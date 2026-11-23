@@ -29,12 +29,16 @@
   @include cv.define-vars(
     (
       'push-card-icon--size': sys.$si-sys-sizing-size-90,
-      'push-card--height': sys.$si-sys-sizing-size-100,
+      // Grows with the rem notification text at larger root font sizes
+      'push-card-title--height':
+        max(#{sys.$si-sys-sizing-size-100}, #{sys.$si-sys-sizing-rem-size-100}),
+      // Adds the title growth so the text area keeps its size
       'push-card-content--height':
         calc(
           #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-spacing-y-100} +
             #{sys.$si-sys-sizing-spacing-y-50} + #{sys.$si-sys-sizing-size-30} -
-            2 * #{sys.$si-sys-sizing-border-width-default}
+            2 * #{sys.$si-sys-sizing-border-width-default} + max(0px, #{sys.$si-sys-sizing-rem-size-100} -
+                #{sys.$si-sys-sizing-size-100})
         ),
       'push-card-content--padding': #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60}
         #{sys.$si-sys-sizing-spacing-y-60},

@@ -59,13 +59,21 @@
     (
       'category-filter-input-container--padding--with-icon':
         cv.get-var('category-filter-input-container--padding-block') #{sys.$si-sys-sizing-spacing-x-80}
-        cv.get-var('category-filter-input-container--padding-block') calc(#{sys.$si-sys-sizing-spacing-x-80} +
-            #{sys.$si-sys-sizing-spacing-x-20}),
+        cv.get-var('category-filter-input-container--padding-block') calc(#{sys.$si-sys-sizing-spacing-x-40} -
+            #{sys.$si-sys-sizing-border-width-default}),
       'category-filter-input-container--padding--no-icon':
         cv.get-var('category-filter-input-container--padding-block') #{sys.$si-sys-sizing-spacing-x-80}
         cv.get-var('category-filter-input-container--padding-block') #{sys.$si-sys-sizing-spacing-x-20},
-      'category-filter-icon--top': sys.$si-sys-sizing-spacing-y-40,
-      'category-filter-icon--left': sys.$si-sys-sizing-spacing-x-40,
+      'category-filter-icon--margin-block-start':
+        calc(
+          #{sys.$si-sys-sizing-spacing-y-40} - #{cv.get-var(
+              'category-filter-input-container--padding-block'
+            )} - #{sys.$si-sys-sizing-border-width-default}
+        ),
+      'category-filter-icon--margin-inline-end':
+        calc(
+          #{sys.$si-sys-sizing-spacing-x-20} + #{sys.$si-sys-sizing-border-width-default}
+        ),
       'category-filter--margin-right': sys.$si-sys-sizing-spacing-x-20,
       'category-filter-category-preview--padding': #{sys.$si-sys-sizing-spacing-y-40}
         #{sys.$si-sys-sizing-spacing-x-40},
