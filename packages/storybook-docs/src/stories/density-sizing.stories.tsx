@@ -163,9 +163,11 @@ export const NestedDensity: Story = {
  * Size and spacing tokens use `px` by default. `data-ix-sizing="rem"`
  * switches them to `rem`. Change the base font size in the toolbar to see
  * that only the `rem` scope scales with the root font size. Icon and avatar
- * tokens always use `rem`.
+ * tokens always use `rem`. The root sizing is pinned to `px` so the first
+ * scope keeps showing the `px` baseline.
  */
 export const RemSizing: Story = {
+  globals: { ixSizing: 'px' },
   argTypes: {
     htmlDensity: { table: { disable: true } },
     htmlSizing: { table: { disable: true } },
