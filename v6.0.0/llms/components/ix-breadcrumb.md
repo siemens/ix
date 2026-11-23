@@ -3,8 +3,8 @@
 > Navigation trail that shows the user's location within a hierarchy.
 
 - Web component: `<ix-breadcrumb>`
-- React/Vue: `IxBreadcrumb` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-breadcrumb>` (`IxModule` from `@siemens/ix-angular` or `IxBreadcrumb` from `@siemens/ix-angular/standalone`)
+- React: `IxBreadcrumb` from `@siemens/ix-react`
+- Vue: `IxBreadcrumb` from `@siemens/ix-vue`
 
 ## Documentation
 

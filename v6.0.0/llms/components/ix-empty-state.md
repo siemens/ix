@@ -3,8 +3,8 @@
 > Placeholder shown when there is no content or data to display.
 
 - Web component: `<ix-empty-state>`
-- React/Vue: `IxEmptyState` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-empty-state>` (`IxModule` from `@siemens/ix-angular` or `IxEmptyState` from `@siemens/ix-angular/standalone`)
+- React: `IxEmptyState` from `@siemens/ix-react`
+- Vue: `IxEmptyState` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -18,10 +18,10 @@
 
 - `action`; attr: `action`; type: `string | undefined` - Optional empty state action
 - `ariaLabelEmptyStateIcon`; attr: `aria-label-empty-state-icon`; type: `string | undefined` - ARIA label for the empty state icon
+- `description`; attr: `description`; type: `string | undefined` - Optional empty state description
 - `header`; attr: `header`; type: `string` - Empty state header
 - `icon`; attr: `icon`; type: `string | undefined` - Optional empty state icon
 - `layout`; attr: `layout`; type: `"compact" | "compactBreak" | "large"`; default: `'large'` - Optional empty state layout - one of 'large', 'compact' or 'compactBreak'
-- `subHeader`; attr: `sub-header`; type: `string | undefined` - Optional empty state sub header
 
 ## Events
 

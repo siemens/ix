@@ -3,8 +3,8 @@
 > Displays the steps of a workflow and the user's progress through them.
 
 - Web component: `<ix-workflow-steps>`
-- React/Vue: `IxWorkflowSteps` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-workflow-steps>` (`IxModule` from `@siemens/ix-angular` or `IxWorkflowSteps` from `@siemens/ix-angular/standalone`)
+- React: `IxWorkflowSteps` from `@siemens/ix-react`
+- Vue: `IxWorkflowSteps` from `@siemens/ix-vue`
 
 ## Documentation
 

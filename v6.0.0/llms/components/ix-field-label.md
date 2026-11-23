@@ -3,8 +3,8 @@
 > Label for a form field.
 
 - Web component: `<ix-field-label>`
-- React/Vue: `IxFieldLabel` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-field-label>` (`IxModule` from `@siemens/ix-angular` or `IxFieldLabel` from `@siemens/ix-angular/standalone`)
+- React: `IxFieldLabel` from `@siemens/ix-react`
+- Vue: `IxFieldLabel` from `@siemens/ix-vue`
 
 ## Documentation
 

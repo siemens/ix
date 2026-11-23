@@ -3,8 +3,8 @@
 > No component summary available.
 
 - Web component: `<ix-chat-attachment>`
-- React/Vue: `IxChatAttachment` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-chat-attachment>` (`IxModule` from `@siemens/ix-angular` or `IxChatAttachment` from `@siemens/ix-angular/standalone`)
+- React: `IxChatAttachment` from `@siemens/ix-react`
+- Vue: `IxChatAttachment` from `@siemens/ix-vue`
 
 ## Documentation
 

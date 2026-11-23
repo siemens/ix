@@ -3,8 +3,8 @@
 > Icon button that toggles between a pressed and unpressed state.
 
 - Web component: `<ix-icon-toggle-button>`
-- React/Vue: `IxIconToggleButton` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-icon-toggle-button>` (`IxModule` from `@siemens/ix-angular` or `IxIconToggleButton` from `@siemens/ix-angular/standalone`)
+- React: `IxIconToggleButton` from `@siemens/ix-react`
+- Vue: `IxIconToggleButton` from `@siemens/ix-vue`
 
 ## Documentation
 

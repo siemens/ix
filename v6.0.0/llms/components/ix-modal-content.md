@@ -3,8 +3,8 @@
 > Content region of a modal dialog.
 
 - Web component: `<ix-modal-content>`
-- React/Vue: `IxModalContent` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-modal-content>` (`IxModule` from `@siemens/ix-angular` or `IxModalContent` from `@siemens/ix-angular/standalone`)
+- React: `IxModalContent` from `@siemens/ix-react`
+- Vue: `IxModalContent` from `@siemens/ix-vue`
 
 ## Documentation
 

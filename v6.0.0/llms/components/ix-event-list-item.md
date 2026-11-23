@@ -3,8 +3,8 @@
 > A single entry within an event list.
 
 - Web component: `<ix-event-list-item>`
-- React/Vue: `IxEventListItem` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-event-list-item>` (`IxModule` from `@siemens/ix-angular` or `IxEventListItem` from `@siemens/ix-angular/standalone`)
+- React: `IxEventListItem` from `@siemens/ix-react`
+- Vue: `IxEventListItem` from `@siemens/ix-vue`
 
 ## Documentation
 

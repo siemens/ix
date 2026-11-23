@@ -3,8 +3,8 @@
 > Floating overlay that displays a list of options or actions anchored to a trigger.
 
 - Web component: `<ix-dropdown>`
-- React/Vue: `IxDropdown` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-dropdown>` (`IxModule` from `@siemens/ix-angular` or `IxDropdown` from `@siemens/ix-angular/standalone`)
+- React: `IxDropdown` from `@siemens/ix-react`
+- Vue: `IxDropdown` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -17,6 +17,7 @@
 ## Properties
 
 - `anchor`; attr: `anchor`; type: `HTMLElement | Promise<HTMLElement> | string | undefined` - Define an anchor element
+- `anchorPosition`; type: `undefined | { x: number; y: number; }` - Absolute position of the dropdown in viewport coordinates (e.g. `clientX`/`clientY` of a `contextmenu` event). The coordinates are not relative to the parent, an anchor or a trigger element. While set, it takes precedence over `anchor` and `trigger` for positioning. Use `showAt` to open the dropdown at a position only once.
 - `closeBehavior`; attr: `close-behavior`; type: `"both" | "inside" | "outside" | boolean`; default: `'both'` - Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown. If the dropdown is a child of another one, it will be closed with the parent, regardless of its own close behavior.
 - `disableFocusHandling`; attr: `disable-focus-handling`; type: `boolean`; default: `false` - Suppress automatic focus when the dropdown is shown
 - `disableFocusTrap`; attr: `disable-focus-trap`; type: `boolean`; default: `false` - Close dropdown when tabbing away, and do not trap focus inside dropdown
@@ -29,7 +30,7 @@
 - `show`; attr: `show`; type: `boolean`; default: `false` - Show dropdown
 - `suppressAutomaticPlacement`; attr: `suppress-automatic-placement`; type: `boolean`; default: `false` - Suppress the automatic placement of the dropdown.
 - `suppressTriggerVisibilityCheck`; attr: `suppress-trigger-visibility-check`; type: `boolean`; default: `false` - By default the dropdown gets closed if the trigger is not visible anymore (e.g. due to scrolling). Setting this property prevents that behavior.
-- `trigger`; attr: `trigger`; type: `HTMLElement | Promise<HTMLElement> | string | undefined` - Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element.
+- `trigger`; attr: `trigger`; type: `HTMLElement | Promise<HTMLElement> | string | undefined` - Define an element that triggers the dropdown. A trigger can either be a string that will be interpreted as id attribute or a DOM element. String values are inserted into an ID selector (`#<value>`) without escaping. Use application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters, digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM element reference instead. If no element with the ID exists, the dropdown observes the document until it appears; make sure the trigger element exists.
 
 ## Events
 
@@ -38,6 +39,7 @@
 
 ## Methods
 
+- `showAt(x: number, y: number) => Promise<void>` - Show the dropdown at the given absolute point in viewport coordinates (not relative to a parent element), e.g. at `clientX`/`clientY` of a `contextmenu` event. Moves an already visible dropdown. The position takes precedence over `anchorPosition`, `anchor` and `trigger` until the dropdown is hidden.
 - `updatePosition() => Promise<void>` - Update position of dropdown
 
 ## Slots
@@ -47,7 +49,7 @@
 ## Dependencies
 
 - Renders: None
-- Rendered by: `ix-application-header`, `ix-avatar`, `ix-category-filter`, `ix-date-dropdown`, `ix-date-input`, `ix-datetime-input`, `ix-dropdown-button`, `ix-menu-avatar`, `ix-menu-category`, `ix-select`, `ix-time-input`
+- Rendered by: `ix-application-header`, `ix-avatar`, `ix-category-filter`, `ix-content-header`, `ix-date-dropdown`, `ix-date-input`, `ix-datetime-input`, `ix-dropdown-button`, `ix-menu-avatar`, `ix-menu-category`, `ix-select`, `ix-time-input`
 
 ## Related examples
 

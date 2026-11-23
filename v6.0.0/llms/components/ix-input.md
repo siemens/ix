@@ -3,8 +3,8 @@
 > Text input for entering and validating a single-line value.
 
 - Web component: `<ix-input>`
-- React/Vue: `IxInput` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-input>` (`IxModule` from `@siemens/ix-angular` or `IxInput` from `@siemens/ix-angular/standalone`)
+- React: `IxInput` from `@siemens/ix-react`
+- Vue: `IxInput` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -49,6 +49,7 @@
 
 ## Methods
 
+- `clear() => Promise<void>` - Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
 - `focusInput() => Promise<void>` - Focuses the input field
 - `getNativeInputElement() => Promise<HTMLInputElement>` - Returns the native input element used in the text field.
 - `getValidityState() => Promise<ValidityState>` - Returns the validity state of the input field.

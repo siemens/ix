@@ -3,8 +3,8 @@
 > Container for quick action buttons displayed within a dropdown.
 
 - Web component: `<ix-dropdown-quick-actions>`
-- React/Vue: `IxDropdownQuickActions` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-dropdown-quick-actions>` (`IxModule` from `@siemens/ix-angular` or `IxDropdownQuickActions` from `@siemens/ix-angular/standalone`)
+- React: `IxDropdownQuickActions` from `@siemens/ix-react`
+- Vue: `IxDropdownQuickActions` from `@siemens/ix-vue`
 
 ## Documentation
 

@@ -3,8 +3,8 @@
 > Button that opens an attached dropdown menu.
 
 - Web component: `<ix-dropdown-button>`
-- React/Vue: `IxDropdownButton` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-dropdown-button>` (`IxModule` from `@siemens/ix-angular` or `IxDropdownButton` from `@siemens/ix-angular/standalone`)
+- React: `IxDropdownButton` from `@siemens/ix-react`
+- Vue: `IxDropdownButton` from `@siemens/ix-vue`
 
 ## Documentation
 

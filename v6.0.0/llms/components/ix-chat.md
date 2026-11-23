@@ -3,8 +3,8 @@
 > No component summary available.
 
 - Web component: `<ix-chat>`
-- React/Vue: `IxChat` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-chat>` (`IxModule` from `@siemens/ix-angular` or `IxChat` from `@siemens/ix-angular/standalone`)
+- React: `IxChat` from `@siemens/ix-react`
+- Vue: `IxChat` from `@siemens/ix-vue`
 
 ## Documentation
 

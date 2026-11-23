@@ -3,8 +3,8 @@
 > Header region of a modal dialog showing the title and close control.
 
 - Web component: `<ix-modal-header>`
-- React/Vue: `IxModalHeader` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-modal-header>` (`IxModule` from `@siemens/ix-angular` or `IxModalHeader` from `@siemens/ix-angular/standalone`)
+- React: `IxModalHeader` from `@siemens/ix-react`
+- Vue: `IxModalHeader` from `@siemens/ix-vue`
 
 ## Documentation
 

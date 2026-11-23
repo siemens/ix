@@ -3,8 +3,8 @@
 > No component summary available.
 
 - Web component: `<ix-chat-ai-message>`
-- React/Vue: `IxChatAiMessage` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-chat-ai-message>` (`IxModule` from `@siemens/ix-angular` or `IxChatAiMessage` from `@siemens/ix-angular/standalone`)
+- React: `IxChatAiMessage` from `@siemens/ix-react`
+- Vue: `IxChatAiMessage` from `@siemens/ix-vue`
 
 ## Documentation
 

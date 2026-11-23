@@ -3,8 +3,8 @@
 > Inline bar that displays a contextual message or notification.
 
 - Web component: `<ix-message-bar>`
-- React/Vue: `IxMessageBar` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-message-bar>` (`IxModule` from `@siemens/ix-angular` or `IxMessageBar` from `@siemens/ix-angular/standalone`)
+- React: `IxMessageBar` from `@siemens/ix-react`
+- Vue: `IxMessageBar` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -17,7 +17,7 @@
 ## Properties
 
 - `persistent`; attr: `persistent`; type: `boolean`; default: `false` - If true, close button is disabled and alert cannot be dismissed by the user
-- `type`; attr: `type`; type: `"alarm" | "critical" | "info" | "neutral" | "primary" | "success" | "warning"`; default: `'info'` - Specifies the type of the alert.
+- `type`; attr: `type`; type: `"accent" | "caution" | "critical" | "danger" | "error" | "information" | "neutral" | "success" | "warning"`; default: `'information'` - Specifies the type of the alert.
 
 ## Events
 

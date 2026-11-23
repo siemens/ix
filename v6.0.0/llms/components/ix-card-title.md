@@ -3,8 +3,8 @@
 > Title area of a card.
 
 - Web component: `<ix-card-title>`
-- React/Vue: `IxCardTitle` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-card-title>` (`IxModule` from `@siemens/ix-angular` or `IxCardTitle` from `@siemens/ix-angular/standalone`)
+- React: `IxCardTitle` from `@siemens/ix-react`
+- Vue: `IxCardTitle` from `@siemens/ix-vue`
 
 ## Documentation
 

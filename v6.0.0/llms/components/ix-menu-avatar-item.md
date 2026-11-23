@@ -3,8 +3,8 @@
 > A single action within the avatar menu.
 
 - Web component: `<ix-menu-avatar-item>`
-- React/Vue: `IxMenuAvatarItem` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-menu-avatar-item>` (`IxModule` from `@siemens/ix-angular` or `IxMenuAvatarItem` from `@siemens/ix-angular/standalone`)
+- React: `IxMenuAvatarItem` from `@siemens/ix-react`
+- Vue: `IxMenuAvatarItem` from `@siemens/ix-vue`
 
 ## Documentation
 

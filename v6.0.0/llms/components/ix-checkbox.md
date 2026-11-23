@@ -3,8 +3,8 @@
 > Lets users select an option or toggle a single value on or off.
 
 - Web component: `<ix-checkbox>`
-- React/Vue: `IxCheckbox` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-checkbox>` (`IxModule` from `@siemens/ix-angular` or `IxCheckbox` from `@siemens/ix-angular/standalone`)
+- React: `IxCheckbox` from `@siemens/ix-react`
+- Vue: `IxCheckbox` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -41,7 +41,7 @@
 ## Dependencies
 
 - Renders: `ix-typography`
-- Rendered by: None
+- Rendered by: `ix-list-item`
 
 ## Related examples
 

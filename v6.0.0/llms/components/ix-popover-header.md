@@ -3,8 +3,8 @@
 > Header section with optional icon, title, additional items, and close button.
 
 - Web component: `<ix-popover-header>`
-- React/Vue: `IxPopoverHeader` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-popover-header>` (`IxModule` from `@siemens/ix-angular` or `IxPopoverHeader` from `@siemens/ix-angular/standalone`)
+- React: `IxPopoverHeader` from `@siemens/ix-react`
+- Vue: `IxPopoverHeader` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -31,8 +31,8 @@
 
 ## Slots
 
+- `` - Popover title (rendered as heading text).
 - `additional-items` - Optional content beside the title (for example `ix-pill`).
-- `default` - Popover title (rendered as heading text).
 
 ## Dependencies
 

@@ -17,8 +17,13 @@ import { IxKpi } from '@siemens/ix-angular/standalone';
     <div class="kpi">
       <ix-kpi label="Motor speed" value="Nominal"></ix-kpi>
       <ix-kpi label="Motor speed" value="{122.6}" unit="rpm"></ix-kpi>
-      <ix-kpi label="Motor speed" value="{122.6}" state="alarm"></ix-kpi>
       <ix-kpi label="Motor speed" value="{122.6}" state="warning"></ix-kpi>
+      <ix-kpi label="Motor speed" value="{122.6}" state="danger"></ix-kpi>
+      <ix-kpi label="Motor speed" value="{122.6}" state="caution"></ix-kpi>
+      <ix-kpi label="Motor speed" value="{122.6}" state="success"></ix-kpi>
+      <ix-kpi label="Motor speed" value="{122.6}" state="information"></ix-kpi>
+      <ix-kpi label="Motor speed" value="{122.6}" state="accent"></ix-kpi>
+      <ix-kpi label="Motor speed" value="{122.6}" state="critical"></ix-kpi>
 
       <ix-kpi
         label="Motor speed"
@@ -29,7 +34,7 @@ import { IxKpi } from '@siemens/ix-angular/standalone';
         label="Motor speed"
         value="{122.6}"
         unit="rpm"
-        state="alarm"
+        state="danger"
         orientation="vertical"
       ></ix-kpi>
     </div>

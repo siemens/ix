@@ -3,8 +3,8 @@
 > News panel shown within the application menu.
 
 - Web component: `<ix-menu-about-news>`
-- React/Vue: `IxMenuAboutNews` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-menu-about-news>` (`IxModule` from `@siemens/ix-angular` or `IxMenuAboutNews` from `@siemens/ix-angular/standalone`)
+- React: `IxMenuAboutNews` from `@siemens/ix-react`
+- Vue: `IxMenuAboutNews` from `@siemens/ix-vue`
 
 ## Documentation
 

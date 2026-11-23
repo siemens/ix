@@ -3,8 +3,8 @@
 > Optional image section for the popover.
 
 - Web component: `<ix-popover-image>`
-- React/Vue: `IxPopoverImage` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-popover-image>` (`IxModule` from `@siemens/ix-angular` or `IxPopoverImage` from `@siemens/ix-angular/standalone`)
+- React: `IxPopoverImage` from `@siemens/ix-react`
+- Vue: `IxPopoverImage` from `@siemens/ix-vue`
 
 ## Documentation
 

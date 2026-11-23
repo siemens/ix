@@ -1509,8 +1509,16 @@
           "path": "v6.0.0/examples/date-dropdown.json"
         },
         {
+          "name": "date-dropdown-display-format",
+          "path": "v6.0.0/examples/date-dropdown-display-format.json"
+        },
+        {
           "name": "date-dropdown-presets",
           "path": "v6.0.0/examples/date-dropdown-presets.json"
+        },
+        {
+          "name": "date-dropdown-require-confirmation",
+          "path": "v6.0.0/examples/date-dropdown-require-confirmation.json"
         },
         {
           "name": "date-dropdown-user-range",
@@ -1525,6 +1533,10 @@
           "path": "v6.0.0/examples/date-input-disabled.json"
         },
         {
+          "name": "date-input-display-format",
+          "path": "v6.0.0/examples/date-input-display-format.json"
+        },
+        {
           "name": "date-input-label",
           "path": "v6.0.0/examples/date-input-label.json"
         },
@@ -1537,12 +1549,20 @@
           "path": "v6.0.0/examples/date-input-readonly.json"
         },
         {
+          "name": "date-input-require-confirmation",
+          "path": "v6.0.0/examples/date-input-require-confirmation.json"
+        },
+        {
           "name": "date-input-validation",
           "path": "v6.0.0/examples/date-input-validation.json"
         },
         {
           "name": "date-input-with-slots",
           "path": "v6.0.0/examples/date-input-with-slots.json"
+        },
+        {
+          "name": "date-picker-require-confirmation",
+          "path": "v6.0.0/examples/date-picker-require-confirmation.json"
         },
         {
           "name": "date-range",
@@ -1569,6 +1589,10 @@
           "path": "v6.0.0/examples/datetime-input-disabled.json"
         },
         {
+          "name": "datetime-input-display-format",
+          "path": "v6.0.0/examples/datetime-input-display-format.json"
+        },
+        {
           "name": "datetime-input-label",
           "path": "v6.0.0/examples/datetime-input-label.json"
         },
@@ -1581,12 +1605,20 @@
           "path": "v6.0.0/examples/datetime-input-readonly.json"
         },
         {
+          "name": "datetime-input-require-confirmation",
+          "path": "v6.0.0/examples/datetime-input-require-confirmation.json"
+        },
+        {
           "name": "datetime-input-validation",
           "path": "v6.0.0/examples/datetime-input-validation.json"
         },
         {
           "name": "datetime-input-with-slots",
           "path": "v6.0.0/examples/datetime-input-with-slots.json"
+        },
+        {
+          "name": "datetime-picker-require-confirmation",
+          "path": "v6.0.0/examples/datetime-picker-require-confirmation.json"
         },
         {
           "name": "datetime-range",
@@ -1777,6 +1809,38 @@
           "path": "v6.0.0/examples/form-validation.json"
         },
         {
+          "name": "generic-list-action-on-hover",
+          "path": "v6.0.0/examples/generic-list-action-on-hover.json"
+        },
+        {
+          "name": "generic-list-additional-options",
+          "path": "v6.0.0/examples/generic-list-additional-options.json"
+        },
+        {
+          "name": "generic-list-basic",
+          "path": "v6.0.0/examples/generic-list-basic.json"
+        },
+        {
+          "name": "generic-list-custom-content",
+          "path": "v6.0.0/examples/generic-list-custom-content.json"
+        },
+        {
+          "name": "generic-list-draggable",
+          "path": "v6.0.0/examples/generic-list-draggable.json"
+        },
+        {
+          "name": "generic-list-notification-icon",
+          "path": "v6.0.0/examples/generic-list-notification-icon.json"
+        },
+        {
+          "name": "generic-list-users",
+          "path": "v6.0.0/examples/generic-list-users.json"
+        },
+        {
+          "name": "generic-list-variants",
+          "path": "v6.0.0/examples/generic-list-variants.json"
+        },
+        {
           "name": "grid",
           "path": "v6.0.0/examples/grid.json"
         },
@@ -1835,6 +1899,10 @@
         {
           "name": "info-page",
           "path": "v6.0.0/examples/info-page.json"
+        },
+        {
+          "name": "info-page-illustration",
+          "path": "v6.0.0/examples/info-page-illustration.json"
         },
         {
           "name": "input",
@@ -1905,6 +1973,10 @@
           "path": "v6.0.0/examples/key-value-list-with-icon.json"
         },
         {
+          "name": "key-value-list-without-divider",
+          "path": "v6.0.0/examples/key-value-list-without-divider.json"
+        },
+        {
           "name": "key-value-with-custom-value",
           "path": "v6.0.0/examples/key-value-with-custom-value.json"
         },
@@ -1933,8 +2005,24 @@
           "path": "v6.0.0/examples/link-button.json"
         },
         {
+          "name": "link-button-action",
+          "path": "v6.0.0/examples/link-button-action.json"
+        },
+        {
           "name": "link-button-disabled",
           "path": "v6.0.0/examples/link-button-disabled.json"
+        },
+        {
+          "name": "link-button-external",
+          "path": "v6.0.0/examples/link-button-external.json"
+        },
+        {
+          "name": "link-button-file",
+          "path": "v6.0.0/examples/link-button-file.json"
+        },
+        {
+          "name": "link-button-internal",
+          "path": "v6.0.0/examples/link-button-internal.json"
         },
         {
           "name": "loading",

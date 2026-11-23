@@ -3,8 +3,8 @@
 > Footer section for actions and optional leading metadata.
 
 - Web component: `<ix-popover-footer>`
-- React/Vue: `IxPopoverFooter` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-popover-footer>` (`IxModule` from `@siemens/ix-angular` or `IxPopoverFooter` from `@siemens/ix-angular/standalone`)
+- React: `IxPopoverFooter` from `@siemens/ix-react`
+- Vue: `IxPopoverFooter` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -28,7 +28,7 @@
 
 ## Slots
 
-- `default` - Footer actions (typically buttons), aligned to the end.
+- `` - Footer actions (typically buttons), aligned to the end.
 - `start` - Optional leading content (for example version text or step indicators).
 
 ## Dependencies

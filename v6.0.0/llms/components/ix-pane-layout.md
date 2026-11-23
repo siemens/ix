@@ -3,8 +3,8 @@
 > Layout container that arranges collapsible panes around a content area.
 
 - Web component: `<ix-pane-layout>`
-- React/Vue: `IxPaneLayout` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-pane-layout>` (`IxModule` from `@siemens/ix-angular` or `IxPaneLayout` from `@siemens/ix-angular/standalone`)
+- React: `IxPaneLayout` from `@siemens/ix-react`
+- Vue: `IxPaneLayout` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -12,7 +12,7 @@
 
 ## Figma IDs
 
-- 19924:12291
+- 153304:27060
 
 ## Properties
 

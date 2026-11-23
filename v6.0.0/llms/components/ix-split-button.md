@@ -3,8 +3,8 @@
 > Button combined with an attached dropdown for related actions.
 
 - Web component: `<ix-split-button>`
-- React/Vue: `IxSplitButton` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-split-button>` (`IxModule` from `@siemens/ix-angular` or `IxSplitButton` from `@siemens/ix-angular/standalone`)
+- React: `IxSplitButton` from `@siemens/ix-react`
+- Vue: `IxSplitButton` from `@siemens/ix-vue`
 
 ## Documentation
 

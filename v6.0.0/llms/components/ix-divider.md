@@ -3,8 +3,8 @@
 > Thin line that visually separates content.
 
 - Web component: `<ix-divider>`
-- React/Vue: `IxDivider` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-divider>` (`IxModule` from `@siemens/ix-angular` or `IxDivider` from `@siemens/ix-angular/standalone`)
+- React: `IxDivider` from `@siemens/ix-react`
+- Vue: `IxDivider` from `@siemens/ix-vue`
 
 ## Documentation
 

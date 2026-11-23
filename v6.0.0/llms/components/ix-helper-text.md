@@ -3,8 +3,8 @@
 > Supplementary text that provides guidance or validation feedback for a form field.
 
 - Web component: `<ix-helper-text>`
-- React/Vue: `IxHelperText` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-helper-text>` (`IxModule` from `@siemens/ix-angular` or `IxHelperText` from `@siemens/ix-angular/standalone`)
+- React: `IxHelperText` from `@siemens/ix-react`
+- Vue: `IxHelperText` from `@siemens/ix-vue`
 
 ## Documentation
 

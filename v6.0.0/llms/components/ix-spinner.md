@@ -3,8 +3,8 @@
 > Animated indicator that signals an ongoing loading process.
 
 - Web component: `<ix-spinner>`
-- React/Vue: `IxSpinner` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-spinner>` (`IxModule` from `@siemens/ix-angular` or `IxSpinner` from `@siemens/ix-angular/standalone`)
+- React: `IxSpinner` from `@siemens/ix-react`
+- Vue: `IxSpinner` from `@siemens/ix-vue`
 
 ## Documentation
 

@@ -3,8 +3,8 @@
 > Footer region of a modal dialog, typically holding action buttons.
 
 - Web component: `<ix-modal-footer>`
-- React/Vue: `IxModalFooter` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-modal-footer>` (`IxModule` from `@siemens/ix-angular` or `IxModalFooter` from `@siemens/ix-angular/standalone`)
+- React: `IxModalFooter` from `@siemens/ix-react`
+- Vue: `IxModalFooter` from `@siemens/ix-vue`
 
 ## Documentation
 

@@ -3,8 +3,8 @@
 > Settings overlay opened from the application menu.
 
 - Web component: `<ix-menu-settings>`
-- React/Vue: `IxMenuSettings` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-menu-settings>` (`IxModule` from `@siemens/ix-angular` or `IxMenuSettings` from `@siemens/ix-angular/standalone`)
+- React: `IxMenuSettings` from `@siemens/ix-react`
+- Vue: `IxMenuSettings` from `@siemens/ix-vue`
 
 ## Documentation
 

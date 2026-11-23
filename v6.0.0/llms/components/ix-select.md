@@ -3,8 +3,8 @@
 > Dropdown control for selecting one or more options from a list.
 
 - Web component: `<ix-select>`
-- React/Vue: `IxSelect` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-select>` (`IxModule` from `@siemens/ix-angular` or `IxSelect` from `@siemens/ix-angular/standalone`)
+- React: `IxSelect` from `@siemens/ix-react`
+- Vue: `IxSelect` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -21,8 +21,8 @@
 - `ariaLabelClearIconButton`; attr: `aria-label-clear-icon-button`; type: `string | undefined`; default: `'Clear selection'` - ARIA label for the clear icon button Will be set as aria-label on the nested HTML button element
 - `collapseMultipleSelection`; attr: `collapse-multiple-selection`; type: `boolean`; default: `false` - Show "all" chip when all items are selected in multiple mode
 - `disabled`; attr: `disabled`; type: `boolean`; default: `false` - If true the select will be in disabled state
-- `dropdownMaxWidth`; attr: `dropdown-max-width`; type: `string | undefined` - The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem"). By default the maximum width of the dropdown element is set to 100%.
-- `dropdownWidth`; attr: `dropdown-width`; type: `string | undefined` - The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
+- `dropdownMaxWidth`; attr: `dropdown-max-width`; type: `string | undefined` - The maximum width of the dropdown element with value and unit (e.g. "200px"). By default the maximum width of the dropdown element is set to 100%.
+- `dropdownWidth`; attr: `dropdown-width`; type: `string | undefined` - The width of the dropdown element with value and unit (e.g. "200px").
 - `editable`; attr: `editable`; type: `boolean`; default: `false` - Select is extendable
 - `enableTopLayer`; attr: `enable-top-layer`; type: `boolean`; default: `false` - Enable Popover API rendering for dropdown.
 - `helperText`; attr: `helper-text`; type: `string | undefined` - Helper text for the select component

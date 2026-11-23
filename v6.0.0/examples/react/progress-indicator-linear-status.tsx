@@ -12,7 +12,7 @@ import './progress-indicator.scoped.css';
 export default () => {
   return (
     <>
-      <h2 className="example-header">Status - Default</h2>
+      <h2 className="example-header">Status - Base</h2>
       <IxProgressIndicator
         type="linear"
         label="Download"
@@ -41,13 +41,13 @@ export default () => {
       >
         75%
       </IxProgressIndicator>
-      <h2 className="example-header">Status - Info</h2>
+      <h2 className="example-header">Status - Information</h2>
       <IxProgressIndicator
         type="linear"
         label="Download"
         value={75}
         helperText="This is a help text for the progress indicator"
-        status="info"
+        status="information"
       >
         75%
       </IxProgressIndicator>

@@ -3,8 +3,8 @@
 > Applies consistent text styling based on the design system's typography scale.
 
 - Web component: `<ix-typography>`
-- React/Vue: `IxTypography` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-typography>` (`IxModule` from `@siemens/ix-angular` or `IxTypography` from `@siemens/ix-angular/standalone`)
+- React: `IxTypography` from `@siemens/ix-react`
+- Vue: `IxTypography` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -18,7 +18,7 @@
 
 - `bold`; attr: `bold`; type: `boolean`; default: `false` - Display text bold
 - `format`; attr: `format`; type: `"body" | "body-lg" | "body-lg-sbold" | "body-paragraph" | "body-paragraph-sbold" | "body-sbold" | "body-sm" | "body-sm-sbold" | "code" | "code-lg" | "code-sm" | "display" | "display-lg" | "display-lg-sbold" | "display-sbold" | "display-xl" | "display-xl-sbold" | "display-xxl" | "display-xxl-sbold" | "h1" | "h2" | "h3" | "h4" | "h5" | "h5-bold" | "h6" | undefined` - Text format
-- `textColor`; attr: `text-color`; type: `"alarm" | "alarm-contrast" | "contrast" | "critical-contrast" | "info-contrast" | "inv-contrast" | "inv-soft" | "inv-std" | "inv-weak" | "neutral-contrast" | "primary-contrast" | "soft" | "std" | "success-contrast" | "warning-contrast" | "weak" | undefined` - Text color based on theme variables
+- `textColor`; attr: `text-color`; type: `"caution" | "critical" | "danger" | "disabled" | "information" | "inverse" | "on-accent" | "on-caution" | "on-critical" | "on-danger" | "on-information" | "on-neutral" | "on-success" | "on-warning" | "primary" | "secondary" | "success" | "warning" | undefined` - Text color based on theme variables
 - `textDecoration`; attr: `text-decoration`; type: `"line-through" | "none" | "underline"`; default: `'none'` - Text decoration
 
 ## Events
@@ -46,6 +46,8 @@ Examples that use this component, with available frameworks. Look up source file
 - date-input-with-slots (angular, angular-standalone, html, react, vue)
 - datetime-input-with-slots (angular, angular-standalone, html, react, vue)
 - form-validation (angular, angular-standalone, html, react, vue)
+- generic-list-notification-icon (angular, angular-standalone, html, react, vue)
+- generic-list-users (angular, angular-standalone, html, react, vue)
 - grid (angular, angular-standalone, html, react, vue)
 - grid-padding (angular, angular-standalone, html, react, vue)
 - grid-size (angular, angular-standalone, html, react, vue)

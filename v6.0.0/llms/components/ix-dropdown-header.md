@@ -3,8 +3,8 @@
 > Non-interactive heading that labels a group of dropdown items.
 
 - Web component: `<ix-dropdown-header>`
-- React/Vue: `IxDropdownHeader` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-dropdown-header>` (`IxModule` from `@siemens/ix-angular` or `IxDropdownHeader` from `@siemens/ix-angular/standalone`)
+- React: `IxDropdownHeader` from `@siemens/ix-react`
+- Vue: `IxDropdownHeader` from `@siemens/ix-vue`
 
 ## Documentation
 

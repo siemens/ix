@@ -1,4 +1,4 @@
-[Siemens iX angular examples]|274 examples|format: name|title|used ix tags|files
+[Siemens iX angular examples]|296 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/angular/ (registry version root: examples/angular/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/angular/button.ts
 |Used tags are iX components found in the angular source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.html,.ts
@@ -60,26 +60,34 @@ content-header-with-slot|Content header with slot|ix-button,ix-content-header,ix
 custom-field|Custom field|ix-custom-field,ix-icon-button,ix-input|.html,.ts
 custom-field-validation|Custom field validation|ix-custom-field|.html,.ts
 date-dropdown|Date dropdown|ix-date-dropdown|.html,.ts
+date-dropdown-display-format|Date dropdown display format|ix-date-dropdown|.html,.ts
 date-dropdown-presets|Date dropdown presets|ix-date-dropdown|.html,.ts
+date-dropdown-require-confirmation|Date dropdown require confirmation|ix-date-dropdown|.html,.ts
 date-dropdown-user-range|Date dropdown user range|ix-date-dropdown|.html,.ts
 date-input|Date input|ix-date-input|.html,.ts
 date-input-disabled|Date input disabled|ix-date-input|.html,.ts
+date-input-display-format|Date input display format|ix-date-input|.html,.ts
 date-input-label|Date input label|ix-date-input|.html,.ts
 date-input-min-max-date|Date input min max date|ix-date-input|.html,.ts
 date-input-readonly|Date input readonly|ix-date-input|.html,.ts
+date-input-require-confirmation|Date input require confirmation|ix-date-input|.html,.ts
 date-input-validation|Date input validation|ix-date-input|.html,.ts
 date-input-with-slots|Date input with slots|ix-date-input,ix-typography|.html,.ts
+date-picker-require-confirmation|Date picker require confirmation|ix-date-picker|.html,.ts
 date-range|Date range|ix-date-input,ix-range-field|.ts
 datepicker|Datepicker|ix-date-picker|.ts
 datepicker-locale|Datepicker locale|ix-col,ix-date-picker,ix-layout-grid,ix-row,ix-select,ix-select-item|.html,.ts
 datepicker-range|Datepicker range|ix-date-picker|.ts
 datetime-input|Datetime input|ix-datetime-input|.html,.ts
 datetime-input-disabled|Datetime input disabled|ix-datetime-input|.html,.ts
+datetime-input-display-format|Datetime input display format|ix-datetime-input|.html,.ts
 datetime-input-label|Datetime input label|ix-datetime-input|.html,.ts
 datetime-input-min-max-date|Datetime input min max date|ix-datetime-input|.html,.ts
 datetime-input-readonly|Datetime input readonly|ix-datetime-input|.html,.ts
+datetime-input-require-confirmation|Datetime input require confirmation|ix-datetime-input|.html,.ts
 datetime-input-validation|Datetime input validation|ix-datetime-input|.html,.ts
 datetime-input-with-slots|Datetime input with slots|ix-datetime-input,ix-typography|.html,.ts
+datetime-picker-require-confirmation|Datetime picker require confirmation|ix-datetime-picker|.html,.ts
 datetime-range|Datetime range|ix-datetime-input,ix-range-field|.ts
 datetimepicker|Datetimepicker|ix-datetime-picker|.ts
 datetimepicker-locale|Datetimepicker locale|ix-col,ix-datetime-picker,ix-layout-grid,ix-row,ix-select,ix-select-item|.html,.ts
@@ -127,6 +135,14 @@ form-checkbox-validation|Form checkbox validation|ix-checkbox,ix-checkbox-group|
 form-layout-auto|Form layout auto|ix-button,ix-field-label,ix-input,ix-layout-auto,ix-select|.html,.ts
 form-layout-grid|Form layout grid|ix-button,ix-col,ix-field-label,ix-input,ix-layout-grid,ix-row,ix-select|.css,.html,.ts
 form-validation|Form validation|ix-button,ix-checkbox,ix-custom-field,ix-date-input,ix-icon-button,ix-input,ix-layout-auto,ix-number-input,ix-radio,ix-radio-group,ix-select,ix-select-item,ix-textarea,ix-typography|.css,.html,.ts
+generic-list-action-on-hover|Generic list action on hover|ix-icon-button,ix-list,ix-list-item|.html,.ts
+generic-list-additional-options|Generic list additional options|ix-icon-button,ix-list,ix-list-item,ix-list-item-separator|.html,.ts
+generic-list-basic|Generic list basic|ix-list,ix-list-item|.html,.ts
+generic-list-custom-content|Generic list custom content|ix-badge,ix-icon-button,ix-list,ix-list-item|.css,.html,.ts
+generic-list-draggable|Generic list draggable|ix-list,ix-list-item|.html,.ts
+generic-list-notification-icon|Generic list notification icon|ix-badge,ix-list,ix-list-item,ix-typography|.css,.html,.ts
+generic-list-users|Generic list users|ix-avatar,ix-icon-button,ix-list,ix-list-item,ix-typography|.css,.html,.ts
+generic-list-variants|Generic list variants|ix-list,ix-list-item|.html,.ts
 grid|Grid|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.html,.ts
 grid-padding|Grid padding|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.html,.ts
 grid-size|Grid size|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.html,.ts
@@ -142,6 +158,7 @@ icon-toggle-button-subtle-secondary|Icon toggle button subtle secondary|ix-icon-
 icon-toggle-button-subtle-tertiary|Icon toggle button subtle tertiary|ix-icon-toggle-button|.css,.ts
 icon-toggle-button-tertiary|Icon toggle button tertiary|ix-icon-toggle-button|.css,.ts
 info-page|Info page|ix-button,ix-info-page|.ts
+info-page-illustration|Info page illustration|ix-button,ix-info-page|.ts
 input|Input|ix-input|.html,.ts
 input-disabled|Input disabled|ix-input|.html,.ts
 input-form-validation|Input form validation|ix-button,ix-input|.html,.ts
@@ -159,6 +176,7 @@ key-value-list|Key value list|ix-key-value,ix-key-value-list|.ts
 key-value-list-striped|Key value list striped|ix-key-value,ix-key-value-list|.ts
 key-value-list-with-custom-value|Key value list with custom value|ix-key-value,ix-key-value-list|.css,.ts
 key-value-list-with-icon|Key value list with icon|ix-key-value,ix-key-value-list|.ts
+key-value-list-without-divider|Key value list without divider|ix-key-value,ix-key-value-list|.ts
 key-value-with-custom-value|Key value with custom value|ix-key-value|.css,.ts
 key-value-with-icon|Key value with icon|ix-key-value|.ts
 key-value-with-label-left|Key value with label left|ix-key-value|.ts
@@ -166,7 +184,11 @@ kpi|Kpi|ix-kpi|.css,.ts
 layout-auto|Layout auto|ix-layout-auto,ix-typography|.css,.html,.ts
 layout-auto-custom|Layout auto custom|ix-layout-auto,ix-typography|.html,.ts
 link-button|Link button|ix-link-button|.ts
+link-button-action|Link button action|ix-link-button|.ts
 link-button-disabled|Link button disabled|ix-link-button|.ts
+link-button-external|Link button external|ix-link-button|.ts
+link-button-file|Link button file|ix-link-button|.ts
+link-button-internal|Link button internal|ix-link-button|.ts
 loading|Loading|ix-button|.ts
 map-navigation-migration|Map navigation migration||.css
 menu-category|Menu category|ix-application,ix-menu,ix-menu-category,ix-menu-item|.html,.ts

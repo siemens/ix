@@ -3,8 +3,8 @@
 > Collapsible side panel docked to an edge of the layout.
 
 - Web component: `<ix-pane>`
-- React/Vue: `IxPane` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-pane>` (`IxModule` from `@siemens/ix-angular` or `IxPane` from `@siemens/ix-angular/standalone`)
+- React: `IxPane` from `@siemens/ix-react`
+- Vue: `IxPane` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -12,7 +12,7 @@
 
 ## Figma IDs
 
-- 19924:12291
+- 153304:26230
 
 ## Properties
 

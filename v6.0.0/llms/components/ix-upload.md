@@ -3,8 +3,8 @@
 > Control for selecting and uploading files.
 
 - Web component: `<ix-upload>`
-- React/Vue: `IxUpload` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-upload>` (`IxModule` from `@siemens/ix-angular` or `IxUpload` from `@siemens/ix-angular/standalone`)
+- React: `IxUpload` from `@siemens/ix-react`
+- Vue: `IxUpload` from `@siemens/ix-vue`
 
 ## Documentation
 

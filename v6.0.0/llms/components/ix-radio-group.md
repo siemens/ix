@@ -3,8 +3,8 @@
 > Groups related radio buttons so only one can be selected.
 
 - Web component: `<ix-radio-group>`
-- React/Vue: `IxRadioGroup` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-radio-group>` (`IxModule` from `@siemens/ix-angular` or `IxRadioGroup` from `@siemens/ix-angular/standalone`)
+- React: `IxRadioGroup` from `@siemens/ix-react`
+- Vue: `IxRadioGroup` from `@siemens/ix-vue`
 
 ## Documentation
 

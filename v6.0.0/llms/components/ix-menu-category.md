@@ -3,8 +3,8 @@
 > Expandable category that groups related items in the side menu.
 
 - Web component: `<ix-menu-category>`
-- React/Vue: `IxMenuCategory` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-menu-category>` (`IxModule` from `@siemens/ix-angular` or `IxMenuCategory` from `@siemens/ix-angular/standalone`)
+- React: `IxMenuCategory` from `@siemens/ix-react`
+- Vue: `IxMenuCategory` from `@siemens/ix-vue`
 
 ## Documentation
 

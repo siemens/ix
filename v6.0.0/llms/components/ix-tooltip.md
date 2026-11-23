@@ -3,8 +3,8 @@
 > Small overlay that shows contextual information when hovering or focusing an element.
 
 - Web component: `<ix-tooltip>`
-- React/Vue: `IxTooltip` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-tooltip>` (`IxModule` from `@siemens/ix-angular` or `IxTooltip` from `@siemens/ix-angular/standalone`)
+- React: `IxTooltip` from `@siemens/ix-react`
+- Vue: `IxTooltip` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -12,13 +12,15 @@
 
 ## Figma IDs
 
-- 1239:30786
+- 160982:16759
 
 ## Properties
 
 - `for`; attr: `for`; type: `ElementReference[] | HTMLElement | Promise<HTMLElement> | string | undefined` - CSS selector for hover trigger element e.g. `for="[data-my-custom-select]"`
+- `hideDelay`; attr: `hide-delay`; type: `number | undefined` - Delay in milliseconds before the tooltip is hidden. Defaults to 50 ms, or 150 ms for interactive tooltips, so the user has time to move the pointer into the tooltip. For interactive tooltips, avoid very short delays, otherwise the tooltip closes before the pointer reaches it.
 - `interactive`; attr: `interactive`; type: `boolean`; default: `false` - Define if the user can access the tooltip via mouse.
 - `placement`; attr: `placement`; type: `"bottom" | "left" | "right" | "top"`; default: `'top'` - Initial placement of the tooltip. If the selected placement doesn't have enough space, the tooltip will be repositioned to another location.
+- `showDelay`; attr: `show-delay`; type: `number`; default: `0` - Delay in milliseconds before the tooltip is shown.
 - `titleContent`; attr: `title-content`; type: `string | undefined` - Title of the tooltip
 
 ## Events

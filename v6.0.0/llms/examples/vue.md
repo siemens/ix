@@ -1,4 +1,4 @@
-[Siemens iX vue examples]|267 examples|format: name|title|used ix tags|files
+[Siemens iX vue examples]|289 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/vue/ (registry version root: examples/vue/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/vue/button.ts
 |Used tags are iX components found in the vue source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.vue
@@ -60,26 +60,34 @@ content-header-with-slot|Content header with slot|ix-button,ix-content-header,ix
 custom-field|Custom field|ix-custom-field,ix-icon-button,ix-input|.vue
 custom-field-validation|Custom field validation|ix-custom-field|.vue
 date-dropdown|Date dropdown|ix-date-dropdown|.vue
+date-dropdown-display-format|Date dropdown display format|ix-date-dropdown|.vue
 date-dropdown-presets|Date dropdown presets|ix-date-dropdown|.vue
+date-dropdown-require-confirmation|Date dropdown require confirmation|ix-date-dropdown|.vue
 date-dropdown-user-range|Date dropdown user range|ix-date-dropdown|.vue
 date-input|Date input|ix-date-input|.vue
 date-input-disabled|Date input disabled|ix-date-input|.vue
+date-input-display-format|Date input display format|ix-date-input|.vue
 date-input-label|Date input label|ix-date-input|.vue
 date-input-min-max-date|Date input min max date|ix-date-input|.vue
 date-input-readonly|Date input readonly|ix-date-input|.vue
+date-input-require-confirmation|Date input require confirmation|ix-date-input|.vue
 date-input-validation|Date input validation|ix-date-input|.vue
 date-input-with-slots|Date input with slots|ix-date-input,ix-typography|.vue
+date-picker-require-confirmation|Date picker require confirmation|ix-date-picker|.vue
 date-range|Date range|ix-date-input,ix-range-field|.vue
 datepicker|Datepicker|ix-date-picker|.vue
 datepicker-locale|Datepicker locale|ix-col,ix-date-picker,ix-layout-grid,ix-row,ix-select,ix-select-item|.vue
 datepicker-range|Datepicker range|ix-date-picker|.vue
 datetime-input|Datetime input|ix-datetime-input|.vue
 datetime-input-disabled|Datetime input disabled|ix-datetime-input|.vue
+datetime-input-display-format|Datetime input display format|ix-datetime-input|.vue
 datetime-input-label|Datetime input label|ix-datetime-input|.vue
 datetime-input-min-max-date|Datetime input min max date|ix-datetime-input|.vue
 datetime-input-readonly|Datetime input readonly|ix-datetime-input|.vue
+datetime-input-require-confirmation|Datetime input require confirmation|ix-datetime-input|.vue
 datetime-input-validation|Datetime input validation|ix-datetime-input|.vue
 datetime-input-with-slots|Datetime input with slots|ix-datetime-input,ix-typography|.vue
+datetime-picker-require-confirmation|Datetime picker require confirmation|ix-datetime-picker|.vue
 datetime-range|Datetime range|ix-datetime-input,ix-range-field|.vue
 datetimepicker|Datetimepicker|ix-datetime-picker|.vue
 datetimepicker-locale|Datetimepicker locale|ix-col,ix-datetime-picker,ix-layout-grid,ix-row,ix-select,ix-select-item|.vue
@@ -127,6 +135,14 @@ form-checkbox-validation|Form checkbox validation|ix-checkbox,ix-checkbox-group|
 form-layout-auto|Form layout auto|ix-button,ix-field-label,ix-input,ix-layout-auto,ix-select|.vue
 form-layout-grid|Form layout grid|ix-button,ix-col,ix-field-label,ix-input,ix-layout-grid,ix-row,ix-select|.css,.vue
 form-validation|Form validation|ix-button,ix-custom-field,ix-date-input,ix-icon-button,ix-input,ix-layout-auto,ix-number-input,ix-radio,ix-radio-group,ix-select,ix-select-item,ix-textarea,ix-typography|.css,.vue
+generic-list-action-on-hover|Generic list action on hover|ix-icon-button,ix-list,ix-list-item|.vue
+generic-list-additional-options|Generic list additional options|ix-icon-button,ix-list,ix-list-item,ix-list-item-separator|.vue
+generic-list-basic|Generic list basic|ix-list,ix-list-item|.vue
+generic-list-custom-content|Generic list custom content|ix-badge,ix-icon-button,ix-list,ix-list-item|.css,.vue
+generic-list-draggable|Generic list draggable|ix-list,ix-list-item|.vue
+generic-list-notification-icon|Generic list notification icon|ix-badge,ix-list,ix-list-item,ix-typography|.css,.vue
+generic-list-users|Generic list users|ix-avatar,ix-icon-button,ix-list,ix-list-item,ix-typography|.css,.vue
+generic-list-variants|Generic list variants|ix-list,ix-list-item|.vue
 grid|Grid|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.vue
 grid-padding|Grid padding|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.vue
 grid-size|Grid size|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.vue
@@ -142,6 +158,7 @@ icon-toggle-button-subtle-secondary|Icon toggle button subtle secondary|ix-icon-
 icon-toggle-button-subtle-tertiary|Icon toggle button subtle tertiary|ix-icon-toggle-button|.css,.vue
 icon-toggle-button-tertiary|Icon toggle button tertiary|ix-icon-toggle-button|.css,.vue
 info-page|Info page|ix-button,ix-info-page|.vue
+info-page-illustration|Info page illustration|ix-button,ix-info-page|.vue
 input|Input|ix-input|.vue
 input-disabled|Input disabled|ix-input|.vue
 input-label|Input label|ix-input|.vue
@@ -158,6 +175,7 @@ key-value-list|Key value list|ix-key-value,ix-key-value-list|.vue
 key-value-list-striped|Key value list striped|ix-key-value,ix-key-value-list|.vue
 key-value-list-with-custom-value|Key value list with custom value|ix-key-value,ix-key-value-list|.css,.vue
 key-value-list-with-icon|Key value list with icon|ix-key-value,ix-key-value-list|.vue
+key-value-list-without-divider|Key value list without divider|ix-key-value,ix-key-value-list|.vue
 key-value-with-custom-value|Key value with custom value|ix-key-value|.css,.vue
 key-value-with-icon|Key value with icon|ix-key-value|.vue
 key-value-with-label-left|Key value with label left|ix-key-value|.vue
@@ -165,17 +183,21 @@ kpi|Kpi|ix-kpi|.css,.vue
 layout-auto|Layout auto|ix-layout-auto,ix-typography|.css,.vue
 layout-auto-custom|Layout auto custom|ix-layout-auto,ix-typography|.vue
 link-button|Link button|ix-link-button|.vue
+link-button-action|Link button action|ix-link-button|.vue
 link-button-disabled|Link button disabled|ix-link-button|.vue
+link-button-external|Link button external|ix-link-button|.vue
+link-button-file|Link button file|ix-link-button|.vue
+link-button-internal|Link button internal|ix-link-button|.vue
 loading|Loading|ix-button|.vue
 menu-category|Menu category|ix-application,ix-menu,ix-menu-category,ix-menu-item|.vue
 menu-with-bottom-tabs|Menu with bottom tabs|ix-menu,ix-menu-item|.vue
 message|Message|ix-button|.vue
 message-bar|Message bar|ix-button,ix-message-bar|.css,.vue
 message-bar-removal|Message bar removal|ix-button,ix-message-bar|.vue
-modal|Modal|ix-button,ix-modal-content,ix-modal-footer,ix-modal-header|.vue
-modal-close|Modal close|ix-button,ix-modal-content,ix-modal-footer,ix-modal-header|.vue
+modal|Modal|ix-button,ix-modal,ix-modal-content,ix-modal-footer,ix-modal-header|.vue
+modal-close|Modal close|ix-button,ix-modal,ix-modal-content,ix-modal-footer,ix-modal-header|.vue
 modal-form-ix-button-submit|Modal form ix button submit|ix-button,ix-input,ix-modal-content,ix-modal-footer,ix-modal-header|.vue
-modal-sizes|Modal sizes|ix-button|.css,.vue
+modal-sizes|Modal sizes|ix-button,ix-modal|.css,.vue
 number-input|Number input|ix-number-input|.vue
 number-input-disabled|Number input disabled|ix-number-input|.vue
 number-input-label|Number input label|ix-number-input|.vue

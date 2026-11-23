@@ -3,8 +3,8 @@
 > Content for a single side of a flip tile.
 
 - Web component: `<ix-flip-tile-content>`
-- React/Vue: `IxFlipTileContent` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-flip-tile-content>` (`IxModule` from `@siemens/ix-angular` or `IxFlipTileContent` from `@siemens/ix-angular/standalone`)
+- React: `IxFlipTileContent` from `@siemens/ix-react`
+- Vue: `IxFlipTileContent` from `@siemens/ix-vue`
 
 ## Documentation
 

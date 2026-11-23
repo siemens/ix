@@ -3,8 +3,8 @@
 > Menu entry that displays the current user's avatar and account actions.
 
 - Web component: `<ix-menu-avatar>`
-- React/Vue: `IxMenuAvatar` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-menu-avatar>` (`IxModule` from `@siemens/ix-angular` or `IxMenuAvatar` from `@siemens/ix-angular/standalone`)
+- React: `IxMenuAvatar` from `@siemens/ix-react`
+- Vue: `IxMenuAvatar` from `@siemens/ix-vue`
 
 ## Documentation
 

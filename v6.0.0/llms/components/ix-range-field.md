@@ -3,8 +3,8 @@
 > Field that combines two inputs to capture a date, time, or datetime range.
 
 - Web component: `<ix-range-field>`
-- React/Vue: `IxRangeField` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-range-field>` (`IxModule` from `@siemens/ix-angular` or `IxRangeField` from `@siemens/ix-angular/standalone`)
+- React: `IxRangeField` from `@siemens/ix-react`
+- Vue: `IxRangeField` from `@siemens/ix-vue`
 
 ## Documentation
 

@@ -3,8 +3,8 @@
 > Tabbed navigation for switching between related views.
 
 - Web component: `<ix-tabs>`
-- React/Vue: `IxTabs` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-tabs>` (`IxModule` from `@siemens/ix-angular` or `IxTabs` from `@siemens/ix-angular/standalone`)
+- React: `IxTabs` from `@siemens/ix-react`
+- Vue: `IxTabs` from `@siemens/ix-vue`
 
 ## Documentation
 

@@ -3,8 +3,8 @@
 > Container that arranges multiple cards in a list or grid layout.
 
 - Web component: `<ix-card-list>`
-- React/Vue: `IxCardList` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-card-list>` (`IxModule` from `@siemens/ix-angular` or `IxCardList` from `@siemens/ix-angular/standalone`)
+- React: `IxCardList` from `@siemens/ix-react`
+- Vue: `IxCardList` from `@siemens/ix-vue`
 
 ## Documentation
 

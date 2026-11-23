@@ -3,8 +3,8 @@
 > Row within the responsive layout grid.
 
 - Web component: `<ix-row>`
-- React/Vue: `IxRow` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-row>` (`IxModule` from `@siemens/ix-angular` or `IxRow` from `@siemens/ix-angular/standalone`)
+- React: `IxRow` from `@siemens/ix-react`
+- Vue: `IxRow` from `@siemens/ix-vue`
 
 ## Documentation
 

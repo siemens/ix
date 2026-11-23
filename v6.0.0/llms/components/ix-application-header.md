@@ -3,8 +3,8 @@
 > Top header bar of the application shell holding branding, navigation, and actions.
 
 - Web component: `<ix-application-header>`
-- React/Vue: `IxApplicationHeader` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-application-header>` (`IxModule` from `@siemens/ix-angular` or `IxApplicationHeader` from `@siemens/ix-angular/standalone`)
+- React: `IxApplicationHeader` from `@siemens/ix-react`
+- Vue: `IxApplicationHeader` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -12,7 +12,7 @@
 
 ## Figma IDs
 
-- 20920:77660
+- 162383:24794
 
 ## Properties
 
@@ -40,7 +40,7 @@
 
 ## Slots
 
-- `default` - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.
+- `` - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.
 - `ix-application-header-avatar` - Place an avatar inside the header.
 - `logo` - Place a company logo inside the header. Alternatively the companyLogo property can be set.
 - `overflow` - Use this slot to display additional items that do not fit in the default or secondary slot.

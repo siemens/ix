@@ -3,8 +3,8 @@
 > Overlay that shows application information such as version and legal details.
 
 - Web component: `<ix-menu-about>`
-- React/Vue: `IxMenuAbout` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-menu-about>` (`IxModule` from `@siemens/ix-angular` or `IxMenuAbout` from `@siemens/ix-angular/standalone`)
+- React: `IxMenuAbout` from `@siemens/ix-react`
+- Vue: `IxMenuAbout` from `@siemens/ix-vue`
 
 ## Documentation
 

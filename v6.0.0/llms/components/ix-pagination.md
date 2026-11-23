@@ -3,8 +3,8 @@
 > Control for navigating between pages of content.
 
 - Web component: `<ix-pagination>`
-- React/Vue: `IxPagination` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-pagination>` (`IxModule` from `@siemens/ix-angular` or `IxPagination` from `@siemens/ix-angular/standalone`)
+- React: `IxPagination` from `@siemens/ix-react`
+- Vue: `IxPagination` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -20,12 +20,15 @@
 - `advanced`; attr: `advanced`; type: `boolean`; default: `false` - Advanced mode
 - `ariaLabelChevronLeftIconButton`; attr: `aria-label-chevron-left-icon-button`; type: `string | undefined`; default: `'Previous page'` - ARIA label for the chevron left icon button Will be set as aria-label on the nested HTML button element
 - `ariaLabelChevronRightIconButton`; attr: `aria-label-chevron-right-icon-button`; type: `string | undefined`; default: `'Next page'` - ARIA label for the chevron right icon button Will be set as aria-label on the nested HTML button element
+- `ariaLabelJumpBackward`; attr: `aria-label-jump-backward`; type: `string`; default: `'Jump backward to {page}'` - ARIA label for the jump backward button. The `{page}` placeholder is replaced with the translated `i18nPage` label and destination page number (e.g. "Jump backward to Page 3"). Custom labels without `{page}` are used unchanged.
+- `ariaLabelJumpForward`; attr: `aria-label-jump-forward`; type: `string`; default: `'Jump forward to {page}'` - ARIA label for the jump forward button. The `{page}` placeholder is replaced with the translated `i18nPage` label and destination page number (e.g. "Jump forward to Page 9"). Custom labels without `{page}` are used unchanged.
 - `ariaLabelPageSelection`; attr: `aria-label-page-selection`; type: `string`; default: `'Page selection input'` - ARIA label for the page selection input Will be set as aria-label on the nested HTML input element
 - `count`; attr: `count`; type: `number`; default: `0` - Total number of pages
 - `hideItemCount`; attr: `hide-item-count`; type: `boolean`; default: `false` - Hide item count in advanced mode
 - `i18nItems`; attr: `i18n-items`; type: `string`; default: `'Items'` - i18n label for 'Items'
 - `i18nOf`; attr: `i18n-of`; type: `string`; default: `'of'` - i18n label for 'of'
 - `i18nPage`; attr: `i18n-page`; type: `string`; default: `'Page'` - i18n label for 'Page'
+- `i18nPagination`; attr: `i18n-pagination`; type: `string`; default: `'Pagination'` - i18n label for the pagination navigation landmark
 - `itemCount`; attr: `item-count`; type: `number`; default: `15` - Number of items shown at once. Can only be changed in advanced mode.
 - `itemCountOptions`; type: `number[]`; default: `[10, 15, 20, 40, 100]` - Custom item count options for advanced mode. Provide an array of positive numbers to display in the items per page dropdown.
 - `selectedPage`; attr: `selected-page`; type: `number`; default: `0` - Zero based index of currently selected page

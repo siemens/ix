@@ -3,8 +3,8 @@
 > Context menu that provides actions for a group.
 
 - Web component: `<ix-group-context-menu>`
-- React/Vue: `IxGroupContextMenu` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-group-context-menu>` (`IxModule` from `@siemens/ix-angular` or `IxGroupContextMenu` from `@siemens/ix-angular/standalone`)
+- React: `IxGroupContextMenu` from `@siemens/ix-react`
+- Vue: `IxGroupContextMenu` from `@siemens/ix-vue`
 
 ## Documentation
 

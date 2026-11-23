@@ -3,8 +3,8 @@
 > List that displays a sequence of events or status entries.
 
 - Web component: `<ix-event-list>`
-- React/Vue: `IxEventList` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-event-list>` (`IxModule` from `@siemens/ix-angular` or `IxEventList` from `@siemens/ix-angular/standalone`)
+- React: `IxEventList` from `@siemens/ix-react`
+- Vue: `IxEventList` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -19,7 +19,7 @@
 - `animated`; attr: `animated`; type: `boolean`; default: `false` - Animate state change transitions. Defaults to 'false'.
 - `chevron`; attr: `chevron`; type: `boolean`; default: `false` - Display a chevron icon in list items. Defaults to 'false'
 - `compact`; attr: `compact`; type: `boolean`; default: `false` - Make event-list items more compact
-- `itemHeight`; attr: `item-height`; type: `"L" | "S" | number`; default: `'S'` - Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. In case a number is supplied it will get converted to rem internally. Defaults to 'S'.
+- `itemHeight`; attr: `item-height`; type: `"L" | "S" | number`; default: `'S'` - Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. Defaults to 'S'.
 
 ## Events
 

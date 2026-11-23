@@ -3,8 +3,8 @@
 > Container that presents grouped information in a compact tile.
 
 - Web component: `<ix-tile>`
-- React/Vue: `IxTile` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-tile>` (`IxModule` from `@siemens/ix-angular` or `IxTile` from `@siemens/ix-angular/standalone`)
+- React: `IxTile` from `@siemens/ix-react`
+- Vue: `IxTile` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -12,7 +12,7 @@
 
 ## Figma IDs
 
-- 1431:43158
+- 162362:68584
 
 ## Properties
 

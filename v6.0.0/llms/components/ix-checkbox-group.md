@@ -3,8 +3,8 @@
 > Groups related checkboxes together.
 
 - Web component: `<ix-checkbox-group>`
-- React/Vue: `IxCheckboxGroup` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-checkbox-group>` (`IxModule` from `@siemens/ix-angular` or `IxCheckboxGroup` from `@siemens/ix-angular/standalone`)
+- React: `IxCheckboxGroup` from `@siemens/ix-react`
+- Vue: `IxCheckboxGroup` from `@siemens/ix-vue`
 
 ## Documentation
 

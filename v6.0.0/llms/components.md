@@ -2,7 +2,7 @@
 
 > Component-focused LLM documentation generated from registry component JSON metadata.
 
-This index links to all 114 generated component detail files. Each detail file includes properties, events, methods, slots, framework names, dependencies, documentation links, Figma IDs, related examples, and related patterns.
+This index links to all 117 generated component detail files. Each detail file includes properties, events, methods, slots, framework names, dependencies, documentation links, Figma IDs, related examples, and related patterns.
 
 For a compact one-line-per-component overview with React names and Figma IDs, use [catalog.md](catalog.md).
 
@@ -12,7 +12,7 @@ For a compact one-line-per-component overview with React names and Figma IDs, us
 - [ix-application](components/ix-application.md): Root container that sets up the overall application shell and layout.
 - [ix-application-header](components/ix-application-header.md): Top header bar of the application shell holding branding, navigation, and actions.
 - [ix-avatar](components/ix-avatar.md): Displays a user's profile image, initials, or a placeholder icon.
-- [ix-badge](components/ix-badge.md): Overlay indicator for counts, labels, dots, and status icons. **Attached** (default slot has content): the indicator is decorative. When `label` is set, that text is exposed on the anchor via `aria-describedby`. Host `role` / `aria-*` are discarded so the anchor owns the accessible name. **Standalone** (empty default slot): author `role` / `aria-*` stay on the host. For `dot` and `status-icon`, provide a host `aria-label` and a naming role (for example `role="img"`, or `role="status"` / `role="alert"` for a live region). Override max-width with `--ix-badge-max-width`.
+- [ix-badge](components/ix-badge.md): Overlay indicator for counts, labels, dots, and status icons. **Attached** (default slot has content): the indicator is decorative. When `label` is set, that text is exposed on the anchor via `aria-describedby`. Host `role` / `aria-*` are discarded so the anchor owns the accessible name. **Standalone** (empty default slot): author `role` / `aria-*` stay on the host. For `dot` and `status-icon`, provide a host `aria-label` and a naming role (for example `role="img"`, or `role="status"` / `role="alert"` for a live region). Override max-width with `--ix-badge--max-width`.
 - [ix-blind](components/ix-blind.md): Collapsible container that expands and collapses to show or hide its content.
 - [ix-breadcrumb](components/ix-breadcrumb.md): Navigation trail that shows the user's location within a hierarchy.
 - [ix-breadcrumb-item](components/ix-breadcrumb-item.md): A single entry within a breadcrumb navigation trail.
@@ -68,6 +68,9 @@ For a compact one-line-per-component overview with React names and Figma IDs, us
 - [ix-layout-auto](components/ix-layout-auto.md): Responsive form layout that automatically adjusts columns to the available width.
 - [ix-layout-grid](components/ix-layout-grid.md): Column-based grid layout for arranging content responsively.
 - [ix-link-button](components/ix-link-button.md): Button styled as a hyperlink that navigates to a target.
+- [ix-list](components/ix-list.md): No component summary available.
+- [ix-list-item](components/ix-list-item.md): No component summary available.
+- [ix-list-item-separator](components/ix-list-item-separator.md): Standalone horizontal separator for list content.
 - [ix-menu](components/ix-menu.md): Primary side navigation menu of the application shell.
 - [ix-menu-about](components/ix-menu-about.md): Overlay that shows application information such as version and legal details.
 - [ix-menu-about-item](components/ix-menu-about-item.md): A single tab or entry within the about overlay.

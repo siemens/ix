@@ -3,8 +3,8 @@
 > Multi-line text input for entering and validating longer text.
 
 - Web component: `<ix-textarea>`
-- React/Vue: `IxTextarea` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-textarea>` (`IxModule` from `@siemens/ix-angular` or `IxTextarea` from `@siemens/ix-angular/standalone`)
+- React: `IxTextarea` from `@siemens/ix-react`
+- Vue: `IxTextarea` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -46,8 +46,10 @@
 
 ## Methods
 
+- `clear() => Promise<void>` - Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
 - `focusInput() => Promise<void>` - Focuses the input field
 - `getNativeInputElement() => Promise<HTMLTextAreaElement>` - Get the native textarea element.
+- `getValidityState() => Promise<ValidityState>` - Returns the validity state of the textarea field.
 
 ## Slots
 

@@ -3,8 +3,8 @@
 > Root container that sets up the overall application shell and layout.
 
 - Web component: `<ix-application>`
-- React/Vue: `IxApplication` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-application>` (`IxModule` from `@siemens/ix-angular` or `IxApplication` from `@siemens/ix-angular/standalone`)
+- React: `IxApplication` from `@siemens/ix-react`
+- Vue: `IxApplication` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -16,10 +16,14 @@
 
 ## Properties
 
-- `appSwitchConfig`; type: `undefined | { currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: AppSwitchConfigurationTarget; iconSrc: string; }[]; i18nAppSwitch?: string | undefined; i18nLoadingApps?: string | undefined; }` - Define application switch configuration
+- `appSwitchConfig`; type: `undefined | { currentAppId: string; apps: { id: string; name: string; description: string; url: string; target: AppSwitchConfigurationTarget; iconSrc: string; }[]; i18nAppSwitch?: string | undefined; i18nLoadingApps?: string | undefined; }` - Define application switch configuration Application `url`s are opened unchanged via `window.open()`. URL schemes such as `javascript:` or `data:` are not rejected. Only configure trusted applications and do not derive URLs from untrusted input.
 - `breakpoints`; type: `("sm" | "md" | "lg")[]`; default: `['sm', 'md', 'lg']` - Supported layouts
 - `colorSchema`; attr: `color-schema`; type: `"dark" | "light" | "system" | undefined`; default: `'system'` - Color schema of the theme
+- `disableSkipLinks`; attr: `disable-skip-links`; type: `boolean`; default: `false` - Disable the built-in links for bypassing repeated application content. Only disable them when an equivalent bypass mechanism is provided elsewhere.
 - `forceBreakpoint`; attr: `force-breakpoint`; type: `"lg" | "md" | "sm" | undefined` - Change the responsive layout of the menu structure
+- `i18nSkipToFooter`; attr: `i18n-skip-to-footer`; type: `string`; default: `'Skip to footer'` - Localized text for the link that focuses the application footer.
+- `i18nSkipToMain`; attr: `i18n-skip-to-main`; type: `string`; default: `'Skip to main content'` - Localized text for the link that bypasses repeated application content and focuses the main region.
+- `skipLinkMainTarget`; attr: `skip-link-main-target`; type: `HTMLElement | string | undefined` - Element, or ID of an element, to focus when the Main skip link is activated. The element must be focusable, e.g. by setting `tabindex="-1"`. Falls back to the internal main region when the element cannot be focused.
 - `theme`; attr: `theme`; type: `string | undefined` - Application theme
 
 ## Events

@@ -3,8 +3,8 @@
 > Input for building and refining searches using category-based filter criteria.
 
 - Web component: `<ix-category-filter>`
-- React/Vue: `IxCategoryFilter` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-category-filter>` (`IxModule` from `@siemens/ix-angular` or `IxCategoryFilter` from `@siemens/ix-angular/standalone`)
+- React: `IxCategoryFilter` from `@siemens/ix-react`
+- Vue: `IxCategoryFilter` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -22,7 +22,7 @@
 - `categories`; type: `undefined | { [id: string]: { label: string; options: string[]; }; }` - Configuration object hash used to populate the dropdown menu for type-ahead and quick selection functionality. Each ID maps to an object with a label and an array of options to select from.
 - `disabled`; attr: `disabled`; type: `boolean`; default: `false` - If true the filter will be in disabled state
 - `enableTopLayer`; attr: `enable-top-layer`; type: `boolean`; default: `false` - Enable Popover API rendering for dropdown.
-- `filterState`; type: `FilterState | undefined` - A set of search criteria to populate the component with.
+- `filterState`; type: `FilterState | undefined` - A set of search criteria to populate the component with. Processing time grows quadratically with the number of tokens and categorical filters. Bound the size of untrusted or user-controlled filter states to keep the page responsive.
 - `hideIcon`; attr: `hide-icon`; type: `boolean`; default: `false` - Allows to hide the icon inside the text input. Defaults to false
 - `i18nPlainText`; attr: `i18n-plain-text`; type: `string`; default: `'Filter by text'` - i18n label for 'Filter by text'
 - `icon`; attr: `icon`; type: `string | undefined` - The icon next to the actual text input Defaults to 'search'

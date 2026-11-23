@@ -3,8 +3,8 @@
 > Button that toggles between a pressed and unpressed state.
 
 - Web component: `<ix-toggle-button>`
-- React/Vue: `IxToggleButton` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-toggle-button>` (`IxModule` from `@siemens/ix-angular` or `IxToggleButton` from `@siemens/ix-angular/standalone`)
+- React: `IxToggleButton` from `@siemens/ix-react`
+- Vue: `IxToggleButton` from `@siemens/ix-vue`
 
 ## Documentation
 

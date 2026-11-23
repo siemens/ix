@@ -3,8 +3,8 @@
 > Main body section of the popover.
 
 - Web component: `<ix-popover-content>`
-- React/Vue: `IxPopoverContent` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-popover-content>` (`IxModule` from `@siemens/ix-angular` or `IxPopoverContent` from `@siemens/ix-angular/standalone`)
+- React: `IxPopoverContent` from `@siemens/ix-react`
+- Vue: `IxPopoverContent` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -28,7 +28,7 @@
 
 ## Slots
 
-- `default` - Popover body content.
+- `` - Popover body content.
 
 ## Dependencies
 

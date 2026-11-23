@@ -3,8 +3,8 @@
 > A selectable option within a select control.
 
 - Web component: `<ix-select-item>`
-- React/Vue: `IxSelectItem` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-select-item>` (`IxModule` from `@siemens/ix-angular` or `IxSelectItem` from `@siemens/ix-angular/standalone`)
+- React: `IxSelectItem` from `@siemens/ix-react`
+- Vue: `IxSelectItem` from `@siemens/ix-vue`
 
 ## Documentation
 

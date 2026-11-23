@@ -3,8 +3,8 @@
 > A single tab or entry within the settings overlay.
 
 - Web component: `<ix-menu-settings-item>`
-- React/Vue: `IxMenuSettingsItem` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-menu-settings-item>` (`IxModule` from `@siemens/ix-angular` or `IxMenuSettingsItem` from `@siemens/ix-angular/standalone`)
+- React: `IxMenuSettingsItem` from `@siemens/ix-react`
+- Vue: `IxMenuSettingsItem` from `@siemens/ix-vue`
 
 ## Documentation
 

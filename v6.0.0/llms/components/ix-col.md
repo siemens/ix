@@ -3,8 +3,8 @@
 > Column within the responsive layout grid.
 
 - Web component: `<ix-col>`
-- React/Vue: `IxCol` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-col>` (`IxModule` from `@siemens/ix-angular` or `IxCol` from `@siemens/ix-angular/standalone`)
+- React: `IxCol` from `@siemens/ix-react`
+- Vue: `IxCol` from `@siemens/ix-vue`
 
 ## Documentation
 

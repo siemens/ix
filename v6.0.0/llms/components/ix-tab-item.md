@@ -3,8 +3,8 @@
 > A single selectable tab within a tab set.
 
 - Web component: `<ix-tab-item>`
-- React/Vue: `IxTabItem` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-tab-item>` (`IxModule` from `@siemens/ix-angular` or `IxTabItem` from `@siemens/ix-angular/standalone`)
+- React: `IxTabItem` from `@siemens/ix-react`
+- Vue: `IxTabItem` from `@siemens/ix-vue`
 
 ## Documentation
 

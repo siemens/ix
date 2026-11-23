@@ -3,8 +3,8 @@
 > A single tab or entry within the about overlay.
 
 - Web component: `<ix-menu-about-item>`
-- React/Vue: `IxMenuAboutItem` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-menu-about-item>` (`IxModule` from `@siemens/ix-angular` or `IxMenuAboutItem` from `@siemens/ix-angular/standalone`)
+- React: `IxMenuAboutItem` from `@siemens/ix-react`
+- Vue: `IxMenuAboutItem` from `@siemens/ix-vue`
 
 ## Documentation
 

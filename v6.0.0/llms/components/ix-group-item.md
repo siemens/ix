@@ -3,8 +3,8 @@
 > A single selectable item within a group.
 
 - Web component: `<ix-group-item>`
-- React/Vue: `IxGroupItem` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-group-item>` (`IxModule` from `@siemens/ix-angular` or `IxGroupItem` from `@siemens/ix-angular/standalone`)
+- React: `IxGroupItem` from `@siemens/ix-react`
+- Vue: `IxGroupItem` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -12,7 +12,7 @@
 
 ## Figma IDs
 
-- 1274:34186
+- 162374:19834
 
 ## Properties
 

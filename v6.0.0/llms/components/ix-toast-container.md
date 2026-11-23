@@ -3,8 +3,8 @@
 > Container that positions and manages toast notifications.
 
 - Web component: `<ix-toast-container>`
-- React/Vue: `IxToastContainer` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-toast-container>` (`IxModule` from `@siemens/ix-angular` or `IxToastContainer` from `@siemens/ix-angular/standalone`)
+- React: `IxToastContainer` from `@siemens/ix-react`
+- Vue: `IxToastContainer` from `@siemens/ix-vue`
 
 ## Documentation
 

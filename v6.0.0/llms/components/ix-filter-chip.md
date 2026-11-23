@@ -3,8 +3,8 @@
 > Dismissible chip that represents an applied filter.
 
 - Web component: `<ix-filter-chip>`
-- React/Vue: `IxFilterChip` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-filter-chip>` (`IxModule` from `@siemens/ix-angular` or `IxFilterChip` from `@siemens/ix-angular/standalone`)
+- React: `IxFilterChip` from `@siemens/ix-react`
+- Vue: `IxFilterChip` from `@siemens/ix-vue`
 
 ## Documentation
 

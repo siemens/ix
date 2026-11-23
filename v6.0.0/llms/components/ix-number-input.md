@@ -3,8 +3,8 @@
 > Text input for entering and validating a numeric value.
 
 - Web component: `<ix-number-input>`
-- React/Vue: `IxNumberInput` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-number-input>` (`IxModule` from `@siemens/ix-angular` or `IxNumberInput` from `@siemens/ix-angular/standalone`)
+- React: `IxNumberInput` from `@siemens/ix-react`
+- Vue: `IxNumberInput` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -51,8 +51,10 @@
 
 ## Methods
 
+- `clear() => Promise<void>` - Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation. Emits 0 unless allowEmptyValueChange is enabled, in which case it emits undefined.
 - `focusInput() => Promise<void>` - Focuses the input field
 - `getNativeInputElement() => Promise<HTMLInputElement>` - Returns the native input element used under the hood
+- `getValidityState() => Promise<ValidityState>` - Returns the validity state of the number input field.
 
 ## Slots
 

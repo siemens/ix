@@ -3,8 +3,8 @@
 > Column-based grid layout for arranging content responsively.
 
 - Web component: `<ix-layout-grid>`
-- React/Vue: `IxLayoutGrid` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-layout-grid>` (`IxModule` from `@siemens/ix-angular` or `IxLayoutGrid` from `@siemens/ix-angular/standalone`)
+- React: `IxLayoutGrid` from `@siemens/ix-react`
+- Vue: `IxLayoutGrid` from `@siemens/ix-vue`
 
 ## Documentation
 

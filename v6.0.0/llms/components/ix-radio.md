@@ -3,8 +3,8 @@
 > Lets users select a single option from a set.
 
 - Web component: `<ix-radio>`
-- React/Vue: `IxRadio` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-radio>` (`IxModule` from `@siemens/ix-angular` or `IxRadio` from `@siemens/ix-angular/standalone`)
+- React: `IxRadio` from `@siemens/ix-react`
+- Vue: `IxRadio` from `@siemens/ix-vue`
 
 ## Documentation
 

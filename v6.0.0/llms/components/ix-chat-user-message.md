@@ -3,8 +3,8 @@
 > No component summary available.
 
 - Web component: `<ix-chat-user-message>`
-- React/Vue: `IxChatUserMessage` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-chat-user-message>` (`IxModule` from `@siemens/ix-angular` or `IxChatUserMessage` from `@siemens/ix-angular/standalone`)
+- React: `IxChatUserMessage` from `@siemens/ix-react`
+- Vue: `IxChatUserMessage` from `@siemens/ix-vue`
 
 ## Documentation
 

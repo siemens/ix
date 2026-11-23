@@ -3,8 +3,8 @@
 > Displays a user's profile image, initials, or a placeholder icon.
 
 - Web component: `<ix-avatar>`
-- React/Vue: `IxAvatar` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-avatar>` (`IxModule` from `@siemens/ix-angular` or `IxAvatar` from `@siemens/ix-angular/standalone`)
+- React: `IxAvatar` from `@siemens/ix-react`
+- Vue: `IxAvatar` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -51,6 +51,7 @@ Examples that use this component, with available frameworks. Look up source file
 - avatar (angular, angular-standalone, html, react, vue)
 - avatar-image (angular, angular-standalone, html, react, vue)
 - avatar-initials (angular, angular-standalone, html, react, vue)
+- generic-list-users (angular, angular-standalone, html, react, vue)
 
 ## Related patterns
 

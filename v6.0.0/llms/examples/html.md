@@ -1,4 +1,4 @@
-[Siemens iX html examples]|266 examples|format: name|title|used ix tags|files
+[Siemens iX html examples]|288 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/html/ (registry version root: examples/html/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/html/button.ts
 |Used tags are iX components found in the html source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.html
@@ -61,26 +61,34 @@ content-header-with-slot|Content header with slot|ix-button,ix-content-header,ix
 custom-field|Custom field|ix-custom-field,ix-icon-button,ix-input|.html
 custom-field-validation|Custom field validation|ix-custom-field|.html
 date-dropdown|Date dropdown|ix-date-dropdown|.html
+date-dropdown-display-format|Date dropdown display format|ix-date-dropdown|.html
 date-dropdown-presets|Date dropdown presets|ix-date-dropdown|.html
+date-dropdown-require-confirmation|Date dropdown require confirmation|ix-date-dropdown|.html
 date-dropdown-user-range|Date dropdown user range|ix-date-dropdown|.html
 date-input|Date input|ix-date-input|.html
 date-input-disabled|Date input disabled|ix-date-input|.html
+date-input-display-format|Date input display format|ix-date-input|.html
 date-input-label|Date input label|ix-date-input|.html
 date-input-min-max-date|Date input min max date|ix-date-input|.html
 date-input-readonly|Date input readonly|ix-date-input|.html
+date-input-require-confirmation|Date input require confirmation|ix-date-input|.html
 date-input-validation|Date input validation|ix-date-input|.html
 date-input-with-slots|Date input with slots|ix-date-input,ix-typography|.html
+date-picker-require-confirmation|Date picker require confirmation|ix-date-picker|.html
 date-range|Date range|ix-date-input,ix-range-field|.html
 datepicker|Datepicker|ix-date-picker|.html
 datepicker-locale|Datepicker locale|ix-col,ix-date-picker,ix-layout-grid,ix-row,ix-select,ix-select-item|.html
 datepicker-range|Datepicker range|ix-date-picker|.html
 datetime-input|Datetime input|ix-datetime-input|.html
 datetime-input-disabled|Datetime input disabled|ix-datetime-input|.html
+datetime-input-display-format|Datetime input display format|ix-datetime-input|.html
 datetime-input-label|Datetime input label|ix-datetime-input|.html
 datetime-input-min-max-date|Datetime input min max date|ix-datetime-input|.html
 datetime-input-readonly|Datetime input readonly|ix-datetime-input|.html
+datetime-input-require-confirmation|Datetime input require confirmation|ix-datetime-input|.html
 datetime-input-validation|Datetime input validation|ix-datetime-input|.html
 datetime-input-with-slots|Datetime input with slots|ix-datetime-input,ix-typography|.html
+datetime-picker-require-confirmation|Datetime picker require confirmation|ix-datetime-picker|.html
 datetime-range|Datetime range|ix-datetime-input,ix-range-field|.html
 datetimepicker|Datetimepicker|ix-datetime-picker|.html
 datetimepicker-locale|Datetimepicker locale|ix-col,ix-datetime-picker,ix-layout-grid,ix-row,ix-select,ix-select-item|.html
@@ -126,6 +134,14 @@ form-checkbox-validation|Form checkbox validation|ix-checkbox,ix-checkbox-group|
 form-layout-auto|Form layout auto|ix-button,ix-field-label,ix-input,ix-layout-auto,ix-select|.html
 form-layout-grid|Form layout grid|ix-button,ix-col,ix-field-label,ix-input,ix-layout-grid,ix-row,ix-select|.css,.html
 form-validation|Form validation||.css
+generic-list-action-on-hover|Generic list action on hover|ix-icon-button,ix-list,ix-list-item|.html
+generic-list-additional-options|Generic list additional options|ix-icon-button,ix-list,ix-list-item,ix-list-item-separator|.html
+generic-list-basic|Generic list basic|ix-list,ix-list-item|.html
+generic-list-custom-content|Generic list custom content|ix-badge,ix-icon-button,ix-list,ix-list-item|.css,.html
+generic-list-draggable|Generic list draggable|ix-list,ix-list-item|.html
+generic-list-notification-icon|Generic list notification icon|ix-badge,ix-list,ix-list-item,ix-typography|.css,.html
+generic-list-users|Generic list users|ix-avatar,ix-icon-button,ix-list,ix-list-item,ix-typography|.css,.html
+generic-list-variants|Generic list variants|ix-list,ix-list-item|.html
 grid|Grid|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.html
 grid-padding|Grid padding|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.html
 grid-size|Grid size|ix-col,ix-layout-grid,ix-row,ix-typography|.css,.html
@@ -141,6 +157,7 @@ icon-toggle-button-subtle-secondary|Icon toggle button subtle secondary|ix-icon-
 icon-toggle-button-subtle-tertiary|Icon toggle button subtle tertiary|ix-icon-toggle-button|.css,.html
 icon-toggle-button-tertiary|Icon toggle button tertiary|ix-icon-toggle-button|.css,.html
 info-page|Info page|ix-button,ix-info-page|.html
+info-page-illustration|Info page illustration|ix-button,ix-info-page|.html
 input|Input|ix-input|.html
 input-disabled|Input disabled|ix-input|.html
 input-label|Input label|ix-input|.html
@@ -157,6 +174,7 @@ key-value-list|Key value list|ix-key-value,ix-key-value-list|.html
 key-value-list-striped|Key value list striped|ix-key-value,ix-key-value-list|.html
 key-value-list-with-custom-value|Key value list with custom value|ix-key-value,ix-key-value-list|.css,.html
 key-value-list-with-icon|Key value list with icon|ix-key-value,ix-key-value-list|.html
+key-value-list-without-divider|Key value list without divider|ix-key-value,ix-key-value-list|.html
 key-value-with-custom-value|Key value with custom value|ix-key-value|.css,.html
 key-value-with-icon|Key value with icon|ix-key-value|.html
 key-value-with-label-left|Key value with label left|ix-key-value|.html
@@ -164,7 +182,11 @@ kpi|Kpi|ix-kpi|.css,.html
 layout-auto|Layout auto|ix-layout-auto,ix-typography|.css,.html
 layout-auto-custom|Layout auto custom|ix-layout-auto,ix-typography|.html
 link-button|Link button|ix-link-button|.html
+link-button-action|Link button action|ix-link-button|.html
 link-button-disabled|Link button disabled|ix-link-button|.html
+link-button-external|Link button external|ix-link-button|.html
+link-button-file|Link button file|ix-link-button|.html
+link-button-internal|Link button internal|ix-link-button|.html
 loading|Loading|ix-button|.html
 menu-category|Menu category|ix-application,ix-menu,ix-menu-category,ix-menu-item|.html
 menu-with-bottom-tabs|Menu with bottom tabs|ix-menu,ix-menu-item|.html

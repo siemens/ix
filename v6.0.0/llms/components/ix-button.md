@@ -3,8 +3,8 @@
 > Triggers an action or event when activated by the user.
 
 - Web component: `<ix-button>`
-- React/Vue: `IxButton` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-button>` (`IxModule` from `@siemens/ix-angular` or `IxButton` from `@siemens/ix-angular/standalone`)
+- React: `IxButton` from `@siemens/ix-react`
+- Vue: `IxButton` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -77,6 +77,7 @@ Examples that use this component, with available frameworks. Look up source file
 - form-validation (angular, angular-standalone, html, react, vue)
 - group-custom-entry (angular, angular-standalone, html, react, vue)
 - info-page (angular, angular-standalone, html, react, vue)
+- info-page-illustration (angular, angular-standalone, html, react, vue)
 - input (angular, angular-standalone, html, react, vue)
 - input-form-validation (angular, angular-standalone)
 - loading (angular, angular-standalone, html, react, vue)

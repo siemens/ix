@@ -3,8 +3,8 @@
 > Content region of a card.
 
 - Web component: `<ix-card-content>`
-- React/Vue: `IxCardContent` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-card-content>` (`IxModule` from `@siemens/ix-angular` or `IxCardContent` from `@siemens/ix-angular/standalone`)
+- React: `IxCardContent` from `@siemens/ix-react`
+- Vue: `IxCardContent` from `@siemens/ix-vue`
 
 ## Documentation
 

@@ -1,4 +1,4 @@
-[Siemens iX react examples]|269 examples|format: name|title|used ix tags|files
+[Siemens iX react examples]|291 examples|format: name|title|used ix tags|files
 |files are relative to ../../examples/react/ (registry version root: examples/react/). A file starting with "." is {name}{file}, e.g. name "button" with ".ts" -> examples/react/button.ts
 |Used tags are iX components found in the react source. Open one file at a time.
 about-and-legal|About and legal|ix-application,ix-application-header,ix-menu,ix-menu-about,ix-tab-item,ix-tabs|.tsx
@@ -60,26 +60,34 @@ content-header-with-slot|Content header with slot|ix-button,ix-content-header,ix
 custom-field|Custom field|ix-custom-field,ix-icon-button,ix-input|.tsx
 custom-field-validation|Custom field validation|ix-custom-field|.tsx
 date-dropdown|Date dropdown|ix-date-dropdown|.tsx
+date-dropdown-display-format|Date dropdown display format|ix-date-dropdown|.tsx
 date-dropdown-presets|Date dropdown presets|ix-date-dropdown|.tsx
+date-dropdown-require-confirmation|Date dropdown require confirmation|ix-date-dropdown|.tsx
 date-dropdown-user-range|Date dropdown user range|ix-date-dropdown|.tsx
 date-input|Date input|ix-date-input|.tsx
 date-input-disabled|Date input disabled|ix-date-input|.tsx
+date-input-display-format|Date input display format|ix-date-input|.tsx
 date-input-label|Date input label|ix-date-input|.tsx
 date-input-min-max-date|Date input min max date|ix-date-input|.tsx
 date-input-readonly|Date input readonly|ix-date-input|.tsx
+date-input-require-confirmation|Date input require confirmation|ix-date-input|.tsx
 date-input-validation|Date input validation|ix-date-input|.tsx
 date-input-with-slots|Date input with slots|ix-date-input,ix-typography|.tsx
+date-picker-require-confirmation|Date picker require confirmation|ix-date-picker|.tsx
 date-range|Date range|ix-date-input,ix-range-field|.tsx
 datepicker|Datepicker|ix-date-picker|.tsx
 datepicker-locale|Datepicker locale|ix-col,ix-date-picker,ix-layout-grid,ix-row,ix-select,ix-select-item|.tsx
 datepicker-range|Datepicker range|ix-date-picker|.tsx
 datetime-input|Datetime input|ix-datetime-input|.tsx
 datetime-input-disabled|Datetime input disabled|ix-datetime-input|.tsx
+datetime-input-display-format|Datetime input display format|ix-datetime-input|.tsx
 datetime-input-label|Datetime input label|ix-datetime-input|.tsx
 datetime-input-min-max-date|Datetime input min max date|ix-datetime-input|.tsx
 datetime-input-readonly|Datetime input readonly|ix-datetime-input|.tsx
+datetime-input-require-confirmation|Datetime input require confirmation|ix-datetime-input|.tsx
 datetime-input-validation|Datetime input validation|ix-datetime-input|.tsx
 datetime-input-with-slots|Datetime input with slots|ix-datetime-input,ix-typography|.tsx
+datetime-picker-require-confirmation|Datetime picker require confirmation|ix-datetime-picker|.tsx
 datetime-range|Datetime range|ix-datetime-input,ix-range-field|.tsx
 datetimepicker|Datetimepicker|ix-datetime-picker|.tsx
 datetimepicker-locale|Datetimepicker locale|ix-col,ix-datetime-picker,ix-layout-grid,ix-row,ix-select,ix-select-item|.tsx
@@ -127,6 +135,14 @@ form-checkbox-validation|Form checkbox validation|ix-checkbox,ix-checkbox-group|
 form-layout-auto|Form layout auto|ix-button,ix-field-label,ix-input,ix-layout-auto,ix-select|.tsx
 form-layout-grid|Form layout grid|ix-button,ix-col,ix-field-label,ix-input,ix-layout-grid,ix-row,ix-select|.scoped.css,.tsx
 form-validation|Form validation|ix-button,ix-checkbox,ix-checkbox-group,ix-custom-field,ix-date-input,ix-icon-button,ix-input,ix-layout-auto,ix-number-input,ix-radio,ix-radio-group,ix-select,ix-select-item,ix-textarea,ix-typography|.scoped.css,.tsx
+generic-list-action-on-hover|Generic list action on hover|ix-icon-button,ix-list,ix-list-item|.tsx
+generic-list-additional-options|Generic list additional options|ix-icon-button,ix-list,ix-list-item,ix-list-item-separator|.tsx
+generic-list-basic|Generic list basic|ix-list,ix-list-item|.tsx
+generic-list-custom-content|Generic list custom content|ix-badge,ix-icon-button,ix-list,ix-list-item|.scoped.css,.tsx
+generic-list-draggable|Generic list draggable|ix-list,ix-list-item|.tsx
+generic-list-notification-icon|Generic list notification icon|ix-badge,ix-list,ix-list-item,ix-typography|.scoped.css,.tsx
+generic-list-users|Generic list users|ix-avatar,ix-icon-button,ix-list,ix-list-item,ix-typography|.scoped.css,.tsx
+generic-list-variants|Generic list variants|ix-list,ix-list-item|.tsx
 grid|Grid|ix-col,ix-layout-grid,ix-row,ix-typography|.scoped.css,.tsx
 grid-padding|Grid padding|ix-col,ix-layout-grid,ix-row,ix-typography|.scoped.css,.tsx
 grid-size|Grid size|ix-col,ix-layout-grid,ix-row,ix-typography|.scoped.css,.tsx
@@ -142,6 +158,7 @@ icon-toggle-button-subtle-secondary|Icon toggle button subtle secondary|ix-icon-
 icon-toggle-button-subtle-tertiary|Icon toggle button subtle tertiary|ix-icon-toggle-button|.scoped.css,.tsx
 icon-toggle-button-tertiary|Icon toggle button tertiary|ix-icon-toggle-button|.scoped.css,.tsx
 info-page|Info page|ix-button,ix-info-page|.tsx
+info-page-illustration|Info page illustration|ix-button,ix-info-page|.tsx
 input|Input|ix-button,ix-date-input,ix-input,ix-number-input,ix-time-input|.tsx
 input-disabled|Input disabled|ix-input|.tsx
 input-label|Input label|ix-input|.tsx
@@ -158,6 +175,7 @@ key-value-list|Key value list|ix-key-value,ix-key-value-list|.tsx
 key-value-list-striped|Key value list striped|ix-key-value,ix-key-value-list|.tsx
 key-value-list-with-custom-value|Key value list with custom value|ix-key-value,ix-key-value-list|.scoped.css,.tsx
 key-value-list-with-icon|Key value list with icon|ix-key-value,ix-key-value-list|.tsx
+key-value-list-without-divider|Key value list without divider|ix-key-value,ix-key-value-list|.tsx
 key-value-with-custom-value|Key value with custom value|ix-key-value|.scoped.css,.tsx
 key-value-with-icon|Key value with icon|ix-key-value|.tsx
 key-value-with-label-left|Key value with label left|ix-key-value|.tsx
@@ -165,7 +183,11 @@ kpi|Kpi|ix-kpi|.scoped.css,.tsx
 layout-auto|Layout auto|ix-layout-auto,ix-typography|.scoped.css,.tsx
 layout-auto-custom|Layout auto custom|ix-layout-auto,ix-typography|.tsx
 link-button|Link button|ix-link-button|.tsx
+link-button-action|Link button action|ix-link-button|.tsx
 link-button-disabled|Link button disabled|ix-link-button|.tsx
+link-button-external|Link button external|ix-link-button|.tsx
+link-button-file|Link button file|ix-link-button|.tsx
+link-button-internal|Link button internal|ix-link-button|.tsx
 loading|Loading|ix-button|.tsx
 map-navigation-migration|Map navigation migration||.scoped.css
 menu-category|Menu category|ix-application,ix-menu,ix-menu-category,ix-menu-item|.tsx
@@ -173,11 +195,11 @@ menu-with-bottom-tabs|Menu with bottom tabs|ix-menu,ix-menu-item|.tsx
 message|Message|ix-button|.tsx
 message-bar|Message bar|ix-button,ix-message-bar|.scoped.css,.tsx
 message-bar-removal|Message bar removal|ix-button,ix-message-bar|.tsx
-modal|Modal|ix-button,ix-modal-content,ix-modal-footer,ix-modal-header|.tsx
-modal-close|Modal close|ix-button,ix-modal-content,ix-modal-footer,ix-modal-header|.tsx
-modal-form-ix-button-submit|Modal form ix button submit|ix-button,ix-input,ix-modal-content,ix-modal-footer,ix-modal-header|.tsx
-modal-non-blocking|Modal non blocking|ix-button,ix-modal-content,ix-modal-footer,ix-modal-header,ix-typography|.tsx
-modal-sizes|Modal sizes|ix-button|.scoped.css,.tsx
+modal|Modal|ix-button,ix-modal,ix-modal-content,ix-modal-footer,ix-modal-header|.tsx
+modal-close|Modal close|ix-button,ix-modal,ix-modal-content,ix-modal-footer,ix-modal-header|.tsx
+modal-form-ix-button-submit|Modal form ix button submit|ix-button,ix-input,ix-modal,ix-modal-content,ix-modal-footer,ix-modal-header|.tsx
+modal-non-blocking|Modal non blocking|ix-button,ix-modal,ix-modal-content,ix-modal-footer,ix-modal-header,ix-typography|.tsx
+modal-sizes|Modal sizes|ix-button,ix-modal|.scoped.css,.tsx
 number-input|Number input|ix-number-input|.tsx
 number-input-disabled|Number input disabled|ix-number-input|.tsx
 number-input-label|Number input label|ix-number-input|.tsx

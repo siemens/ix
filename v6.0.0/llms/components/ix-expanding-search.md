@@ -3,8 +3,8 @@
 > Search input that expands from an icon when activated.
 
 - Web component: `<ix-expanding-search>`
-- React/Vue: `IxExpandingSearch` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-expanding-search>` (`IxModule` from `@siemens/ix-angular` or `IxExpandingSearch` from `@siemens/ix-angular/standalone`)
+- React: `IxExpandingSearch` from `@siemens/ix-react`
+- Vue: `IxExpandingSearch` from `@siemens/ix-vue`
 
 ## Documentation
 

@@ -1916,6 +1916,37 @@ Files:
 Files:
   - `vue/date-dropdown.vue`: [file](../examples/vue/date-dropdown.vue)
 
+## date-dropdown-display-format
+
+- Used iX components: [`ix-date-dropdown`](components/ix-date-dropdown.md)
+
+### angular
+
+Files:
+  - `angular/date-dropdown-display-format.html`: [file](../examples/angular/date-dropdown-display-format.html)
+  - `angular/date-dropdown-display-format.ts`: [file](../examples/angular/date-dropdown-display-format.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/date-dropdown-display-format.html`: [file](../examples/angular-standalone/date-dropdown-display-format.html)
+  - `angular-standalone/date-dropdown-display-format.ts`: [file](../examples/angular-standalone/date-dropdown-display-format.ts)
+
+### html
+
+Files:
+  - `html/date-dropdown-display-format.html`: [file](../examples/html/date-dropdown-display-format.html)
+
+### react
+
+Files:
+  - `react/date-dropdown-display-format.tsx`: [file](../examples/react/date-dropdown-display-format.tsx)
+
+### vue
+
+Files:
+  - `vue/date-dropdown-display-format.vue`: [file](../examples/vue/date-dropdown-display-format.vue)
+
 ## date-dropdown-presets
 
 - Used iX components: [`ix-date-dropdown`](components/ix-date-dropdown.md)
@@ -1946,6 +1977,37 @@ Files:
 
 Files:
   - `vue/date-dropdown-presets.vue`: [file](../examples/vue/date-dropdown-presets.vue)
+
+## date-dropdown-require-confirmation
+
+- Used iX components: [`ix-date-dropdown`](components/ix-date-dropdown.md)
+
+### angular
+
+Files:
+  - `angular/date-dropdown-require-confirmation.html`: [file](../examples/angular/date-dropdown-require-confirmation.html)
+  - `angular/date-dropdown-require-confirmation.ts`: [file](../examples/angular/date-dropdown-require-confirmation.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/date-dropdown-require-confirmation.html`: [file](../examples/angular-standalone/date-dropdown-require-confirmation.html)
+  - `angular-standalone/date-dropdown-require-confirmation.ts`: [file](../examples/angular-standalone/date-dropdown-require-confirmation.ts)
+
+### html
+
+Files:
+  - `html/date-dropdown-require-confirmation.html`: [file](../examples/html/date-dropdown-require-confirmation.html)
+
+### react
+
+Files:
+  - `react/date-dropdown-require-confirmation.tsx`: [file](../examples/react/date-dropdown-require-confirmation.tsx)
+
+### vue
+
+Files:
+  - `vue/date-dropdown-require-confirmation.vue`: [file](../examples/vue/date-dropdown-require-confirmation.vue)
 
 ## date-dropdown-user-range
 
@@ -2040,6 +2102,37 @@ Files:
 Files:
   - `vue/date-input-disabled.vue`: [file](../examples/vue/date-input-disabled.vue)
 
+## date-input-display-format
+
+- Used iX components: [`ix-date-input`](components/ix-date-input.md)
+
+### angular
+
+Files:
+  - `angular/date-input-display-format.html`: [file](../examples/angular/date-input-display-format.html)
+  - `angular/date-input-display-format.ts`: [file](../examples/angular/date-input-display-format.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/date-input-display-format.html`: [file](../examples/angular-standalone/date-input-display-format.html)
+  - `angular-standalone/date-input-display-format.ts`: [file](../examples/angular-standalone/date-input-display-format.ts)
+
+### html
+
+Files:
+  - `html/date-input-display-format.html`: [file](../examples/html/date-input-display-format.html)
+
+### react
+
+Files:
+  - `react/date-input-display-format.tsx`: [file](../examples/react/date-input-display-format.tsx)
+
+### vue
+
+Files:
+  - `vue/date-input-display-format.vue`: [file](../examples/vue/date-input-display-format.vue)
+
 ## date-input-label
 
 - Used iX components: [`ix-date-input`](components/ix-date-input.md)
@@ -2133,6 +2226,37 @@ Files:
 Files:
   - `vue/date-input-readonly.vue`: [file](../examples/vue/date-input-readonly.vue)
 
+## date-input-require-confirmation
+
+- Used iX components: [`ix-date-input`](components/ix-date-input.md)
+
+### angular
+
+Files:
+  - `angular/date-input-require-confirmation.html`: [file](../examples/angular/date-input-require-confirmation.html)
+  - `angular/date-input-require-confirmation.ts`: [file](../examples/angular/date-input-require-confirmation.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/date-input-require-confirmation.html`: [file](../examples/angular-standalone/date-input-require-confirmation.html)
+  - `angular-standalone/date-input-require-confirmation.ts`: [file](../examples/angular-standalone/date-input-require-confirmation.ts)
+
+### html
+
+Files:
+  - `html/date-input-require-confirmation.html`: [file](../examples/html/date-input-require-confirmation.html)
+
+### react
+
+Files:
+  - `react/date-input-require-confirmation.tsx`: [file](../examples/react/date-input-require-confirmation.tsx)
+
+### vue
+
+Files:
+  - `vue/date-input-require-confirmation.vue`: [file](../examples/vue/date-input-require-confirmation.vue)
+
 ## date-input-validation
 
 - Used iX components: [`ix-date-input`](components/ix-date-input.md)
@@ -2194,6 +2318,37 @@ Files:
 
 Files:
   - `vue/date-input-with-slots.vue`: [file](../examples/vue/date-input-with-slots.vue)
+
+## date-picker-require-confirmation
+
+- Used iX components: [`ix-date-picker`](components/ix-date-picker.md)
+
+### angular
+
+Files:
+  - `angular/date-picker-require-confirmation.html`: [file](../examples/angular/date-picker-require-confirmation.html)
+  - `angular/date-picker-require-confirmation.ts`: [file](../examples/angular/date-picker-require-confirmation.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/date-picker-require-confirmation.html`: [file](../examples/angular-standalone/date-picker-require-confirmation.html)
+  - `angular-standalone/date-picker-require-confirmation.ts`: [file](../examples/angular-standalone/date-picker-require-confirmation.ts)
+
+### html
+
+Files:
+  - `html/date-picker-require-confirmation.html`: [file](../examples/html/date-picker-require-confirmation.html)
+
+### react
+
+Files:
+  - `react/date-picker-require-confirmation.tsx`: [file](../examples/react/date-picker-require-confirmation.tsx)
+
+### vue
+
+Files:
+  - `vue/date-picker-require-confirmation.vue`: [file](../examples/vue/date-picker-require-confirmation.vue)
 
 ## date-range
 
@@ -2375,6 +2530,37 @@ Files:
 Files:
   - `vue/datetime-input-disabled.vue`: [file](../examples/vue/datetime-input-disabled.vue)
 
+## datetime-input-display-format
+
+- Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md)
+
+### angular
+
+Files:
+  - `angular/datetime-input-display-format.html`: [file](../examples/angular/datetime-input-display-format.html)
+  - `angular/datetime-input-display-format.ts`: [file](../examples/angular/datetime-input-display-format.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/datetime-input-display-format.html`: [file](../examples/angular-standalone/datetime-input-display-format.html)
+  - `angular-standalone/datetime-input-display-format.ts`: [file](../examples/angular-standalone/datetime-input-display-format.ts)
+
+### html
+
+Files:
+  - `html/datetime-input-display-format.html`: [file](../examples/html/datetime-input-display-format.html)
+
+### react
+
+Files:
+  - `react/datetime-input-display-format.tsx`: [file](../examples/react/datetime-input-display-format.tsx)
+
+### vue
+
+Files:
+  - `vue/datetime-input-display-format.vue`: [file](../examples/vue/datetime-input-display-format.vue)
+
 ## datetime-input-label
 
 - Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md)
@@ -2468,6 +2654,37 @@ Files:
 Files:
   - `vue/datetime-input-readonly.vue`: [file](../examples/vue/datetime-input-readonly.vue)
 
+## datetime-input-require-confirmation
+
+- Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md)
+
+### angular
+
+Files:
+  - `angular/datetime-input-require-confirmation.html`: [file](../examples/angular/datetime-input-require-confirmation.html)
+  - `angular/datetime-input-require-confirmation.ts`: [file](../examples/angular/datetime-input-require-confirmation.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/datetime-input-require-confirmation.html`: [file](../examples/angular-standalone/datetime-input-require-confirmation.html)
+  - `angular-standalone/datetime-input-require-confirmation.ts`: [file](../examples/angular-standalone/datetime-input-require-confirmation.ts)
+
+### html
+
+Files:
+  - `html/datetime-input-require-confirmation.html`: [file](../examples/html/datetime-input-require-confirmation.html)
+
+### react
+
+Files:
+  - `react/datetime-input-require-confirmation.tsx`: [file](../examples/react/datetime-input-require-confirmation.tsx)
+
+### vue
+
+Files:
+  - `vue/datetime-input-require-confirmation.vue`: [file](../examples/vue/datetime-input-require-confirmation.vue)
+
 ## datetime-input-validation
 
 - Used iX components: [`ix-datetime-input`](components/ix-datetime-input.md)
@@ -2529,6 +2746,37 @@ Files:
 
 Files:
   - `vue/datetime-input-with-slots.vue`: [file](../examples/vue/datetime-input-with-slots.vue)
+
+## datetime-picker-require-confirmation
+
+- Used iX components: [`ix-datetime-picker`](components/ix-datetime-picker.md)
+
+### angular
+
+Files:
+  - `angular/datetime-picker-require-confirmation.html`: [file](../examples/angular/datetime-picker-require-confirmation.html)
+  - `angular/datetime-picker-require-confirmation.ts`: [file](../examples/angular/datetime-picker-require-confirmation.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/datetime-picker-require-confirmation.html`: [file](../examples/angular-standalone/datetime-picker-require-confirmation.html)
+  - `angular-standalone/datetime-picker-require-confirmation.ts`: [file](../examples/angular-standalone/datetime-picker-require-confirmation.ts)
+
+### html
+
+Files:
+  - `html/datetime-picker-require-confirmation.html`: [file](../examples/html/datetime-picker-require-confirmation.html)
+
+### react
+
+Files:
+  - `react/datetime-picker-require-confirmation.tsx`: [file](../examples/react/datetime-picker-require-confirmation.tsx)
+
+### vue
+
+Files:
+  - `vue/datetime-picker-require-confirmation.vue`: [file](../examples/vue/datetime-picker-require-confirmation.vue)
 
 ## datetime-range
 
@@ -4032,6 +4280,269 @@ Files:
   - `vue/form-validation.css`: [file](../examples/vue/form-validation.css)
   - `vue/form-validation.vue`: [file](../examples/vue/form-validation.vue)
 
+## generic-list-action-on-hover
+
+- Used iX components: [`ix-icon-button`](components/ix-icon-button.md), [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-action-on-hover.html`: [file](../examples/angular/generic-list-action-on-hover.html)
+  - `angular/generic-list-action-on-hover.ts`: [file](../examples/angular/generic-list-action-on-hover.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-action-on-hover.html`: [file](../examples/angular-standalone/generic-list-action-on-hover.html)
+  - `angular-standalone/generic-list-action-on-hover.ts`: [file](../examples/angular-standalone/generic-list-action-on-hover.ts)
+
+### html
+
+Files:
+  - `html/generic-list-action-on-hover.html`: [file](../examples/html/generic-list-action-on-hover.html)
+
+### react
+
+Files:
+  - `react/generic-list-action-on-hover.tsx`: [file](../examples/react/generic-list-action-on-hover.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-action-on-hover.vue`: [file](../examples/vue/generic-list-action-on-hover.vue)
+
+## generic-list-additional-options
+
+- Used iX components: [`ix-icon-button`](components/ix-icon-button.md), [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md), [`ix-list-item-separator`](components/ix-list-item-separator.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-additional-options.html`: [file](../examples/angular/generic-list-additional-options.html)
+  - `angular/generic-list-additional-options.ts`: [file](../examples/angular/generic-list-additional-options.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-additional-options.html`: [file](../examples/angular-standalone/generic-list-additional-options.html)
+  - `angular-standalone/generic-list-additional-options.ts`: [file](../examples/angular-standalone/generic-list-additional-options.ts)
+
+### html
+
+Files:
+  - `html/generic-list-additional-options.html`: [file](../examples/html/generic-list-additional-options.html)
+
+### react
+
+Files:
+  - `react/generic-list-additional-options.tsx`: [file](../examples/react/generic-list-additional-options.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-additional-options.vue`: [file](../examples/vue/generic-list-additional-options.vue)
+
+## generic-list-basic
+
+- Used iX components: [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-basic.html`: [file](../examples/angular/generic-list-basic.html)
+  - `angular/generic-list-basic.ts`: [file](../examples/angular/generic-list-basic.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-basic.html`: [file](../examples/angular-standalone/generic-list-basic.html)
+  - `angular-standalone/generic-list-basic.ts`: [file](../examples/angular-standalone/generic-list-basic.ts)
+
+### html
+
+Files:
+  - `html/generic-list-basic.html`: [file](../examples/html/generic-list-basic.html)
+
+### react
+
+Files:
+  - `react/generic-list-basic.tsx`: [file](../examples/react/generic-list-basic.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-basic.vue`: [file](../examples/vue/generic-list-basic.vue)
+
+## generic-list-custom-content
+
+- Used iX components: [`ix-badge`](components/ix-badge.md), [`ix-icon-button`](components/ix-icon-button.md), [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-custom-content.css`: [file](../examples/angular/generic-list-custom-content.css)
+  - `angular/generic-list-custom-content.html`: [file](../examples/angular/generic-list-custom-content.html)
+  - `angular/generic-list-custom-content.ts`: [file](../examples/angular/generic-list-custom-content.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-custom-content.css`: [file](../examples/angular-standalone/generic-list-custom-content.css)
+  - `angular-standalone/generic-list-custom-content.html`: [file](../examples/angular-standalone/generic-list-custom-content.html)
+  - `angular-standalone/generic-list-custom-content.ts`: [file](../examples/angular-standalone/generic-list-custom-content.ts)
+
+### html
+
+Files:
+  - `html/generic-list-custom-content.css`: [file](../examples/html/generic-list-custom-content.css)
+  - `html/generic-list-custom-content.html`: [file](../examples/html/generic-list-custom-content.html)
+
+### react
+
+Files:
+  - `react/generic-list-custom-content.scoped.css`: [file](../examples/react/generic-list-custom-content.scoped.css)
+  - `react/generic-list-custom-content.tsx`: [file](../examples/react/generic-list-custom-content.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-custom-content.css`: [file](../examples/vue/generic-list-custom-content.css)
+  - `vue/generic-list-custom-content.vue`: [file](../examples/vue/generic-list-custom-content.vue)
+
+## generic-list-draggable
+
+- Used iX components: [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-draggable.html`: [file](../examples/angular/generic-list-draggable.html)
+  - `angular/generic-list-draggable.ts`: [file](../examples/angular/generic-list-draggable.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-draggable.html`: [file](../examples/angular-standalone/generic-list-draggable.html)
+  - `angular-standalone/generic-list-draggable.ts`: [file](../examples/angular-standalone/generic-list-draggable.ts)
+
+### html
+
+Files:
+  - `html/generic-list-draggable.html`: [file](../examples/html/generic-list-draggable.html)
+
+### react
+
+Files:
+  - `react/generic-list-draggable.tsx`: [file](../examples/react/generic-list-draggable.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-draggable.vue`: [file](../examples/vue/generic-list-draggable.vue)
+
+## generic-list-notification-icon
+
+- Used iX components: [`ix-badge`](components/ix-badge.md), [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md), [`ix-typography`](components/ix-typography.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-notification-icon.css`: [file](../examples/angular/generic-list-notification-icon.css)
+  - `angular/generic-list-notification-icon.html`: [file](../examples/angular/generic-list-notification-icon.html)
+  - `angular/generic-list-notification-icon.ts`: [file](../examples/angular/generic-list-notification-icon.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-notification-icon.css`: [file](../examples/angular-standalone/generic-list-notification-icon.css)
+  - `angular-standalone/generic-list-notification-icon.html`: [file](../examples/angular-standalone/generic-list-notification-icon.html)
+  - `angular-standalone/generic-list-notification-icon.ts`: [file](../examples/angular-standalone/generic-list-notification-icon.ts)
+
+### html
+
+Files:
+  - `html/generic-list-notification-icon.css`: [file](../examples/html/generic-list-notification-icon.css)
+  - `html/generic-list-notification-icon.html`: [file](../examples/html/generic-list-notification-icon.html)
+
+### react
+
+Files:
+  - `react/generic-list-notification-icon.scoped.css`: [file](../examples/react/generic-list-notification-icon.scoped.css)
+  - `react/generic-list-notification-icon.tsx`: [file](../examples/react/generic-list-notification-icon.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-notification-icon.css`: [file](../examples/vue/generic-list-notification-icon.css)
+  - `vue/generic-list-notification-icon.vue`: [file](../examples/vue/generic-list-notification-icon.vue)
+
+## generic-list-users
+
+- Used iX components: [`ix-avatar`](components/ix-avatar.md), [`ix-icon-button`](components/ix-icon-button.md), [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md), [`ix-typography`](components/ix-typography.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-users.css`: [file](../examples/angular/generic-list-users.css)
+  - `angular/generic-list-users.html`: [file](../examples/angular/generic-list-users.html)
+  - `angular/generic-list-users.ts`: [file](../examples/angular/generic-list-users.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-users.css`: [file](../examples/angular-standalone/generic-list-users.css)
+  - `angular-standalone/generic-list-users.html`: [file](../examples/angular-standalone/generic-list-users.html)
+  - `angular-standalone/generic-list-users.ts`: [file](../examples/angular-standalone/generic-list-users.ts)
+
+### html
+
+Files:
+  - `html/generic-list-users.css`: [file](../examples/html/generic-list-users.css)
+  - `html/generic-list-users.html`: [file](../examples/html/generic-list-users.html)
+
+### react
+
+Files:
+  - `react/generic-list-users.scoped.css`: [file](../examples/react/generic-list-users.scoped.css)
+  - `react/generic-list-users.tsx`: [file](../examples/react/generic-list-users.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-users.css`: [file](../examples/vue/generic-list-users.css)
+  - `vue/generic-list-users.vue`: [file](../examples/vue/generic-list-users.vue)
+
+## generic-list-variants
+
+- Used iX components: [`ix-list`](components/ix-list.md), [`ix-list-item`](components/ix-list-item.md)
+
+### angular
+
+Files:
+  - `angular/generic-list-variants.html`: [file](../examples/angular/generic-list-variants.html)
+  - `angular/generic-list-variants.ts`: [file](../examples/angular/generic-list-variants.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/generic-list-variants.html`: [file](../examples/angular-standalone/generic-list-variants.html)
+  - `angular-standalone/generic-list-variants.ts`: [file](../examples/angular-standalone/generic-list-variants.ts)
+
+### html
+
+Files:
+  - `html/generic-list-variants.html`: [file](../examples/html/generic-list-variants.html)
+
+### react
+
+Files:
+  - `react/generic-list-variants.tsx`: [file](../examples/react/generic-list-variants.tsx)
+
+### vue
+
+Files:
+  - `vue/generic-list-variants.vue`: [file](../examples/vue/generic-list-variants.vue)
+
 ## grid
 
 - Used iX components: [`ix-col`](components/ix-col.md), [`ix-layout-grid`](components/ix-layout-grid.md), [`ix-row`](components/ix-row.md), [`ix-typography`](components/ix-typography.md)
@@ -4516,6 +5027,35 @@ Files:
 
 Files:
   - `vue/info-page.vue`: [file](../examples/vue/info-page.vue)
+
+## info-page-illustration
+
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-info-page`](components/ix-info-page.md)
+
+### angular
+
+Files:
+  - `angular/info-page-illustration.ts`: [file](../examples/angular/info-page-illustration.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/info-page-illustration.ts`: [file](../examples/angular-standalone/info-page-illustration.ts)
+
+### html
+
+Files:
+  - `html/info-page-illustration.html`: [file](../examples/html/info-page-illustration.html)
+
+### react
+
+Files:
+  - `react/info-page-illustration.tsx`: [file](../examples/react/info-page-illustration.tsx)
+
+### vue
+
+Files:
+  - `vue/info-page-illustration.vue`: [file](../examples/vue/info-page-illustration.vue)
 
 ## input
 
@@ -5023,6 +5563,35 @@ Files:
 Files:
   - `vue/key-value-list-with-icon.vue`: [file](../examples/vue/key-value-list-with-icon.vue)
 
+## key-value-list-without-divider
+
+- Used iX components: [`ix-key-value`](components/ix-key-value.md), [`ix-key-value-list`](components/ix-key-value-list.md)
+
+### angular
+
+Files:
+  - `angular/key-value-list-without-divider.ts`: [file](../examples/angular/key-value-list-without-divider.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/key-value-list-without-divider.ts`: [file](../examples/angular-standalone/key-value-list-without-divider.ts)
+
+### html
+
+Files:
+  - `html/key-value-list-without-divider.html`: [file](../examples/html/key-value-list-without-divider.html)
+
+### react
+
+Files:
+  - `react/key-value-list-without-divider.tsx`: [file](../examples/react/key-value-list-without-divider.tsx)
+
+### vue
+
+Files:
+  - `vue/key-value-list-without-divider.vue`: [file](../examples/vue/key-value-list-without-divider.vue)
+
 ## key-value-with-custom-value
 
 - Used iX components: [`ix-key-value`](components/ix-key-value.md)
@@ -5245,6 +5814,35 @@ Files:
 Files:
   - `vue/link-button.vue`: [file](../examples/vue/link-button.vue)
 
+## link-button-action
+
+- Used iX components: [`ix-link-button`](components/ix-link-button.md)
+
+### angular
+
+Files:
+  - `angular/link-button-action.ts`: [file](../examples/angular/link-button-action.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/link-button-action.ts`: [file](../examples/angular-standalone/link-button-action.ts)
+
+### html
+
+Files:
+  - `html/link-button-action.html`: [file](../examples/html/link-button-action.html)
+
+### react
+
+Files:
+  - `react/link-button-action.tsx`: [file](../examples/react/link-button-action.tsx)
+
+### vue
+
+Files:
+  - `vue/link-button-action.vue`: [file](../examples/vue/link-button-action.vue)
+
 ## link-button-disabled
 
 - Used iX components: [`ix-link-button`](components/ix-link-button.md)
@@ -5273,6 +5871,93 @@ Files:
 
 Files:
   - `vue/link-button-disabled.vue`: [file](../examples/vue/link-button-disabled.vue)
+
+## link-button-external
+
+- Used iX components: [`ix-link-button`](components/ix-link-button.md)
+
+### angular
+
+Files:
+  - `angular/link-button-external.ts`: [file](../examples/angular/link-button-external.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/link-button-external.ts`: [file](../examples/angular-standalone/link-button-external.ts)
+
+### html
+
+Files:
+  - `html/link-button-external.html`: [file](../examples/html/link-button-external.html)
+
+### react
+
+Files:
+  - `react/link-button-external.tsx`: [file](../examples/react/link-button-external.tsx)
+
+### vue
+
+Files:
+  - `vue/link-button-external.vue`: [file](../examples/vue/link-button-external.vue)
+
+## link-button-file
+
+- Used iX components: [`ix-link-button`](components/ix-link-button.md)
+
+### angular
+
+Files:
+  - `angular/link-button-file.ts`: [file](../examples/angular/link-button-file.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/link-button-file.ts`: [file](../examples/angular-standalone/link-button-file.ts)
+
+### html
+
+Files:
+  - `html/link-button-file.html`: [file](../examples/html/link-button-file.html)
+
+### react
+
+Files:
+  - `react/link-button-file.tsx`: [file](../examples/react/link-button-file.tsx)
+
+### vue
+
+Files:
+  - `vue/link-button-file.vue`: [file](../examples/vue/link-button-file.vue)
+
+## link-button-internal
+
+- Used iX components: [`ix-link-button`](components/ix-link-button.md)
+
+### angular
+
+Files:
+  - `angular/link-button-internal.ts`: [file](../examples/angular/link-button-internal.ts)
+
+### angular-standalone
+
+Files:
+  - `angular-standalone/link-button-internal.ts`: [file](../examples/angular-standalone/link-button-internal.ts)
+
+### html
+
+Files:
+  - `html/link-button-internal.html`: [file](../examples/html/link-button-internal.html)
+
+### react
+
+Files:
+  - `react/link-button-internal.tsx`: [file](../examples/react/link-button-internal.tsx)
+
+### vue
+
+Files:
+  - `vue/link-button-internal.vue`: [file](../examples/vue/link-button-internal.vue)
 
 ## loading
 
@@ -5478,7 +6163,7 @@ Files:
 
 ## modal
 
-- Used iX components: [`ix-button`](components/ix-button.md), [`ix-modal-content`](components/ix-modal-content.md), [`ix-modal-footer`](components/ix-modal-footer.md), [`ix-modal-header`](components/ix-modal-header.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-modal`](components/ix-modal.md), [`ix-modal-content`](components/ix-modal-content.md), [`ix-modal-footer`](components/ix-modal-footer.md), [`ix-modal-header`](components/ix-modal-header.md)
 
 ### html
 
@@ -5539,7 +6224,7 @@ Files:
 
 ## modal-close
 
-- Used iX components: [`ix-button`](components/ix-button.md), [`ix-modal-content`](components/ix-modal-content.md), [`ix-modal-footer`](components/ix-modal-footer.md), [`ix-modal-header`](components/ix-modal-header.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-modal`](components/ix-modal.md), [`ix-modal-content`](components/ix-modal-content.md), [`ix-modal-footer`](components/ix-modal-footer.md), [`ix-modal-header`](components/ix-modal-header.md)
 
 ### angular
 
@@ -5601,7 +6286,7 @@ Files:
 
 ## modal-non-blocking
 
-- Used iX components: [`ix-button`](components/ix-button.md), [`ix-modal-content`](components/ix-modal-content.md), [`ix-modal-footer`](components/ix-modal-footer.md), [`ix-modal-header`](components/ix-modal-header.md), [`ix-typography`](components/ix-typography.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-modal`](components/ix-modal.md), [`ix-modal-content`](components/ix-modal-content.md), [`ix-modal-footer`](components/ix-modal-footer.md), [`ix-modal-header`](components/ix-modal-header.md), [`ix-typography`](components/ix-typography.md)
 
 ### angular
 
@@ -5625,7 +6310,7 @@ Files:
 
 ## modal-sizes
 
-- Used iX components: [`ix-button`](components/ix-button.md)
+- Used iX components: [`ix-button`](components/ix-button.md), [`ix-modal`](components/ix-modal.md)
 
 ### angular
 

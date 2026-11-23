@@ -3,8 +3,8 @@
 > Header area of a content page showing the title and page-level actions.
 
 - Web component: `<ix-content-header>`
-- React/Vue: `IxContentHeader` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-content-header>` (`IxModule` from `@siemens/ix-angular` or `IxContentHeader` from `@siemens/ix-angular/standalone`)
+- React: `IxContentHeader` from `@siemens/ix-react`
+- Vue: `IxContentHeader` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -16,6 +16,7 @@
 
 ## Properties
 
+- `ariaLabelMoreActions`; attr: `aria-label-more-actions`; type: `string`; default: `'More actions'` - Accessible label for the secondary actions overflow menu.
 - `hasBackButton`; attr: `has-back-button`; type: `boolean`; default: `false` - Display a back button
 - `headerSubtitle`; attr: `header-subtitle`; type: `string | undefined`; default: `undefined` - Subtitle of Header
 - `headerTitle`; attr: `header-title`; type: `string | undefined` - Title of Header
@@ -32,12 +33,13 @@
 
 ## Slots
 
-- `default` - Default slot for action buttons or other content
+- `` - Default slot for action buttons or other content
 - `header` - Content to be placed in the header area next to the title
+- `secondary-actions` - ix-button and ix-icon-button actions that collapse into a vertical overflow menu when space is limited. Provide an accessible name for icon-only actions.
 
 ## Dependencies
 
-- Renders: `ix-icon-button`, `ix-typography`
+- Renders: `ix-dropdown`, `ix-dropdown-item`, `ix-icon-button`, `ix-typography`
 - Rendered by: None
 
 ## Related examples

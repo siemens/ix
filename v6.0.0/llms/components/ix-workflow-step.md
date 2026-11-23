@@ -3,8 +3,8 @@
 > A single step within a workflow step sequence.
 
 - Web component: `<ix-workflow-step>`
-- React/Vue: `IxWorkflowStep` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-workflow-step>` (`IxModule` from `@siemens/ix-angular` or `IxWorkflowStep` from `@siemens/ix-angular/standalone`)
+- React: `IxWorkflowStep` from `@siemens/ix-react`
+- Vue: `IxWorkflowStep` from `@siemens/ix-vue`
 
 ## Documentation
 

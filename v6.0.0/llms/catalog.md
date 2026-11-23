@@ -1,18 +1,18 @@
-[Siemens iX component catalog]|114 components|format: tag|description|react:Alias|figma:ids
+[Siemens iX component catalog]|117 components|format: tag|description|react:Alias|figma:ids
 |detail: components/{tag}.md (props, events, methods, slots, docs, related examples)
 |figma lookup: figma.md|examples by framework: examples/{framework}.md (html, react, angular, angular-standalone, vue)
 |IMPORTANT: Prefer this registry over memory. Only use tags, props, events, methods and slots listed in components/{tag}.md.
 ix-action-card|Card that represents a selectable action or option to start a task or workflow.|react:IxActionCard|figma:104612:25269
 ix-application|Root container that sets up the overall application shell and layout.|react:IxApplication
-ix-application-header|Top header bar of the application shell holding branding, navigation, and actions.|react:IxApplicationHeader|figma:20920:77660
+ix-application-header|Top header bar of the application shell holding branding, navigation, and actions.|react:IxApplicationHeader|figma:162383:24794
 ix-avatar|Displays a user's profile image, initials, or a placeholder icon.|react:IxAvatar|figma:308:1151
-ix-badge|Overlay indicator for counts, labels, dots, and status icons. **Attached** (default slot has content): the indicator is decorative. When `label` is set, that text is exposed on the anchor via `aria-describedby`. Host `role` / `aria-*` are discarded so the anchor owns the accessible name. **Standalone** (empty default slot): author `role` / `aria-*` stay on the host. For `dot` and `status-icon`, provide a host `aria-label` and a naming role (for example `role="img"`, or `role="status"` / `role="alert"` for a live region). Override max-width with `--ix-badge-max-width`.|react:IxBadge|figma:138424:114072
-ix-blind|Collapsible container that expands and collapses to show or hide its content.|react:IxBlind|figma:388:3986
+ix-badge|Overlay indicator for counts, labels, dots, and status icons. **Attached** (default slot has content): the indicator is decorative. When `label` is set, that text is exposed on the anchor via `aria-describedby`. Host `role` / `aria-*` are discarded so the anchor owns the accessible name. **Standalone** (empty default slot): author `role` / `aria-*` stay on the host. For `dot` and `status-icon`, provide a host `aria-label` and a naming role (for example `role="img"`, or `role="status"` / `role="alert"` for a live region). Override max-width with `--ix-badge--max-width`.|react:IxBadge|figma:138424:114072
+ix-blind|Collapsible container that expands and collapses to show or hide its content.|react:IxBlind|figma:162346:48011
 ix-breadcrumb|Navigation trail that shows the user's location within a hierarchy.|react:IxBreadcrumb|figma:1603:54616
 ix-breadcrumb-item|A single entry within a breadcrumb navigation trail.|react:IxBreadcrumbItem|figma:358:3004
 ix-button|Triggers an action or event when activated by the user.|react:IxButton|figma:225:5535
-ix-card|Flexible container that groups related content and actions.|react:IxCard|figma:104612:25530
-ix-card-accordion|Expandable card section that shows or hides content within a card list.|react:IxCardAccordion|figma:104612:25530
+ix-card|Flexible container that groups related content and actions.|react:IxCard|figma:162440:171408
+ix-card-accordion|Expandable card section that shows or hides content within a card list.|react:IxCardAccordion|figma:104612:25090
 ix-card-content|Content region of a card.|react:IxCardContent|figma:104612:25530
 ix-card-list|Container that arranges multiple cards in a list or grid layout.|react:IxCardList|figma:104638:14632
 ix-card-title|Title area of a card.|react:IxCardTitle
@@ -26,9 +26,9 @@ ix-checkbox|Lets users select an option or toggle a single value on or off.|reac
 ix-checkbox-group|Groups related checkboxes together.|react:IxCheckboxGroup|figma:84992:87199
 ix-chip|Compact element that represents an attribute, tag, or entity, optionally dismissible.|react:IxChip|figma:286:1758
 ix-col|Column within the responsive layout grid.|react:IxCol
-ix-content|Main content region of an application page.|react:IxContent
+ix-content|Main content region of an application page.|react:IxContent|figma:162440:168673
 ix-content-header|Header area of a content page showing the title and page-level actions.|react:IxContentHeader|figma:4727:112521
-ix-custom-field|Wrapper that adds label, helper text, and validation handling around custom form controls.|react:IxCustomField|figma:42365:52677
+ix-custom-field|Wrapper that adds label, helper text, and validation handling around custom form controls.|react:IxCustomField|figma:159477:16761
 ix-date-dropdown|Dropdown for selecting a date or a relative date range.|react:IxDateDropdown|figma:45886:27067
 ix-date-input|Text input for entering and validating a date value.|react:IxDateInput|figma:442365:42749
 ix-date-picker|Calendar for selecting a single date or a date range.|react:IxDatePicker|figma:561:6290
@@ -46,11 +46,11 @@ ix-event-list-item|A single entry within an event list.|react:IxEventListItem|fi
 ix-expanding-search|Search input that expands from an icon when activated.|react:IxExpandingSearch|figma:680:9354
 ix-field-label|Label for a form field.|react:IxFieldLabel|figma:1682:60975
 ix-filter-chip|Dismissible chip that represents an applied filter.|react:IxFilterChip
-ix-flip-tile|Tile that flips between a front and back side to reveal additional content.|react:IxFlipTile|figma:407:3446
+ix-flip-tile|Tile that flips between a front and back side to reveal additional content.|react:IxFlipTile|figma:162362:111923
 ix-flip-tile-content|Content for a single side of a flip tile.|react:IxFlipTileContent|figma:407:3446
-ix-group|Collapsible list group with a selectable header and nested items.|react:IxGroup|figma:1274:38298
+ix-group|Collapsible list group with a selectable header and nested items.|react:IxGroup|figma:162440:187838
 ix-group-context-menu|Context menu that provides actions for a group.|react:IxGroupContextMenu
-ix-group-item|A single selectable item within a group.|react:IxGroupItem|figma:1274:34186
+ix-group-item|A single selectable item within a group.|react:IxGroupItem|figma:162374:19834
 ix-helper-text|Supplementary text that provides guidance or validation feedback for a form field.|react:IxHelperText
 ix-icon-button|Button that displays only an icon to trigger an action.|react:IxIconButton|figma:270:941
 ix-icon-toggle-button|Icon button that toggles between a pressed and unpressed state.|react:IxIconToggleButton|figma:107597:25227
@@ -61,7 +61,10 @@ ix-key-value-list|Container that arranges multiple key-value pairs in a list.|re
 ix-kpi|Displays a key performance indicator with a label, value, and status.|react:IxKpi|figma:423:3986
 ix-layout-auto|Responsive form layout that automatically adjusts columns to the available width.|react:IxLayoutAuto
 ix-layout-grid|Column-based grid layout for arranging content responsively.|react:IxLayoutGrid
-ix-link-button|Button styled as a hyperlink that navigates to a target.|react:IxLinkButton|figma:107603:15976
+ix-link-button|Button styled as a hyperlink that navigates to a target.|react:IxLinkButton|figma:154524:11000
+ix-list|No component summary available.|react:IxList|figma:124354:231473
+ix-list-item|No component summary available.|react:IxListItem|figma:124221:389212
+ix-list-item-separator|Standalone horizontal separator for list content.|react:IxListItemSeparator
 ix-menu|Primary side navigation menu of the application shell.|react:IxMenu|figma:20977:55554
 ix-menu-about|Overlay that shows application information such as version and legal details.|react:IxMenuAbout
 ix-menu-about-item|A single tab or entry within the about overlay.|react:IxMenuAboutItem
@@ -73,14 +76,14 @@ ix-menu-item|Navigation entry within the side menu.|react:IxMenuItem|figma:308:1
 ix-menu-settings|Settings overlay opened from the application menu.|react:IxMenuSettings
 ix-menu-settings-item|A single tab or entry within the settings overlay.|react:IxMenuSettingsItem
 ix-message-bar|Inline bar that displays a contextual message or notification.|react:IxMessageBar|figma:103814:17693
-ix-modal|Dialog overlay that presents content or requires user interaction on top of the page.|react:IxModal
+ix-modal|Dialog overlay that presents content or requires user interaction on top of the page.|react:IxModal|figma:160960:19146
 ix-modal-content|Content region of a modal dialog.|react:IxModalContent
 ix-modal-footer|Footer region of a modal dialog, typically holding action buttons.|react:IxModalFooter
 ix-modal-header|Header region of a modal dialog showing the title and close control.|react:IxModalHeader
 ix-number-input|Text input for entering and validating a numeric value.|react:IxNumberInput|figma:42365:39459
 ix-pagination|Control for navigating between pages of content.|react:IxPagination|figma:2302:67995,2554:79100
-ix-pane|Collapsible side panel docked to an edge of the layout.|react:IxPane|figma:19924:12291
-ix-pane-layout|Layout container that arranges collapsible panes around a content area.|react:IxPaneLayout|figma:19924:12291
+ix-pane|Collapsible side panel docked to an edge of the layout.|react:IxPane|figma:153304:26230
+ix-pane-layout|Layout container that arranges collapsible panes around a content area.|react:IxPaneLayout|figma:153304:27060
 ix-pill|Compact label that highlights a status, count, or category.|react:IxPill|figma:312:1219
 ix-playground|Internal development playground for previewing and testing components.
 ix-popover|Floating panel anchored to a trigger element.|react:IxPopover|figma:145668:12518
@@ -102,14 +105,14 @@ ix-split-button|Button combined with an attached dropdown for related actions.|r
 ix-tab-item|A single selectable tab within a tab set.|react:IxTabItem|figma:426:4122
 ix-tabs|Tabbed navigation for switching between related views.|react:IxTabs|figma:427:6367
 ix-textarea|Multi-line text input for entering and validating longer text.|react:IxTextarea
-ix-tile|Container that presents grouped information in a compact tile.|react:IxTile|figma:1431:43158
+ix-tile|Container that presents grouped information in a compact tile.|react:IxTile|figma:162362:68584
 ix-time-input|Text input for entering and validating a time value.|react:IxTimeInput|figma:68801:5742
 ix-time-picker|Selector for picking a time value.|react:IxTimePicker|figma:68801:7500
 ix-toast|Transient notification message that appears temporarily.|react:IxToast
 ix-toast-container|Container that positions and manages toast notifications.|react:IxToastContainer
 ix-toggle|Switch control for toggling a single setting on or off.|react:IxToggle|figma:43875:36542
 ix-toggle-button|Button that toggles between a pressed and unpressed state.|react:IxToggleButton|figma:8994:173458
-ix-tooltip|Small overlay that shows contextual information when hovering or focusing an element.|react:IxTooltip|figma:1239:30786
+ix-tooltip|Small overlay that shows contextual information when hovering or focusing an element.|react:IxTooltip|figma:160982:16759
 ix-tree|Displays hierarchical data as an expandable tree.|react:IxTree
 ix-tree-item|A single node within a tree.
 ix-typography|Applies consistent text styling based on the design system's typography scale.|react:IxTypography|figma:40211:13267

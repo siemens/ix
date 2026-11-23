@@ -3,8 +3,8 @@
 > Main content region of an application page.
 
 - Web component: `<ix-content>`
-- React/Vue: `IxContent` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-content>` (`IxModule` from `@siemens/ix-angular` or `IxContent` from `@siemens/ix-angular/standalone`)
+- React: `IxContent` from `@siemens/ix-react`
+- Vue: `IxContent` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -12,7 +12,7 @@
 
 ## Figma IDs
 
-- None
+- 162440:168673
 
 ## Properties
 

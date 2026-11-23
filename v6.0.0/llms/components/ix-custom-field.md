@@ -3,8 +3,8 @@
 > Wrapper that adds label, helper text, and validation handling around custom form controls.
 
 - Web component: `<ix-custom-field>`
-- React/Vue: `IxCustomField` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-custom-field>` (`IxModule` from `@siemens/ix-angular` or `IxCustomField` from `@siemens/ix-angular/standalone`)
+- React: `IxCustomField` from `@siemens/ix-react`
+- Vue: `IxCustomField` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -12,7 +12,7 @@
 
 ## Figma IDs
 
-- 42365:52677
+- 159477:16761
 
 ## Properties
 

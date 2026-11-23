@@ -3,8 +3,8 @@
 > Switch control for toggling a single setting on or off.
 
 - Web component: `<ix-toggle>`
-- React/Vue: `IxToggle` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-toggle>` (`IxModule` from `@siemens/ix-angular` or `IxToggle` from `@siemens/ix-angular/standalone`)
+- React: `IxToggle` from `@siemens/ix-react`
+- Vue: `IxToggle` from `@siemens/ix-vue`
 
 ## Documentation
 

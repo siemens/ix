@@ -3,8 +3,8 @@
 > Text input for entering and validating a date value.
 
 - Web component: `<ix-date-input>`
-- React/Vue: `IxDateInput` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-date-input>` (`IxModule` from `@siemens/ix-angular` or `IxDateInput` from `@siemens/ix-angular/standalone`)
+- React: `IxDateInput` from `@siemens/ix-react`
+- Vue: `IxDateInput` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -20,19 +20,23 @@
 - `ariaLabelNextMonthButton`; attr: `aria-label-next-month-button`; type: `string | undefined`; default: `'Next month'` - ARIA label for the next month icon button. Will be set as aria-label on the nested HTML button element.
 - `ariaLabelPreviousMonthButton`; attr: `aria-label-previous-month-button`; type: `string | undefined`; default: `'Previous month'` - ARIA label for the previous month icon button. Will be set as aria-label on the nested HTML button element.
 - `disabled`; attr: `disabled`; type: `boolean`; default: `false` - Disabled attribute.
+- `displayFormat`; attr: `display-format`; type: `string | undefined` - Date format used to display and type the date in the input field. `value`, `minDate`, `maxDate` and emitted values keep using `format`, e.g. `format="yyyy/LL/dd"` with `displayFormat="yy/LL/dd"` displays a two-digit year without losing the century of the value. Date parts missing in `displayFormat` are kept from the current value when the user types a date. A typed two-digit year resolves to the year closest to the current value. Defaults to `format`. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
 - `enableTopLayer`; attr: `enable-top-layer`; type: `boolean`; default: `false` - Enable Popover API rendering for dropdown.
 - `format`; attr: `format`; type: `string`; default: `'yyyy/LL/dd'` - Date format string. See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
 - `helperText`; attr: `helper-text`; type: `string | undefined` - Helper text below the input field.
+- `i18nCancel`; attr: `i18n-cancel`; type: `string`; default: `'Cancel'` - Text of the cancel button shown when `requireConfirmation` is enabled.
+- `i18nConfirm`; attr: `i18n-confirm`; type: `string`; default: `'Confirm'` - Text of the confirm button shown when `requireConfirmation` is enabled.
 - `i18nErrorDateUnparsable`; attr: `i18n-error-date-unparsable`; type: `string`; default: `'Date is not valid'` - I18n string for the error message when the date is not parsable.
 - `infoText`; attr: `info-text`; type: `string | undefined` - Info text below the input field.
 - `invalidText`; attr: `invalid-text`; type: `string | undefined` - Error text below the input field.
 - `label`; attr: `label`; type: `string | undefined` - Label of the input field.
-- `locale`; attr: `locale`; type: `string | undefined` - Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` reflect the locale-formatted string as typed or selected by the user.
+- `locale`; attr: `locale`; type: `string | undefined` - Locale identifier (e.g. 'en' or 'de'). The locale is used to translate the labels for weekdays and months, determine the default order of weekdays, and parse user input. Values emitted via `valueChange` are in `format`.
 - `maxDate`; attr: `max-date`; type: `string`; default: `''` - The latest date that can be selected by the date input/picker. If not set there will be no restriction.
 - `minDate`; attr: `min-date`; type: `string`; default: `''` - The earliest date that can be selected by the date input/picker. If not set there will be no restriction.
 - `name`; attr: `name`; type: `string | undefined` - Name of the input element.
 - `placeholder`; attr: `placeholder`; type: `string | undefined` - Placeholder of the input element.
 - `readonly`; attr: `readonly`; type: `boolean`; default: `false` - Readonly attribute.
+- `requireConfirmation`; attr: `require-confirmation`; type: `boolean`; default: `false` - If true, changes require clicking confirm. Cancel, Escape or clicking outside all discard pending selections. If false, changes are applied immediately without requiring confirmation.
 - `required`; attr: `required`; type: `boolean | undefined` - Required attribute.
 - `showTextAsTooltip`; attr: `show-text-as-tooltip`; type: `boolean | undefined` - Show text as tooltip.
 - `showWeekNumbers`; attr: `show-week-numbers`; type: `boolean`; default: `false` - Shows week numbers displayed on the left side of the date picker.
@@ -51,6 +55,7 @@
 
 ## Methods
 
+- `clear() => Promise<void>` - Clears the input field value and resets validation state. Sets the value to empty and removes touched state to suppress validation.
 - `focusInput() => Promise<void>` - Focuses the input field
 - `getNativeInputElement() => Promise<HTMLInputElement>` - Get the native input element
 
@@ -70,9 +75,11 @@ Examples that use this component, with available frameworks. Look up source file
 
 - date-input (angular, angular-standalone, html, react, vue)
 - date-input-disabled (angular, angular-standalone, html, react, vue)
+- date-input-display-format (angular, angular-standalone, html, react, vue)
 - date-input-label (angular, angular-standalone, html, react, vue)
 - date-input-min-max-date (angular, angular-standalone, html, react, vue)
 - date-input-readonly (angular, angular-standalone, html, react, vue)
+- date-input-require-confirmation (angular, angular-standalone, html, react, vue)
 - date-input-validation (angular, angular-standalone, html, react, vue)
 - date-input-with-slots (angular, angular-standalone, html, react, vue)
 - date-range (angular, angular-standalone, html, react, vue)

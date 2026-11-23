@@ -3,8 +3,8 @@
 > Dialog overlay that presents content or requires user interaction on top of the page.
 
 - Web component: `<ix-modal>`
-- React/Vue: `IxModal` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-modal>` (`IxModule` from `@siemens/ix-angular` or `IxModal` from `@siemens/ix-angular/standalone`)
+- React: `IxModal` from `@siemens/ix-react`
+- Vue: `IxModal` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -12,7 +12,7 @@
 
 ## Figma IDs
 
-- None
+- 160960:19146
 
 ## Properties
 
@@ -48,8 +48,12 @@
 
 Examples that use this component, with available frameworks. Look up source file paths in `../examples/{framework}.md`.
 
+- modal (html, react, vue)
 - modal-by-template (angular, angular-standalone)
+- modal-close (angular, angular-standalone, html, react, vue)
 - modal-form-ix-button-submit (angular, angular-standalone, html, react, vue)
+- modal-non-blocking (angular, angular-standalone, html, react)
+- modal-sizes (angular, angular-standalone, html, react, vue)
 
 ## Related patterns
 

@@ -3,8 +3,8 @@
 > Tile that flips between a front and back side to reveal additional content.
 
 - Web component: `<ix-flip-tile>`
-- React/Vue: `IxFlipTile` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-flip-tile>` (`IxModule` from `@siemens/ix-angular` or `IxFlipTile` from `@siemens/ix-angular/standalone`)
+- React: `IxFlipTile` from `@siemens/ix-react`
+- Vue: `IxFlipTile` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -12,15 +12,15 @@
 
 ## Figma IDs
 
-- 407:3446
+- 162362:111923
 
 ## Properties
 
 - `ariaLabelEyeIconButton`; attr: `aria-label-eye-icon-button`; type: `string | undefined` - ARIA label for the eye icon button Will be set as aria-label on the nested HTML button element
-- `height`; attr: `height`; type: `"auto" | number`; default: `15.125` - Height interpreted as REM
+- `height`; attr: `height`; type: `"auto" | number`; default: `242` - Height in pixels
 - `index`; attr: `index`; type: `number`; default: `0` - Index of the currently visible content
-- `variant`; attr: `variant`; type: `"alarm" | "filled" | "info" | "outline" | "primary" | "warning"`; default: `'filled'` - Variation of the Flip
-- `width`; attr: `width`; type: `"auto" | number`; default: `16` - Width interpreted as REM
+- `variant`; attr: `variant`; type: `"accent" | "caution" | "critical" | "danger" | "filled" | "information" | "neutral" | "outline" | "success" | "warning"`; default: `'filled'` - Variation of the Flip Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
+- `width`; attr: `width`; type: `"auto" | number`; default: `256` - Width in pixels
 
 ## Events
 

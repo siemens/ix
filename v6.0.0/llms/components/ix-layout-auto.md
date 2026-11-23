@@ -3,8 +3,8 @@
 > Responsive form layout that automatically adjusts columns to the available width.
 
 - Web component: `<ix-layout-auto>`
-- React/Vue: `IxLayoutAuto` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-layout-auto>` (`IxModule` from `@siemens/ix-angular` or `IxLayoutAuto` from `@siemens/ix-angular/standalone`)
+- React: `IxLayoutAuto` from `@siemens/ix-react`
+- Vue: `IxLayoutAuto` from `@siemens/ix-vue`
 
 ## Documentation
 

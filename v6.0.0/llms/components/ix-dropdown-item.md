@@ -3,8 +3,8 @@
 > Selectable entry within a dropdown menu.
 
 - Web component: `<ix-dropdown-item>`
-- React/Vue: `IxDropdownItem` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-dropdown-item>` (`IxModule` from `@siemens/ix-angular` or `IxDropdownItem` from `@siemens/ix-angular/standalone`)
+- React: `IxDropdownItem` from `@siemens/ix-react`
+- Vue: `IxDropdownItem` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -36,11 +36,12 @@
 ## Slots
 
 - `` - Dropdown item label.
+- `end` - Trailing content aligned to the end of the item, rendered before the submenu indicator.
 
 ## Dependencies
 
 - Renders: None
-- Rendered by: `ix-breadcrumb`, `ix-date-picker`, `ix-menu-avatar-item`, `ix-menu-category`, `ix-select`, `ix-select-item`, `ix-tabs`
+- Rendered by: `ix-breadcrumb`, `ix-content-header`, `ix-date-picker`, `ix-menu-avatar-item`, `ix-menu-category`, `ix-select`, `ix-select-item`, `ix-tabs`
 
 ## Related examples
 

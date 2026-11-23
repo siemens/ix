@@ -3,8 +3,8 @@
 > Collapsible list group with a selectable header and nested items.
 
 - Web component: `<ix-group>`
-- React/Vue: `IxGroup` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-group>` (`IxModule` from `@siemens/ix-angular` or `IxGroup` from `@siemens/ix-angular/standalone`)
+- React: `IxGroup` from `@siemens/ix-react`
+- Vue: `IxGroup` from `@siemens/ix-vue`
 
 ## Documentation
 
@@ -12,7 +12,7 @@
 
 ## Figma IDs
 
-- 1274:38298
+- 162440:187838
 
 ## Properties
 

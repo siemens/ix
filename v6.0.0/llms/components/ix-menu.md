@@ -3,8 +3,8 @@
 > Primary side navigation menu of the application shell.
 
 - Web component: `<ix-menu>`
-- React/Vue: `IxMenu` from `@siemens/ix-react` / `@siemens/ix-vue`
-- Angular: `<ix-menu>` (`IxModule` from `@siemens/ix-angular` or `IxMenu` from `@siemens/ix-angular/standalone`)
+- React: `IxMenu` from `@siemens/ix-react`
+- Vue: `IxMenu` from `@siemens/ix-vue`
 
 ## Documentation
 
