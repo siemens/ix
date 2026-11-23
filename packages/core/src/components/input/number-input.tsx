@@ -25,6 +25,7 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
+  revalidate,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
@@ -33,10 +34,12 @@ import {
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   checkInternalValidity,
+  resetInputValidation,
   DisposableChangesAndVisibilityObservers,
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
+  revalidateAfterPropChange,
   onEnterKeyChangeEmit,
 } from './input.util';
 
@@ -47,10 +50,10 @@ const INVALID_NUMBER_INPUT_REGEX = /[^\dEe+\-.,]/;
 /**
  * Text input for entering and validating a numeric value.
  *
- * @documentation https://ix.siemens.io//docs/components/input-number/guide.md
- * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
- * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
- * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+ * @documentation https://ix.siemens.io/docs/components/input-number/guide.md
+ * @documentation https://ix.siemens.io/docs/components/forms-field/guide.md
+ * @documentation https://ix.siemens.io/docs/components/forms-layout/guide.md
+ * @documentation https://ix.siemens.io/docs/components/forms-validation/guide.md
  *
  * @figma-main-component-id 42365:39459
  *
@@ -87,6 +90,14 @@ export class NumberInput implements IxInputFieldComponent<number> {
    * Indicates if the field is required. When required, empty values (undefined) are not accepted.
    */
   @Prop({ reflect: true }) required: boolean = false;
+
+  private revalidateAfterRender = false;
+
+  @Watch('required')
+  onRequiredChange() {
+    // Native validity reflects `required` only after rendering
+    this.revalidateAfterRender = true;
+  }
 
   /**
    * Disables the input field
@@ -178,8 +189,6 @@ export class NumberInput implements IxInputFieldComponent<number> {
   /**
    * If true, the valueChange event will return null instead of 0 for an empty input state.
    * This property will be removed in 5.0.0 and this behaviour will be default.
-   *
-   * @since 4.1.0
    */
   @Prop({ reflect: true }) allowEmptyValueChange: boolean = false;
 
@@ -200,7 +209,6 @@ export class NumberInput implements IxInputFieldComponent<number> {
 
   /**
    * Event emitted when the input field loses focus and the value has changed
-   * @since 4.4.0
    */
   @Event() ixChange!: EventEmitter<number>;
 
@@ -225,7 +233,7 @@ export class NumberInput implements IxInputFieldComponent<number> {
     this.updateOptionalFormInternalValue(newValue);
   }
 
-  @HookValidationLifecycle()
+  @HookValidationLifecycle({ useTouchedForAria: true })
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
   }
@@ -240,6 +248,15 @@ export class NumberInput implements IxInputFieldComponent<number> {
         this.hostElement,
         this.updatePaddings.bind(this)
       );
+  }
+
+  componentDidRender() {
+    if (this.revalidateAfterRender) {
+      this.revalidateAfterRender = false;
+      void revalidateAfterPropChange(this, this.inputRef.current, this.touched);
+    } else {
+      void revalidate(this);
+    }
   }
 
   disconnectedCallback() {
@@ -291,6 +308,11 @@ export class NumberInput implements IxInputFieldComponent<number> {
     this.formInternals.setFormValue(formValue);
     this.value = value;
     if (this.inputRef.current && this.touched) {
+      if (
+        this.convertNumberStringToFloat(this.inputRef.current.value) !== value
+      ) {
+        this.inputRef.current.value = formValue;
+      }
       checkInternalValidity(this, this.inputRef.current);
     }
   }
@@ -340,31 +362,33 @@ export class NumberInput implements IxInputFieldComponent<number> {
     }
   };
 
-  private readonly handleBeforeInput = (e: InputEvent) => {
+  private readonly handleBeforeInput = (event: InputEvent) => {
     if (this.disabled || this.readonly) return;
 
-    if (e.inputType === 'insertText') {
-      const character = e.data;
+    if (event.inputType === 'insertText') {
+      const character = event.data;
 
       if (character && INVALID_NUMBER_INPUT_REGEX.test(character)) {
-        e.preventDefault();
+        event.preventDefault();
       }
     }
 
-    if (e.inputType === 'insertFromPaste') {
-      const dt = e.dataTransfer || (e as any).clipboardData;
-      const text = dt?.getData?.('text') ?? '';
+    if (event.inputType === 'insertFromPaste') {
+      const dataTransfer =
+        event.dataTransfer ||
+        (event as InputEvent & { clipboardData?: DataTransfer }).clipboardData;
+      const text = dataTransfer?.getData?.('text') ?? '';
       if (INVALID_NUMBER_INPUT_REGEX.test(text)) {
-        e.preventDefault();
+        event.preventDefault();
       }
     }
   };
 
-  private readonly handlePaste = (e: ClipboardEvent) => {
-    // Fallback for browsers that don’t fire beforeinput for paste
-    const text = e.clipboardData?.getData('text') ?? '';
+  private readonly handlePaste = (event: ClipboardEvent) => {
+    // Fallback for browsers that don't fire beforeinput for paste
+    const text = event.clipboardData?.getData('text') ?? '';
     if (INVALID_NUMBER_INPUT_REGEX.test(text)) {
-      e.preventDefault();
+      event.preventDefault();
     }
   };
 
@@ -470,6 +494,32 @@ export class NumberInput implements IxInputFieldComponent<number> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   * Emits 0 unless allowEmptyValueChange is enabled, in which case it emits undefined.
+   * @since 6.0.0
+   */
+  @Method()
+  async clear(): Promise<void> {
+    const input = await this.getNativeInputElement();
+    this.touched = false;
+    this.initialValue = undefined;
+    resetInputValidation(this, input);
+    this.updateOptionalFormInternalValue(undefined);
+    this.handleValueChangeEvent(undefined);
+  }
+
+  /**
+   * Returns the validity state of the number input field.
+   * @since 6.0.0
+   */
+  @Method()
+  async getValidityState(): Promise<ValidityState> {
+    const input = await this.inputRef.waitForCurrent();
+    return input.validity;
   }
 
   render() {

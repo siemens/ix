@@ -17,6 +17,7 @@ import {
   ApplicationInitStatus,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
+  signal,
 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IxModule } from '@siemens/ix-angular';
@@ -36,9 +37,9 @@ import { checkForError } from '../utils/check-for-error';
       </ix-select>
     </form>
     <h1>TypeError-Example</h1>
-    <ix-select [value]="value">
+    <ix-select [value]="value()">
       <ix-select-item
-        *ngFor="let item of selection"
+        *ngFor="let item of selection()"
         [label]="item"
         [value]="item"
       ></ix-select-item>
@@ -48,12 +49,12 @@ import { checkForError } from '../utils/check-for-error';
 })
 class SelectFormComponent {
   public form = new FormGroup({ select: new FormControl('1') });
-  value = '3';
-  selection = ['3', '4', '5'];
+  value = signal('3');
+  selection = signal(['3', '4', '5']);
 
   public updateSelection() {
-    this.value = '6';
-    this.selection = ['6', '7', '8'];
+    this.value.set('6');
+    this.selection.set(['6', '7', '8']);
   }
 }
 

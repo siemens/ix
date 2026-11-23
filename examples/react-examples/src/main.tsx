@@ -74,13 +74,18 @@ import CustomField from './preview-examples/custom-field';
 import CustomFieldValidation from './preview-examples/custom-field-validation';
 import DateDropdown from './preview-examples/date-dropdown';
 import DateDropdownPresets from './preview-examples/date-dropdown-presets';
+import DateDropdownDisplayFormat from './preview-examples/date-dropdown-display-format';
+import DateDropdownRequireConfirmation from './preview-examples/date-dropdown-require-confirmation';
 import DateInput from './preview-examples/date-input';
+import DateInputDisplayFormat from './preview-examples/date-input-display-format';
+import DateInputRequireConfirmation from './preview-examples/date-input-require-confirmation';
 import dateInputDisabled from './preview-examples/date-input-disabled.tsx';
 import dateInputLabel from './preview-examples/date-input-label.tsx';
 import dateInputMinMaxDate from './preview-examples/date-input-min-max-date.tsx';
 import dateInputReadonly from './preview-examples/date-input-readonly.tsx';
 import dateInputValidation from './preview-examples/date-input-validation.tsx';
 import DateInputWithSlots from './preview-examples/date-input-with-slots';
+import DatePickerRequireConfirmation from './preview-examples/date-picker-require-confirmation';
 import DateRange from './preview-examples/date-range';
 import Datepicker from './preview-examples/datepicker';
 import DatepickerLocale from './preview-examples/datepicker-locale';
@@ -91,8 +96,11 @@ import DatetimeInputDisabled from './preview-examples/datetime-input-disabled';
 import DatetimeInputLabel from './preview-examples/datetime-input-label';
 import DatetimeInputMinMaxDate from './preview-examples/datetime-input-min-max-date';
 import DatetimeInputReadonly from './preview-examples/datetime-input-readonly';
+import DatetimeInputDisplayFormat from './preview-examples/datetime-input-display-format';
+import DatetimeInputRequireConfirmation from './preview-examples/datetime-input-require-confirmation';
 import DatetimeInputValidation from './preview-examples/datetime-input-validation';
 import DatetimeInputWithSlots from './preview-examples/datetime-input-with-slots';
+import DatetimePickerRequireConfirmation from './preview-examples/datetime-picker-require-confirmation';
 import DatetimeRange from './preview-examples/datetime-range';
 import Datetimepicker from './preview-examples/datetimepicker';
 import Divider from './preview-examples/divider';
@@ -121,6 +129,7 @@ import EmptyState from './preview-examples/empty-state';
 import EmptyStateCompact from './preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from './preview-examples/empty-state-compact-break';
 import InfoPage from './preview-examples/info-page';
+import InfoPageIllustration from './preview-examples/info-page-illustration';
 import EventList from './preview-examples/event-list';
 import EventListCompact from './preview-examples/event-list-compact';
 import EventListCustomItemHeight from './preview-examples/event-list-custom-item-height';
@@ -137,6 +146,14 @@ import FormCheckboxValidation from './preview-examples/form-checkbox-validation'
 import FormLayoutAuto from './preview-examples/form-layout-auto';
 import FormLayoutGrid from './preview-examples/form-layout-grid';
 import FormValidation from './preview-examples/form-validation';
+import GenericListActionOnHover from './preview-examples/generic-list-action-on-hover';
+import GenericListAdditionalOptions from './preview-examples/generic-list-additional-options';
+import GenericListBasic from './preview-examples/generic-list-basic';
+import GenericListCustomContent from './preview-examples/generic-list-custom-content';
+import GenericListDraggable from './preview-examples/generic-list-draggable';
+import GenericListNotificationIcon from './preview-examples/generic-list-notification-icon';
+import GenericListUsers from './preview-examples/generic-list-users';
+import GenericListVariants from './preview-examples/generic-list-variants';
 import Grid from './preview-examples/grid';
 import GridPadding from './preview-examples/grid-padding';
 import GridSize from './preview-examples/grid-size';
@@ -167,6 +184,7 @@ import KeyValueList from './preview-examples/key-value-list';
 import KeyValueListStriped from './preview-examples/key-value-list-striped';
 import KeyValueListWithCustomValue from './preview-examples/key-value-list-with-custom-value';
 import KeyValueListWithIcon from './preview-examples/key-value-list-with-icon';
+import KeyValueListWithoutDivider from './preview-examples/key-value-list-without-divider';
 import KeyValueWithCustomValue from './preview-examples/key-value-with-custom-value';
 import KeyValueWithIcon from './preview-examples/key-value-with-icon';
 import KeyValueWithLabelLeft from './preview-examples/key-value-with-label-left';
@@ -175,6 +193,10 @@ import LayoutAuto from './preview-examples/layout-auto';
 import LayoutAutoCustom from './preview-examples/layout-auto-custom';
 import LinkButton from './preview-examples/link-button';
 import LinkButtonDisabled from './preview-examples/link-button-disabled';
+import LinkButtonInternal from './preview-examples/link-button-internal';
+import LinkButtonExternal from './preview-examples/link-button-external';
+import LinkButtonFile from './preview-examples/link-button-file';
+import LinkButtonAction from './preview-examples/link-button-action';
 import Loading from './preview-examples/loading';
 import MenuCategory from './preview-examples/menu-category';
 import MenuWithBottomTabs from './preview-examples/menu-with-bottom-tabs';
@@ -343,6 +365,9 @@ const routes: IxPreviewRoutes = {
   '/preview/content': Content,
   '/preview/date-dropdown': DateDropdown,
   '/preview/date-dropdown-presets': DateDropdownPresets,
+  '/preview/date-dropdown-display-format': DateDropdownDisplayFormat,
+  '/preview/date-dropdown-require-confirmation':
+    DateDropdownRequireConfirmation,
   '/preview/date-range': DateRange,
   '/preview/datetime-range': DatetimeRange,
   '/preview/content-header-no-back': ContentHeaderNoBack,
@@ -380,6 +405,7 @@ const routes: IxPreviewRoutes = {
   '/preview/empty-state-compact': EmptyStateCompact,
   '/preview/empty-state': EmptyState,
   '/preview/info-page': InfoPage,
+  '/preview/info-page-illustration': InfoPageIllustration,
   '/preview/event-list-compact': EventListCompact,
   '/preview/event-list-custom-item-height': EventListCustomItemHeight,
   '/preview/event-list': EventList,
@@ -392,6 +418,14 @@ const routes: IxPreviewRoutes = {
   '/preview/form-checkbox-group': FormCheckboxGroup,
   '/preview/form-checkbox-validation': FormCheckboxValidation,
   '/preview/form-checkbox-group-indeterminate': FormCheckboxGroupIndeterminate,
+  '/preview/generic-list-action-on-hover': GenericListActionOnHover,
+  '/preview/generic-list-additional-options': GenericListAdditionalOptions,
+  '/preview/generic-list-basic': GenericListBasic,
+  '/preview/generic-list-custom-content': GenericListCustomContent,
+  '/preview/generic-list-draggable': GenericListDraggable,
+  '/preview/generic-list-notification-icon': GenericListNotificationIcon,
+  '/preview/generic-list-users': GenericListUsers,
+  '/preview/generic-list-variants': GenericListVariants,
   '/preview/group-context-menu': GroupContextMenu,
   '/preview/group-custom-entry': GroupCustomEntry,
   '/preview/group-header-suppressed': GroupHeaderSuppressed,
@@ -410,6 +444,7 @@ const routes: IxPreviewRoutes = {
   '/preview/key-value-list-striped': KeyValueListStriped,
   '/preview/key-value-list-with-custom-value': KeyValueListWithCustomValue,
   '/preview/key-value-list-with-icon': KeyValueListWithIcon,
+  '/preview/key-value-list-without-divider': KeyValueListWithoutDivider,
   '/preview/key-value-list': KeyValueList,
   '/preview/key-value-with-custom-value': KeyValueWithCustomValue,
   '/preview/key-value-with-icon': KeyValueWithIcon,
@@ -418,6 +453,10 @@ const routes: IxPreviewRoutes = {
   '/preview/kpi': Kpi,
   '/preview/link-button-disabled': LinkButtonDisabled,
   '/preview/link-button': LinkButton,
+  '/preview/link-button-internal': LinkButtonInternal,
+  '/preview/link-button-external': LinkButtonExternal,
+  '/preview/link-button-file': LinkButtonFile,
+  '/preview/link-button-action': LinkButtonAction,
   '/preview/loading': Loading,
   '/preview/menu-category': MenuCategory,
   '/preview/menu-with-bottom-tabs': MenuWithBottomTabs,
@@ -507,13 +546,19 @@ const routes: IxPreviewRoutes = {
   '/preview/number-input-validation': NumberInputValidation,
   '/preview/date-input': DateInput,
   '/preview/date-input-with-slots': DateInputWithSlots,
+  '/preview/date-picker-require-confirmation': DatePickerRequireConfirmation,
   '/preview/datetime-input': DatetimeInput,
   '/preview/datetime-input-disabled': DatetimeInputDisabled,
   '/preview/datetime-input-label': DatetimeInputLabel,
   '/preview/datetime-input-min-max-date': DatetimeInputMinMaxDate,
   '/preview/datetime-input-readonly': DatetimeInputReadonly,
+  '/preview/datetime-input-display-format': DatetimeInputDisplayFormat,
+  '/preview/datetime-input-require-confirmation':
+    DatetimeInputRequireConfirmation,
   '/preview/datetime-input-validation': DatetimeInputValidation,
   '/preview/datetime-input-with-slots': DatetimeInputWithSlots,
+  '/preview/datetime-picker-require-confirmation':
+    DatetimePickerRequireConfirmation,
   '/preview/tree': Tree,
   '/preview/upload': Upload,
   '/preview/validation': Validation,
@@ -542,6 +587,8 @@ const routes: IxPreviewRoutes = {
   '/preview/date-input-label': dateInputLabel,
   '/preview/date-input-min-max-date': dateInputMinMaxDate,
   '/preview/date-input-readonly': dateInputReadonly,
+  '/preview/date-input-display-format': DateInputDisplayFormat,
+  '/preview/date-input-require-confirmation': DateInputRequireConfirmation,
   '/preview/date-input-validation': dateInputValidation,
   '/preview/event-list-custom-item-height-in-number':
     eventListCustomItemHeightInNumber,

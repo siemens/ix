@@ -71,7 +71,7 @@ const options = {
       <IxEmptyState
         className="empty-state"
         header="No elements available"
-        sub-header="Failed to retrieve data"
+        description="Failed to retrieve data"
         :icon="iconInfo"
         action="Try again"
       ></IxEmptyState>

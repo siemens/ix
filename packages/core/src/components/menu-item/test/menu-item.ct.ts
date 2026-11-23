@@ -10,6 +10,28 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(`
+    <ix-application>
+      <ix-menu>
+        <ix-menu-item notifications="5">Notifications</ix-menu-item>
+      </ix-menu>
+    </ix-application>
+  `);
+
+  const menuItem = page.locator('ix-menu-item');
+  await expect(menuItem).toHaveAttribute('hydrated');
+
+  const badge = menuItem.locator('ix-badge');
+  await expect(badge).toHaveAttribute('hydrated');
+  await expect(badge).toHaveAttribute('type', 'counter');
+  await expect(badge).toHaveAttribute('label', '5');
+  await expect(badge).toBeVisible();
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-application>
@@ -339,3 +361,39 @@ regressionTest('can disable tooltip', async ({ mount, page }) => {
 
   await expect(menuItem.locator('ix-tooltip')).toHaveCount(0);
 });
+
+for (const [variant, attributes] of [
+  ['button', ''],
+  ['link', 'href="https://ix.siemens.io/"'],
+] as const) {
+  regressionTest(
+    `does not propagate clicks while disabled (${variant})`,
+    async ({ mount, page }) => {
+      await mount(`
+        <div id="container">
+          <ix-menu-item disabled ${attributes}>Item</ix-menu-item>
+        </div>
+      `);
+
+      const menuItem = page.locator('ix-menu-item');
+      await expect(menuItem).toHaveAttribute('hydrated');
+
+      await page.evaluate(() => {
+        const clicks: string[] = [];
+        (window as any).__clicks = clicks;
+        document
+          .querySelector('ix-menu-item')!
+          .addEventListener('click', () => clicks.push('host'));
+        document
+          .querySelector('#container')!
+          .addEventListener('click', () => clicks.push('container'));
+      });
+
+      await menuItem.evaluate((element) =>
+        (element.shadowRoot!.querySelector('a, button') as HTMLElement).click()
+      );
+
+      expect(await page.evaluate(() => (window as any).__clicks)).toEqual([]);
+    }
+  );
+}

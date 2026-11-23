@@ -41,3 +41,47 @@ export const Default: Story = {
     defaultSlot: 'My link',
   },
 };
+
+export const NoIcon: Story = {
+  args: {
+    defaultSlot: 'Link without icon',
+    icon: 'none',
+    url: '/',
+  },
+};
+
+export const InternalLink: Story = {
+  args: {
+    defaultSlot: 'Go to overview',
+    icon: 'internal',
+    iconPosition: 'start',
+    url: '/overview',
+  },
+};
+
+export const ExternalLink: Story = {
+  args: {
+    defaultSlot: 'Open external link',
+    icon: 'external',
+    iconPosition: 'end',
+    url: 'https://ix.siemens.io/',
+  },
+};
+
+export const FileLink: Story = {
+  args: {
+    defaultSlot: 'Download document',
+    icon: 'file',
+    iconPosition: 'start',
+    url: '/document.pdf',
+  },
+};
+
+export const ActionLink: Story = {
+  args: {
+    defaultSlot: 'Continue to next step',
+    icon: 'action',
+    iconPosition: 'end',
+    url: '/next',
+  },
+};

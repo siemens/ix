@@ -1,17 +1,16 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ApplicationInitStatus } from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  flush,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { IxModule } from '@siemens/ix-angular';
 import { TestInputFormRequired } from './form-ix-input-required';
 import { TestInputFormWithValidators } from './form-ix-input-with-validators';
+
+const settle = async (fixture: ComponentFixture<unknown>) => {
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  await fixture.whenStable();
+};
 
 describe('ix-input required', () => {
   let component: TestInputFormRequired;
@@ -34,14 +33,13 @@ describe('ix-input required', () => {
     await TestBed.inject(ApplicationInitStatus).donePromise;
   });
 
-  it('show no invalid state after first validation', fakeAsync(() => {
+  it('show no invalid state after first validation', async () => {
     const input = fixture.debugElement.query(
       By.css('ix-input[formControlName="name"]')
     );
 
     fixture.detectChanges();
-    tick(100);
-    flush();
+    await settle(fixture);
 
     fixture.detectChanges();
 
@@ -51,18 +49,16 @@ describe('ix-input required', () => {
     input.nativeElement.dispatchEvent(new Event('ixBlur'));
     fixture.detectChanges();
 
-    tick(100);
-    flush();
+    await settle(fixture);
     expect(input.nativeElement.classList).toContain('ix-invalid');
 
     component.form.get('name')!.setValue('test');
     input.nativeElement.dispatchEvent(new Event('ixBlur'));
     fixture.detectChanges();
 
-    tick(100);
-    flush();
+    await settle(fixture);
     expect(input.nativeElement.classList).not.toContain('ix-invalid');
-  }));
+  });
 });
 
 describe('ix-input required + additional validators', () => {
@@ -86,14 +82,13 @@ describe('ix-input required + additional validators', () => {
     await TestBed.inject(ApplicationInitStatus).donePromise;
   });
 
-  it('should show invalid state if another validator is added', fakeAsync(() => {
+  it('should show invalid state if another validator is added', async () => {
     const input = fixture.debugElement.query(
       By.css('ix-input[formControlName="name"]')
     );
 
     fixture.detectChanges();
-    tick(100);
-    flush();
+    await settle(fixture);
 
     fixture.detectChanges();
 
@@ -104,8 +99,7 @@ describe('ix-input required + additional validators', () => {
     input.nativeElement.dispatchEvent(new Event('ixBlur'));
     fixture.detectChanges();
 
-    tick(100);
-    flush();
+    await settle(fixture);
     // Validators.required = true
     expect(input.nativeElement.classList).toContain('ix-invalid');
 
@@ -113,8 +107,7 @@ describe('ix-input required + additional validators', () => {
     input.nativeElement.dispatchEvent(new Event('ixBlur'));
     fixture.detectChanges();
 
-    tick(100);
-    flush();
+    await settle(fixture);
     // Validators.minLength = true
     expect(input.nativeElement.classList).toContain('ix-invalid');
 
@@ -122,8 +115,7 @@ describe('ix-input required + additional validators', () => {
     input.nativeElement.dispatchEvent(new Event('ixBlur'));
     fixture.detectChanges();
 
-    tick(100);
-    flush();
+    await settle(fixture);
     expect(input.nativeElement.classList).not.toContain('ix-invalid');
-  }));
+  });
 });

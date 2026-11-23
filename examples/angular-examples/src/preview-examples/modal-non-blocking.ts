@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IxActiveModal, ModalService } from '@siemens/ix-angular';
 
 @Component({
@@ -32,7 +32,7 @@ import { IxActiveModal, ModalService } from '@siemens/ix-angular';
   `,
 })
 export class ModalNonBlockingContent {
-  constructor(readonly activeModal: IxActiveModal) {}
+  readonly activeModal: IxActiveModal = inject(IxActiveModal);
 }
 
 @Component({
@@ -41,7 +41,7 @@ export class ModalNonBlockingContent {
   template: `
     <div>
       <div style="padding: 1rem">
-        <ix-typography format="body" text-color="std">
+        <ix-typography format="body" text-color="primary">
           Content behind the dialog
         </ix-typography>
         <ix-button id="behind">Behind control</ix-button>
@@ -51,7 +51,7 @@ export class ModalNonBlockingContent {
   `,
 })
 export default class ModalNonBlocking {
-  constructor(private readonly modalService: ModalService) {}
+  private readonly modalService = inject(ModalService);
 
   async openModal() {
     await this.modalService.open({

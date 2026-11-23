@@ -24,14 +24,17 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
+  revalidate,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { TextareaElement } from './input.fc';
 import {
   getAriaAttributesForInput,
+  resetInputValidation,
   mapValidationResult,
   onInputFocus,
   onInputBlurWithChange,
+  revalidateAfterPropChange,
   checkInternalValidity,
 } from './input.util';
 import { normalizeCssDimension } from '../utils/unit-conversion.util';
@@ -43,7 +46,7 @@ let sequentialInstanceId = 0;
  * Multi-line text input for entering and validating longer text.
  *
  * @form-ready
- * @documentation https://ix.siemens.io//docs/components/textarea/guide.md
+ * @documentation https://ix.siemens.io/docs/components/textarea/guide.md
  */
 @Component({
   tag: 'ix-textarea',
@@ -74,6 +77,14 @@ export class Textarea implements IxInputFieldComponent<string> {
    * Determines if the textarea field is required.
    */
   @Prop({ reflect: true }) required: boolean = false;
+
+  private revalidateAfterRender = false;
+
+  @Watch('required')
+  onRequiredChange() {
+    // Native validity reflects `required` only after rendering
+    this.revalidateAfterRender = true;
+  }
 
   /**
    * Determines if the textarea field is disabled.
@@ -177,7 +188,6 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   /**
    * Event emitted when the textarea field loses focus and the value has changed.
-   *@since 4.4.0
    */
   @Event() ixChange!: EventEmitter<string>;
 
@@ -202,7 +212,12 @@ export class Textarea implements IxInputFieldComponent<string> {
   private lastObservedInlineHeight?: string;
   private lastObservedInlineWidth?: string;
 
-  @HookValidationLifecycle()
+  @Watch('value')
+  onValueChange(newValue: string) {
+    this.updateFormInternalValue(newValue);
+  }
+
+  @HookValidationLifecycle({ useTouchedForAria: true })
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
   }
@@ -223,6 +238,19 @@ export class Textarea implements IxInputFieldComponent<string> {
 
   componentWillLoad() {
     this.updateFormInternalValue(this.value);
+  }
+
+  componentDidRender() {
+    if (this.revalidateAfterRender) {
+      this.revalidateAfterRender = false;
+      void revalidateAfterPropChange(
+        this,
+        this.textAreaRef.current,
+        this.touched
+      );
+    } else {
+      void revalidate(this);
+    }
   }
 
   disconnectedCallback() {
@@ -295,6 +323,9 @@ export class Textarea implements IxInputFieldComponent<string> {
     this.formInternals.setFormValue(value);
     this.value = value;
     if (this.textAreaRef.current && this.touched) {
+      if (this.textAreaRef.current.value !== value) {
+        this.textAreaRef.current.value = value;
+      }
       checkInternalValidity(this, this.textAreaRef.current);
     }
   }
@@ -320,6 +351,16 @@ export class Textarea implements IxInputFieldComponent<string> {
   }
 
   /**
+   * Returns the validity state of the textarea field.
+   * @since 6.0.0
+   */
+  @Method()
+  async getValidityState(): Promise<ValidityState> {
+    const textarea = await this.textAreaRef.waitForCurrent();
+    return textarea.validity;
+  }
+
+  /**
    * Focuses the input field
    */
   @Method()
@@ -334,6 +375,21 @@ export class Textarea implements IxInputFieldComponent<string> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   * @since 6.0.0
+   */
+  @Method()
+  async clear(): Promise<void> {
+    const textarea = await this.getNativeInputElement();
+    this.touched = false;
+    this.initialValue = '';
+    resetInputValidation(this, textarea);
+    this.updateFormInternalValue('');
+    this.valueChange.emit('');
   }
 
   private getTextareaHeight(): string | undefined {
@@ -379,7 +435,7 @@ export class Textarea implements IxInputFieldComponent<string> {
             <ix-typography
               class="bottom-text"
               slot="bottom-right"
-              textColor="soft"
+              textColor="secondary"
             >
               {(this.value ?? '').length}/{this.maxLength}
             </ix-typography>

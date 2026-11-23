@@ -10,26 +10,45 @@
 @use 'mixins/shadow-dom/component';
 
 @use './pane.vars' as *;
+@use 'mixins/component-vars' as cv;
 @mixin set-border($composition) {
   @if $composition {
-    border-#{$composition}: var(--ix-pane--border-width)
+    border-#{$composition}: cv.get-var('pane--border-width')
       solid
-      var(--ix-pane--border-color);
+      cv.get-var('pane--border-color');
   }
 }
 
 :host(.floating-pane) {
-  --ix-pane--background: var(--ix-pane-floating--background);
-  --ix-pane--border-color: var(--ix-pane-floating--border-color);
-  --ix-pane--color: var(--ix-pane-floating--color);
-  --ix-pane--box-shadow: var(--ix-pane-floating--box-shadow);
+  @include cv.set-var(
+    'pane--background',
+    cv.get-var('pane-floating--background')
+  );
+  @include cv.set-var(
+    'pane--border-color',
+    cv.get-var('pane-floating--border-color')
+  );
+  @include cv.set-var('pane--color', cv.get-var('pane-floating--color'));
+  @include cv.set-var(
+    'pane--box-shadow',
+    cv.get-var('pane-floating--box-shadow')
+  );
 }
 
 :host(.inline-pane) {
-  --ix-pane--background: var(--ix-pane-inline--background);
-  --ix-pane--border-color: var(--ix-pane-inline--border-color);
-  --ix-pane--color: var(--ix-pane-inline--color);
-  --ix-pane--box-shadow: var(--ix-pane-inline--box-shadow);
+  @include cv.set-var(
+    'pane--background',
+    cv.get-var('pane-inline--background')
+  );
+  @include cv.set-var(
+    'pane--border-color',
+    cv.get-var('pane-inline--border-color')
+  );
+  @include cv.set-var('pane--color', cv.get-var('pane-inline--color'));
+  @include cv.set-var(
+    'pane--box-shadow',
+    cv.get-var('pane-inline--box-shadow')
+  );
 }
 
 :host {
@@ -37,8 +56,8 @@
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
-  box-shadow: var(--ix-pane--box-shadow);
-  background-color: var(--ix-pane--background);
+  box-shadow: cv.get-var('pane--box-shadow');
+  background-color: cv.get-var('pane--background');
 
   @include component.ix-component;
 
@@ -48,19 +67,19 @@
   }
 
   .pane-icon {
-    color: var(--ix-pane--color);
+    color: cv.get-var('pane--color');
   }
 
   .slot-header-content {
     display: inline-block;
     position: relative;
-    max-height: var(--ix-pane-slot-header-content--max-height);
+    max-height: cv.get-var('pane-slot-header-content--max-height');
   }
 
   .title-text {
     display: flex;
     align-items: center;
-    gap: var(--ix-pane-title--gap);
+    gap: cv.get-var('pane-title--gap');
     overflow: hidden;
 
     .title-text-overflow {
@@ -77,7 +96,7 @@
   }
 
   .header-gap {
-    gap: var(--ix-pane-header--gap);
+    gap: cv.get-var('pane-header--gap');
   }
 
   .top-bottom-pane {
@@ -89,13 +108,13 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin: var(--ix-pane-top-bottom-title--margin-block)
-        var(--ix-pane-top-bottom-title--margin-inline);
+      margin: cv.get-var('pane-top-bottom-title--margin-block')
+        cv.get-var('pane-top-bottom-title--margin-inline');
     }
 
     .title-finished {
       padding: 0 !important;
-      margin: var(--ix-pane-title-finished--margin);
+      margin: cv.get-var('pane-title-finished--margin');
     }
 
     .title-expanded {
@@ -108,7 +127,7 @@
       flex-direction: row-reverse;
       justify-content: space-between;
       padding: 0 !important;
-      margin: var(--ix-pane-title-collapsed--margin);
+      margin: cv.get-var('pane-title--margin--collapsed');
     }
   }
 
@@ -120,8 +139,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: var(--ix-pane-left-right-title--margin-block)
-        var(--ix-pane-left-right-title--margin-inline);
+      margin: cv.get-var('pane-left-right-title--margin-block')
+        cv.get-var('pane-left-right-title--margin-inline');
 
       .title-text {
         flex-direction: row-reverse;
@@ -143,7 +162,7 @@
 
     .title-finished {
       padding: 0 !important;
-      margin: var(--ix-pane-title-finished--margin);
+      margin: cv.get-var('pane-title-finished--margin');
     }
 
     .title-expanded {
@@ -156,7 +175,7 @@
       flex-direction: row-reverse;
       justify-content: space-between;
       padding: 0 !important;
-      margin: var(--ix-pane-title-collapsed--margin);
+      margin: cv.get-var('pane-title--margin--collapsed');
     }
   }
 
@@ -173,15 +192,15 @@
       display: flex;
       flex-direction: row-reverse;
       justify-content: space-between;
-      margin: var(--ix-pane-mobile-title--margin-block)
-        var(--ix-pane-mobile-title--margin-inline);
+      margin: cv.get-var('pane-title--margin-block--mobile')
+        cv.get-var('pane-title--margin-inline--mobile');
     }
   }
 
   .side-pane-content {
-    padding: var(--ix-pane-content--padding-block-start)
-      var(--ix-pane-content--padding-inline)
-      var(--ix-pane-content--padding-block-end);
+    padding: cv.get-var('pane-content--padding-block-start')
+      cv.get-var('pane-content--padding-inline')
+      cv.get-var('pane-content--padding-block-end');
     overflow: auto;
     height: 100%;
     width: 100%;
@@ -193,13 +212,13 @@
   }
 
   .slot-header {
-    max-height: var(--ix-pane-slot-header--max-height);
+    max-height: cv.get-var('pane-slot-header--max-height');
     max-width: unset;
   }
 
   .slot-header.rotate {
     max-height: unset;
-    max-width: var(--ix-pane-rotate--max-width);
+    max-width: cv.get-var('pane-rotate--max-width');
   }
 }
 
@@ -208,7 +227,8 @@
 }
 
 :host(.nav-left-border) {
-  border-left: var(--ix-pane--border-width) solid var(--ix-pane--border-color);
+  border-left: cv.get-var('pane--border-width') solid
+    cv.get-var('pane--border-color');
 }
 
 :host(.left-pane-border) {
@@ -230,10 +250,10 @@
 :host(.mobile-overlay) {
   width: 100%;
   position: absolute;
-  z-index: var(--ix-pane-mobile-overlay--z-index) !important;
+  z-index: cv.get-var('pane-overlay--z-index--mobile') !important;
 
   .side-pane-content {
-    height: var(--ix-pane-side-pane-content--height);
+    height: cv.get-var('pane-side-pane-content--height');
   }
 }
 

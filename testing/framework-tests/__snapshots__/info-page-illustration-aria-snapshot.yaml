@@ -1,0 +1,5 @@
+- main:
+  - heading "Request timeout" [level=1]
+  - text: The server took too long to respond. Check your connection and try again.
+  - button "Go back"
+  - button "Try again"

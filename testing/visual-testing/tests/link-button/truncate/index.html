@@ -29,6 +29,19 @@ SPDX-License-Identifier: MIT
     <ix-link-button disabled
       >Very loooooooooooooong even looonger link</ix-link-button
     >
+    <ix-link-button
+      link-button-id="2"
+      icon="external"
+      icon-position="end"
+      url="https://ix.siemens.io/"
+      >Very loooooooooooooong even looonger link</ix-link-button
+    >
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import { iconOpenExternal } from '@siemens/ix-icons/icons';
+
+      addIcons({ iconOpenExternal });
+    </script>
     <script src="./../../utils/test/runtime/main.ts" type="module"></script>
   </body>
 </html>

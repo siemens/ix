@@ -264,24 +264,23 @@ export function componentReactAlias(tag: string): string {
     .join('')}`;
 }
 
-export async function readReactExportNames(
-  workspaceRoot: string,
+/**
+ * Collects `Ix*` names exported by the declaration files of a framework
+ * package, covering both `export declare const|class|function` and
+ * `export { ... }` lists.
+ */
+export async function readDeclarationExportNames(
+  declarationDirectory: string,
+  label: string,
   warn?: (message: string) => void
 ): Promise<Set<string>> {
-  const declarationDirectory = path.join(
-    workspaceRoot,
-    'packages',
-    'react',
-    'dist',
-    'types'
-  );
   const declarationFiles = await glob(
     path.join(declarationDirectory, '**', '*.d.ts'),
     { absolute: true }
   );
   if (declarationFiles.length === 0) {
     (warn ?? console.warn)(
-      `⚠️  React declaration files not found: ${declarationDirectory}. React component aliases will be omitted.`
+      `⚠️  ${label} declaration files not found: ${declarationDirectory}. ${label} component aliases will be omitted.`
     );
   }
   const exportedNames = new Set<string>();
@@ -295,9 +294,32 @@ export async function readReactExportNames(
         exportedNames.add(match[1]);
       }
     }
+    for (const match of source.matchAll(/\bexport\s*\{([^}]*)\}/g)) {
+      for (const specifier of (match[1] ?? '').split(',')) {
+        const parts = specifier.trim().split(/\s+/);
+        if (parts[0] === 'type') {
+          continue;
+        }
+        const exportedName = parts[1] === 'as' ? parts[2] : parts[0];
+        if (exportedName && /^Ix[A-Z][A-Za-z0-9]*$/.test(exportedName)) {
+          exportedNames.add(exportedName);
+        }
+      }
+    }
   }
 
   return exportedNames;
+}
+
+export async function readReactExportNames(
+  workspaceRoot: string,
+  warn?: (message: string) => void
+): Promise<Set<string>> {
+  return readDeclarationExportNames(
+    path.join(workspaceRoot, 'packages', 'react', 'dist', 'types'),
+    'React',
+    warn
+  );
 }
 
 function createComponentDocuments(

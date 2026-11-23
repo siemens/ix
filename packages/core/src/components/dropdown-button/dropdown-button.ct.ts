@@ -514,7 +514,7 @@ regressionTest(
 );
 
 regressionTest(
-  'labeled leading icon is 20px and chevron stays 24px',
+  'labeled leading icon and chevron are 20px',
   async ({ mount, page }) => {
     await mount(
       `
@@ -534,12 +534,12 @@ regressionTest(
       button.locator(
         '.content > ix-icon[aria-hidden="true"]:not(.dropdown-icon)'
       )
-    ).toHaveClass(/size-24/);
+    ).toHaveClass(/size-20/);
   }
 );
 
 regressionTest(
-  'icon-only uses a 32px host and 24px glyph',
+  'icon-only uses a 32px host and 20px glyph',
   async ({ mount, page }) => {
     await mount(
       `
@@ -553,7 +553,45 @@ regressionTest(
     const iconButton = page.locator('ix-dropdown-button ix-icon-button');
     await expect(iconButton).toHaveAttribute('hydrated');
     await expect(iconButton).toHaveClass(/btn-icon-32/);
-    await expect(iconButton.locator('ix-icon')).toHaveClass(/size-24/);
+    await expect(iconButton.locator('ix-icon')).toHaveClass(/size-20/);
+  }
+);
+
+regressionTest(
+  'icon-only renders the dropdown indicator in the button color',
+  async ({ mount, page }) => {
+    await mount(
+      `
+      <ix-dropdown-button icon="checkboxes" variant="danger-primary">
+        <ix-dropdown-item label="Test"></ix-dropdown-item>
+      </ix-dropdown-button>
+      `,
+      { icons: { iconCheckboxes } }
+    );
+
+    const iconButton = page.locator('ix-dropdown-button ix-icon-button');
+    const button = iconButton.locator('button');
+    const indicator = button.locator('.dropdown-indicator');
+    await expect(indicator).toBeAttached();
+
+    const buttonColor = await button.evaluate(
+      (el) => getComputedStyle(el).color
+    );
+    await expect(indicator).toHaveCSS('border-bottom-color', buttonColor);
+
+    const buttonBox = await iconButton.boundingBox();
+    const indicatorBox = await indicator.boundingBox();
+    if (!buttonBox || !indicatorBox) {
+      throw new Error('Expected icon button and indicator to be rendered');
+    }
+    expect(indicatorBox.x + indicatorBox.width).toBeLessThanOrEqual(
+      buttonBox.x + buttonBox.width
+    );
+    expect(indicatorBox.y + indicatorBox.height).toBeLessThanOrEqual(
+      buttonBox.y + buttonBox.height
+    );
+    expect(indicatorBox.x).toBeGreaterThan(buttonBox.x + buttonBox.width / 2);
+    expect(indicatorBox.y).toBeGreaterThan(buttonBox.y + buttonBox.height / 2);
   }
 );
 

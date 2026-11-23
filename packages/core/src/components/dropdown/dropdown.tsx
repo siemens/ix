@@ -14,6 +14,7 @@ import {
   flip,
   inline,
   offset,
+  ReferenceElement,
   shift,
 } from '@floating-ui/dom';
 import {
@@ -41,6 +42,7 @@ import {
   addFocusTrap,
   FocusTrapOptions,
   FocusTrapResult,
+  getDeepActiveElement,
   sortByTabOrder,
 } from '../utils/focus/focus-trap';
 import {
@@ -53,10 +55,15 @@ import {
 } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
 import {
+  AriaActiveDescendantMixin,
+  AriaActiveDescendantMixinContract,
+} from '../utils/internal/mixins/accessibility/aria-activedescendant.mixin';
+import {
   hasKeyboardMode,
   removeVisibleFocus,
 } from '../utils/internal/mixins/setup.mixin';
 import { makeRef } from '../utils/make-ref';
+import { getClippedSides, getClippingThresholds } from '../utils/rect';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 import { closestPassShadow } from '../utils/shadow-dom';
 import {
@@ -70,15 +77,32 @@ import {
   configureKeyboardInteraction,
   createRovingTabindexInteraction,
   initRovingTabindex,
+  type NavigationBoundaryHandler,
 } from './dropdown-focus';
-import { AlignedPlacement } from './placement';
+import { AlignedPlacement, DropdownAnchorPosition } from './placement';
 
 let sequenceId = 0;
+
+const createPointReference = ({
+  x,
+  y,
+}: DropdownAnchorPosition): ReferenceElement => ({
+  getBoundingClientRect: () => ({
+    x,
+    y,
+    top: y,
+    left: x,
+    right: x,
+    bottom: y,
+    width: 0,
+    height: 0,
+  }),
+});
 
 /**
  * Floating overlay that displays a list of options or actions anchored to a trigger.
  *
- * @documentation https://ix.siemens.io//docs/components/dropdown/guide.md
+ * @documentation https://ix.siemens.io/docs/components/dropdown/guide.md
  * @figma-main-component-id 1233:32649
  *
  * @slot - Dropdown content.
@@ -89,8 +113,8 @@ let sequenceId = 0;
   shadow: true,
 })
 export class Dropdown
-  extends Mixin(...DefaultMixins)
-  implements DropdownInterface
+  extends Mixin(...DefaultMixins, AriaActiveDescendantMixin)
+  implements DropdownInterface, AriaActiveDescendantMixinContract
 {
   @Element() override hostElement!: HTMLIxDropdownElement;
 
@@ -107,6 +131,13 @@ export class Dropdown
   /**
    * Define an element that triggers the dropdown.
    * A trigger can either be a string that will be interpreted as id attribute or a DOM element.
+   *
+   * String values are inserted into an ID selector (`#<value>`) without escaping. Use
+   * application-controlled IDs starting with an ASCII letter or `_`, followed by ASCII letters,
+   * digits, `-` or `_`. Do not derive IDs from untrusted input. For other IDs, pass the DOM
+   * element reference instead.
+   * If no element with the ID exists, the dropdown observes the document until it appears; make sure
+   * the trigger element exists.
    */
   @Prop() trigger?: ElementReference;
 
@@ -114,6 +145,17 @@ export class Dropdown
    * Define an anchor element
    */
   @Prop() anchor?: ElementReference;
+
+  /**
+   * Absolute position of the dropdown in viewport coordinates
+   * (e.g. `clientX`/`clientY` of a `contextmenu` event).
+   * The coordinates are not relative to the parent, an anchor or a trigger element.
+   * While set, it takes precedence over `anchor` and `trigger` for positioning.
+   * Use `showAt` to open the dropdown at a position only once.
+   *
+   * @since 6.0.0
+   */
+  @Prop() anchorPosition?: DropdownAnchorPosition;
 
   /**
    * Controls if the dropdown will be closed in response to a click event depending on the position of the event relative to the dropdown.
@@ -145,15 +187,11 @@ export class Dropdown
 
   /**
    * Suppress automatic focus when the dropdown is shown
-   *
-   * @since 4.3.0
    */
   @Prop() disableFocusHandling = false;
 
   /**
    * Close dropdown when tabbing away, and do not trap focus inside dropdown
-   *
-   * @since 4.3.0
    */
   @Prop() disableFocusTrap = false;
 
@@ -161,7 +199,6 @@ export class Dropdown
    * Enable Popover API rendering for top-layer positioning.
    *
    * @default false in v5.x, will default to true in v6.0.0
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 
@@ -254,6 +291,15 @@ export class Dropdown
   @Prop() hostRole?: string;
 
   /**
+   * Resolves the item to activate when arrow keys move past the first or last
+   * item, instead of wrapping around.
+   *
+   * @internal
+   * @since 6.0.0
+   */
+  @Prop() navigationBoundaryHandler?: NavigationBoundaryHandler;
+
+  /**
    * @internal
    * Called instead of the default focus-on-open logic when the dropdown is
    * opened via keyboard. When not set, default behavior is used.
@@ -273,6 +319,9 @@ export class Dropdown
   @Event() showChanged!: EventEmitter<boolean>;
 
   @State() fallbackPlacement?: AlignedPlacement;
+
+  /** Set while the navigation boundary handler renders more items. */
+  @State() navigationBoundaryPending = false;
 
   /**
    * Will be fired only after dropdown changed visibility to "true"
@@ -301,12 +350,16 @@ export class Dropdown
   private focusTrapSetupId = 0;
   private rovingTabindexHosts = new Set<HTMLElement>();
   private suppressTriggerFocusOnHide = false;
+  private focusReturnElement?: HTMLElement;
+  private focusHostOnRender = false;
+  /** Position passed to `showAt`, only valid until the dropdown is hidden */
+  private showAtPosition?: DropdownAnchorPosition;
 
   override connectedCallback(): void {
     dropdownController.connected(this);
 
     if (this.trigger != undefined) {
-      this.registerListener(this.trigger);
+      void this.registerListener(this.trigger);
     }
   }
 
@@ -317,7 +370,7 @@ export class Dropdown
 
     const { detail } = event;
 
-    if (this.assignedSubmenu.indexOf(detail) === -1) {
+    if (!this.assignedSubmenu.includes(detail)) {
       this.assignedSubmenu.push(detail);
     }
   }
@@ -359,6 +412,15 @@ export class Dropdown
     return (this.triggerElement ?? this.anchorElement) as
       | HTMLElement
       | undefined;
+  }
+
+  getParentReferenceElement(): HTMLElement | undefined {
+    // A dropdown positioned at a point has no trigger to associate it with a
+    // containing overlay, so its own position in the DOM is used instead
+    return (
+      this.getTriggerElement() ??
+      (this.pointPosition ? this.hostElement : undefined)
+    );
   }
 
   willDismiss() {
@@ -468,11 +530,7 @@ export class Dropdown
         focusLastDescendant(element);
       });
 
-    const shouldCloseOnTab =
-      event.key === 'Tab' &&
-      (this.disableFocusTrap === true ||
-        this.isRovingTabindex ||
-        dropdownController.hasPopoverAncestor(this));
+    const shouldCloseOnTab = event.key === 'Tab' && this.closesOnTab();
 
     if (event.key === 'Escape' && this.show) {
       if (!dropdownController.shouldHandleEscape(this)) {
@@ -562,7 +620,7 @@ export class Dropdown
     } else if (!this.disableFocusHandling) {
       // Dropdown is already open - handle focus navigation
       if (this.callbackFocusElement) {
-        this.callbackFocusElement(event);
+        void this.callbackFocusElement(event);
       } else if (event.key === 'ArrowUp' || event.key === 'End') {
         focusLast(this.hostElement);
       } else {
@@ -632,22 +690,44 @@ export class Dropdown
     }
 
     this.addEventListenersFor();
-    this.discoverSubmenu();
+    void this.discoverSubmenu();
   }
 
   private addObserverForTriggerVisibility() {
-    if (this.intersectObserverTrigger) {
-      this.intersectObserverTrigger.disconnect();
-    }
+    this.disconnectObserverForTriggerVisibility();
 
-    if (this.suppressTriggerVisibilityCheck) {
+    if (this.suppressTriggerVisibilityCheck || this.pointPosition) {
       return;
     }
 
-    if (!this.triggerElement) {
+    this.observeTriggerVisibility();
+  }
+
+  private disconnectObserverForTriggerVisibility() {
+    this.intersectObserverTrigger?.disconnect();
+    this.intersectObserverTrigger = undefined;
+  }
+
+  /**
+   * The observer only reports crossings of area ratios captured from the
+   * trigger size at creation. Re-creating it delivers a fresh entry and
+   * refreshes the ratios for the current trigger size.
+   */
+  private refreshObserverForTriggerVisibility() {
+    if (!this.intersectObserverTrigger) {
       return;
     }
 
+    this.disconnectObserverForTriggerVisibility();
+    this.observeTriggerVisibility();
+  }
+
+  private observeTriggerVisibility() {
+    if (!this.triggerElement || !this.anchorElement) {
+      return;
+    }
+
+    const anchorElement = this.anchorElement;
     this.intersectObserverTrigger = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -656,42 +736,45 @@ export class Dropdown
             return;
           }
 
-          const isTopHidden =
-            entry.intersectionRect.top > entry.boundingClientRect.top;
-          const isBottomHidden =
-            entry.intersectionRect.bottom < entry.boundingClientRect.bottom;
-          const isLeftHidden =
-            entry.intersectionRect.left > entry.boundingClientRect.left;
-          const isRightHidden =
-            entry.intersectionRect.right < entry.boundingClientRect.right;
+          const clipped = getClippedSides(
+            entry.boundingClientRect,
+            entry.intersectionRect
+          );
 
-          this.fallbackPlacement = undefined;
+          // Assign the state only once, as every change re-renders and
+          // re-creates this observer through the position update
+          let fallbackPlacement: AlignedPlacement | undefined;
 
-          if (isTopHidden) {
-            this.fallbackPlacement = this.createFallbackPlacement('bottom');
+          if (clipped.top) {
+            fallbackPlacement = this.createFallbackPlacement('bottom');
           }
 
-          if (isBottomHidden) {
-            this.fallbackPlacement = this.createFallbackPlacement('top');
+          if (clipped.bottom) {
+            fallbackPlacement = this.createFallbackPlacement('top');
           }
 
-          if (isLeftHidden) {
-            this.fallbackPlacement = this.createFallbackPlacement('right');
+          if (clipped.left) {
+            fallbackPlacement = this.createFallbackPlacement('right');
           }
 
-          if (isRightHidden) {
-            this.fallbackPlacement = this.createFallbackPlacement('left');
+          if (clipped.right) {
+            fallbackPlacement = this.createFallbackPlacement('left');
           }
+
+          this.fallbackPlacement = fallbackPlacement;
         });
       },
       {
-        threshold: [0, 0.5, 1],
+        threshold: [
+          0,
+          0.5,
+          ...getClippingThresholds(anchorElement.getBoundingClientRect()),
+          1,
+        ],
       }
     );
 
-    if (this.anchorElement) {
-      this.intersectObserverTrigger.observe(this.anchorElement);
-    }
+    this.intersectObserverTrigger.observe(anchorElement);
   }
 
   private createFallbackPlacement(
@@ -740,13 +823,13 @@ export class Dropdown
     if (!newShow) {
       dropdownController.didDismiss(this);
       if (
-        this.triggerElement &&
-        this.triggerElement.ariaHasPopup === 'menu' &&
+        this.triggerElement?.ariaHasPopup === 'menu' &&
         this.triggerElement.tagName === 'IX-DROPDOWN-ITEM'
       ) {
         this.triggerElement.ariaExpanded = 'false';
       }
       this.cleanupOnHide();
+      this.showAtPosition = undefined;
 
       if (this.enableTopLayer) {
         await this.hideDialog();
@@ -755,6 +838,12 @@ export class Dropdown
       return;
     }
 
+    const activeElement = getDeepActiveElement();
+    this.focusReturnElement =
+      this.movesFocusOnOpen() && activeElement instanceof HTMLElement
+        ? activeElement
+        : undefined;
+
     await this.resolveAnchorElement();
     dropdownController.didPresent(this);
     this.registerKeyListener();
@@ -762,8 +851,7 @@ export class Dropdown
     this.configureFocusTrap();
 
     if (
-      this.triggerElement &&
-      this.triggerElement.ariaHasPopup === 'menu' &&
+      this.triggerElement?.ariaHasPopup === 'menu' &&
       this.triggerElement.tagName === 'IX-DROPDOWN-ITEM'
     ) {
       this.triggerElement.ariaExpanded = 'true';
@@ -775,11 +863,133 @@ export class Dropdown
         return;
       }
 
+      // showPopover() moves the focus into a dialog unless it is inert, which
+      // takes it from the trigger (e.g. the input of ix-select) while typing
+      popover.inert = true;
       popover.showPopover();
+      popover.inert = false;
     }
 
     this.addObserverForTriggerVisibility();
-    this.applyDropdownPosition();
+    void this.applyDropdownPosition();
+
+    if (this.movesFocusOnOpen()) {
+      this.focusFirstItemOnOpen();
+    }
+  }
+
+  /**
+   * Without a trigger element there is nothing that keeps focus while the
+   * dropdown is open, so focus is moved into the dropdown.
+   */
+  private movesFocusOnOpen() {
+    return (
+      this.isPositionedAtPoint() &&
+      !this.disableFocusHandling &&
+      !this.callbackFocusElement
+    );
+  }
+
+  /**
+   * Moving a visible dropdown (e.g. by another right-click) may have moved
+   * focus back to the element outside of the dropdown, so take it over again.
+   */
+  private refocusAfterMove() {
+    if (!this.movesFocusOnOpen() || this.isFocusInside()) {
+      return;
+    }
+
+    // A non-focusable target (e.g. a <div>) drops focus to the body, keep
+    // returning it to the original element in that case
+    if (!this.isFocusLost()) {
+      const activeElement = getDeepActiveElement();
+      if (!(activeElement instanceof HTMLElement)) {
+        return;
+      }
+      this.focusReturnElement = activeElement;
+    }
+
+    removeVisibleFocus();
+    void this.clearActiveDescendant();
+    this.clearRovingTabindexState();
+    this.focusFirstItemOnOpen();
+  }
+
+  private focusFirstItemOnOpen() {
+    requestAnimationFrameNoNgZone(() => {
+      if (!this.show) {
+        return;
+      }
+
+      if (this.isRovingTabindex) {
+        this.initializeRovingTabindex(this.itemsHost, 'first', {
+          focusCheckedItem: this.focusCheckedItem,
+        });
+        return;
+      }
+
+      // Items only receive visual focus, so the host keeps DOM focus
+      // to receive keyboard events (like a trigger element would)
+      this.focusHostAndFirstItem();
+    });
+  }
+
+  override isAriaActiveDescendantActive(): boolean {
+    // Only applies while the dropdown itself holds DOM focus, otherwise the
+    // trigger (e.g. `ix-dropdown-button`) exposes the active item
+    return (
+      this.show &&
+      this.isPositionedAtPoint() &&
+      !this.isRovingTabindex &&
+      getDeepActiveElement() === this.hostElement
+    );
+  }
+
+  override getControllingAriaElement(): HTMLElement {
+    return this.hostElement;
+  }
+
+  private get pointPosition() {
+    return this.showAtPosition ?? this.anchorPosition;
+  }
+
+  private isPositionedAtPoint() {
+    // An explicit `showAt` call (e.g. on right-click) positions the dropdown
+    // away from its trigger, so the trigger does not hold focus
+    return (
+      !!this.showAtPosition || (!!this.anchorPosition && !this.triggerElement)
+    );
+  }
+
+  /**
+   * DOM focus stays on the dropdown host while the items only receive
+   * visual focus (active-descendant mode)
+   */
+  private isHostFocused() {
+    return this.movesFocusOnOpen() && !this.isRovingTabindex;
+  }
+
+  private closesOnTab() {
+    return (
+      this.disableFocusTrap === true ||
+      this.isRovingTabindex ||
+      dropdownController.hasPopoverAncestor(this)
+    );
+  }
+
+  private focusHostAndFirstItem() {
+    this.hostElement.focus({ preventScroll: true });
+    focusFirstDescendant(this.itemsHost, undefined, {
+      focusCheckedItem: this.focusCheckedItem,
+    });
+  }
+
+  @Watch('anchorPosition')
+  changedAnchorPosition() {
+    if (this.show) {
+      this.addObserverForTriggerVisibility();
+      void this.applyDropdownPosition();
+    }
   }
 
   @Watch('navigationMode')
@@ -807,6 +1017,12 @@ export class Dropdown
     removeVisibleFocus();
     this.configureKeyboardNavigation();
     this.configureFocusTrap();
+
+    if (this.isHostFocused()) {
+      // The host only becomes focusable with the next render
+      this.focusHostOnRender = true;
+      return;
+    }
 
     requestAnimationFrameNoNgZone(() => {
       if (!this.show || this.navigationMode !== newMode) {
@@ -847,17 +1063,26 @@ export class Dropdown
         {
           // In roving-tabindex mode DOM focus moves onto the items, so keydown
           // events bubble to the items host. In active-descendant mode focus
-          // stays on the trigger, so the trigger is the listener target.
+          // stays on the trigger (or on the host if focus was moved into the
+          // dropdown on open), so that element is the listener target.
           getEventListenerTarget: this.isRovingTabindex
             ? getItemsHost
             : () =>
-                (this.triggerElement as HTMLElement) ??
-                (this.anchorElement as HTMLElement),
+                this.isHostFocused()
+                  ? this.hostElement
+                  : ((this.triggerElement as HTMLElement) ??
+                    (this.anchorElement as HTMLElement)),
           onItemActivation: (event, activeElement) => {
             event.preventDefault();
             activeElement?.click();
           },
           itemTriggerKeys: this.keyboardItemTriggerKeys,
+          // Read lazily so the handler can be set after the dropdown opened.
+          onNavigationBoundary: (direction) =>
+            this.navigationBoundaryHandler?.(direction),
+          onNavigationBoundaryPendingChange: (pending) => {
+            this.navigationBoundaryPending = pending;
+          },
           ...(this.isRovingTabindex
             ? {
                 ...createRovingTabindexInteraction(getItemsHost),
@@ -866,7 +1091,15 @@ export class Dropdown
                 // `tabindex="-1"` items) and close it, instead of being trapped.
                 onTabKey: (event) => this.closeAndReleaseFocus(event),
               }
-            : {}),
+            : {
+                // Without a trigger there is no trigger keydown handler that
+                // closes the dropdown on Tab
+                onTabKey: (event) => {
+                  if (this.isHostFocused() && this.closesOnTab()) {
+                    this.closeAndReleaseFocus(event);
+                  }
+                },
+              }),
         }
       );
     }
@@ -878,7 +1111,7 @@ export class Dropdown
     const setupId = ++this.focusTrapSetupId;
 
     if (!this.disableFocusTrap && !this.isRovingTabindex) {
-      addFocusTrap(
+      void addFocusTrap(
         this.focusHost ?? this.hostElement,
         this.focusTrapOptions
       ).then((focusTrap) => {
@@ -914,7 +1147,7 @@ export class Dropdown
       this.disposeKeyListener = undefined;
     }
 
-    this.registerListener(newTriggerValue);
+    void this.registerListener(newTriggerValue);
   }
 
   private applyFallbackPosition(element: HTMLElement) {
@@ -981,7 +1214,11 @@ export class Dropdown
   }
 
   private getTabExitTarget(event: KeyboardEvent) {
-    const trigger = (this.triggerElement ?? this.anchorElement) as HTMLElement;
+    // Focus was moved into the dropdown from `focusReturnElement`, so Tab
+    // continues from there instead of from the trigger
+    const trigger = (this.focusReturnElement ??
+      this.triggerElement ??
+      this.anchorElement) as HTMLElement;
     const eventTarget = event.target as Element | null;
     const leavesFocusedItem =
       eventTarget !== null &&
@@ -1000,21 +1237,69 @@ export class Dropdown
       return parentFocusTarget;
     }
 
-    const focusableElements = queryElements(
-      document.body,
-      focusableQueryString
-    ).filter(
-      (element) =>
-        closestPassShadow(element, 'ix-dropdown') === null &&
-        element.getClientRects().length > 0
-    );
-    const tabOrder = sortByTabOrder(focusableElements);
-    const triggerIndex = tabOrder.indexOf(trigger);
-    if (triggerIndex === -1) {
-      return undefined;
+    return this.getAdjacentInTabOrder(trigger, event.shiftKey);
+  }
+
+  /**
+   * Continue the tab order from the given element within its own focus scope
+   * (shadow root or document). Only step out to the host of the scope if the
+   * element is at the edge of it, e.g. for the inner button of `ix-button`.
+   */
+  private getAdjacentInTabOrder(
+    element: HTMLElement | undefined,
+    backwards: boolean
+  ) {
+    let reference: Element | undefined = element;
+
+    while (reference?.isConnected) {
+      const root = reference.getRootNode();
+      const isShadowScope = root instanceof ShadowRoot;
+      const tabOrder = sortByTabOrder(
+        queryElements(
+          isShadowScope ? root : document.body,
+          focusableQueryString
+        ).filter(
+          (candidate) =>
+            closestPassShadow(candidate, 'ix-dropdown') === null &&
+            candidate.getClientRects().length > 0
+        )
+      );
+
+      const target = this.getAdjacentInScope(tabOrder, reference, backwards);
+      if (target || !isShadowScope) {
+        return target;
+      }
+
+      reference = root.host;
     }
 
-    return tabOrder[triggerIndex + (event.shiftKey ? -1 : 1)];
+    return undefined;
+  }
+
+  private getAdjacentInScope(
+    tabOrder: HTMLElement[],
+    reference: Element,
+    backwards: boolean
+  ) {
+    const index = tabOrder.indexOf(reference as HTMLElement);
+    if (index !== -1) {
+      return tabOrder[index + (backwards ? -1 : 1)];
+    }
+
+    // The reference itself is not focusable (e.g. a host that delegates
+    // focus), so continue from its position in the scope instead
+    const root = reference.getRootNode();
+    const position = backwards
+      ? Node.DOCUMENT_POSITION_PRECEDING
+      : Node.DOCUMENT_POSITION_FOLLOWING;
+    const candidates = tabOrder.filter(
+      (candidate) =>
+        candidate.getRootNode() === root &&
+        !reference.contains(candidate) &&
+        (reference.compareDocumentPosition(candidate) & position) !== 0
+    );
+
+    return backwards ? candidates[candidates.length - 1] : candidates[0];
   }
 
   private initializeRovingTabindex(
@@ -1032,7 +1317,7 @@ export class Dropdown
   }
 
   private cleanupOnHide() {
-    this.intersectObserverTrigger?.disconnect();
+    this.disconnectObserverForTriggerVisibility();
     this.destroyAutoUpdate();
     this.keyboardNavigationCleanup?.();
     this.keyboardNavigationCleanup = undefined;
@@ -1045,15 +1330,47 @@ export class Dropdown
     this.resetForwardQueryElement();
 
     removeVisibleFocus();
+    void this.clearActiveDescendant();
 
     if (this.suppressTriggerFocusOnHide) {
       this.suppressTriggerFocusOnHide = false;
+    } else if (this.focusReturnElement) {
+      // Focus was moved into the dropdown on open, return it regardless of
+      // the input modality unless the user moved it somewhere else meanwhile
+      const focusReturnElement = this.focusReturnElement;
+      requestAnimationFrameNoNgZone(() => {
+        if (this.isFocusLostOrInside()) {
+          focusReturnElement.focus({ preventScroll: true });
+        }
+      });
     } else if (!this.disableFocusTrap && hasKeyboardMode()) {
       // Restore focus to trigger element
       requestAnimationFrameNoNgZone(() => {
         (this.triggerElement as HTMLElement)?.focus();
       });
     }
+
+    this.focusReturnElement = undefined;
+  }
+
+  private isFocusLostOrInside() {
+    return this.isFocusLost() || this.isFocusInside();
+  }
+
+  private isFocusLost() {
+    const activeElement = getDeepActiveElement();
+    return !activeElement || activeElement === document.body;
+  }
+
+  private isFocusInside() {
+    const activeElement = getDeepActiveElement();
+    return (
+      !!activeElement &&
+      closestPassShadow(
+        activeElement,
+        `[data-ix-dropdown="${this.dropdownElementId}"]`
+      ) !== null
+    );
   }
 
   private destroyAutoUpdate() {
@@ -1086,13 +1403,17 @@ export class Dropdown
       return;
     }
 
-    if (!this.anchorElement) {
+    const pointPosition = this.pointPosition;
+    const referenceElement: ReferenceElement | undefined = pointPosition
+      ? createPointReference(pointPosition)
+      : this.anchorElement;
+
+    if (!referenceElement) {
       this.applyFallbackPosition(targetElement);
       return;
     }
 
-    const referenceElement = this.anchorElement;
-    const isSubmenu = this.isAnchorSubmenu();
+    const isSubmenu = !pointPosition && this.isAnchorSubmenu();
 
     let strategy: 'fixed' | 'absolute' = this.positioningStrategy;
 
@@ -1114,9 +1435,12 @@ export class Dropdown
 
     let placement = this.placement;
 
+    // The fallback placement reacts to a clipped trigger and does not apply
+    // when positioned at a point
     if (
       this.suppressTriggerVisibilityCheck === false &&
-      this.fallbackPlacement
+      this.fallbackPlacement &&
+      !pointPosition
     ) {
       placement = this.fallbackPlacement;
     }
@@ -1125,7 +1449,8 @@ export class Dropdown
 
     positionConfig.middleware = [
       ...(positionConfig.middleware?.filter(Boolean) || []),
-      inline(),
+      // A point reference has no client rects to pick from
+      ...(pointPosition ? [] : [inline()]),
       shift(),
     ];
 
@@ -1139,6 +1464,9 @@ export class Dropdown
       referenceElement,
       targetElement,
       async () => {
+        // Re-evaluate trigger clipping on every scroll or resize
+        this.refreshObserverForTriggerVisibility();
+
         const computeResponse = await computePosition(
           referenceElement,
           targetElement,
@@ -1182,6 +1510,13 @@ export class Dropdown
   }
 
   override async componentDidRender() {
+    if (this.focusHostOnRender) {
+      this.focusHostOnRender = false;
+      if (this.show) {
+        this.focusHostAndFirstItem();
+      }
+    }
+
     await this.applyDropdownPosition();
     await this.resolveAnchorElement();
   }
@@ -1190,6 +1525,20 @@ export class Dropdown
     const trigger = !!element.hasAttribute('data-ix-dropdown-trigger');
 
     return trigger;
+  }
+
+  /**
+   * While keyboard navigation waits for more items to render, clicks are
+   * discarded like keys are: they must neither activate an item nor close the
+   * dropdown as an inside click.
+   */
+  private onDropdownClickCapture(event: PointerEvent) {
+    if (!this.navigationBoundaryPending) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   private onDropdownClick(event: PointerEvent) {
@@ -1239,6 +1588,38 @@ export class Dropdown
   @Method()
   async updatePosition() {
     this.applyDropdownPosition();
+  }
+
+  /**
+   * Show the dropdown at the given absolute point in viewport coordinates
+   * (not relative to a parent element), e.g. at `clientX`/`clientY` of a `contextmenu` event.
+   * Moves an already visible dropdown. The position takes precedence over
+   * `anchorPosition`, `anchor` and `trigger` until the dropdown is hidden.
+   *
+   * @param x Absolute horizontal viewport coordinate in pixels
+   * @param y Absolute vertical viewport coordinate in pixels
+   *
+   * @since 6.0.0
+   */
+  @Method()
+  async showAt(x: number, y: number) {
+    this.showAtPosition = { x, y };
+
+    if (this.isPresent()) {
+      this.changedAnchorPosition();
+      this.refocusAfterMove();
+      return;
+    }
+
+    dropdownController.present(this);
+
+    if (!this.isPresent()) {
+      // Opening was prevented via `showChange`
+      this.showAtPosition = undefined;
+      return;
+    }
+
+    dropdownController.dismissOthers(this.getId());
   }
 
   @Listen('ix-open-submenu')
@@ -1300,7 +1681,7 @@ export class Dropdown
         const activeTrigger = activeTriggers[0];
         activeTrigger.classList.remove('ix-dropdown-submenu-trigger-active');
 
-        (
+        void (
           parentDropdown.hostElement as HTMLIxDropdownElement
         ).resetForwardQueryElement();
 
@@ -1313,26 +1694,31 @@ export class Dropdown
 
   /**@internal */
   @Method()
-  async resetForwardQueryElement() {
+  resetForwardQueryElement() {
     this.forwardQueryElement = null;
   }
 
   override render() {
     const ariaAttributes: A11yAttributes = {};
-    if (
-      this.triggerElement &&
-      this.triggerElement.tagName === 'IX-DROPDOWN-ITEM'
-    ) {
+    if (this.triggerElement?.tagName === 'IX-DROPDOWN-ITEM') {
       ariaAttributes['aria-labelledby'] = this.triggerElement.id;
       ariaAttributes['aria-owns'] = this.triggerElement.id;
       ariaAttributes['role'] = 'menu';
     } else if (this.hostRole) {
       ariaAttributes['role'] = this.hostRole;
     }
+
+    const role =
+      ariaAttributes['role'] ?? this.hostElement.getAttribute('role');
+    // `aria-modal` is only valid for dialog roles, e.g. not for `role="menu"`
+    const isDialogRole = !role || role === 'dialog' || role === 'alertdialog';
+
     return (
       <Host
         {...ariaAttributes}
-        aria-modal="true"
+        aria-busy={this.navigationBoundaryPending ? 'true' : undefined}
+        tabindex={this.isHostFocused() ? -1 : undefined}
+        aria-modal={isDialogRole ? 'true' : undefined}
         data-ix-dropdown={this.dropdownElementId}
         data-ix-focus-trap
         class={{
@@ -1349,6 +1735,9 @@ export class Dropdown
                 minWidth: '0px',
                 position: this.positioningStrategy,
               }
+        }
+        onClickCapture={(event: PointerEvent) =>
+          this.onDropdownClickCapture(event)
         }
         onClick={(event: PointerEvent) => this.onDropdownClick(event)}
       >

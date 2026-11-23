@@ -15,7 +15,9 @@
   // default size-60 so they retain default geometry and scale with density.
   $checkmark-width: calc(#{$size} * 0.32);
   $checkmark-height: calc(#{$size} * 0.208);
-  $checkmark-margin-top: calc(#{$size} * 0.3);
+  // The box is vertically centered on the first text line (see `label:before`),
+  // so the marks are positioned relative to that line's center (`1lh / 2`).
+  $checkmark-margin-top: calc(1lh / 2 - #{$size} * 0.15);
   $checkmark-margin-horizontal: calc(#{$size} * 0.336);
   $checkmark-margin-bottom: calc(#{$size} * 0.15);
 
@@ -45,6 +47,7 @@
 
   .ix-form-control[type='checkbox'] + label:before {
     content: '';
+    border-radius: #{sys.$si-sys-sizing-border-radius-xs};
     width: $size;
     height: $size;
     min-width: $size;
@@ -62,14 +65,14 @@
 
   .ix-form-control[type='checkbox'] + label:focus-visible {
     &:before {
-      outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
+      outline: #{sys.$si-sys-sizing-focus-ring-width} solid #{sys.$si-sys-color-effects-focus};
       outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
     }
   }
 
   .ix-form-control[type='checkbox']:focus-visible + label {
     &:before {
-      outline: 0.0625rem solid #{sys.$si-sys-color-effects-focus};
+      outline: #{sys.$si-sys-sizing-focus-ring-width} solid #{sys.$si-sys-color-effects-focus};
       outline-offset: #{sys.$si-sys-sizing-focus-ring-offset};
     }
   }
@@ -109,8 +112,8 @@
       display: block;
       border-top: none;
       border-right: none;
-      border-bottom: 0.0625rem solid #{sys.$si-sys-color-text-on-accent};
-      border-left: 0.0625rem solid #{sys.$si-sys-color-text-on-accent};
+      border-bottom: 1px solid #{sys.$si-sys-color-text-on-accent};
+      border-left: 1px solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
       margin: $checkmark-margin-top 0 $checkmark-margin-bottom
         $checkmark-margin-horizontal;
@@ -149,9 +152,9 @@
       display: block;
       width: #{sys.$si-sys-sizing-size-40};
       height: 0;
-      border-bottom: 0.125rem solid #{sys.$si-sys-color-text-on-accent};
+      border-bottom: 2px solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
-      margin: calc(#{sys.$si-sys-sizing-size-60} / 2.5) 0 0
+      margin: calc(1lh / 2 - 1px) 0 0
         calc(
           (#{sys.$si-sys-sizing-size-60} - #{sys.$si-sys-sizing-size-40}) / 2
         );

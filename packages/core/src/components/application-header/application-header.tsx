@@ -35,10 +35,10 @@ import { Disposable } from '../utils/typed-event';
 /**
  * Top header bar of the application shell holding branding, navigation, and actions.
  *
- * @documentation https://ix.siemens.io//docs/components/application-header/guide.md
- * @figma-main-component-id 20920:77660
+ * @documentation https://ix.siemens.io/docs/components/application-header/guide.md
+ * @figma-main-component-id 162383:24794
  *
- * @slot default - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.
+ * @slot - Place items on the right side of the header. If the screen size is small, the items will be shown inside a dropdown.
  * @slot secondary - Place additional items inside the header. They will appear after logo and name. If the screen size is small, the items will be shown inside a dropdown.
  * @slot overflow - Use this slot to display additional items that do not fit in the default or secondary slot.
  * @slot logo - Place a company logo inside the header. Alternatively the companyLogo property can be set.
@@ -60,52 +60,38 @@ export class ApplicationHeader {
 
   /**
    * Define a suffix which will be displayed next to the application name
-   *
-   * @since 4.0.0
    */
   @Prop() nameSuffix?: string;
 
   /**
    * Company logo will be show on the left side of the application name.
    * It will be hidden on smaller screens.
-   *
-   * @since 4.0.0
    */
   @Prop() companyLogo?: string;
 
   /**
    * Alt text for the company logo
-   *
-   * @since 4.0.0
    */
   @Prop() companyLogoAlt?: string;
 
   /**
    * The app icon will be shown as the first element inside the header.
    * It will be hidden on smaller screens.
-   *
-   * @since 4.0.0
    */
   @Prop() appIcon?: string;
 
   /**
    * Alt text for the app icon
-   *
-   * @since 4.0.0
    */
   @Prop() appIconAlt?: string;
 
   /**
    * Render subtle outline around app icon to ensure proper contrast.
-   *
-   * @since 4.0.0
    */
   @Prop() appIconOutline = false;
 
   /**
    * Hides the bottom border of the header
-   *
-   * @since 4.0.0
    */
   @Prop() hideBottomBorder = false;
 
@@ -119,15 +105,11 @@ export class ApplicationHeader {
 
   /**
    * ARIA label for the app switch icon button
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelAppSwitchIconButton?: string;
 
   /**
    * ARIA label for the more menu icon button
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelMoreMenuIconButton?: string;
 
@@ -135,7 +117,6 @@ export class ApplicationHeader {
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 
@@ -146,8 +127,6 @@ export class ApplicationHeader {
 
   /**
    * Event emitted when the app switch button is clicked
-   *
-   * @since 3.0.0
    */
   @Event() openAppSwitch!: EventEmitter<void>;
 
@@ -412,9 +391,11 @@ export class ApplicationHeader {
             ></slot>
           </div>
           <div class="name">
-            <ix-typography format="body-lg" class="application-name">
-              {this.name}
-            </ix-typography>
+            {this.name && (
+              <h1 class="application-name">
+                <ix-typography format="body-lg">{this.name}</ix-typography>
+              </h1>
+            )}
             {this.nameSuffix && this.breakpoint !== 'sm' && (
               <ix-typography format="body-sm" class="application-name-suffix">
                 {this.nameSuffix}
@@ -438,7 +419,6 @@ export class ApplicationHeader {
               data-context-menu
               data-testid="show-more"
               icon={iconMoreMenu}
-              size="24"
               variant="subtle-tertiary"
               aria-label={this.ariaLabelMoreMenuIconButton}
               aria-hidden={a11yBoolean(!this.hasOverflowContextMenu)}

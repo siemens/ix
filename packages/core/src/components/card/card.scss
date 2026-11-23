@@ -7,26 +7,44 @@
  * LICENSE file in the root directory of this source tree.
  */
 @use 'mixins/shadow-dom/component';
-@use 'tokens/system' as sys;
-@use './card.vars' as card-vars;
-
 @use './card.vars' as *;
+@use 'mixins/component-vars' as cv;
+
 :host {
   display: flex;
   position: relative;
   flex-direction: column;
   align-items: flex-start;
   align-self: flex-start;
-  overflow: hidden;
-  cursor: pointer;
+  cursor: default;
+  box-sizing: border-box;
 
-  width: var(--ix-card--width);
+  width: cv.get-var('card--width');
+  border-radius: cv.get-var('card--border-radius');
 
-  border: var(--ix-card--border-width) solid
-    var(--ix-card-border-color, var(--ix-card--border-color));
-  border-radius: var(--ix-card--border-radius);
+  color: cv.get-var('card--color--base');
+
+  @include cv.set-var('card--background', cv.get-var('card--background--base'));
+  @include cv.set-var(
+    'card--border-color',
+    cv.get-var('card--border-color--base')
+  );
 
   @include component.ix-component;
+
+  .card-chrome {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+    box-sizing: border-box;
+    border: cv.get-var('card--border-width') solid
+      cv.get-var('card--border-color');
+    border-radius: inherit;
+    overflow: hidden;
+  }
 
   .card-content {
     display: block;
@@ -34,10 +52,8 @@
     flex-shrink: 0;
     flex-grow: 1;
     width: 100%;
-    height: var(--ix-card-content--height);
-    background-color: var(--ix-card-background, transparent);
-    border-top-left-radius: var(--ix-card--border-radius);
-    border-top-right-radius: var(--ix-card--border-radius);
+    height: cv.get-var('card-body--height');
+    background-color: cv.get-var('card--background', transparent);
     overflow: hidden;
   }
 
@@ -54,71 +70,120 @@
   }
 }
 
+:host(.clickable) {
+  cursor: pointer;
+}
+
+:host(:not(.outline)) {
+  @include cv.set-var(
+    'card--background',
+    cv.get-var('card--background--filled')
+  );
+  @include cv.set-var(
+    'card--border-color',
+    cv.get-var('card--background--filled')
+  );
+  /* No chrome inset so accordion/content flush to outer edges (filled) */
+  @include cv.set-var('card--border-width', 0);
+}
+
+/* Status strip + outline border: shared rules for any non-base variant.
+ * Per-status colors stay on `--ix-card--status-color` in card.vars.scss. */
+:host(:not(.card-base))::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: cv.get-var('card--strip-height');
+  border-radius: cv.get-var('card--border-radius')
+    cv.get-var('card--border-radius') 0 0;
+  z-index: 1;
+  pointer-events: none;
+  background-color: cv.get-var('card--status-color');
+}
+
+/* Outline status: uniform border-3 when not selected. */
+:host(.outline:not(.card-base)) {
+  @include cv.set-var(
+    'card--border-color',
+    cv.get-var('card--border-color--base')
+  );
+}
+
+:host(.clickable.outline:hover) {
+  @include cv.set-var(
+    'card--background',
+    cv.get-var('card--background--base--hover')
+  );
+}
+
+:host(.clickable.outline:active) {
+  @include cv.set-var(
+    'card--background',
+    cv.get-var('card--background--base--active')
+  );
+}
+
+:host(.clickable:not(.outline):hover) {
+  @include cv.set-var(
+    'card--background',
+    cv.get-var('card--background--filled--hover')
+  );
+  @include cv.set-var(
+    'card--border-color',
+    cv.get-var('card--background--filled--hover')
+  );
+}
+
+:host(.clickable:not(.outline):active) {
+  @include cv.set-var(
+    'card--background',
+    cv.get-var('card--background--filled--active')
+  );
+  @include cv.set-var(
+    'card--border-color',
+    cv.get-var('card--background--filled--active')
+  );
+}
+
+:host(.selected:not(.clickable)),
+:host(.selected) {
+  @include cv.set-var(
+    'card--background',
+    cv.get-var('card--background--base--selected')
+  );
+}
+
+/* Include .clickable:not(.outline) so specificity ties hover/active (0,4,0). */
+:host(.selected),
+:host(.outline.selected),
+:host(.selected:not(.outline)),
+:host(.selected.clickable:not(.outline)) {
+  @include cv.set-var(
+    'card--border-color',
+    cv.get-var('card--border-color--base--selected')
+  );
+}
+
+:host(.selected:not(.outline)) {
+  @include cv.set-var(
+    'card--background',
+    cv.get-var('card--background--filled--selected')
+  );
+  @include cv.set-var(
+    'card--border-width',
+    cv.get-var('card--border-width--selected')
+  );
+}
+
 @mixin accordionChevronColorPrimary {
   ::slotted(ix-card-accordion) {
-    color: var(--ix-card-accordion--color);
+    color: cv.get-var('card-slotted-accordion--color');
   }
 }
 
-@mixin card-variants($variant) {
-  :host(.card-#{$variant}) {
-    --ix-card-background: var(--ix-card-#{$variant}--background);
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color);
-
-    color: var(--ix-card-#{$variant}--color);
-
-    @if $variant == outline {
-      @include accordionChevronColorPrimary;
-    }
-
-    @if $variant == filled {
-      @include accordionChevronColorPrimary;
-    }
-  }
-}
-
-@each $variant in card-vars.$card-variants {
-  @include card-variants($variant);
-}
-
-:host(:not(.card-insight, .card-outline)) {
-  --ix-card-border-color: transparent;
-}
-
-@mixin card-variants-active($variant) {
-  :host(.card-#{$variant}:active) {
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color--active);
-    --ix-card-background: var(--ix-card-#{$variant}--background--active);
-  }
-}
-
-@mixin card-variants-hover($variant) {
-  :host(.card-#{$variant}:hover) {
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color--hover);
-    --ix-card-background: var(--ix-card-#{$variant}--background--hover);
-  }
-}
-
-@mixin card-variants-selected($variant) {
-  :host(.selected.card-#{$variant}) {
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color--selected);
-    --ix-card-background: var(--ix-card-#{$variant}--background--selected);
-  }
-}
-
-@each $variant in card-vars.$card-variants {
-  @include card-variants-hover($variant);
-  @include card-variants-active($variant);
-  @include card-variants-selected($variant);
-}
-
-:host(.passive) {
-  cursor: default;
-}
-
-@each $variant in card-vars.$card-variants {
-  :host(.passive.card-#{$variant}) {
-    --ix-card-background: var(--ix-card-#{$variant}--background);
-    --ix-card-border-color: var(--ix-card-#{$variant}--border-color);
-  }
+:host(.outline),
+:host(:not(.outline)) {
+  @include accordionChevronColorPrimary;
 }

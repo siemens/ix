@@ -28,7 +28,7 @@ import type { BreadcrumbClick } from './breadcrumb.types';
 /**
  * Navigation trail that shows the user's location within a hierarchy.
  *
- * @documentation https://ix.siemens.io//docs/components/breadcrumb/guide.md
+ * @documentation https://ix.siemens.io/docs/components/breadcrumb/guide.md
  * @figma-main-component-id 1603:54616
  *
  * @slot - Breadcrumb items.
@@ -82,7 +82,6 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 

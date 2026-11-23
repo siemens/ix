@@ -7,7 +7,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import type { ToastType } from '@siemens/ix';
 import { ToastService } from '@siemens/ix-angular';
 
 @Component({
@@ -18,11 +19,27 @@ import { ToastService } from '@siemens/ix-angular';
   `,
 })
 export default class Toast {
-  constructor(private readonly toastService: ToastService) {}
+  private readonly toastService = inject(ToastService);
 
   async showToastMessage() {
-    this.toastService.show({
-      message: 'My toast message!',
-    });
+    const toastTypes: ToastType[] = [
+      'information',
+      'success',
+      'caution',
+      'warning',
+      'danger',
+      'critical',
+      'error',
+      'base',
+    ];
+
+    for (const type of toastTypes) {
+      await this.toastService.show({
+        type,
+        title: 'Toast headline',
+        message: 'This is a toast test message!',
+        autoClose: false,
+      });
+    }
   }
 }

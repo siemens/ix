@@ -10,10 +10,8 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import type {
-  CardAccordionExpandChangeEvent,
-  CardAccordionVariant,
-} from './card-accordion.types';
+import type { StatusVariant } from '../utils/status.types';
+import type { CardAccordionExpandChangeEvent } from './card-accordion.types';
 
 let accordionControlId = 0;
 const getAriaControlsId = (prefix: string = 'expand-content') => {
@@ -23,8 +21,8 @@ const getAriaControlsId = (prefix: string = 'expand-content') => {
 /**
  * Expandable card section that shows or hides content within a card list.
  *
- * @documentation https://ix.siemens.io//docs/components/card/guide.md
- * @figma-main-component-id 104612:25530
+ * @documentation https://ix.siemens.io/docs/components/card/guide.md
+ * @figma-main-component-id 104612:25090
  *
  * @slot - Accordion content.
  */
@@ -37,8 +35,6 @@ export class CardAccordion {
   /**
    * ARIA label for the card's expand button.
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelExpandButton?: string;
 
@@ -48,11 +44,20 @@ export class CardAccordion {
   @Prop() collapse = false;
 
   /**
-   * Show accordion with different color variants
+   * Accordion status variant.
    *
-   * @since 4.0.0
+   * @deprecated Has no visual effect; status chrome is owned by the parent card. Prefer omitting this prop
    */
-  @Prop() variant: CardAccordionVariant = 'outline';
+  @Prop() variant: StatusVariant = 'base';
+
+  /**
+   * Show the accordion with outline chrome.
+   * When omitted, outline chrome is used (`true`).
+   * When `false`, uses filled accordion chrome.
+   *
+   * @since 6.0.0
+   */
+  @Prop() outline?: boolean;
 
   @Element() hostElement!: HTMLIxCardAccordionElement;
 
@@ -104,12 +109,16 @@ export class CardAccordion {
     this.onInitialExpandChange();
   }
 
+  private get isOutline() {
+    return this.outline !== false;
+  }
+
   render() {
     return (
       <Host
         slot="card-accordion"
         class={{
-          [`variant-${this.variant}`]: true,
+          outline: this.isOutline,
         }}
       >
         <button

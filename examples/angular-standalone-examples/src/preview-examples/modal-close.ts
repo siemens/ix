@@ -19,7 +19,7 @@ import ModalByInstanceExample from './modal-by-instance-content';
   templateUrl: './modal-close.html',
 })
 export default class ModalClose {
-  private modalService = inject(ModalService);
+  private readonly modalService = inject(ModalService);
 
   async openModal() {
     const modalInstance = await this.modalService.open({

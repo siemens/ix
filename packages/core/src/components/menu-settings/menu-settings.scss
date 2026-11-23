@@ -12,10 +12,11 @@
 @use 'tokens/system' as sys;
 
 @use './menu-settings.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: block;
-  background-color: var(--ix-menu-settings-overlay--background);
-  padding: var(--ix-menu-settings--padding);
+  background-color: cv.get-var('menu-settings-overlay--background');
+  padding: cv.get-var('menu-settings--padding');
   flex-grow: 1;
   position: absolute;
   width: 100%;
@@ -28,18 +29,18 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    height: var(--ix-menu-settings-settings-header--height);
-    margin-bottom: var(--ix-menu-settings-settings-header--margin-bottom);
+    height: cv.get-var('menu-settings-settings-header--height');
+    margin-bottom: cv.get-var('menu-settings-settings-header--margin-bottom');
 
     h2 {
-      color: var(--ix-menu-settings-overlay-header--color);
-      margin-bottom: var(--ix-menu-settings-heading--margin-bottom);
+      color: cv.get-var('menu-settings-overlay-header--color');
+      margin-bottom: cv.get-var('menu-settings-heading--margin-bottom');
 
       @include fonts.typography-h2;
     }
   }
 
   ix-tabs {
-    margin-bottom: var(--ix-menu-settings--margin-bottom);
+    margin-bottom: cv.get-var('menu-settings--margin-bottom');
   }
 }

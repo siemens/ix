@@ -83,7 +83,7 @@ function CardListTitle(props: {
 /**
  * Container that arranges multiple cards in a list or grid layout.
  *
- * @documentation https://ix.siemens.io//docs/components/card-list/guide.md
+ * @documentation https://ix.siemens.io/docs/components/card-list/guide.md
  * @figma-main-component-id 104638:14632
  *
  * @slot - Cards displayed in the list.
@@ -98,8 +98,6 @@ export class CardList {
    * ARIA label for the card list's expand and collapse button.
    * Defaults to `Collapse card list` when expanded and `Expand card list` when
    * collapsed. A non-empty custom value overrides the label in both states.
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelExpandButton?: string;
 
@@ -411,7 +409,7 @@ export class CardList {
       transparent 100%
     )`;
     return {
-      '--ix-card-list-overflow': maskLayer,
+      '--ix-card-list--overflow': maskLayer,
     };
   }
 
@@ -481,6 +479,7 @@ export class CardList {
             ></slot>
             {this.isShowMoreCardVisible() ? (
               <ix-card
+                clickable
                 role="button"
                 tabindex="0"
                 aria-label={`${this.i18nMoreCards} (${this.numberOfOverflowingElements})`}
@@ -496,12 +495,14 @@ export class CardList {
                   <div class="Show__All__Card__Content">
                     <ix-icon
                       name={iconMoreMenu}
-                      size={'32'}
                       class={'Show__All__Card__Icon'}
                     ></ix-icon>
-                    <span class="Show__All__Card__Text">
+                    <ix-typography
+                      class="Show__All__Card__Text"
+                      format="body-lg-sbold"
+                    >
                       {this.i18nMoreCards} ({this.numberOfOverflowingElements})
-                    </span>
+                    </ix-typography>
                   </div>
                 </ix-card-content>
               </ix-card>

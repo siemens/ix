@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import {
   IxButton,
   IxModal,
@@ -36,7 +36,7 @@ export default class ModalFormIxButtonSubmit {
   @ViewChild('customModal', { read: TemplateRef })
   customModalRef!: TemplateRef<any>;
 
-  constructor(private readonly modalService: ModalService) {}
+  private readonly modalService = inject(ModalService);
 
   async openModal() {
     await this.modalService.open({

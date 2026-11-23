@@ -67,7 +67,7 @@ export default function Echarts() {
           <IxEmptyState
             className="empty-state"
             header="No elements available"
-            subHeader="Failed to retrieve data"
+            description="Failed to retrieve data"
             icon={iconInfo}
             action="Try again"
           />

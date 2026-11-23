@@ -15,27 +15,14 @@ import { IxBlind } from '@siemens/ix-vue';
 <style scoped src="./blind-variants.css"></style>
 
 <template>
-  <IxBlind :icon="iconBulb" label="Example" sublabel="sublabel">
+  <IxBlind :outline="false" :icon="iconBulb" label="Filled" sublabel="sublabel">
     <div>Filled content</div>
   </IxBlind>
-  <IxBlind
-    variant="outline"
-    :icon="iconBulb"
-    label="Outline"
-    sublabel="sublabel"
-  >
+  <IxBlind :icon="iconBulb" label="Outline" sublabel="sublabel">
     <div>Outline content</div>
   </IxBlind>
-  <IxBlind :icon="iconBulb" variant="alarm" label="Alarm" sublabel="sublabel">
-    <div>Alarm content</div>
-  </IxBlind>
-  <IxBlind
-    :icon="iconBulb"
-    variant="critical"
-    label="Critical"
-    sublabel="sublabel"
-  >
-    <div>Critical content</div>
+  <IxBlind :icon="iconBulb" variant="danger" label="Danger" sublabel="sublabel">
+    <div>Danger content</div>
   </IxBlind>
   <IxBlind
     :icon="iconBulb"
@@ -45,8 +32,32 @@ import { IxBlind } from '@siemens/ix-vue';
   >
     <div>Warning content</div>
   </IxBlind>
-  <IxBlind :icon="iconBulb" variant="info" label="Info" sublabel="sublabel">
-    <div>Info content</div>
+  <IxBlind
+    :icon="iconBulb"
+    variant="caution"
+    label="Caution"
+    sublabel="sublabel"
+  >
+    <div>Caution content</div>
+  </IxBlind>
+  <IxBlind
+    :icon="iconBulb"
+    variant="information"
+    label="Information"
+    sublabel="sublabel"
+  >
+    <div>Information content</div>
+  </IxBlind>
+  <IxBlind :icon="iconBulb" variant="accent" label="Accent" sublabel="sublabel">
+    <div>Accent content</div>
+  </IxBlind>
+  <IxBlind
+    :icon="iconBulb"
+    variant="critical"
+    label="Critical"
+    sublabel="sublabel"
+  >
+    <div>Critical content</div>
   </IxBlind>
   <IxBlind
     :icon="iconBulb"

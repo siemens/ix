@@ -10,12 +10,13 @@
 @use 'tokens/system' as sys;
 
 @use './modal-footer.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: flex;
-  padding: var(--ix-modal-footer--padding);
+  padding: cv.get-var('modal-footer--padding');
   justify-content: flex-end;
   align-items: center;
-  gap: var(--ix-modal-footer--gap);
+  gap: cv.get-var('modal-footer--gap');
   align-self: stretch;
 
   @include component.ix-component;

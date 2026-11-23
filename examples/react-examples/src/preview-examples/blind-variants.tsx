@@ -15,36 +15,28 @@ import { IxBlind } from '@siemens/ix-react';
 export default () => {
   return (
     <>
-      <IxBlind icon={iconBulb} label="Example" sublabel="sublabel">
-        <div>Filled content</div>
-      </IxBlind>
       <IxBlind
-        variant="outline"
+        outline={false}
         icon={iconBulb}
-        label="Outline"
+        label="Filled"
         sublabel="sublabel"
       >
+        <div>Filled content</div>
+      </IxBlind>
+      <IxBlind icon={iconBulb} label="Outline" sublabel="sublabel">
         <div>Outline content</div>
       </IxBlind>
       <IxBlind
         icon={iconBulb}
-        variant={'alarm'}
-        label="Alarm"
+        variant="danger"
+        label="Danger"
         sublabel="sublabel"
       >
-        <div>Alarm content</div>
+        <div>Danger content</div>
       </IxBlind>
       <IxBlind
         icon={iconBulb}
-        variant={'critical'}
-        label="Critical"
-        sublabel="sublabel"
-      >
-        <div>Critical content</div>
-      </IxBlind>
-      <IxBlind
-        icon={iconBulb}
-        variant={'warning'}
+        variant="warning"
         label="Warning"
         sublabel="sublabel"
       >
@@ -52,15 +44,39 @@ export default () => {
       </IxBlind>
       <IxBlind
         icon={iconBulb}
-        variant={'info'}
-        label="Info"
+        variant="caution"
+        label="Caution"
         sublabel="sublabel"
       >
-        <div>Info content</div>
+        <div>Caution content</div>
       </IxBlind>
       <IxBlind
         icon={iconBulb}
-        variant={'success'}
+        variant="information"
+        label="Information"
+        sublabel="sublabel"
+      >
+        <div>Information content</div>
+      </IxBlind>
+      <IxBlind
+        icon={iconBulb}
+        variant="accent"
+        label="Accent"
+        sublabel="sublabel"
+      >
+        <div>Accent content</div>
+      </IxBlind>
+      <IxBlind
+        icon={iconBulb}
+        variant="critical"
+        label="Critical"
+        sublabel="sublabel"
+      >
+        <div>Critical content</div>
+      </IxBlind>
+      <IxBlind
+        icon={iconBulb}
+        variant="success"
         label="Success"
         sublabel="sublabel"
       >
@@ -68,7 +84,7 @@ export default () => {
       </IxBlind>
       <IxBlind
         icon={iconBulb}
-        variant={'neutral'}
+        variant="neutral"
         label="Neutral"
         sublabel="sublabel"
       >

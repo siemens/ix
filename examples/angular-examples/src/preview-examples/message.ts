@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MessageService } from '@siemens/ix-angular';
 
 @Component({
@@ -18,7 +18,7 @@ import { MessageService } from '@siemens/ix-angular';
   `,
 })
 export default class Message {
-  constructor(private readonly messageService: MessageService) {}
+  private readonly messageService = inject(MessageService);
 
   triggerMessage = async () => {
     (

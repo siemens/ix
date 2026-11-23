@@ -12,6 +12,7 @@ import headerStyles from './header.style.css';
 import tooltipStyles from './tooltip.style.css';
 import radioStyles from './radio.style.css';
 import inputStyles from './input.style.css';
+import focusStyles from './focus.style.css';
 import { aggridIxThemeParams } from './aggrid-ix-theme-params.ts';
 import { iconOverrides } from 'ag-grid-community';
 import {
@@ -120,6 +121,13 @@ function createIxTheme(agModule: AgGridModule, options?: IxThemeOptions) {
         feature: 'inputCustomStyles',
         params: {},
         css: inputStyles,
+      })
+    )
+    .withPart(
+      createPart({
+        feature: 'focusCustomStyles',
+        params: {},
+        css: focusStyles,
       })
     )
     .withPart(

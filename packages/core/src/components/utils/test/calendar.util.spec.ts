@@ -13,13 +13,17 @@ import {
   dayOfMonth,
   isDayWithinRange,
   isMonthWithinRange,
+  isPartialRange,
+  isSameDayOrUnset,
+  isSameRange,
   isYearWithinRange,
   monthNameOf,
   monthsOfYear,
   weekdayColumnOf,
+  weekdayLabelsFrom,
   weekdayNamesFrom,
   weekStartFrom,
-} from '../calendar.util';
+} from '../datetime/calendar.util';
 
 /** Luxon month ordinals, for readability in the expectations below. */
 const JUNE = 6;
@@ -319,6 +323,58 @@ describe('weekdayNamesFrom', () => {
   });
 });
 
+describe('weekdayLabelsFrom', () => {
+  it('uses the abbreviated names when they fit', () => {
+    expect(weekdayLabelsFrom(weekStartFrom(0), 'en')).toEqual([
+      'Mon',
+      'Tue',
+      'Wed',
+      'Thu',
+      'Fri',
+      'Sat',
+      'Sun',
+    ]);
+  });
+
+  it('rotates the labels with the week start', () => {
+    expect(weekdayLabelsFrom(weekStartFrom(6), 'en')[0]).toBe('Sun');
+  });
+
+  it('falls back to narrow names for all days if one is too long', () => {
+    expect(weekdayLabelsFrom(weekStartFrom(0), 'ar')).toEqual(
+      weekdayNamesFrom(weekStartFrom(0), 'ar', 'narrow')
+    );
+  });
+
+  it('counts graphemes rather than code points', () => {
+    // Khmer abbreviations stack combining marks, e.g. Sunday is 7 code points
+    // but only 4 user-perceived characters.
+    const labels = weekdayLabelsFrom(weekStartFrom(0), 'km');
+
+    expect(labels).toEqual(weekdayNamesFrom(weekStartFrom(0), 'km', 'short'));
+  });
+
+  // Whether a label fits its column depends on installed fonts, so the label
+  // choice is pinned here and the rendering is covered by visual regression.
+  it.each([
+    ['zh', 'short'],
+    ['ja', 'short'],
+    ['de', 'short'],
+    ['fr', 'short'],
+    ['lv', 'narrow'],
+    ['he', 'short'],
+    ['ar', 'narrow'],
+    ['el', 'short'],
+    ['ta', 'short'],
+    ['km', 'short'],
+    ['my', 'short'],
+  ] as const)('uses the %s %s names', (locale, format) => {
+    expect(weekdayLabelsFrom(weekStartFrom(0), locale)).toEqual(
+      weekdayNamesFrom(weekStartFrom(0), locale, format)
+    );
+  });
+});
+
 describe('weekdayColumnOf', () => {
   // 2026-08-31 is a Monday, so this covers Monday through Sunday in order.
   const week = Array.from({ length: 7 }, (_, i) =>
@@ -477,5 +533,59 @@ describe('calendarRowsFor', () => {
 
       expect(sundayFirst[0].weekNumber).toBe(27);
     });
+  });
+});
+
+describe('isSameDayOrUnset', () => {
+  const day = DateTime.fromISO('2026-07-05T08:00');
+
+  it('treats two unset dates as the same', () => {
+    expect(isSameDayOrUnset(undefined, undefined)).toBe(true);
+  });
+
+  it('treats a set and an unset date as different', () => {
+    expect(isSameDayOrUnset(day, undefined)).toBe(false);
+    expect(isSameDayOrUnset(undefined, day)).toBe(false);
+  });
+
+  it('ignores the time of day', () => {
+    expect(isSameDayOrUnset(day, day.set({ hour: 23 }))).toBe(true);
+  });
+
+  it('distinguishes the same day in another month', () => {
+    expect(isSameDayOrUnset(day, day.plus({ months: 1 }))).toBe(false);
+  });
+});
+
+describe('isSameRange', () => {
+  const from = DateTime.fromISO('2026-07-05');
+  const to = DateTime.fromISO('2026-07-10');
+
+  it('matches ranges selecting the same days', () => {
+    expect(isSameRange({ from, to }, { from, to: to.set({ hour: 5 }) })).toBe(
+      true
+    );
+  });
+
+  it('does not match a partial range with the full range', () => {
+    expect(isSameRange({ from }, { from, to })).toBe(false);
+  });
+
+  it('matches two empty ranges', () => {
+    expect(isSameRange({}, {})).toBe(true);
+  });
+});
+
+describe('isPartialRange', () => {
+  it('is partial with a start but no end', () => {
+    expect(isPartialRange({ from: '2026/07/05' })).toBe(true);
+    expect(isPartialRange({ from: '2026/07/05', to: '' })).toBe(true);
+  });
+
+  it('is not partial when complete or empty', () => {
+    expect(isPartialRange({ from: '2026/07/05', to: '2026/07/10' })).toBe(
+      false
+    );
+    expect(isPartialRange({})).toBe(false);
   });
 });

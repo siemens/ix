@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { ToastService } from '@siemens/ix-angular';
 
 @Component({
@@ -48,7 +48,7 @@ export default class ToastCustom {
   @ViewChild('customToastAction', { read: TemplateRef })
   customToastActionRef!: TemplateRef<any>;
 
-  constructor(private readonly toastService: ToastService) {}
+  private readonly toastService = inject(ToastService);
 
   async showToastMessage() {
     this.toastService.show({

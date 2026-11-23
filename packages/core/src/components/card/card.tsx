@@ -1,11 +1,19 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 import { Component, Element, h, Host, Prop } from '@stencil/core';
-import type { CardVariant } from './card.types';
+import type { StatusVariant } from '../utils/status.types';
 
 /**
  * Flexible container that groups related content and actions.
  *
- * @documentation https://ix.siemens.io//docs/components/card/guide.md
- * @figma-main-component-id 104612:25530
+ * @documentation https://ix.siemens.io/docs/components/card/guide.md
+ * @figma-main-component-id 162440:171408
  *
  * @slot - Card content.
  * @slot card-accordion - Accordion content displayed at the bottom of the card.
@@ -19,9 +27,21 @@ export class Card {
   @Element() hostElement!: HTMLIxCardElement;
 
   /**
-   * Card variant
+   * Card status variant
+   *
+   * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
    */
-  @Prop() variant: CardVariant = 'outline';
+  @Prop() variant: StatusVariant = 'base';
+
+  /**
+   * Show the card with outline chrome.
+   * When omitted, outline chrome is used (`true`).
+   * When `false`, uses a filled surface; status variants then show a top color strip.
+   *
+   * @since 6.0.0
+   * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
+   */
+  @Prop() outline?: boolean;
 
   /**
    * Show card in selected state
@@ -29,24 +49,35 @@ export class Card {
   @Prop() selected: boolean = false;
 
   /**
-   * If true, disables hover and active styles and changes cursor to default
+   * Enable pointer cursor and hover/active surface styles.
+   * Default is `false` (non-clickable).
+   *
+   * @since 6.0.0
+   * @breaking-change 6.0.0 Replaces the `passive` property
    */
-  @Prop() passive: boolean = false;
+  @Prop() clickable: boolean = false;
+
+  private get isOutline() {
+    return this.outline !== false;
+  }
 
   render() {
     return (
       <Host
         class={{
           selected: this.selected,
+          outline: this.isOutline,
+          clickable: this.clickable,
           [`card-${this.variant}`]: true,
-          passive: this.passive,
         }}
       >
-        <div class="card-content">
-          <slot></slot>
-        </div>
-        <div class="card-footer">
-          <slot name="card-accordion"></slot>
+        <div class="card-chrome">
+          <div class="card-content">
+            <slot></slot>
+          </div>
+          <div class="card-footer">
+            <slot name="card-accordion"></slot>
+          </div>
         </div>
       </Host>
     );

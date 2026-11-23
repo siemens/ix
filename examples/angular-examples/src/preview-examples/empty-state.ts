@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
   selector: 'app-example',
   template: `<ix-empty-state
     header="No elements available"
-    subHeader="Create an element first"
+    description="Create an element first"
     icon="add"
     action="Create element"
     (actionClick)="onActionClick($event)"

@@ -23,6 +23,7 @@ import {
   EventEmitter,
   Method,
 } from '@stencil/core';
+import type { NavigationBoundaryHandler } from '../dropdown/dropdown-focus';
 import { AlignedPlacement } from '../dropdown/placement';
 import {
   A11yAttributes,
@@ -32,7 +33,6 @@ import {
 } from '../utils/a11y';
 import { makeRef } from '../utils/make-ref';
 import type { DropdownButtonVariant } from './dropdown-button.types';
-import { DEFAULT_BUTTON_ICON_SIZE } from '../button/base-button.types';
 import { DefaultMixins } from '../utils/internal/component';
 import {
   AriaActiveDescendantMixinContract,
@@ -47,7 +47,7 @@ import { closestPassShadow } from '../utils/shadow-dom';
 /**
  * Button that opens an attached dropdown menu.
  *
- * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
+ * @documentation https://ix.siemens.io/docs/components/dropdown-button/guide.md
  * @figma-main-component-id 294:1198
  *
  * @slot button-label - Custom button label.
@@ -102,8 +102,6 @@ export class DropdownButton
    * ARIA label for the dropdown button.
    * Set as `aria-label` on the host, which is the interactive control.
    * The nested button is inert and is not exposed to assistive technology.
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelDropdownButton?: string;
 
@@ -133,9 +131,16 @@ export class DropdownButton
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
+
+  /**
+   * Resolves the item to activate when arrow keys move past the first or last
+   * item, instead of wrapping around.
+   *
+   * @internal
+   */
+  @Prop() navigationBoundaryHandler?: NavigationBoundaryHandler;
 
   /**
    * Suppress the use of the aria-activedescendant attribute and related focus proxy functionality.
@@ -201,19 +206,6 @@ export class DropdownButton
       .replace(/\s+/g, ' ')
       .trim();
     return text || undefined;
-  }
-
-  private getTriangle() {
-    return (
-      <div
-        class={{
-          triangle: true,
-          [this.variant]: true,
-          hide: !this.isIconOnly(),
-          disabled: this.disabled,
-        }}
-      ></div>
-    );
   }
 
   private readonly onDropdownShowChanged = (event: CustomEvent<boolean>) => {
@@ -451,7 +443,7 @@ export class DropdownButton
                         ? iconChevronUpSmall
                         : iconChevronDownSmall
                     }
-                    size="24"
+                    class={'dropdown-chevron'}
                   ></ix-icon>
                 )}
               </div>
@@ -462,16 +454,11 @@ export class DropdownButton
                 {...commonProperties}
                 class={{ active: this.dropdownShow }}
                 icon={this.icon}
-                size={
-                  this.hostContext?.splitButton
-                    ? DEFAULT_BUTTON_ICON_SIZE
-                    : '24'
-                }
+                dropdownIndicator={!hideChevron}
                 aria-hidden="true"
                 inert={true}
                 ref={(ref) => forceTabIndex(ref, -1)}
               ></ix-icon-button>
-              {!hideChevron && this.getTriangle()}
             </div>
           )}
         </div>
@@ -488,6 +475,7 @@ export class DropdownButton
           disableFocusTrap={true}
           focusCheckedItem={this.focusCheckedItem}
           navigationMode={this.navigationMode}
+          navigationBoundaryHandler={this.navigationBoundaryHandler}
           onShowChanged={(event) => this.onDropdownShowChanged(event)}
           onScroll={(event) => {
             // Need to dispatch the event again to handle infinite scroll of ix-date-picker,

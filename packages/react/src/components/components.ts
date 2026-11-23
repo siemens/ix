@@ -11,7 +11,7 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type BorderlessChangedEvent, type BreadcrumbClick, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeInputValidityState, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxApplicationHeaderCustomEvent, type IxBlindCustomEvent, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxChatAttachmentCustomEvent, type IxChatInputCustomEvent, type IxCheckboxCustomEvent, type IxChipCustomEvent, type IxContentHeaderCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimeInputCustomEvent, type IxDatetimePickerCustomEvent, type IxDropdownButtonCustomEvent, type IxDropdownCustomEvent, type IxEmptyStateCustomEvent, type IxEventListItemCustomEvent, type IxExpandingSearchCustomEvent, type IxFilterChipCustomEvent, type IxFlipTileCustomEvent, type IxGroupCustomEvent, type IxGroupItemCustomEvent, type IxIconToggleButtonCustomEvent, type IxInputCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuCustomEvent, type IxMenuSettingsCustomEvent, type IxMessageBarCustomEvent, type IxModalCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaginationCustomEvent, type IxPaneCustomEvent, type IxPopoverCustomEvent, type IxPopoverHeaderCustomEvent, type IxRadioCustomEvent, type IxRadioGroupCustomEvent, type IxSelectCustomEvent, type IxSelectItemCustomEvent, type IxSliderCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTabsCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxTimePickerCustomEvent, type IxToastCustomEvent, type IxToggleButtonCustomEvent, type IxToggleCustomEvent, type IxUploadCustomEvent, type IxWorkflowStepsCustomEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
+import { type BorderlessChangedEvent, type BreadcrumbClick, type CustomCloseEvent, type CustomLabelChangeEvent, type DateChangeEvent, type DateInputValidityState, type DateRangeChangeEvent, type DateTimeDateChangeEvent, type DateTimeInputValidityState, type DateTimeSelectEvent, type ExpandedChangedEvent, type FilterState, type InputState, type IxApplicationHeaderCustomEvent, type IxBlindCustomEvent, type IxBreadcrumbCustomEvent, type IxCardListCustomEvent, type IxCategoryFilterCustomEvent, type IxChatAttachmentCustomEvent, type IxChatInputCustomEvent, type IxCheckboxCustomEvent, type IxChipCustomEvent, type IxContentHeaderCustomEvent, type IxDateDropdownCustomEvent, type IxDateInputCustomEvent, type IxDatePickerCustomEvent, type IxDatetimeInputCustomEvent, type IxDatetimePickerCustomEvent, type IxDropdownButtonCustomEvent, type IxDropdownCustomEvent, type IxEmptyStateCustomEvent, type IxEventListItemCustomEvent, type IxExpandingSearchCustomEvent, type IxFilterChipCustomEvent, type IxFlipTileCustomEvent, type IxGroupCustomEvent, type IxGroupItemCustomEvent, type IxIconToggleButtonCustomEvent, type IxInputCustomEvent, type IxListCustomEvent, type IxListItemCustomEvent, type IxMenuAboutCustomEvent, type IxMenuAboutItemCustomEvent, type IxMenuAboutNewsCustomEvent, type IxMenuAvatarCustomEvent, type IxMenuAvatarItemCustomEvent, type IxMenuCustomEvent, type IxMenuSettingsCustomEvent, type IxMessageBarCustomEvent, type IxModalCustomEvent, type IxModalHeaderCustomEvent, type IxNumberInputCustomEvent, type IxPaginationCustomEvent, type IxPaneCustomEvent, type IxPopoverCustomEvent, type IxPopoverHeaderCustomEvent, type IxRadioCustomEvent, type IxRadioGroupCustomEvent, type IxSelectCustomEvent, type IxSelectItemCustomEvent, type IxSliderCustomEvent, type IxSplitButtonCustomEvent, type IxTabItemCustomEvent, type IxTabsCustomEvent, type IxTextareaCustomEvent, type IxTimeInputCustomEvent, type IxTimePickerCustomEvent, type IxToastCustomEvent, type IxToggleButtonCustomEvent, type IxToggleCustomEvent, type IxUploadCustomEvent, type IxWorkflowStepsCustomEvent, type ListItemOrderChangeEvent, type TabClickDetail, type TimeInputValidityState, type VariantChangedEvent } from "@siemens/ix";
 import type { Components } from "@siemens/ix/components";
 import { IxActionCard as IxActionCardElement, defineCustomElement as defineIxActionCard } from "@siemens/ix/components/ix-action-card.js";
 import { IxApplicationHeader as IxApplicationHeaderElement, defineCustomElement as defineIxApplicationHeader } from "@siemens/ix/components/ix-application-header.js";
@@ -73,6 +73,9 @@ import { IxKpi as IxKpiElement, defineCustomElement as defineIxKpi } from "@siem
 import { IxLayoutAuto as IxLayoutAutoElement, defineCustomElement as defineIxLayoutAuto } from "@siemens/ix/components/ix-layout-auto.js";
 import { IxLayoutGrid as IxLayoutGridElement, defineCustomElement as defineIxLayoutGrid } from "@siemens/ix/components/ix-layout-grid.js";
 import { IxLinkButton as IxLinkButtonElement, defineCustomElement as defineIxLinkButton } from "@siemens/ix/components/ix-link-button.js";
+import { IxListItemSeparator as IxListItemSeparatorElement, defineCustomElement as defineIxListItemSeparator } from "@siemens/ix/components/ix-list-item-separator.js";
+import { IxListItem as IxListItemElement, defineCustomElement as defineIxListItem } from "@siemens/ix/components/ix-list-item.js";
+import { IxList as IxListElement, defineCustomElement as defineIxList } from "@siemens/ix/components/ix-list.js";
 import { IxMenuAboutItem as IxMenuAboutItemElement, defineCustomElement as defineIxMenuAboutItem } from "@siemens/ix/components/ix-menu-about-item.js";
 import { IxMenuAboutNews as IxMenuAboutNewsElement, defineCustomElement as defineIxMenuAboutNews } from "@siemens/ix/components/ix-menu-about-news.js";
 import { IxMenuAbout as IxMenuAboutElement, defineCustomElement as defineIxMenuAbout } from "@siemens/ix/components/ix-menu-about.js";
@@ -216,7 +219,7 @@ export const IxBreadcrumb: StencilReactComponent<IxBreadcrumbElement, IxBreadcru
 
 export type IxBreadcrumbItemEvents = NonNullable<unknown>;
 
-export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents, Components.IxBreadcrumbItem> = /*@__PURE__*/ createComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents, Components.IxBreadcrumbItem>({
+export const IxBreadcrumbItem: StencilReactComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents, Components.IxBreadcrumbItem, 'breadcrumbKey'> = /*@__PURE__*/ createComponent<IxBreadcrumbItemElement, IxBreadcrumbItemEvents, Components.IxBreadcrumbItem, 'breadcrumbKey'>({
     tagName: 'ix-breadcrumb-item',
     elementClass: IxBreadcrumbItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -476,14 +479,20 @@ export const IxCustomField: StencilReactComponent<IxCustomFieldElement, IxCustom
     defineCustomElement: defineIxCustomField
 });
 
-export type IxDateDropdownEvents = { onDateRangeChange: EventName<IxDateDropdownCustomEvent<DateRangeChangeEvent>> };
+export type IxDateDropdownEvents = {
+    onDateRangeChange: EventName<IxDateDropdownCustomEvent<DateRangeChangeEvent>>,
+    onDateSelect: EventName<IxDateDropdownCustomEvent<DateRangeChangeEvent>>
+};
 
 export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDateDropdownEvents, Components.IxDateDropdown> = /*@__PURE__*/ createComponent<IxDateDropdownElement, IxDateDropdownEvents, Components.IxDateDropdown>({
     tagName: 'ix-date-dropdown',
     elementClass: IxDateDropdownElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: { onDateRangeChange: 'dateRangeChange' } as IxDateDropdownEvents,
+    events: {
+        onDateRangeChange: 'dateRangeChange',
+        onDateSelect: 'dateSelect'
+    } as IxDateDropdownEvents,
     defineCustomElement: defineIxDateDropdown
 });
 
@@ -509,7 +518,8 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
 export type IxDatePickerEvents = {
     onDateChange: EventName<IxDatePickerCustomEvent<DateChangeEvent>>,
     onDateRangeChange: EventName<IxDatePickerCustomEvent<DateChangeEvent>>,
-    onDateSelect: EventName<IxDatePickerCustomEvent<DateChangeEvent>>
+    onDateSelect: EventName<IxDatePickerCustomEvent<DateChangeEvent>>,
+    onDateCancel: EventName<IxDatePickerCustomEvent<void>>
 };
 
 export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePickerEvents, Components.IxDatePicker> = /*@__PURE__*/ createComponent<IxDatePickerElement, IxDatePickerEvents, Components.IxDatePicker>({
@@ -520,7 +530,8 @@ export const IxDatePicker: StencilReactComponent<IxDatePickerElement, IxDatePick
     events: {
         onDateChange: 'dateChange',
         onDateRangeChange: 'dateRangeChange',
-        onDateSelect: 'dateSelect'
+        onDateSelect: 'dateSelect',
+        onDateCancel: 'dateCancel'
     } as IxDatePickerEvents,
     defineCustomElement: defineIxDatePicker
 });
@@ -551,7 +562,8 @@ export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDa
 export type IxDatetimePickerEvents = {
     onTimeChange: EventName<IxDatetimePickerCustomEvent<string>>,
     onDateChange: EventName<IxDatetimePickerCustomEvent<DateTimeDateChangeEvent>>,
-    onDateSelect: EventName<IxDatetimePickerCustomEvent<DateTimeSelectEvent>>
+    onDateSelect: EventName<IxDatetimePickerCustomEvent<DateTimeSelectEvent>>,
+    onDateCancel: EventName<IxDatetimePickerCustomEvent<void>>
 };
 
 export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, IxDatetimePickerEvents, Components.IxDatetimePicker> = /*@__PURE__*/ createComponent<IxDatetimePickerElement, IxDatetimePickerEvents, Components.IxDatetimePicker>({
@@ -562,7 +574,8 @@ export const IxDatetimePicker: StencilReactComponent<IxDatetimePickerElement, Ix
     events: {
         onTimeChange: 'timeChange',
         onDateChange: 'dateChange',
-        onDateSelect: 'dateSelect'
+        onDateSelect: 'dateSelect',
+        onDateCancel: 'dateCancel'
     } as IxDatetimePickerEvents,
     defineCustomElement: defineIxDatetimePicker
 });
@@ -647,7 +660,7 @@ export const IxDropdownQuickActions: StencilReactComponent<IxDropdownQuickAction
 
 export type IxEmptyStateEvents = { onActionClick: EventName<IxEmptyStateCustomEvent<void>> };
 
-export const IxEmptyState: StencilReactComponent<IxEmptyStateElement, IxEmptyStateEvents, Components.IxEmptyState> = /*@__PURE__*/ createComponent<IxEmptyStateElement, IxEmptyStateEvents, Components.IxEmptyState>({
+export const IxEmptyState: StencilReactComponent<IxEmptyStateElement, IxEmptyStateEvents, Components.IxEmptyState, 'header'> = /*@__PURE__*/ createComponent<IxEmptyStateElement, IxEmptyStateEvents, Components.IxEmptyState, 'header'>({
     tagName: 'ix-empty-state',
     elementClass: IxEmptyStateElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -809,7 +822,7 @@ export const IxIconToggleButton: StencilReactComponent<IxIconToggleButtonElement
 
 export type IxInfoPageEvents = NonNullable<unknown>;
 
-export const IxInfoPage: StencilReactComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage> = /*@__PURE__*/ createComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage>({
+export const IxInfoPage: StencilReactComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage, 'titleText'> = /*@__PURE__*/ createComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage, 'titleText'>({
     tagName: 'ix-info-page',
     elementClass: IxInfoPageElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -841,7 +854,7 @@ export const IxInput: StencilReactComponent<IxInputElement, IxInputEvents, Compo
 
 export type IxKeyValueEvents = NonNullable<unknown>;
 
-export const IxKeyValue: StencilReactComponent<IxKeyValueElement, IxKeyValueEvents, Components.IxKeyValue> = /*@__PURE__*/ createComponent<IxKeyValueElement, IxKeyValueEvents, Components.IxKeyValue>({
+export const IxKeyValue: StencilReactComponent<IxKeyValueElement, IxKeyValueEvents, Components.IxKeyValue, 'label'> = /*@__PURE__*/ createComponent<IxKeyValueElement, IxKeyValueEvents, Components.IxKeyValue, 'label'>({
     tagName: 'ix-key-value',
     elementClass: IxKeyValueElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -905,6 +918,45 @@ export const IxLinkButton: StencilReactComponent<IxLinkButtonElement, IxLinkButt
     defineCustomElement: defineIxLinkButton
 });
 
+export type IxListEvents = { onItemOrderChange: EventName<IxListCustomEvent<ListItemOrderChangeEvent>> };
+
+export const IxList: StencilReactComponent<IxListElement, IxListEvents, Components.IxList> = /*@__PURE__*/ createComponent<IxListElement, IxListEvents, Components.IxList>({
+    tagName: 'ix-list',
+    elementClass: IxListElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: { onItemOrderChange: 'itemOrderChange' } as IxListEvents,
+    defineCustomElement: defineIxList
+});
+
+export type IxListItemEvents = {
+    onItemClick: EventName<IxListItemCustomEvent<HTMLIxListItemElement>>,
+    onSelectedChange: EventName<IxListItemCustomEvent<boolean>>
+};
+
+export const IxListItem: StencilReactComponent<IxListItemElement, IxListItemEvents, Components.IxListItem> = /*@__PURE__*/ createComponent<IxListItemElement, IxListItemEvents, Components.IxListItem>({
+    tagName: 'ix-list-item',
+    elementClass: IxListItemElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {
+        onItemClick: 'itemClick',
+        onSelectedChange: 'selectedChange'
+    } as IxListItemEvents,
+    defineCustomElement: defineIxListItem
+});
+
+export type IxListItemSeparatorEvents = NonNullable<unknown>;
+
+export const IxListItemSeparator: StencilReactComponent<IxListItemSeparatorElement, IxListItemSeparatorEvents, Components.IxListItemSeparator> = /*@__PURE__*/ createComponent<IxListItemSeparatorElement, IxListItemSeparatorEvents, Components.IxListItemSeparator>({
+    tagName: 'ix-list-item-separator',
+    elementClass: IxListItemSeparatorElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IxListItemSeparatorEvents,
+    defineCustomElement: defineIxListItemSeparator
+});
+
 export type IxMenuEvents = {
     onExpandChange: EventName<IxMenuCustomEvent<boolean>>,
     onMapExpandChange: EventName<IxMenuCustomEvent<boolean>>,
@@ -947,7 +999,7 @@ export const IxMenuAbout: StencilReactComponent<IxMenuAboutElement, IxMenuAboutE
 
 export type IxMenuAboutItemEvents = { onLabelChange: EventName<IxMenuAboutItemCustomEvent<CustomLabelChangeEvent>> };
 
-export const IxMenuAboutItem: StencilReactComponent<IxMenuAboutItemElement, IxMenuAboutItemEvents, Components.IxMenuAboutItem> = /*@__PURE__*/ createComponent<IxMenuAboutItemElement, IxMenuAboutItemEvents, Components.IxMenuAboutItem>({
+export const IxMenuAboutItem: StencilReactComponent<IxMenuAboutItemElement, IxMenuAboutItemEvents, Components.IxMenuAboutItem, 'tabKey'> = /*@__PURE__*/ createComponent<IxMenuAboutItemElement, IxMenuAboutItemEvents, Components.IxMenuAboutItem, 'tabKey'>({
     tagName: 'ix-menu-about-item',
     elementClass: IxMenuAboutItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1036,7 +1088,7 @@ export const IxMenuSettings: StencilReactComponent<IxMenuSettingsElement, IxMenu
 
 export type IxMenuSettingsItemEvents = NonNullable<unknown>;
 
-export const IxMenuSettingsItem: StencilReactComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents, Components.IxMenuSettingsItem> = /*@__PURE__*/ createComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents, Components.IxMenuSettingsItem>({
+export const IxMenuSettingsItem: StencilReactComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents, Components.IxMenuSettingsItem, 'tabKey'> = /*@__PURE__*/ createComponent<IxMenuSettingsItemElement, IxMenuSettingsItemEvents, Components.IxMenuSettingsItem, 'tabKey'>({
     tagName: 'ix-menu-settings-item',
     elementClass: IxMenuSettingsItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1349,7 +1401,7 @@ export const IxSelect: StencilReactComponent<IxSelectElement, IxSelectEvents, Co
 
 export type IxSelectItemEvents = { onItemClick: EventName<IxSelectItemCustomEvent<string>> };
 
-export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectItemEvents, Components.IxSelectItem> = /*@__PURE__*/ createComponent<IxSelectItemElement, IxSelectItemEvents, Components.IxSelectItem>({
+export const IxSelectItem: StencilReactComponent<IxSelectItemElement, IxSelectItemEvents, Components.IxSelectItem, 'value'> = /*@__PURE__*/ createComponent<IxSelectItemElement, IxSelectItemEvents, Components.IxSelectItem, 'value'>({
     tagName: 'ix-select-item',
     elementClass: IxSelectItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1396,7 +1448,7 @@ export type IxTabItemEvents = {
     onTabClose: EventName<IxTabItemCustomEvent<TabClickDetail>>
 };
 
-export const IxTabItem: StencilReactComponent<IxTabItemElement, IxTabItemEvents, Components.IxTabItem> = /*@__PURE__*/ createComponent<IxTabItemElement, IxTabItemEvents, Components.IxTabItem>({
+export const IxTabItem: StencilReactComponent<IxTabItemElement, IxTabItemEvents, Components.IxTabItem, 'tabKey'> = /*@__PURE__*/ createComponent<IxTabItemElement, IxTabItemEvents, Components.IxTabItem, 'tabKey'>({
     tagName: 'ix-tab-item',
     elementClass: IxTabItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
@@ -1478,7 +1530,8 @@ export const IxTimeInput: StencilReactComponent<IxTimeInputElement, IxTimeInputE
 
 export type IxTimePickerEvents = {
     onTimeSelect: EventName<IxTimePickerCustomEvent<string>>,
-    onTimeChange: EventName<IxTimePickerCustomEvent<string>>
+    onTimeChange: EventName<IxTimePickerCustomEvent<string>>,
+    onTimeCancel: EventName<IxTimePickerCustomEvent<void>>
 };
 
 export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePickerEvents, Components.IxTimePicker> = /*@__PURE__*/ createComponent<IxTimePickerElement, IxTimePickerEvents, Components.IxTimePicker>({
@@ -1488,7 +1541,8 @@ export const IxTimePicker: StencilReactComponent<IxTimePickerElement, IxTimePick
     react: React,
     events: {
         onTimeSelect: 'timeSelect',
-        onTimeChange: 'timeChange'
+        onTimeChange: 'timeChange',
+        onTimeCancel: 'timeCancel'
     } as IxTimePickerEvents,
     defineCustomElement: defineIxTimePicker
 });

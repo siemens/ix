@@ -23,7 +23,7 @@ import { IxButtonComponent } from '../button/button-component';
 /**
  * Search input that expands from an icon when activated.
  *
- * @documentation https://ix.siemens.io//docs/components/expanding-search/code.md
+ * @documentation https://ix.siemens.io/docs/components/expanding-search/code.md
  * @figma-main-component-id 680:9354
  */
 @Component({
@@ -62,30 +62,23 @@ export class ExpandingSearch
   /**
    * ARIA label for the search icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelSearchIconButton?: string;
 
   /**
    * ARIA label for the clear icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelClearIconButton?: string = 'Clear search';
 
   /**
    * ARIA label for the search input
    * Will be set as aria-label on the nested HTML input element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelSearchInput?: string = 'Search input';
 
   @State() isFieldChanged = false;
   @State() expanded = false;
-  @State() hasFocus = false;
 
   /**
    * Value changed
@@ -140,7 +133,6 @@ export class ExpandingSearch
       <Host
         class={{
           expanded: this.expanded,
-          'right-position': this.expanded,
           fullWidth: this.fullWidth,
         }}
       >
@@ -151,7 +143,7 @@ export class ExpandingSearch
           data-testid="button"
           onClick={() => this.expandInput()}
           tabindex={this.expanded ? -1 : 0}
-          iconColor={this.hasFocus ? '--si-sys-color-text-accent' : undefined}
+          iconColor={this.expanded ? '--si-sys-color-text-primary' : undefined}
           class={{
             'btn-search': true,
             'btn-search--expanded': this.expanded,
@@ -184,11 +176,7 @@ export class ExpandingSearch
             placeholder={this.placeholder}
             type="text"
             value={this.value}
-            onBlur={() => {
-              this.collapseInput();
-              this.hasFocus = false;
-            }}
-            onFocus={() => (this.hasFocus = true)}
+            onBlur={() => this.collapseInput()}
             onInput={(e: InputEvent) => this.onChange(e)}
             tabindex={this.expanded ? 0 : -1}
             aria-label={this.ariaLabelSearchInput}

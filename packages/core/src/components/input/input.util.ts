@@ -13,10 +13,11 @@ import {
   IxFormComponent,
   IxInputFieldComponent,
   ValidationResults,
+  clearInternalValidationClasses,
+  revalidate,
   shouldSuppressInternalValidation,
 } from '../utils/input';
 import { createMutationObserver } from '../utils/mutation-observer';
-import { convertToRemString } from '../utils/rwd.util';
 import { generateUUID } from '../utils/uuid';
 import { shakeInput } from './input.animation';
 
@@ -52,39 +53,60 @@ export function checkAllowedKeys<T>(
   }
 }
 
+// Last tracked validity, kept across `novalidate` toggles since the class is cleared there
+const lastValidityStates = new WeakMap<HTMLElement, boolean>();
+
 export async function checkInternalValidity<T>(
   comp: IxFormComponent<T>,
   input: HTMLInputElement | HTMLTextAreaElement
 ) {
+  const skipValidation = await shouldSuppressInternalValidation(comp);
   const validityState = input.validity;
-  const currentValidityState = !comp.hostElement.classList.contains(
-    'ix-invalid--validity-invalid'
-  );
+  const currentValidityState =
+    lastValidityStates.get(comp.hostElement) ??
+    !comp.hostElement.classList.contains('ix-invalid--validity-invalid');
   const newValidityState = validityState.valid;
+  const validityChanged = currentValidityState !== newValidityState;
 
-  if (currentValidityState !== newValidityState) {
+  // `novalidate`: track before emitting so a prevented event isn't re-emitted next check
+  if (skipValidation) {
+    lastValidityStates.set(comp.hostElement, newValidityState);
+  }
+
+  if (validityChanged) {
     const eventResult = comp.validityStateChange.emit(validityState);
     if (eventResult.defaultPrevented) {
       return;
     }
+  }
 
+  lastValidityStates.set(comp.hostElement, newValidityState);
+
+  // `novalidate`: still emit the event, but skip visual feedback
+  if (skipValidation) {
+    clearInternalValidationClasses(comp.hostElement);
+    return;
+  }
+
+  if (validityChanged || (comp.value !== null && comp.value !== undefined)) {
     comp.hostElement.classList.toggle(
       'ix-invalid--validity-invalid',
       !newValidityState
     );
   }
+}
 
-  if (comp.value === null || comp.value === undefined) {
-    return;
+// Revalidates after a prop like `required` changed; call after rendering
+export async function revalidateAfterPropChange<T>(
+  comp: IxFormComponent<T>,
+  input: HTMLInputElement | HTMLTextAreaElement | null | undefined,
+  touched: boolean
+) {
+  // Must run first: it only emits if the class doesn't match yet
+  if (input && touched) {
+    await checkInternalValidity(comp, input);
   }
-
-  const skipValidation = await shouldSuppressInternalValidation(comp);
-  if (skipValidation) {
-    return;
-  }
-
-  const { valid } = validityState;
-  comp.hostElement.classList.toggle('ix-invalid--validity-invalid', !valid);
+  await revalidate(comp);
 }
 
 export function onInputBlur<T>(
@@ -113,12 +135,12 @@ export function applyPaddingEnd(
     return;
   }
 
-  const padding = convertToRemString(width);
-  const basePadding = 'var(--si-sys-sizing-spacing-x-40, 0.5rem)';
+  const padding = `${width}px`;
+  const basePadding = 'var(--si-sys-sizing-spacing-x-40, 8px)';
 
   if (options.slotEnd) {
     inputElement.style.paddingRight = `calc(${padding} + ${basePadding} + ${
-      options.additionalPaddingRight ?? '0rem'
+      options.additionalPaddingRight ?? '0px'
     })`;
   } else {
     inputElement.style.paddingLeft = `calc(${padding} + ${basePadding})`;
@@ -156,15 +178,12 @@ export function adjustPaddingForStartAndEnd(
 export function getAriaAttributesForInput(
   component: IxInputFieldComponent
 ): A11yAttributes {
-  const inputAria: A11yAttributes = {
+  // `aria-errormessage` must reference an element id, it is set by
+  // `HookValidationLifecycle` to the error message element of `ix-field-wrapper`.
+  return {
     'aria-invalid': `${a11yBoolean(component.isInvalid)}`,
     'aria-required': `${a11yBoolean(component.required)}`,
   };
-
-  if (component.isInvalid && component.invalidText) {
-    inputAria['aria-errormessage'] = component.invalidText;
-  }
-  return inputAria;
 }
 
 export type DisposableChangesAndVisibilityObservers = () => void;
@@ -327,4 +346,16 @@ export async function emitPickerValidityStateChangeIfChanged(
     valueMissing: currentValueMissing,
     invalidReason: context.invalidReason,
   });
+}
+
+export function resetInputValidation<T>(
+  comp: IxInputFieldComponent<T>,
+  input: HTMLInputElement | HTMLTextAreaElement
+): void {
+  input.value = '';
+  input.removeAttribute('data-ix-touched');
+  lastValidityStates.delete(comp.hostElement);
+  clearInternalValidationClasses(comp.hostElement);
+  // Notify form integrations even when the value was already empty.
+  comp.hostElement.dispatchEvent(new Event('ixClear'));
 }

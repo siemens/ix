@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('button: basic', () => {
   regressionTest('should show loading spinner', async ({ page }) => {
@@ -63,4 +63,18 @@ regressionTest.describe('button: basic', () => {
     await page.goto('button/button-group');
     expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
   });
+});
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: fit-content">
+      <ix-button>Button</ix-button>
+    </div>`
+  );
+
+  await focusWithKeyboard(page, page.locator('ix-button'));
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
 });

@@ -12,10 +12,11 @@
 @use 'tokens/system' as sys;
 
 @use './menu-about.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: block;
-  background-color: var(--ix-menu-about-overlay--background);
-  padding: var(--ix-menu-about--padding);
+  background-color: cv.get-var('menu-about-overlay--background');
+  padding: cv.get-var('menu-about--padding');
   flex-grow: 1;
   position: absolute;
   width: 100%;
@@ -28,18 +29,23 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    height: var(--ix-menu-about-about-header--height);
-    margin-bottom: var(--ix-menu-about-about-header--margin-bottom);
+    min-height: cv.get-var('menu-about-about-header--min-height');
+    margin-bottom: cv.get-var('menu-about-about-header--margin-bottom');
 
     h2 {
-      color: var(--ix-menu-about-overlay-header--color);
-      margin-bottom: var(--ix-menu-about-heading--margin-bottom);
+      color: cv.get-var('menu-about-overlay-header--color');
+      // One line tall: the header grows with the heading's font size.
+      // Optical offset via margins without affecting the header height.
+      block-size: 1lh;
+      margin-block: cv.get-var('menu-about-heading--offset')
+        calc(-1 * #{cv.get-var('menu-about-heading--offset')});
+      margin-inline: 0;
 
       @include fonts.typography-h2;
     }
   }
 
   ix-tabs {
-    margin-bottom: var(--ix-menu-about--margin-bottom);
+    margin-bottom: cv.get-var('menu-about--margin-bottom');
   }
 }

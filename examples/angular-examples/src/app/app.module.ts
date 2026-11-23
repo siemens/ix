@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { NgModule } from '@angular/core';
+import { NgModule, provideZonelessChangeDetection } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -78,14 +78,19 @@ import CustomField from '../preview-examples/custom-field';
 import CustomFieldValidation from '../preview-examples/custom-field-validation';
 import DateDropdown from '../preview-examples/date-dropdown';
 import DateDropdownPresets from '../preview-examples/date-dropdown-presets';
+import DateDropdownDisplayFormat from '../preview-examples/date-dropdown-display-format';
+import DateDropdownRequireConfirmation from '../preview-examples/date-dropdown-require-confirmation';
 import DateRange from '../preview-examples/date-range';
 import DatetimeRange from '../preview-examples/datetime-range';
 import DateInput from '../preview-examples/date-input';
 import DateInputDisabled from '../preview-examples/date-input-disabled';
 import DateInputLabel from '../preview-examples/date-input-label';
 import DateInputReadonly from '../preview-examples/date-input-readonly';
+import DateInputDisplayFormat from '../preview-examples/date-input-display-format';
+import DateInputRequireConfirmation from '../preview-examples/date-input-require-confirmation';
 import DateInputValidation from '../preview-examples/date-input-validation';
 import DateInputWithSlots from '../preview-examples/date-input-with-slots';
+import DatePickerRequireConfirmation from '../preview-examples/date-picker-require-confirmation';
 import Datepicker from '../preview-examples/datepicker';
 import DatepickerLocale from '../preview-examples/datepicker-locale';
 import DatepickerRange from '../preview-examples/datepicker-range';
@@ -96,8 +101,11 @@ import DatetimeInputDisabled from '../preview-examples/datetime-input-disabled';
 import DatetimeInputLabel from '../preview-examples/datetime-input-label';
 import DatetimeInputMinMaxDate from '../preview-examples/datetime-input-min-max-date';
 import DatetimeInputReadonly from '../preview-examples/datetime-input-readonly';
+import DatetimeInputDisplayFormat from '../preview-examples/datetime-input-display-format';
+import DatetimeInputRequireConfirmation from '../preview-examples/datetime-input-require-confirmation';
 import DatetimeInputValidation from '../preview-examples/datetime-input-validation';
 import DatetimeInputWithSlots from '../preview-examples/datetime-input-with-slots';
+import DatetimePickerRequireConfirmation from '../preview-examples/datetime-picker-require-confirmation';
 import Divider from '../preview-examples/divider';
 import Dropdown from '../preview-examples/dropdown';
 import DropdownButton from '../preview-examples/dropdown-button';
@@ -125,6 +133,7 @@ import EmptyState from '../preview-examples/empty-state';
 import EmptyStateCompact from '../preview-examples/empty-state-compact';
 import EmptyStateCompactBreak from '../preview-examples/empty-state-compact-break';
 import InfoPage from '../preview-examples/info-page';
+import InfoPageIllustration from '../preview-examples/info-page-illustration';
 import EventList from '../preview-examples/event-list';
 import EventListCompact from '../preview-examples/event-list-compact';
 import EventListCustomItemHeight from '../preview-examples/event-list-custom-item-height';
@@ -140,6 +149,14 @@ import FormCheckboxValidation from '../preview-examples/form-checkbox-validation
 import FormLayoutAuto from '../preview-examples/form-layout-auto';
 import FormLayoutGrid from '../preview-examples/form-layout-grid';
 import FormValidation from '../preview-examples/form-validation';
+import GenericListActionOnHover from '../preview-examples/generic-list-action-on-hover';
+import GenericListAdditionalOptions from '../preview-examples/generic-list-additional-options';
+import GenericListBasic from '../preview-examples/generic-list-basic';
+import GenericListCustomContent from '../preview-examples/generic-list-custom-content';
+import GenericListDraggable from '../preview-examples/generic-list-draggable';
+import GenericListNotificationIcon from '../preview-examples/generic-list-notification-icon';
+import GenericListUsers from '../preview-examples/generic-list-users';
+import GenericListVariants from '../preview-examples/generic-list-variants';
 import Grid from '../preview-examples/grid';
 import GridPadding from '../preview-examples/grid-padding';
 import GridSize from '../preview-examples/grid-size';
@@ -171,6 +188,7 @@ import KeyValueList from '../preview-examples/key-value-list';
 import KeyValueListStriped from '../preview-examples/key-value-list-striped';
 import KeyValueListWithCustomValue from '../preview-examples/key-value-list-with-custom-value';
 import KeyValueListWithIcon from '../preview-examples/key-value-list-with-icon';
+import KeyValueListWithoutDivider from '../preview-examples/key-value-list-without-divider';
 import KeyValueWithCustomValue from '../preview-examples/key-value-with-custom-value';
 import KeyValueWithIcon from '../preview-examples/key-value-with-icon';
 import KeyValueWithLabelLeft from '../preview-examples/key-value-with-label-left';
@@ -179,6 +197,10 @@ import LayoutAuto from '../preview-examples/layout-auto';
 import LayoutAutoCustom from '../preview-examples/layout-auto-custom';
 import LinkButton from '../preview-examples/link-button';
 import LinkButtonDisabled from '../preview-examples/link-button-disabled';
+import LinkButtonInternal from '../preview-examples/link-button-internal';
+import LinkButtonExternal from '../preview-examples/link-button-external';
+import LinkButtonFile from '../preview-examples/link-button-file';
+import LinkButtonAction from '../preview-examples/link-button-action';
 import Loading from '../preview-examples/loading';
 import MenuCategory from '../preview-examples/menu-category';
 import MenuWithBottomTabs from '../preview-examples/menu-with-bottom-tabs';
@@ -343,14 +365,19 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     CustomFieldValidation,
     DateDropdown,
     DateDropdownPresets,
+    DateDropdownDisplayFormat,
+    DateDropdownRequireConfirmation,
     DateRange,
     DatetimeRange,
     DateInput,
     DateInputDisabled,
     DateInputLabel,
     DateInputReadonly,
+    DateInputDisplayFormat,
+    DateInputRequireConfirmation,
     DateInputValidation,
     DateInputWithSlots,
+    DatePickerRequireConfirmation,
     ContentExample,
     ContentHeader,
     ContentHeaderNoBack,
@@ -366,8 +393,11 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     DatetimeInputLabel,
     DatetimeInputMinMaxDate,
     DatetimeInputReadonly,
+    DatetimeInputDisplayFormat,
+    DatetimeInputRequireConfirmation,
     DatetimeInputValidation,
     DatetimeInputWithSlots,
+    DatetimePickerRequireConfirmation,
     Divider,
     DropdownButtonIcon,
     DropdownButton,
@@ -395,6 +425,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     EmptyStateCompact,
     EmptyState,
     InfoPage,
+    InfoPageIllustration,
     EventListCompact,
     EventListCustomItemHeight,
     EventListFilled,
@@ -402,6 +433,14 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     EventList,
     ExpandingSearch,
     FlipTile,
+    GenericListActionOnHover,
+    GenericListAdditionalOptions,
+    GenericListBasic,
+    GenericListCustomContent,
+    GenericListDraggable,
+    GenericListNotificationIcon,
+    GenericListUsers,
+    GenericListVariants,
     FormCheckbox,
     FormCheckboxDisabled,
     FormCheckboxValidation,
@@ -427,6 +466,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     KeyValueListStriped,
     KeyValueListWithCustomValue,
     KeyValueListWithIcon,
+    KeyValueListWithoutDivider,
     KeyValueList,
     KeyValueWithCustomValue,
     KeyValueWithIcon,
@@ -435,6 +475,10 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
     Kpi,
     LinkButtonDisabled,
     LinkButton,
+    LinkButtonInternal,
+    LinkButtonExternal,
+    LinkButtonFile,
+    LinkButtonAction,
     Loading,
     MenuCategory,
     MenuWithBottomTabs,
@@ -558,7 +602,7 @@ import WorkflowVertical from '../preview-examples/workflow-vertical';
       echarts,
     }),
   ],
-  providers: [],
+  providers: [provideZonelessChangeDetection()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

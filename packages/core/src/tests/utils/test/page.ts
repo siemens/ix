@@ -14,9 +14,21 @@ import {
   Locator,
   Page,
   PageScreenshotOptions,
-  test as testBase,
+  PlaywrightTestArgs,
+  PlaywrightTestOptions,
+  PlaywrightWorkerArgs,
+  PlaywrightWorkerOptions,
+  test as playwrightTest,
+  TestType,
 } from '@playwright/test';
 import type { addIcons as _addIcons } from '@siemens/ix-icons';
+
+// Playwright >= 1.64 ships a built-in story `mount` fixture with an incompatible
+// signature. Drop it from the base type so the IX `mount` fixture can replace it.
+const testBase = playwrightTest as unknown as TestType<
+  Omit<PlaywrightTestArgs, 'mount'> & PlaywrightTestOptions,
+  PlaywrightWorkerArgs & PlaywrightWorkerOptions
+>;
 
 interface TestInfo extends _TestInfo {
   componentTest?: boolean;
@@ -33,7 +45,8 @@ export type Mount = (
 async function extendPageFixture(page: Page, testInfo: TestInfo) {
   const originalGoto = page.goto.bind(page);
   const originalScreenshot = page.screenshot.bind(page);
-  const dataIxTheme = testInfo.project.metadata?.['data-ix-theme'] ?? 'classic';
+  const dataIxTheme =
+    testInfo.project.metadata?.['data-ix-theme'] ?? 'community';
   const dataIxColorSchema =
     testInfo.project.metadata?.['data-ix-color-schema'] ?? 'dark';
   testInfo.annotations.push({
@@ -180,7 +193,7 @@ export const regressionTest = testBase.extend<{
   mount: async ({ page }, use, testInfo: TestInfo) => {
     testInfo.componentTest = true;
     const dataIxTheme =
-      testInfo.project.metadata?.['data-ix-theme'] ?? 'classic';
+      testInfo.project.metadata?.['data-ix-theme'] ?? 'community';
     const dataIxColorSchema =
       testInfo.project.metadata?.['data-ix-color-schema'] ?? 'dark';
     testInfo.annotations.push({
@@ -189,6 +202,8 @@ export const regressionTest = testBase.extend<{
     await page.goto(
       `http://127.0.0.1:8080/src/tests/utils/ct/index.html?data-ix-theme=${dataIxTheme}&data-ix-color-schema=${dataIxColorSchema}`
     );
+    // Keep the pointer away from mounted components to avoid unintended hover states
+    await page.mouse.move(9999, 9999);
     await use((selector, config) => mountComponent(page, selector, config));
   },
 });

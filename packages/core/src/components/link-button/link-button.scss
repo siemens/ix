@@ -11,45 +11,63 @@
 @use 'mixins/hover';
 
 @use './link-button.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: inline-flex;
-  height: var(--ix-link-button--height);
-  min-width: var(--ix-link-button--min-width);
+  height: cv.get-var('link-button--height');
+  min-width: cv.get-var('link-button--min-width');
 
   .link-button {
     display: inline-flex;
     position: relative;
     width: 100%;
-    padding: var(--ix-link-button--padding);
+    padding: cv.get-var('link-button--padding');
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: transparent;
-    color: var(--ix-link-button--color);
+    color: cv.get-var('link-button--color');
     cursor: pointer;
-    text-decoration: none;
+
+    .icon:first-child {
+      margin-right: cv.get-var('link-button-icon--margin');
+    }
+
+    .icon:last-child {
+      margin-left: cv.get-var('link-button-icon--margin');
+    }
 
     .link {
       display: block;
       position: relative;
-      width: 100%;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
       text-decoration: underline;
-      text-underline-offset: var(--ix-link-button-link--text-underline-offset);
     }
 
     @include hover.hover {
-      color: var(--ix-link-button--color--hover);
+      color: cv.get-var('link-button--color--hover');
+
+      .link {
+        text-decoration-thickness: cv.get-var(
+          'link-button-link--text-underline-thickness'
+        );
+      }
     }
 
     @include hover.active {
-      color: var(--ix-link-button--color--active);
+      color: cv.get-var('link-button--color--active');
+
+      .link {
+        text-decoration-thickness: cv.get-var(
+          'link-button-link--text-underline-thickness'
+        );
+      }
     }
 
     &.disabled {
       cursor: default;
-      color: var(--ix-link-button--color--disabled);
+      color: cv.get-var('link-button--color--disabled');
     }
 
     a {
@@ -58,7 +76,7 @@
   }
 
   :focus-visible {
-    outline: var(--ix-link-button--outline-width--focus) solid
-      var(--ix-link-button--outline-color--focus);
+    outline: cv.get-var('link-button--outline-width--focus') solid
+      cv.get-var('link-button--outline-color--focus');
   }
 }

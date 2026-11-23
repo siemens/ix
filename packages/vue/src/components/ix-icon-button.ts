@@ -15,5 +15,6 @@ export const IxIconButton: StencilVueComponent<JSX.IxIconButton> = /*@__PURE__*/
   'disabled',
   'type',
   'loading',
-  'inert'
+  'inert',
+  'dropdownIndicator'
 ]);
