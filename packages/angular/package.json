@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/angular"
   },
-  "version": "5.2.1",
+  "version": "6.0.0",
   "description": "Siemens iX for Angular",
   "scripts": {
     "build": "ng-packagr -c tsconfig.json",
@@ -16,13 +16,13 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@siemens/ix": "~5.2.1",
+    "@siemens/ix": "~6.0.0",
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
     "@angular/core": ">=21.2.25",
     "@angular/forms": ">=21.2.25",
-    "@siemens/ix-icons": "0.0.0-beta-20261120131425"
+    "@siemens/ix-icons": "^4.0.0"
   },
   "devDependencies": {
     "@angular/animations": "^21.2.25",

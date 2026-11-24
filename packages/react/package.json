@@ -7,7 +7,7 @@
     "url": "https://github.com/siemens/ix",
     "directory": "packages/react"
   },
-  "version": "5.2.1",
+  "version": "6.0.0",
   "description": "Siemens iX for React",
   "files": [
     "LICENSE",
@@ -70,12 +70,12 @@
     "vitest-browser-react": "^2.3.0"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "0.0.0-beta-20261120131425",
+    "@siemens/ix-icons": "^4.0.0",
     "react": "^18 || ^19",
     "react-dom": "^18 || ^19"
   },
   "dependencies": {
-    "@siemens/ix": "~5.2.1",
+    "@siemens/ix": "~6.0.0",
     "@stencil/react-output-target": "^1.6.5",
     "tslib": "*"
   }
