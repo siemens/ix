@@ -1198,8 +1198,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       '@stencil/vue-output-target':
-        specifier: ^0.14.6
-        version: 0.14.6(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.8.3))
+        specifier: ^0.15.0
+        version: 0.15.0(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.8.3))
     devDependencies:
       '@testing-library/vue':
         specifier: ^8.1.0
@@ -5949,6 +5949,18 @@ packages:
 
   '@stencil/vue-output-target@0.14.6':
     resolution: {integrity: sha512-IkgRf6UjoZg83CWguSxiRMqNLIRI29C0SBDj3m6OuB5ShVDqt2idV+kROdHhzR9DQFEPbKZqp7XNJIfrYN1zhg==}
+    peerDependencies:
+      '@stencil/core': '>=2.0.0 || >=3 || >=4.0.0 || ^5.0.0 || >=5.0.0-beta.18'
+      vue: ^3.4.38
+      vue-router: ^4.5.0 || ^5.0.0
+    peerDependenciesMeta:
+      '@stencil/core':
+        optional: true
+      vue-router:
+        optional: true
+
+  '@stencil/vue-output-target@0.15.0':
+    resolution: {integrity: sha512-pkI49nb/ZULvJhq07w62b1JRGMOLUTMTsjeb3ZknuXARnA58v7svT1yDedhw5iWfZCi0bXOb3Xp+dnPRQksfUQ==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >=4.0.0 || ^5.0.0 || >=5.0.0-beta.18'
       vue: ^3.4.38
@@ -18182,7 +18194,7 @@ snapshots:
     optionalDependencies:
       '@stencil/core': 4.45.2
 
-  '@stencil/vue-output-target@0.14.6(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.8.3))':
+  '@stencil/vue-output-target@0.15.0(@stencil/core@4.45.2)(vue@3.5.44(typescript@5.8.3))':
     dependencies:
       vue: 3.5.44(typescript@5.8.3)
     optionalDependencies:
