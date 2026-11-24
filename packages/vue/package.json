@@ -51,7 +51,7 @@
     "vue-tsc": "^3.3.14"
   },
   "peerDependencies": {
-    "@siemens/ix-icons": "0.0.0-beta-20261120131425",
+    "@siemens/ix-icons": "^4.0.0",
     "vue": "^3.5.0"
   }
 }
