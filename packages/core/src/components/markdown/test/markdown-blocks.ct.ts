@@ -47,6 +47,8 @@ regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
     ].join('\n\n')
   );
   await expect(page.locator('ix-markdown ix-checkbox')).toHaveCount(2);
+  await expect(page.getByRole('checkbox', { name: 'Done' })).toBeVisible();
+  await expect(page.getByRole('checkbox', { name: 'Open' })).toBeVisible();
 
   const results = await makeAxeBuilder().analyze();
   expect(results.violations).toEqual([]);
@@ -86,8 +88,10 @@ regressionTest(
   async ({ mount, page }) => {
     const markdown = await mountMarkdown(mount, page, '- [ ] Open');
     const checkbox = markdown.locator('ix-checkbox');
-    await expect(checkbox).toHaveCount(1);
-    await checkbox.click({ force: true });
+    await expect(checkbox).toHaveAttribute('hydrated');
+    const label = markdown.getByText('Open');
+    await expect(label).toBeVisible();
+    await label.click({ force: true });
     await expect(markdown.getByRole('checkbox')).not.toBeChecked();
   }
 );
