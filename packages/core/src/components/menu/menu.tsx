@@ -703,7 +703,13 @@ export class Menu {
 
   @Listen('resize', { target: 'window' })
   private handleOverflowIndicator() {
-    const { clientHeight, scrollTop, scrollHeight } = this.menuItemsContainer;
+    const menuItemsContainer = this.menu?.querySelector('.tabs');
+
+    if (!menuItemsContainer) {
+      return;
+    }
+
+    const { clientHeight, scrollTop, scrollHeight } = menuItemsContainer;
     this.itemsScrollShadowTop = scrollTop > 0;
     this.itemsScrollShadowBottom =
       Math.round(scrollTop + clientHeight) < scrollHeight;
