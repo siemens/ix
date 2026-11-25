@@ -7,17 +7,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-chat-welcome--color: #{sys.$si-sys-color-text-primary};
-  --ix-chat-welcome-content--color: #{sys.$si-sys-color-text-secondary};
-}
-
-:host {
-  --ix-chat-welcome--gap: #{sys.$si-sys-sizing-spacing-y-50};
-  --ix-chat-welcome-heading--font: #{sys.$si-sys-typography-h2};
-  --ix-chat-welcome-content--font: #{sys.$si-sys-typography-body};
-  --ix-chat-welcome-suggestions--gap: #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-chat-welcome-suggestions--margin-top: #{sys.$si-sys-sizing-spacing-y-40};
+  @include cv.define-vars(
+    (
+      'chat-welcome--color': sys.$si-sys-color-text-primary,
+      'chat-welcome-content--color': sys.$si-sys-color-text-secondary,
+      'chat-welcome--gap': sys.$si-sys-sizing-spacing-y-50,
+      'chat-welcome-heading--font': sys.$si-sys-typography-h2,
+      'chat-welcome-content--font': sys.$si-sys-typography-body,
+      'chat-welcome-suggestions--gap': #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40},
+      'chat-welcome-suggestions--margin-top': sys.$si-sys-sizing-spacing-y-40,
+    )
+  );
 }

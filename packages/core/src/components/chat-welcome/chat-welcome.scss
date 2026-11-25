@@ -9,26 +9,27 @@
 
 @use 'mixins/shadow-dom/component';
 @use './chat-welcome.vars';
+@use 'mixins/component-vars' as cv;
 
 :host {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--ix-chat-welcome--gap);
+  gap: cv.get-var('chat-welcome--gap');
   min-width: 0;
-  color: var(--ix-chat-welcome--color);
+  color: cv.get-var('chat-welcome--color');
   text-align: center;
 
   @include component.ix-component;
 
   .heading {
     margin: 0;
-    font: var(--ix-chat-welcome-heading--font);
+    font: cv.get-var('chat-welcome-heading--font');
   }
 
   .content {
-    color: var(--ix-chat-welcome-content--color);
-    font: var(--ix-chat-welcome-content--font);
+    color: cv.get-var('chat-welcome-content--color');
+    font: cv.get-var('chat-welcome-content--font');
   }
 
   .content ::slotted(*) {
@@ -39,9 +40,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--ix-chat-welcome-suggestions--gap);
+    gap: cv.get-var('chat-welcome-suggestions--gap');
     max-width: 100%;
-    margin-top: var(--ix-chat-welcome-suggestions--margin-top);
+    margin-top: cv.get-var('chat-welcome-suggestions--margin-top');
   }
 
   [hidden] {
