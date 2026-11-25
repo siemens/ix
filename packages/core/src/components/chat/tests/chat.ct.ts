@@ -13,7 +13,7 @@ regressionTest(
   'ix-chat renders chat messages and chat input',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat style="height: 32rem">
+      <ix-chat style="height: 512px">
         <ix-chat-ai-message>
           <p>Effective asset performance management improves uptime.</p>
         </ix-chat-ai-message>
@@ -41,7 +41,7 @@ regressionTest(
   'ix-chat hides prompt layout when no prompt is assigned',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat style="height: 32rem">
+      <ix-chat style="height: 512px">
         <ix-chat-ai-message>
           <p>Analyze alarms.</p>
         </ix-chat-ai-message>
@@ -60,7 +60,7 @@ regressionTest(
   'ix-chat provides a scrollable message area',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat style="height: 20rem">
+      <ix-chat style="height: 320px">
         <ix-chat-ai-message>
           <p>Analyze alarms.</p>
         </ix-chat-ai-message>

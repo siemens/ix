@@ -4,7 +4,7 @@ import { IxComponentInterface } from '../utils/internal';
 /**
  * Responsive form layout that automatically adjusts columns to the available width.
  *
- * @documentation https://ix.siemens.io//docs/components/layout-auto/code.md
+ * @documentation https://ix.siemens.io/docs/components/layout-auto/code.md
  * @slot - Layout content.
  */
 @Component({
@@ -97,7 +97,7 @@ export class LayoutForm implements IxComponentInterface {
     this.updateMediaQueryList();
 
     let layoutColumns = 1;
-    let columnSpacing = 'var(--ix-layout-grid-gap)';
+    let columnSpacing = 'var(--ix-layout-grid--gap)';
 
     this.mediaQueryList.forEach((mediaQuery) => {
       if (mediaQuery.mediaQuery.matches) {

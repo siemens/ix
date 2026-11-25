@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('avatar', () => {
   regressionTest('basic', async ({ page }) => {
@@ -51,4 +51,18 @@ regressionTest.describe('avatar', () => {
 
     await expect(page).toHaveScreenshot();
   });
+});
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: fit-content">
+      <ix-application-header name="App" style="width: 40rem"><ix-avatar username="John Doe" extra="Administrator"></ix-avatar></ix-application-header>
+    </div>`
+  );
+
+  await focusWithKeyboard(page, page.locator('ix-avatar'));
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
 });

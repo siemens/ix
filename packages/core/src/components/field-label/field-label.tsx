@@ -22,9 +22,9 @@ import { closestPassShadow } from '../utils/shadow-dom';
 /**
  * Label for a form field.
  *
- * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
- * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
- * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+ * @documentation https://ix.siemens.io/docs/components/forms-field/guide.md
+ * @documentation https://ix.siemens.io/docs/components/forms-layout/guide.md
+ * @documentation https://ix.siemens.io/docs/components/forms-validation/guide.md
  * @figma-main-component-id 1682:60975
  *
  * @slot - Label content.
@@ -219,7 +219,7 @@ export class FormFieldLabel implements IxComponentInterface {
           ref={this.labelRef}
         >
           <ix-typography
-            textColor={this.isInvalid ? 'alarm' : 'soft'}
+            textColor={this.isInvalid ? 'danger' : 'secondary'}
             format="body"
           >
             <slot></slot>

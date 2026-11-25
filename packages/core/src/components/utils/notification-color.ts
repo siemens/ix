@@ -8,13 +8,14 @@
  */
 
 /**
- * Icon colors representing common notification states (e.g. alarm, info).
+ * Icon colors representing common notification states (e.g. danger, information).
  */
 export type NotificationColor =
   | '--si-sys-color-text-primary'
   | '--si-sys-color-text-information'
   | '--si-sys-color-text-critical'
   | '--si-sys-color-text-warning'
+  | '--si-sys-color-text-caution'
   | '--si-sys-color-text-success'
   | '--si-sys-color-text-danger'
   | '--si-sys-color-text-secondary'

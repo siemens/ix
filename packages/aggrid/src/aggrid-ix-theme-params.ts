@@ -82,7 +82,7 @@ export const aggridIxThemeParams = {
   'invalidColor': `var(--si-sys-color-text-danger)`,
   'menuBackgroundColor': `var(--si-sys-color-background-1)`,
   'menuBorder': `false`,
-  'menuShadow': `var(--si-sys-color-effects-shadow-4)`,
+  'menuShadow': `var(--si-sys-color-effects-shadow-40)`,
   'oddRowBackgroundColor': `var(--si-sys-color-background-2)`,
   'panelTitleBarBorder': `false`,
   'pickerButtonBackgroundColor': `var(--si-sys-color-background-2)`,

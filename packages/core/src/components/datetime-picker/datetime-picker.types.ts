@@ -6,12 +6,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export type DateTimeSelectEvent = {
-  from?: string;
-  to?: string;
+import type { DateRangeWithIso } from '../utils/datetime/date-time.types';
+
+export type DateTimeSelectEvent = DateRangeWithIso & {
   time: string;
-  isoFrom?: string;
-  isoTo?: string;
   isoTime?: string;
 };
 

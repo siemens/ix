@@ -31,6 +31,11 @@ regressionTest.describe('date picker', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 
+  regressionTest('weekday labels', async ({ page }) => {
+    await page.goto('date-picker/weekday-labels');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
+
   regressionTest('locale-dependent format', async ({ page }) => {
     await page.goto('date-picker/i18n-locale-format');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
@@ -50,4 +55,17 @@ regressionTest.describe('date picker', () => {
     await page.goto('date-picker/year-month-selection');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest(
+    'require confirmation - pending selection',
+    async ({ page }) => {
+      await page.goto('date-picker/require-confirmation');
+      const datePicker = page.locator('ix-date-picker');
+      await datePicker.getByRole('gridcell', { name: /^20 / }).click();
+      await expect(datePicker.getByTestId('confirm')).toBeEnabled();
+      await page.mouse.move(5, 5, { steps: 10 });
+
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+    }
+  );
 });

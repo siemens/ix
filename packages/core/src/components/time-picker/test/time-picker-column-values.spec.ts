@@ -8,7 +8,11 @@
  */
 
 import { describe, expect, it } from 'vitest';
-import { buildTimePickerColumnNumberArrays } from '../time-picker-column-values';
+import {
+  buildTimePickerColumnNumberArrays,
+  isValidTimePickerInterval,
+  TIME_PICKER_MAX_COLUMN_ENTRIES,
+} from '../time-picker-column-values';
 
 const iv = (
   hourInterval: number,
@@ -86,5 +90,46 @@ describe('buildTimePickerColumnNumberArrays', () => {
       undefined
     );
     expect(millisecondsNumbers).toEqual([0, 250, 500, 750]);
+  });
+});
+
+describe('isValidTimePickerInterval', () => {
+  it('accepts supported intervals', () => {
+    expect(isValidTimePickerInterval('hour', 1, false)).toBe(true);
+    expect(isValidTimePickerInterval('hour', 23, false)).toBe(true);
+    expect(isValidTimePickerInterval('hour', 12, true)).toBe(true);
+    expect(isValidTimePickerInterval('minute', 15, false)).toBe(true);
+    expect(isValidTimePickerInterval('minute', 0.5, false)).toBe(true);
+    expect(isValidTimePickerInterval('second', 59, false)).toBe(true);
+    expect(isValidTimePickerInterval('millisecond', 1, false)).toBe(true);
+    expect(isValidTimePickerInterval('millisecond', 999, false)).toBe(true);
+  });
+
+  it('rejects zero, negative and non-finite intervals', () => {
+    for (const unit of ['hour', 'minute', 'second', 'millisecond'] as const) {
+      expect(isValidTimePickerInterval(unit, 0, false)).toBe(false);
+      expect(isValidTimePickerInterval(unit, -1, false)).toBe(false);
+      expect(isValidTimePickerInterval(unit, Number.NaN, false)).toBe(false);
+      expect(isValidTimePickerInterval(unit, Infinity, false)).toBe(false);
+    }
+  });
+
+  it('rejects intervals above the column range', () => {
+    expect(isValidTimePickerInterval('hour', 24, false)).toBe(false);
+    expect(isValidTimePickerInterval('hour', 13, true)).toBe(false);
+    expect(isValidTimePickerInterval('minute', 60, false)).toBe(false);
+    expect(isValidTimePickerInterval('second', 60, false)).toBe(false);
+    expect(isValidTimePickerInterval('millisecond', 1000, false)).toBe(false);
+  });
+
+  it('rejects non-integer hour intervals', () => {
+    expect(isValidTimePickerInterval('hour', 1.5, false)).toBe(false);
+  });
+
+  it(`rejects intervals producing more than ${TIME_PICKER_MAX_COLUMN_ENTRIES} entries`, () => {
+    expect(isValidTimePickerInterval('minute', 0.06, false)).toBe(true);
+    expect(isValidTimePickerInterval('minute', 0.059, false)).toBe(false);
+    expect(isValidTimePickerInterval('second', 1e-9, false)).toBe(false);
+    expect(isValidTimePickerInterval('millisecond', 0.5, false)).toBe(false);
   });
 });

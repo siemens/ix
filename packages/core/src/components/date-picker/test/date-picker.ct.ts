@@ -7,7 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect, Page } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { DateTime } from 'luxon';
+import {
+  calendarDayCell,
+  dateChangeDetail,
+  formatDateTime,
+  recordEvents,
+  regressionTest,
+} from '@utils/test';
 
 const DatePickerSelector = 'ix-date-picker';
 const getDateObj = async (page: Page) => {
@@ -15,6 +22,26 @@ const getDateObj = async (page: Page) => {
     return Promise.all(elements.map((elem) => elem.getCurrentDate()));
   });
 };
+
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`<ix-date-picker from="2024/10/10"></ix-date-picker>`);
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+regressionTest(
+  'accessibility with narrow weekday labels',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(
+      `<ix-date-picker from="2024/10/10" locale="ar"></ix-date-picker>`
+    );
+    await expect(page.locator(DatePickerSelector)).toHaveAttribute('hydrated');
+
+    const results = await makeAxeBuilder().analyze();
+    expect(results.violations).toEqual([]);
+  }
+);
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-picker from="2024/10/10"></ix-date-picker>`);
@@ -34,6 +61,114 @@ regressionTest('translation', async ({ mount, page }) => {
   const header = page.getByText('Januar').nth(0);
   await expect(header).toHaveCount(1);
 });
+
+regressionTest(
+  'defers year options until opened and keeps the selected and allowed years correct',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-picker from="2023/09/05" min-date="2023/01/01" max-date="2025/12/31" single-selection></ix-date-picker>`
+    );
+
+    const datePicker = page.locator(DatePickerSelector);
+    await expect(datePicker).toHaveAttribute('hydrated');
+
+    const yearSelection = datePicker.getByRole('button', {
+      name: 'Select year',
+    });
+    const yearOptions = yearSelection.locator('ix-dropdown-item');
+
+    await expect(yearOptions).toHaveCount(0);
+
+    await yearSelection.click();
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+
+    const selectedYear = yearSelection.getByRole('menuitem', {
+      name: '2023',
+    });
+    await expect(selectedYear).toBeVisible();
+    await expect(selectedYear).toHaveAttribute('checked', '');
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2022' })
+    ).toHaveClass(/disabled-item/);
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2026' })
+    ).toHaveClass(/disabled-item/);
+
+    await yearSelection.getByRole('menuitem', { name: '2024' }).click();
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'false');
+    await expect(yearSelection.locator('[slot="button-label"]')).toHaveText(
+      '2024'
+    );
+
+    await yearSelection.click();
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2024' })
+    ).toHaveAttribute('checked', '');
+  }
+);
+
+regressionTest(
+  'scrolls the selected year into view on first open',
+  async ({ mount, page }) => {
+    await mount(
+      `<ix-date-picker from="2023/09/05" single-selection></ix-date-picker>`
+    );
+
+    const datePicker = page.locator(DatePickerSelector);
+    await expect(datePicker).toHaveAttribute('hydrated');
+
+    const yearSelection = datePicker.getByRole('button', {
+      name: 'Select year',
+    });
+    await yearSelection.click();
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+
+    await expect(
+      yearSelection.getByRole('menuitem', { name: '2023' })
+    ).toBeInViewport();
+  }
+);
+
+regressionTest(
+  'supports keyboard navigation and accessible year options',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(
+      `<ix-date-picker from="2023/09/05" single-selection></ix-date-picker>`
+    );
+
+    const datePicker = page.locator(DatePickerSelector);
+    await expect(datePicker).toHaveAttribute('hydrated');
+
+    const yearSelection = datePicker.getByRole('button', {
+      name: 'Select year',
+    });
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+
+    await yearSelection.focus();
+    await page.keyboard.press('ArrowDown');
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'true');
+
+    const selectedYear = yearSelection.getByRole('menuitem', {
+      name: '2023',
+    });
+    await expect(selectedYear).toBeVisible();
+    const selectedYearId = await selectedYear.getAttribute('id');
+    if (selectedYearId === null) {
+      throw new Error(
+        'Year menu items must have an id for keyboard navigation'
+      );
+    }
+    await expect(yearSelection).toHaveAttribute(
+      'aria-activedescendant',
+      selectedYearId
+    );
+
+    await page.keyboard.press('Escape');
+    await expect(yearSelection).toHaveAttribute('aria-expanded', 'false');
+  }
+);
 
 regressionTest.describe('date picker tests single', () => {
   regressionTest.beforeEach(async ({ mount }) => {
@@ -104,6 +239,30 @@ regressionTest.describe('date picker tests single', () => {
       isoTo: undefined,
     });
   });
+
+  regressionTest(
+    'picking a date emits dateChange and dateSelect',
+    async ({ page }) => {
+      const datePicker = page.locator(DatePickerSelector);
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateSelect',
+      ]);
+
+      await page.getByText(/^19$/).click();
+
+      const expected = {
+        from: '2023/09/19',
+        to: undefined,
+        isoFrom: '2023-09-19',
+        isoTo: undefined,
+      };
+      expect(await events()).toEqual([
+        { type: 'dateChange', detail: expected },
+        { type: 'dateSelect', detail: expected },
+      ]);
+    }
+  );
 
   regressionTest('select different date in next month', async ({ page }) => {
     await page.waitForSelector('ix-date-time-card');
@@ -278,29 +437,13 @@ regressionTest.describe('date picker tests range', () => {
 
   regressionTest.describe('date picker range undefined values test', () => {
     regressionTest(
-      'dateSelect event with undefined from and to values',
+      'done is disabled without a selection',
       async ({ mount, page }) => {
         await mount(`<ix-date-picker></ix-date-picker>`);
 
         await page.waitForSelector('ix-date-time-card');
 
-        const dateSelectEventPromise = page.evaluate(() => {
-          return new Promise((resolve) => {
-            document.addEventListener('dateSelect', (event) => {
-              resolve((event as CustomEvent).detail);
-            });
-          });
-        });
-
-        await page.getByText('Done').click();
-
-        const eventDetail = await dateSelectEventPromise;
-        expect(eventDetail).toEqual({
-          from: undefined,
-          to: undefined,
-          isoFrom: undefined,
-          isoTo: undefined,
-        });
+        await expect(page.getByRole('button', { name: 'Done' })).toBeDisabled();
       }
     );
   });
@@ -353,10 +496,30 @@ regressionTest.describe('date picker tests range', () => {
       });
     });
 
+    await page.getByText(/^12$/).click();
+    await page.getByText(/^17$/).click();
     await page.getByText('Done').click();
 
     expect(await dateSelectEventPromise).toBeTruthy();
   });
+
+  regressionTest(
+    'done is disabled while the range is incomplete or unchanged',
+    async ({ page }) => {
+      const done = page.getByRole('button', { name: 'Done' });
+
+      await expect(done).toBeDisabled();
+
+      await page.getByText(/^12$/).click();
+      await expect(done).toBeDisabled();
+
+      await page.getByText(/^17$/).click();
+      await expect(done).toBeEnabled();
+
+      await done.click();
+      await expect(done).toBeDisabled();
+    }
+  );
 });
 
 regressionTest.describe('locale support', () => {
@@ -654,14 +817,17 @@ regressionTest.describe('keyboard navigation', () => {
 });
 
 regressionTest.describe('month dropdown min/max range', () => {
+  // The dropdown button and its menu share the label, so query them by role.
+  // The menu items are slotted into the button, so they are queried from it.
   const openMonthDropdown = async (page: Page) => {
     await page.waitForSelector('ix-date-time-card');
-    const monthSelection = page.getByRole('button', {
-      name: 'Select month',
-    });
+    const monthSelection = page.getByRole('button', { name: 'Select month' });
 
     await expect(monthSelection).toBeVisible();
     await monthSelection.click();
+    await expect(
+      page.getByRole('menu', { name: 'Select month' })
+    ).toBeVisible();
 
     return monthSelection;
   };
@@ -801,9 +967,8 @@ regressionTest.describe('year dropdown sync', () => {
         .locator(DatePickerSelector)
         .evaluate((element) => element.setAttribute('to', '2028/03/12'));
 
-      const yearSelection = page.getByRole('button', {
-        name: 'Select year',
-      });
+      // The menu items are slotted into the button, so they are queried from it
+      const yearSelection = page.getByRole('button', { name: 'Select year' });
       await yearSelection.click();
 
       await expect(
@@ -933,10 +1098,10 @@ regressionTest.describe('week start index', () => {
       );
 
       const headers = await getColumnHeaders(page);
-      expect(headers[0]).toBe('Die');
+      expect(headers[0]).toBe('Di');
 
       // 1 April 2026 is a Wednesday, so it must sit under the Wednesday header.
-      expect(headers[await getColumnOfFirstDay(page)]).toBe('Mit');
+      expect(headers[await getColumnOfFirstDay(page)]).toBe('Mi');
     }
   );
 
@@ -1078,3 +1243,628 @@ regressionTest.describe('week start index', () => {
     }
   );
 });
+
+regressionTest.describe('weekday column headers', () => {
+  regressionTest(
+    'shows abbreviated names labelled with the full name',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/12/01" locale="en"></ix-date-picker>`
+      );
+
+      const monday = page.getByRole('columnheader', { name: 'Monday' });
+      await expect(monday).toHaveText('Mon');
+    }
+  );
+
+  regressionTest(
+    'falls back to narrow names when abbreviations are too long',
+    async ({ mount, page }) => {
+      // Arabic abbreviated weekday names equal the full names.
+      await mount(
+        `<ix-date-picker from="2023/12/01" locale="ar"></ix-date-picker>`
+      );
+
+      const monday = page.getByRole('columnheader', { name: 'الاثنين' });
+      await expect(monday).toHaveText('ن');
+    }
+  );
+
+  // Whether a label fits its column depends on the installed fonts, so the
+  // label choice is covered by the weekdayLabelsFrom unit tests and the
+  // rendering by the "weekday labels" visual regression test.
+  regressionTest(
+    'exposes the full weekday name in any locale',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/12/01" locale="en"></ix-date-picker>`
+      );
+      const datePicker = page.locator(DatePickerSelector);
+
+      for (const locale of [
+        'zh',
+        'ja',
+        'de',
+        'fr',
+        'lv',
+        'he',
+        'ar',
+        'el',
+        'ta',
+        'km',
+        'my',
+      ]) {
+        await datePicker.evaluate(
+          (element: HTMLIxDatePickerElement, value) => (element.locale = value),
+          locale
+        );
+        await expect(
+          page.getByRole('columnheader').first()
+        ).toHaveAccessibleName(
+          await page.evaluate(
+            (value) =>
+              new Intl.DateTimeFormat(value, { weekday: 'long' }).format(
+                new Date(2024, 0, 1)
+              ),
+            locale
+          )
+        );
+      }
+    }
+  );
+});
+
+// Dates used by the confirmation tests. Picked dates stay in the month of
+// `committedFrom`, which the picker shows on load.
+const committedFrom = DateTime.fromISO('2024-05-10');
+const committedTo = committedFrom.plus({ days: 2 });
+const pickedFrom = committedFrom.plus({ days: 10 });
+const pickedTo = pickedFrom.plus({ days: 2 });
+
+const dayCell = (page: Page, date: DateTime) =>
+  calendarDayCell(page.locator('ix-date-picker'), date);
+
+const mountDatePicker = async (
+  mount: (html: string) => Promise<unknown>,
+  page: Page,
+  attributes: string
+) => {
+  await mount(`<ix-date-picker ${attributes}></ix-date-picker>`);
+  await expect(page.locator('ix-date-picker')).toHaveAttribute('hydrated');
+};
+
+regressionTest.describe('require confirmation', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountDatePicker(
+      mount,
+      page,
+      `from="${formatDateTime(
+        committedFrom
+      )}" single-selection require-confirmation`
+    );
+  });
+
+  regressionTest(
+    'picking shows the pending date and emits only dateChange',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateSelect',
+        'dateCancel',
+      ]);
+
+      await dayCell(page, pickedFrom).click();
+
+      await expect(dayCell(page, pickedFrom)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+      await expect(dayCell(page, committedFrom)).toHaveAttribute(
+        'aria-selected',
+        'false'
+      );
+      expect(await events()).toEqual([
+        {
+          type: 'dateChange',
+          detail: expect.objectContaining(dateChangeDetail(pickedFrom)),
+        },
+      ]);
+      expect(
+        await datePicker.evaluate((el: HTMLIxDatePickerElement) =>
+          el.getCurrentDate()
+        )
+      ).toMatchObject(dateChangeDetail(committedFrom));
+    }
+  );
+
+  regressionTest(
+    'confirm emits only dateSelect after the pick emitted dateChange',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateSelect',
+        'dateCancel',
+      ]);
+
+      await dayCell(page, pickedFrom).click();
+      await datePicker.getByTestId('confirm').click();
+
+      const expected = expect.objectContaining(dateChangeDetail(pickedFrom));
+      expect(await events()).toEqual([
+        { type: 'dateChange', detail: expected },
+        { type: 'dateSelect', detail: expected },
+      ]);
+      expect(
+        await datePicker.evaluate((el: HTMLIxDatePickerElement) =>
+          el.getCurrentDate()
+        )
+      ).toMatchObject(dateChangeDetail(pickedFrom));
+      await expect(dayCell(page, pickedFrom)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+    }
+  );
+
+  regressionTest(
+    'cancel restores the confirmed date with dateChange and emits dateCancel',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateSelect',
+        'dateCancel',
+      ]);
+
+      await dayCell(page, pickedFrom).click();
+      await datePicker.getByTestId('cancel').click();
+
+      await expect(dayCell(page, committedFrom)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+      await expect(dayCell(page, pickedFrom)).toHaveAttribute(
+        'aria-selected',
+        'false'
+      );
+      expect(await events()).toEqual([
+        {
+          type: 'dateChange',
+          detail: expect.objectContaining(dateChangeDetail(pickedFrom)),
+        },
+        {
+          type: 'dateChange',
+          detail: expect.objectContaining(dateChangeDetail(committedFrom)),
+        },
+        { type: 'dateCancel', detail: null },
+      ]);
+    }
+  );
+
+  regressionTest(
+    'cancel without a pending date emits only dateCancel',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateCancel',
+      ]);
+
+      // Re-picking the confirmed date leaves nothing pending
+      await dayCell(page, pickedFrom).click();
+      await dayCell(page, committedFrom).click();
+      await datePicker.getByTestId('cancel').click();
+
+      expect((await events()).map((event) => event.type)).toEqual([
+        'dateChange',
+        'dateChange',
+        'dateCancel',
+      ]);
+    }
+  );
+
+  regressionTest(
+    'discarding without a pending date keeps the browsed month',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      const monthLabel = datePicker.locator(
+        '.month-selector [slot="button-label"]'
+      );
+      await expect(monthLabel).toHaveText('May');
+
+      await datePicker.locator('ix-icon-button').nth(1).click();
+      await expect(monthLabel).toHaveText('June');
+
+      await datePicker.evaluate((el: HTMLIxDatePickerElement) =>
+        el.discardPendingSelection()
+      );
+
+      await expect(monthLabel).toHaveText('June');
+    }
+  );
+
+  regressionTest(
+    'binding from to dateChange keeps the pick pending',
+    async ({ page }) => {
+      const datePicker = page.locator('ix-date-picker');
+      await datePicker.evaluate((el: HTMLIxDatePickerElement) => {
+        el.addEventListener('dateChange', (event) => {
+          el.from = (event as CustomEvent<{ from?: string }>).detail.from;
+        });
+      });
+
+      await dayCell(page, pickedFrom).click();
+      await expect(datePicker).toHaveJSProperty(
+        'from',
+        formatDateTime(pickedFrom)
+      );
+      await expect(datePicker.getByTestId('confirm')).toBeEnabled();
+
+      await datePicker.getByTestId('cancel').click();
+
+      await expect(datePicker).toHaveJSProperty(
+        'from',
+        formatDateTime(committedFrom)
+      );
+      await expect(dayCell(page, committedFrom)).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+    }
+  );
+});
+
+regressionTest.describe('month and year dropdowns', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mount(`<ix-date-picker from="2023/12/01"></ix-date-picker>`);
+    await expect(page.locator(DatePickerSelector)).toHaveAttribute('hydrated');
+  });
+
+  regressionTest(
+    'scrolls the selected month into view when opened',
+    async ({ page }) => {
+      await page.getByRole('button', { name: 'Select month' }).click();
+
+      await expect(
+        page.locator('.month-selector ix-dropdown-item[checked]')
+      ).toBeInViewport({ ratio: 1 });
+    }
+  );
+
+  regressionTest.describe('year keyboard navigation', () => {
+    regressionTest.beforeEach(async ({ page }) => {
+      await page.getByRole('button', { name: 'Select year' }).focus();
+      await page.keyboard.press('Enter');
+      // The year items render on first open; wait for the initial focus on the
+      // selected year before navigating.
+      const selectedYear = page.locator(
+        '.year-selector ix-dropdown-item.ix-focused'
+      );
+      await expect(selectedYear).toHaveAttribute('data-year', '2023');
+      await expect(
+        page.getByRole('button', { name: 'Select year' })
+      ).toHaveAttribute(
+        'aria-activedescendant',
+        (await selectedYear.getAttribute('id')) ?? ''
+      );
+    });
+
+    /** Asserts the year exposed as active both visually and to assistive technology. */
+    const expectActiveYear = async (page: Page, year: string) => {
+      const activeYear = page.locator(
+        '.year-selector ix-dropdown-item.ix-focused'
+      );
+      await expect(activeYear).toHaveText(year);
+      await expect(
+        page.getByRole('button', { name: 'Select year' })
+      ).toHaveAttribute(
+        'aria-activedescendant',
+        (await activeYear.getAttribute('id')) ?? ''
+      );
+    };
+
+    regressionTest(
+      'ArrowDown on the last year extends the list instead of wrapping',
+      async ({ page }) => {
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2125');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2126');
+      }
+    );
+
+    regressionTest(
+      'ArrowUp on the first year extends the list instead of wrapping',
+      async ({ page }) => {
+        await page.keyboard.press('Home');
+        await expectActiveYear(page, '1922');
+
+        await page.keyboard.press('ArrowUp');
+        await expectActiveYear(page, '1921');
+      }
+    );
+
+    regressionTest(
+      'Enter selects the year added by extending the list',
+      async ({ page }) => {
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2125');
+
+        await page.keyboard.press('Enter');
+        await expect(
+          page.locator('.year-selector ix-dropdown-item[checked]')
+        ).toHaveAttribute('data-year', '2125');
+      }
+    );
+
+    regressionTest(
+      'extends the list in the standalone build without componentOnReady',
+      async ({ page }) => {
+        // Standalone custom elements (dist-custom-elements) don't provide
+        // componentOnReady, unlike the lazy-loaded build these tests run on.
+        await page.evaluate(() => {
+          const itemPrototype = customElements.get('ix-dropdown-item')
+            ?.prototype as Partial<HTMLIxDropdownItemElement> | undefined;
+          delete itemPrototype?.componentOnReady;
+        });
+        expect(
+          await page
+            .locator('.year-selector ix-dropdown-item')
+            .first()
+            .evaluate(
+              (item: HTMLIxDropdownItemElement) => typeof item.componentOnReady
+            )
+        ).toBe('undefined');
+
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2125');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2126');
+
+        await page.keyboard.press('Enter');
+        await expect(
+          page.locator('.year-selector ix-dropdown-item[checked]')
+        ).toHaveAttribute('data-year', '2126');
+      }
+    );
+
+    /**
+     * Dispatches keydowns back to back in a single task, so every key after the
+     * first arrives while the year list extension is still rendering.
+     */
+    const pressKeysInSameTask = (page: Page, keys: string[]) =>
+      page.evaluate((keys) => {
+        let target = document.activeElement;
+        while (target?.shadowRoot?.activeElement) {
+          target = target.shadowRoot.activeElement;
+        }
+        keys.forEach((key) =>
+          target?.dispatchEvent(
+            new KeyboardEvent('keydown', {
+              key,
+              bubbles: true,
+              composed: true,
+              cancelable: true,
+            })
+          )
+        );
+      }, keys);
+
+    regressionTest(
+      'discards Enter pressed while the year list is extending',
+      async ({ page }) => {
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await pressKeysInSameTask(page, ['ArrowDown', 'Enter']);
+
+        await expectActiveYear(page, '2125');
+        await expect(
+          page.locator('.year-selector ix-dropdown-item[checked]')
+        ).toHaveAttribute('data-year', '2023');
+      }
+    );
+
+    regressionTest(
+      'discards ArrowUp pressed while the year list is extending',
+      async ({ page }) => {
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await pressKeysInSameTask(page, ['ArrowDown', 'ArrowUp']);
+
+        await expectActiveYear(page, '2125');
+      }
+    );
+
+    regressionTest(
+      'marks the year list busy while it is extending',
+      async ({ page }) => {
+        const yearList = page.locator('.year-selector ix-dropdown');
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await yearList.evaluate((dropdown) => {
+          const states: (string | null)[] = [];
+          (window as unknown as { busyStates: typeof states }).busyStates =
+            states;
+          new MutationObserver(() =>
+            states.push(dropdown.getAttribute('aria-busy'))
+          ).observe(dropdown, { attributeFilter: ['aria-busy'] });
+        });
+        await page.keyboard.press('ArrowDown');
+
+        await expect
+          .poll(() =>
+            page.evaluate(
+              () =>
+                (window as unknown as { busyStates: (string | null)[] })
+                  .busyStates
+            )
+          )
+          .toEqual(['true', null]);
+        await expectActiveYear(page, '2125');
+      }
+    );
+  });
+});
+
+regressionTest(
+  'centering the selected month does not scroll the surrounding container',
+  async ({ mount, page }) => {
+    await mount(`
+      <div id="panel" style="height: 360px; overflow: auto; transform: translateZ(0)">
+        <ix-date-picker from="2023/12/01"></ix-date-picker>
+        <div style="height: 1000px"></div>
+      </div>
+    `);
+    await expect(page.locator(DatePickerSelector)).toHaveAttribute('hydrated');
+    const panel = page.locator('#panel');
+
+    await page.getByRole('button', { name: 'Select month' }).click();
+
+    const selectedMonth = page.locator(
+      '.month-selector ix-dropdown-item[checked]'
+    );
+    await expect(selectedMonth).toBeInViewport({ ratio: 1 });
+    await expect(page.locator('.month-selector ix-dropdown')).toBeVisible();
+    expect(await panel.evaluate((element) => element.scrollTop)).toBe(0);
+  }
+);
+
+regressionTest.describe('require confirmation option', () => {
+  regressionTest(
+    'range mode emits dateRangeChange for every pick and dateSelect on confirm',
+    async ({ mount, page }) => {
+      await mountDatePicker(
+        mount,
+        page,
+        `from="${formatDateTime(committedFrom)}" to="${formatDateTime(
+          committedTo
+        )}" require-confirmation`
+      );
+      const datePicker = page.locator('ix-date-picker');
+      const events = await recordEvents(datePicker, [
+        'dateChange',
+        'dateRangeChange',
+        'dateSelect',
+      ]);
+
+      await dayCell(page, pickedFrom).click();
+      await dayCell(page, pickedTo).click();
+      expect((await events()).map((event) => event.type)).toEqual([
+        'dateChange',
+        'dateRangeChange',
+        'dateChange',
+        'dateRangeChange',
+      ]);
+      expect((await events())[1].detail).toMatchObject({
+        from: formatDateTime(pickedFrom),
+        to: undefined,
+      });
+
+      await datePicker.getByTestId('confirm').click();
+
+      const recorded = await events();
+      expect(recorded.map((event) => event.type).slice(4)).toEqual([
+        'dateSelect',
+      ]);
+      expect(recorded[4].detail).toMatchObject(
+        dateChangeDetail(pickedFrom, pickedTo)
+      );
+    }
+  );
+
+  regressionTest(
+    'renders no cancel button without require confirmation',
+    async ({ mount, page }) => {
+      await mountDatePicker(
+        mount,
+        page,
+        `from="${formatDateTime(committedFrom)}"`
+      );
+      const datePicker = page.locator('ix-date-picker');
+
+      await expect(datePicker.getByTestId('cancel')).toHaveCount(0);
+      await expect(
+        datePicker.getByRole('button', { name: 'Done' })
+      ).toBeVisible();
+    }
+  );
+});
+
+regressionTest.describe('confirm button disabled state', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mountDatePicker(
+      mount,
+      page,
+      `from="${formatDateTime(committedFrom)}" to="${formatDateTime(
+        committedTo
+      )}" require-confirmation`
+    );
+  });
+
+  regressionTest('is disabled without a pending range', async ({ page }) => {
+    await expect(
+      page.locator('ix-date-picker').getByRole('button', { name: 'Confirm' })
+    ).toBeDisabled();
+  });
+
+  regressionTest(
+    'is disabled while the pending range is incomplete',
+    async ({ page }) => {
+      const confirm = page
+        .locator('ix-date-picker')
+        .getByRole('button', { name: 'Confirm' });
+
+      await dayCell(page, pickedFrom).click();
+      await expect(confirm).toBeDisabled();
+
+      await dayCell(page, pickedTo).click();
+      await expect(confirm).toBeEnabled();
+    }
+  );
+
+  regressionTest(
+    'is disabled again after re-selecting the committed range',
+    async ({ page }) => {
+      const confirm = page
+        .locator('ix-date-picker')
+        .getByRole('button', { name: 'Confirm' });
+
+      await dayCell(page, pickedFrom).click();
+      await dayCell(page, pickedTo).click();
+      await expect(confirm).toBeEnabled();
+
+      await dayCell(page, committedFrom).click();
+      await dayCell(page, committedTo).click();
+      await expect(confirm).toBeDisabled();
+    }
+  );
+});
+
+regressionTest(
+  'accessibility with require confirmation',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(
+      `<ix-date-picker require-confirmation from="2024/05/10"></ix-date-picker>`
+    );
+    await expect(page.locator('ix-date-picker')).toHaveAttribute('hydrated');
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  }
+);

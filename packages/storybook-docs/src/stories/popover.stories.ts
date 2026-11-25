@@ -132,7 +132,7 @@ export const With_Image: Story = {
     popover.innerHTML = `
       <ix-popover-header icon="info" icon-color="--si-sys-color-text-information">
         Release highlights
-        <ix-pill slot="additional-items" variant="info">New</ix-pill>
+        <ix-pill slot="additional-items" variant="information">New</ix-pill>
       </ix-popover-header>
       <ix-popover-image image="${POPOVER_IMAGE_SRC}" image-alt="Release preview"></ix-popover-image>
       <ix-popover-content>

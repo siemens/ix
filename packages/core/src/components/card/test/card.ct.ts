@@ -92,20 +92,27 @@ regressionTest('clickable enables host class', async ({ mount, page }) => {
 });
 
 regressionTest(
-  'outline status keeps border-3 sides; selected does not use accent',
+  'outline status keeps border-3; selected uses accent outline',
   async ({ mount, page }) => {
     await mount(`
       <ix-card id="base" variant="base" outline></ix-card>
       <ix-card id="status" variant="danger" outline></ix-card>
       <ix-card id="selected" variant="danger" outline selected></ix-card>
       <ix-card id="base-selected" variant="base" outline selected></ix-card>
+      <ix-card id="filled-selected" variant="danger" outline="false" selected></ix-card>
+      <ix-card id="filled-selected-clickable" variant="danger" outline="false" selected clickable></ix-card>
     `);
+    await expect(page.locator('#filled-selected-clickable')).toHaveAttribute(
+      'hydrated',
+      ''
+    );
     const readChrome = (el: Element) => {
       const frame = el.shadowRoot!.querySelector('.card-chrome') as HTMLElement;
       const style = getComputedStyle(frame);
       return {
         left: style.borderLeftColor,
         top: style.borderTopColor,
+        width: parseFloat(style.borderLeftWidth),
         strip: getComputedStyle(el, '::before').backgroundColor,
       };
     };
@@ -115,17 +122,30 @@ regressionTest(
     const baseSelected = await page
       .locator('#base-selected')
       .evaluate(readChrome);
+    const filledSelected = await page
+      .locator('#filled-selected')
+      .evaluate(readChrome);
+    const filledSelectedClickable = page.locator('#filled-selected-clickable');
 
     // Outline status: uniform border-3; status color is the ::before strip
     expect(status.left).toBe(base.left);
     expect(status.top).toBe(status.left);
     expect(status.strip).not.toBe(status.left);
-    // Selected status outline: still border-3; same strip
-    expect(selected.left).toBe(base.left);
-    expect(selected.top).toBe(status.top);
-    expect(selected.strip).toBe(status.strip);
-    // Base selected uses accent border
+    // Selected: accent outline on base and status; strip unchanged
     expect(baseSelected.left).not.toBe(base.left);
+    expect(selected.left).toBe(baseSelected.left);
+    expect(selected.strip).toBe(status.strip);
+    // Filled selected restores 1px accent outline
+    expect(filledSelected.width).toBe(1);
+    expect(filledSelected.left).toBe(baseSelected.left);
+    expect(filledSelected.strip).toBe(status.strip);
+    // Clickable filled selected keeps accent on hover (not filled hover border)
+    await filledSelectedClickable.scrollIntoViewIfNeeded();
+    await filledSelectedClickable.hover({ force: true });
+    const filledSelectedHovered =
+      await filledSelectedClickable.evaluate(readChrome);
+    expect(filledSelectedHovered.left).toBe(baseSelected.left);
+    expect(filledSelectedHovered.width).toBe(1);
   }
 );
 

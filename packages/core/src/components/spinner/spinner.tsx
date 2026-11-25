@@ -14,7 +14,7 @@ import type { SpinnerSize } from './spinner.types';
 /**
  * Animated indicator that signals an ongoing loading process.
  *
- * @documentation https://ix.siemens.io//docs/components/spinner/code.md
+ * @documentation https://ix.siemens.io/docs/components/spinner/code.md
  * @figma-main-component-id 453:5375
  */
 @Component({
@@ -38,6 +38,8 @@ export class Spinner {
    * - **sm**: 20px.
    * - **md**: 32px (default).
    * - **xxl**: 96px.
+   *
+   * @breaking-change 6.0.0 Size values renamed and remapped to different pixel sizes
    */
   @Prop() size: SpinnerSize = 'md';
 

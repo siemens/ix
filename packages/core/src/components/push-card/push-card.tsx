@@ -13,7 +13,7 @@ import type { StatusVariant } from '../utils/status.types';
 /**
  * Card that highlights a notification or push message with an icon and value.
  *
- * @documentation https://ix.siemens.io//docs/components/card/guide.md
+ * @documentation https://ix.siemens.io/docs/components/card/guide.md
  * @figma-main-component-id 104612:25695
  *
  * @slot title-action - Action displayed next to the title.
@@ -32,8 +32,6 @@ export class PushCard {
 
   /**
    * ARIA label for the icon
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelIcon?: string;
 
@@ -54,6 +52,8 @@ export class PushCard {
 
   /**
    * Card status variant
+   *
+   * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
    */
   @Prop() variant: StatusVariant = 'base';
 
@@ -63,6 +63,7 @@ export class PushCard {
    * When `false`, uses a filled surface; status variants then show a top color strip.
    *
    * @since 6.0.0
+   * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
    */
   @Prop() outline?: boolean;
 
@@ -76,6 +77,7 @@ export class PushCard {
    * Default is `false`; only the accordion control is interactive.
    *
    * @since 6.0.0
+   * @breaking-change 6.0.0 Replaces the `passive` property
    */
   @Prop() clickable: boolean = false;
 
@@ -106,7 +108,7 @@ export class PushCard {
               <slot name="title-action"></slot>
             </ix-card-title>
             <ix-typography format="h4">{this.heading}</ix-typography>
-            <ix-typography format="body-paragraph" text-color="soft">
+            <ix-typography format="body-paragraph" text-color="secondary">
               {this.subheading}
             </ix-typography>
           </ix-card-content>

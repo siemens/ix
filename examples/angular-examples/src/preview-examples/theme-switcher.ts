@@ -22,7 +22,7 @@ export default class ThemeSwitcher implements OnInit {
   useSystemTheme = false;
 
   ngOnInit() {
-    themeSwitcher.setTheme('classic', this.selectedVariant);
+    themeSwitcher.setTheme('community', this.selectedVariant);
   }
 
   onValueChange(event: Event) {

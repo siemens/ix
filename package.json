@@ -13,10 +13,10 @@
   "bugs": {
     "url": "https://www.github.com/siemens/ix/issues"
   },
-  "packageManager": "pnpm@10.17.0",
+  "packageManager": "pnpm@12.16.1",
   "engines": {
-    "pnpm": ">=9.x.x",
-    "node": "22.19.0"
+    "pnpm": ">=12.16.1",
+    "node": "^24.22.2"
   },
   "scripts": {
     "docs": "dotenv -- turbo run start --filter=documentation",
@@ -43,7 +43,6 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.4",
     "@eslint/js": "^9.39.5",
-    "@actions/core": "^1.11.1",
     "@changesets/changelog-github": "0.7.0",
     "@changesets/cli": "2.31.0",
     "dotenv-cli": "^7.4.2",
@@ -55,8 +54,5 @@
     "tsx": "^4.16.2",
     "turbo": "^2.10.13",
     "typescript": "^5.5.4"
-  },
-  "volta": {
-    "node": "22.19.0"
   }
 }

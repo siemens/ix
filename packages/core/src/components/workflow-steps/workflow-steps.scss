@@ -12,12 +12,13 @@
 @use 'tokens/system' as sys;
 
 @use './workflow-steps.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: block;
   position: relative;
   width: fit-content;
   height: fit-content;
-  min-width: var(--ix-workflow-steps--min-width);
+  min-width: cv.get-var('workflow-steps--min-width');
 
   @include component.ix-component;
 

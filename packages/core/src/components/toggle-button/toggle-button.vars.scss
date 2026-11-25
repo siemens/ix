@@ -7,10 +7,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-toggle-button--height: #{sys.$si-sys-sizing-size-80};
-  --ix-toggle-button--min-width: #{sys.$si-sys-sizing-size-120};
-  --ix-toggle-button-icon-right--icon-size: #{sys.$si-sys-sizing-icon-lg};
+  @include cv.define-vars(
+    (
+      'toggle-button--height': sys.$si-sys-sizing-size-80,
+      'toggle-button--min-width': sys.$si-sys-sizing-size-120,
+      'toggle-button-icon-right-icon--size': sys.$si-sys-sizing-icon-lg,
+    )
+  );
 }

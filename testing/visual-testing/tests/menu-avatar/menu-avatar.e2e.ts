@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('menu-avatar', () => {
   regressionTest('basic', async ({ page }) => {
@@ -54,4 +54,14 @@ regressionTest.describe('menu-avatar', () => {
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+});
+
+regressionTest('should show focus-visible outline', async ({ page }) => {
+  await page.goto('menu-avatar/basic');
+
+  await focusWithKeyboard(page, page.locator('ix-menu-avatar'));
+
+  expect(
+    await page.screenshot({ fullPage: true, animations: 'disabled' })
+  ).toMatchSnapshot();
 });

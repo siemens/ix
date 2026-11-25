@@ -10,6 +10,7 @@
 @use 'mixins/shadow-dom/component';
 @use 'mixins/scrollbar' as scrollbar;
 @use './chat-input.vars';
+@use 'mixins/component-vars' as cv;
 
 :host {
   display: block;
@@ -21,23 +22,23 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: var(--ix-chat-input--min-height);
-    padding: var(--ix-chat-input--padding);
+    min-height: cv.get-var('chat-input--min-height');
+    padding: cv.get-var('chat-input--padding');
     box-sizing: border-box;
-    background-color: var(--ix-chat-input--background);
-    border: var(--ix-chat-input--border-width) solid
-      var(--ix-chat-input--border-color);
-    border-radius: var(--ix-chat-input--border-radius);
-    color: var(--ix-chat-input--color);
+    background-color: cv.get-var('chat-input--background');
+    border: cv.get-var('chat-input--border-width') solid
+      cv.get-var('chat-input--border-color');
+    border-radius: cv.get-var('chat-input--border-radius');
+    color: cv.get-var('chat-input--color');
   }
 
   .follow-up-prompts {
     display: none;
     flex-wrap: wrap;
     align-items: flex-start;
-    gap: var(--ix-chat-input-follow-up-prompts--gap);
+    gap: cv.get-var('chat-input-follow-up-prompts--gap');
     width: 100%;
-    margin-bottom: var(--ix-chat-input-follow-up-prompts--margin-bottom);
+    margin-bottom: cv.get-var('chat-input-follow-up-prompts--margin-bottom');
   }
 
   .follow-up-prompts ::slotted(*) {
@@ -45,8 +46,8 @@
   }
 
   .follow-up-prompts ::slotted(ix-button) {
-    max-width: var(--ix-chat-input-follow-up-prompts--max-width);
-    min-width: var(--ix-chat-input-follow-up-prompts--min-width);
+    max-width: cv.get-var('chat-input-follow-up-prompts--max-width');
+    min-width: cv.get-var('chat-input-follow-up-prompts--min-width');
   }
 
   .follow-up-prompts ::slotted(ix-icon-button) {
@@ -54,15 +55,15 @@
   }
 
   .chat-input:hover {
-    border-color: var(--ix-chat-input--border-color--hover);
-    background-color: var(--ix-chat-input--background--hover);
+    border-color: cv.get-var('chat-input--border-color--hover');
+    background-color: cv.get-var('chat-input--background--hover');
   }
 
   .chat-input:focus-within {
-    outline: var(--ix-chat-input--outline-width--focus) solid
-      var(--ix-chat-input--outline-color--focus);
-    outline-offset: var(--ix-chat-input--focus--outline-offset);
-    border-color: var(--ix-chat-input--border-color--focus);
+    outline: cv.get-var('chat-input--outline-width--focus') solid
+      cv.get-var('chat-input--outline-color--focus');
+    outline-offset: cv.get-var('chat-input--outline-offset--focus');
+    border-color: cv.get-var('chat-input--border-color--focus');
   }
 
   .attachments {
@@ -70,8 +71,8 @@
     box-sizing: border-box;
     width: 100%;
     max-width: 100%;
-    gap: var(--ix-chat-input-attachments--gap);
-    margin-bottom: var(--ix-chat-input-attachments--margin-bottom);
+    gap: cv.get-var('chat-input-attachments--gap');
+    margin-bottom: cv.get-var('chat-input-attachments--margin-bottom');
   }
 
   .attachments.has-attachments {
@@ -80,7 +81,7 @@
 
   .attachments--wrap {
     flex-wrap: wrap;
-    max-height: var(--ix-chat-input-attachments-wrap--max-height);
+    max-height: cv.get-var('chat-input-attachments-wrap--max-height');
     overflow: hidden;
   }
 
@@ -93,8 +94,8 @@
   }
 
   .attachments.has-attachment-scrollbar {
-    padding-bottom: var(
-      --ix-chat-input-has-attachment-scrollbar--padding-bottom
+    padding-bottom: cv.get-var(
+      'chat-input-has-attachment-scrollbar--padding-bottom'
     );
   }
 
@@ -109,7 +110,7 @@
   textarea {
     flex: 1 1 auto;
     width: 100%;
-    min-height: var(--ix-chat-input-textarea--min-height);
+    min-height: cv.get-var('chat-input-textarea--min-height');
     padding: 0;
     border: 0;
     outline: 0;
@@ -121,15 +122,15 @@
   }
 
   textarea::placeholder {
-    color: var(--ix-chat-input-placeholder--color);
+    color: cv.get-var('chat-input-placeholder--color');
   }
 
   .character-limit {
     display: flex;
     align-items: center;
-    gap: var(--ix-chat-input-character-limit--gap);
+    gap: cv.get-var('chat-input-character-limit--gap');
     width: 100%;
-    margin-top: var(--ix-chat-input-character-limit--margin-top);
+    margin-top: cv.get-var('chat-input-character-limit--margin-top');
   }
 
   .character-limit ix-icon {
@@ -137,11 +138,11 @@
   }
 
   .character-limit--soft ix-icon {
-    color: var(--ix-chat-input-character-limit-soft-icon--color);
+    color: cv.get-var('chat-input-character-limit-soft-icon--color');
   }
 
   .character-limit--hard ix-icon {
-    color: var(--ix-chat-input-character-limit-hard-icon--color);
+    color: cv.get-var('chat-input-character-limit-hard-icon--color');
   }
 
   .action-row {
@@ -149,15 +150,15 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    min-height: var(--ix-chat-input-action-row--min-height);
-    margin-top: var(--ix-chat-input-action-row--margin-top);
+    min-height: cv.get-var('chat-input-action-row--min-height');
+    margin-top: cv.get-var('chat-input-action-row--margin-top');
   }
 
   .left-actions,
   .right-actions {
     display: flex;
     align-items: center;
-    gap: var(--ix-chat-input-left-actions--gap);
+    gap: cv.get-var('chat-input-left-actions--gap');
   }
 
   .left-actions {
@@ -173,7 +174,7 @@
   .disclaimer {
     display: block;
     width: 100%;
-    margin-top: var(--ix-chat-input-disclaimer--margin-top);
+    margin-top: cv.get-var('chat-input-disclaimer--margin-top');
     text-align: center;
   }
 }
@@ -186,8 +187,8 @@
   pointer-events: none;
 
   .chat-input {
-    border-color: var(--ix-chat-input--border-color--disabled);
-    color: var(--ix-chat-input--color--disabled);
+    border-color: cv.get-var('chat-input--border-color--disabled');
+    color: cv.get-var('chat-input--color--disabled');
     background-color: transparent;
   }
 
@@ -198,13 +199,13 @@
 
 :host(.readonly) {
   .chat-input {
-    border-color: var(--ix-chat-input--border-color--readonly);
+    border-color: cv.get-var('chat-input--border-color--readonly');
     background-color: transparent;
   }
 
   .chat-input:hover,
   .chat-input:focus-within {
-    border-color: var(--ix-chat-input--border-color--readonly);
+    border-color: cv.get-var('chat-input--border-color--readonly');
     outline: none;
   }
 }

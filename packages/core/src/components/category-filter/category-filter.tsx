@@ -21,6 +21,7 @@ import {
 } from '@stencil/core';
 import { BaseButton, BaseButtonProps } from '../button/base-button';
 import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
+import { waitForComponentReady } from '../utils/component-ready';
 import {
   addDisposableEventListener,
   DisposableEventListener,
@@ -34,7 +35,7 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
 /**
  * Input for building and refining searches using category-based filter criteria.
  *
- * @documentation https://ix.siemens.io//docs/components/category-filter/guide.md
+ * @documentation https://ix.siemens.io/docs/components/category-filter/guide.md
  * @figma-main-component-id 1221:30316
  */
 @Component({
@@ -83,6 +84,9 @@ export class CategoryFilter {
 
   /**
    * A set of search criteria to populate the component with.
+   *
+   * Processing time grows quadratically with the number of tokens and categorical filters.
+   * Bound the size of untrusted or user-controlled filter states to keep the page responsive.
    */
   @Prop() filterState?: FilterState;
 
@@ -155,24 +159,18 @@ export class CategoryFilter {
   /**
    * ARIA label for the reset button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelResetButton?: string;
 
   /**
    * ARIA label for the operator button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelOperatorButton?: string;
 
   /**
    * ARIA label for the filter input
    * Will be set as aria-label on the nested HTML input element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelFilterInput?: string;
 
@@ -180,7 +178,6 @@ export class CategoryFilter {
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 
@@ -825,7 +822,7 @@ export class CategoryFilter {
     tokenList: HTMLElement,
     chips: HTMLIxFilterChipElement[]
   ) {
-    await Promise.all(chips.map((chip) => chip.componentOnReady()));
+    await Promise.all(chips.map((chip) => waitForComponentReady(chip)));
     tokenList.scrollTop = tokenList.scrollHeight;
   }
 
@@ -962,6 +959,8 @@ export class CategoryFilter {
             trigger={this.hostElement}
             header={this.getDropdownHeader()}
             enableTopLayer={this.enableTopLayer}
+            keyboardActivationKeys={['ArrowUp', 'ArrowDown']}
+            keyboardItemTriggerKeys={['Enter']}
             onShowChanged={(event) => {
               this.showDropdown = event.detail;
             }}

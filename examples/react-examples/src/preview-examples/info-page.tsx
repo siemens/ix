@@ -13,8 +13,7 @@ export default () => {
   return (
     <IxInfoPage
       titleText="Report could not be generated"
-      copyText="An error occurred while generating the report."
-      instructions="Contact your administrator for more information."
+      description="An error occurred while generating the report. Contact your administrator for more information."
     >
       <IxButton slot="actions">Return to overview</IxButton>
     </IxInfoPage>

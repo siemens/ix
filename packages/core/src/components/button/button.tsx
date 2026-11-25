@@ -39,7 +39,7 @@ export type ButtonVariant =
 /**
  * Triggers an action or event when activated by the user.
  *
- * @documentation https://ix.siemens.io//docs/components/button/guide.md
+ * @documentation https://ix.siemens.io/docs/components/button/guide.md
  * @figma-main-component-id 225:5535
  *
  * @slot - Button label.
@@ -84,8 +84,6 @@ export class Button
 
   /**
    * Provide a form element ID to automatically submit the from if the button is pressed. Only works in combination with type="submit".
-   *
-   * @since 3.1.0
    */
   @Prop() form?: string;
 
@@ -96,7 +94,6 @@ export class Button
 
   /**
    * Icon name for the right side of the button
-   * @since 4.0.0
    */
   @Prop() iconRight?: string;
 
@@ -112,22 +109,16 @@ export class Button
 
   /**
    * URL for the button link. When provided, the button will render as an anchor tag.
-   *
-   * @since 4.0.0
    */
   @Prop() href?: string;
 
   /**
    * Specifies where to open the linked document when href is provided.
-   *
-   * @since 4.0.0
    */
   @Prop() target?: AnchorTarget = '_self';
 
   /**
    * Specifies the relationship between the current document and the linked document when href is provided.
-   *
-   * @since 4.0.0
    */
   @Prop() rel?: string;
 

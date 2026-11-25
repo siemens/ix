@@ -25,7 +25,7 @@ const selectedVariant = ref<ThemeVariant>('dark');
 const useSystemTheme = ref(false);
 
 onMounted(() => {
-  themeSwitcher.setTheme('classic', selectedVariant.value);
+  themeSwitcher.setTheme('community', selectedVariant.value);
 });
 
 const valueChange = (event: CustomEvent<string | string[]>) => {

@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('link-button', () => {
   regressionTest('basic', async ({ page }) => {
@@ -86,4 +86,18 @@ regressionTest.describe('link-button', () => {
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+});
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: fit-content">
+      <ix-link-button url="https://ix.siemens.io">Link button</ix-link-button>
+    </div>`
+  );
+
+  await focusWithKeyboard(page, page.locator('ix-link-button'));
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
 });

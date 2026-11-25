@@ -24,7 +24,7 @@ import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
 /**
  * Overlay that shows application information such as version and legal details.
  *
- * @documentation https://ix.siemens.io//docs/components/about-and-legal/guide.md
+ * @documentation https://ix.siemens.io/docs/components/about-and-legal/guide.md
  *
  * @slot - About menu content.
  */
@@ -68,7 +68,6 @@ export class MenuAbout {
 
   /**
    * Active tab changed
-   * @since 3.0.0
    */
   @Event() tabChange!: EventEmitter<string>;
 

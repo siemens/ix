@@ -12,7 +12,7 @@ import { Component, h, Host, Prop } from '@stencil/core';
 /**
  * Container that arranges multiple key-value pairs in a list.
  *
- * @documentation https://ix.siemens.io//docs/components/key-value-list/code.md
+ * @documentation https://ix.siemens.io/docs/components/key-value-list/code.md
  * @figma-main-component-id 4784:118515
  *
  * @slot - Key value items.
@@ -28,10 +28,21 @@ export class KeyValueList {
    */
   @Prop() striped: boolean = false;
 
+  /**
+   * Hide the divider lines below all key value items.
+   *
+   * @since 6.0.0
+   */
+  @Prop() hideDividers = false;
+
   render() {
     return (
       <Host
-        class={{ keyValueList: true, 'keyValueList--striped': this.striped }}
+        class={{
+          keyValueList: true,
+          'keyValueList--striped': this.striped,
+          'keyValueList--no-divider': this.hideDividers,
+        }}
       >
         <slot></slot>
       </Host>

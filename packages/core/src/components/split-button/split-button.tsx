@@ -36,7 +36,7 @@ import {
 /**
  * Button combined with an attached dropdown for related actions.
  *
- * @documentation https://ix.siemens.io//docs/components/split-button/guide.md
+ * @documentation https://ix.siemens.io/docs/components/split-button/guide.md
  * @figma-main-component-id 237:4370
  *
  * @slot - Dropdown content.
@@ -69,8 +69,6 @@ export class SplitButton
 
   /**
    * ARIA label for the button (use if no label and icon button)
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelButton?: string;
 
@@ -86,8 +84,6 @@ export class SplitButton
 
   /**
    * ARIA label for the split icon button
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelSplitIconButton?: string;
 
@@ -98,15 +94,11 @@ export class SplitButton
 
   /**
    * Disables only the main button while keeping the dropdown trigger enabled
-   *
-   *  @since 4.1.0
    */
   @Prop() disableButton = false;
 
   /**
    * Disables only the dropdown trigger while keeping the main button enabled
-   *
-   * @since 4.1.0
    */
   @Prop() disableDropdownButton = false;
 
@@ -114,7 +106,6 @@ export class SplitButton
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 

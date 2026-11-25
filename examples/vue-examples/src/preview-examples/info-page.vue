@@ -14,8 +14,7 @@ import { IxButton, IxInfoPage } from '@siemens/ix-vue';
 <template>
   <IxInfoPage
     title-text="Report could not be generated"
-    copy-text="An error occurred while generating the report."
-    instructions="Contact your administrator for more information."
+    description="An error occurred while generating the report. Contact your administrator for more information."
   >
     <IxButton slot="actions">Return to overview</IxButton>
   </IxInfoPage>

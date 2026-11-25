@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "devDependencies": {
-    "@memlab/api": "^1.0.38",
+    "@memlab/api": "^2.0.6",
     "@siemens/ix": "workspace:*",
     "http-server": "^14.1.1",
-    "memlab": "^1.1.56",
+    "memlab": "^2.0.6",
     "start-server-and-test": "^2.0.12"
   },
   "scripts": {

@@ -24,7 +24,7 @@ import { getSlottedElements } from '../utils/shadow-dom';
 /**
  * Menu entry that displays the current user's avatar and account actions.
  *
- * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
+ * @documentation https://ix.siemens.io/docs/components/application-menu/guide.md
  * @slot - Avatar dropdown content.
  */
 @Component({
@@ -57,15 +57,11 @@ export class MenuAvatar {
 
   /**
    * Tooltip text to display on hover. If not set, the 'top' property (user name) will be used as the default tooltip text.
-   *
-   * @since 4.3.0.
    */
   @Prop() tooltipText?: string;
 
   /**
    * aria-label for the tooltip
-   *
-   * @since 4.3.0.
    */
   @Prop() ariaLabelTooltip?: string;
 
@@ -83,7 +79,6 @@ export class MenuAvatar {
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 
