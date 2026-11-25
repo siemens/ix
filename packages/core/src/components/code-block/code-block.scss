@@ -9,37 +9,39 @@
 
 @use 'mixins/shadow-dom/component';
 @use './code-block.vars';
+@use 'mixins/component-vars' as cv;
 
 :host {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: var(--ix-code-block--padding-y) var(--ix-code-block--padding-x);
-  border: var(--ix-code-block--border-width) solid
-    var(--ix-code-block--border-color);
-  border-radius: var(--ix-code-block--border-radius);
-  background-color: var(--ix-code-block--background-color);
-  color: var(--ix-code-block--color);
+  padding: cv.get-var('code-block--padding-y')
+    cv.get-var('code-block--padding-x');
+  border: cv.get-var('code-block--border-width') solid
+    cv.get-var('code-block--border-color');
+  border-radius: cv.get-var('code-block--border-radius');
+  background-color: cv.get-var('code-block--background-color');
+  color: cv.get-var('code-block--color');
 
   @include component.ix-component;
 
   .header {
     display: flex;
     align-items: center;
-    gap: var(--ix-code-block-header--gap);
-    margin-bottom: var(--ix-code-block-header--margin-bottom);
-    font: var(--ix-code-block-header--font);
+    gap: cv.get-var('code-block-header--gap');
+    margin-bottom: cv.get-var('code-block-header--margin-bottom');
+    font: cv.get-var('code-block-header--font');
   }
 
   .filename {
     display: inline-flex;
     align-items: center;
-    gap: var(--ix-code-block-filename--gap);
+    gap: cv.get-var('code-block-filename--gap');
     min-width: 0;
-    padding: 0 var(--ix-code-block-filename--padding-x);
-    border: var(--ix-code-block--border-width) solid
-      var(--ix-code-block-filename--border-color);
-    border-radius: var(--ix-code-block-filename--border-radius);
+    padding: 0 cv.get-var('code-block-filename--padding-x');
+    border: cv.get-var('code-block--border-width') solid
+      cv.get-var('code-block-filename--border-color');
+    border-radius: cv.get-var('code-block-filename--border-radius');
   }
 
   .filename-text {
@@ -49,22 +51,22 @@
   }
 
   .language {
-    color: var(--ix-code-block-language--color);
+    color: cv.get-var('code-block-language--color');
   }
 
   .filename + .language {
-    color: var(--ix-code-block-language-with-filename--color);
+    color: cv.get-var('code-block-language-with-filename--color');
   }
 
   .copied {
     margin-inline-start: auto;
-    color: var(--ix-code-block-copied--color);
+    color: cv.get-var('code-block-copied--color');
   }
 
   .body {
     margin: 0;
     overflow: auto;
-    font: var(--ix-code-block-body--font);
+    font: cv.get-var('code-block-body--font');
   }
 
   .highlighted {
@@ -72,9 +74,9 @@
   }
 
   .body:focus-visible {
-    outline: var(--ix-code-block-body--outline-width--focus) solid
-      var(--ix-code-block-body--outline-color--focus);
-    outline-offset: var(--ix-code-block-body--outline-offset--focus);
+    outline: cv.get-var('code-block-body--outline-width--focus') solid
+      cv.get-var('code-block-body--outline-color--focus');
+    outline-offset: cv.get-var('code-block-body--outline-offset--focus');
   }
 
   pre,

@@ -36,7 +36,7 @@ const options = {
 test('mounts, updates in place and unmounts a React Custom component', async () => {
   mounts = 0;
   unmounts = 0;
-  const screen = render(
+  const screen = await render(
     <IxMarkdown markdown="> Hello" streaming options={options} />
   );
 
@@ -60,7 +60,7 @@ test('mounts, updates in place and unmounts a React Custom component', async () 
 
 test('exposes emitAction as onActionClick', async () => {
   const actions: string[] = [];
-  const screen = render(
+  const screen = await render(
     <IxMarkdown
       markdown="> Hello"
       options={options}
