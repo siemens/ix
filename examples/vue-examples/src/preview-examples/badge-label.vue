@@ -18,56 +18,56 @@ import { IxBadge } from '@siemens/ix-vue';
   <div class="container">
     <IxBadge
       type="label"
-      label="Primary"
-      variant="primary"
+      label="Accent"
+      variant="accent"
       :icon="iconInfo"
     ></IxBadge>
     <IxBadge
       type="label"
-      label="Primary"
-      variant="primary"
-      :icon="iconInfo"
-      outline
-    ></IxBadge>
-    <IxBadge
-      type="label"
-      label="Primary"
-      variant="primary"
-      :icon="iconInfo"
-      enable-animation
-    ></IxBadge>
-    <IxBadge
-      type="label"
-      label="Primary"
-      variant="primary"
-      :icon="iconInfo"
-      outline
-      enable-animation
-    ></IxBadge>
-    <IxBadge
-      type="label"
-      label="Alarm"
-      variant="alarm"
-      :icon="iconInfo"
-    ></IxBadge>
-    <IxBadge
-      type="label"
-      label="Alarm"
-      variant="alarm"
+      label="Accent"
+      variant="accent"
       :icon="iconInfo"
       outline
     ></IxBadge>
     <IxBadge
       type="label"
-      label="Alarm"
-      variant="alarm"
+      label="Accent"
+      variant="accent"
       :icon="iconInfo"
       enable-animation
     ></IxBadge>
     <IxBadge
       type="label"
-      label="Alarm"
-      variant="alarm"
+      label="Accent"
+      variant="accent"
+      :icon="iconInfo"
+      outline
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Danger"
+      variant="danger"
+      :icon="iconInfo"
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Danger"
+      variant="danger"
+      :icon="iconInfo"
+      outline
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Danger"
+      variant="danger"
+      :icon="iconInfo"
+      enable-animation
+    ></IxBadge>
+    <IxBadge
+      type="label"
+      label="Danger"
+      variant="danger"
       :icon="iconInfo"
       outline
       enable-animation
@@ -130,28 +130,28 @@ import { IxBadge } from '@siemens/ix-vue';
     ></IxBadge>
     <IxBadge
       type="label"
-      label="Info"
-      variant="info"
+      label="Information"
+      variant="information"
       :icon="iconInfo"
     ></IxBadge>
     <IxBadge
       type="label"
-      label="Info"
-      variant="info"
+      label="Information"
+      variant="information"
       :icon="iconInfo"
       outline
     ></IxBadge>
     <IxBadge
       type="label"
-      label="Info"
-      variant="info"
+      label="Information"
+      variant="information"
       :icon="iconInfo"
       enable-animation
     ></IxBadge>
     <IxBadge
       type="label"
-      label="Info"
-      variant="info"
+      label="Information"
+      variant="information"
       :icon="iconInfo"
       outline
       enable-animation

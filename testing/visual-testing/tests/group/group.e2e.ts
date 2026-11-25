@@ -8,7 +8,7 @@
  */
 
 import { expect, Page } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 async function blurActiveElement(page: Page): Promise<void> {
   await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
@@ -65,3 +65,36 @@ regressionTest.describe('group', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
+
+regressionTest(
+  'should show focus-visible outline on group header',
+  async ({ page }) => {
+    await page.goto('group/basic');
+
+    await focusWithKeyboard(page, page.locator('ix-group').first());
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
+  }
+);
+
+regressionTest(
+  'should show focus-visible outline on group item',
+  async ({ mount, page }) => {
+    const container = await mount(
+      `<div style="padding: 0.5rem; width: fit-content">
+        <ix-group header="Header text" sub-header="Subheader text" expanded>
+          <ix-group-item text="Example text 1"></ix-group-item>
+          <ix-group-item text="Example text 2"></ix-group-item>
+        </ix-group>
+      </div>`
+    );
+
+    await focusWithKeyboard(page, page.locator('ix-group-item').first());
+
+    expect(
+      await container.screenshot({ animations: 'disabled' })
+    ).toMatchSnapshot();
+  }
+);

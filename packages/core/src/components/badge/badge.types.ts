@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import type { ChipVariant } from '../chip/chip.types';
+import { CHIP_VARIANTS, type ChipVariant } from '../chip/chip.types';
 
 export const BADGE_ANATOMY_TYPES = [
   'label',
@@ -18,14 +18,16 @@ export const BADGE_ANATOMY_TYPES = [
 
 export type BadgeAnatomyType = (typeof BADGE_ANATOMY_TYPES)[number];
 
-/** Pill anatomies share chip semantic variants. */
-export { CHIP_VARIANTS as BADGE_VARIANTS } from '../chip/chip.types';
+/** Semantic badge variants (shared with chip / pill). */
+export const BADGE_VARIANTS = CHIP_VARIANTS;
+
+export type BadgeSemanticVariant = ChipVariant;
 
 /**
  * Badge variant.
- * **error** is only for **type** `status-icon`; other anatomies coerce to `alarm`.
+ * **error** is only for **type** `status-icon`; other anatomies coerce to `danger`.
  */
-export type BadgeVariant = ChipVariant | 'error';
+export type BadgeVariant = BadgeSemanticVariant | 'error';
 
 export type { ChipVariant };
 

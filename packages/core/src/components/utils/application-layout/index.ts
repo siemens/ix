@@ -7,3 +7,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 export { applicationLayoutService } from './service';
+export { subscribeApplicationLayoutMobile } from './mobile';

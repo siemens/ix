@@ -22,3 +22,19 @@ export default meta;
 type Story = StoryObj<Element>;
 
 export const Default: Story = {};
+
+export const RequireConfirmation: Story = {
+  args: {
+    requireConfirmation: true,
+    singleSelection: true,
+    from: '2026/02/08',
+  },
+};
+
+export const RangeRequireConfirmation: Story = {
+  args: {
+    requireConfirmation: true,
+    from: '2026/02/08',
+    to: '2026/02/14',
+  },
+};

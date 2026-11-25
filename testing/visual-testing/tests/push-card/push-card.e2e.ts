@@ -9,7 +9,7 @@
 
 import { expect } from '@playwright/test';
 import { iconBulb } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('push-card: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
@@ -66,3 +66,16 @@ regressionTest('push card expand', async ({ page, mount }) => {
     await page.screenshot({ fullPage: true, animations: 'disabled' })
   ).toMatchSnapshot();
 });
+
+regressionTest(
+  'should show focus-visible outline on card accordion',
+  async ({ page }) => {
+    await page.goto('push-card/basic');
+
+    await focusWithKeyboard(page, page.locator('ix-card-accordion').first());
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
+  }
+);

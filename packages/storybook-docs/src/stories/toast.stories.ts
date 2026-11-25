@@ -12,6 +12,17 @@ import { toast } from '@siemens/ix';
 
 type Element = ToastConfig;
 
+const toastTypes: NonNullable<ToastConfig['type']>[] = [
+  'base',
+  'danger',
+  'warning',
+  'caution',
+  'information',
+  'critical',
+  'success',
+  'error',
+];
+
 const meta = {
   title: 'Example/Toast',
   tags: [],
@@ -26,6 +37,12 @@ const meta = {
 
     setTimeout(showToast, 500);
     return triggerToast;
+  },
+  argTypes: {
+    type: {
+      control: { type: 'select' },
+      options: toastTypes,
+    },
   },
   parameters: {
     design: {
@@ -42,8 +59,53 @@ export const Default: Story = {
   args: {
     title: 'Default Toast',
     message: 'This is a default toast message.',
-    type: 'info',
+    type: 'information',
     autoClose: true,
     autoCloseDelay: 5000,
+  },
+};
+
+export const Danger: Story = {
+  args: {
+    ...Default.args,
+    title: 'Danger Toast',
+    message: 'This is a danger toast message.',
+    type: 'danger',
+  },
+};
+
+export const Base: Story = {
+  args: {
+    ...Default.args,
+    title: 'Base Toast',
+    message: 'This toast has a neutral information icon and no status strip.',
+    type: 'base',
+  },
+};
+
+export const Warning: Story = {
+  args: {
+    ...Default.args,
+    title: 'Warning Toast',
+    message: 'This is a warning toast message.',
+    type: 'warning',
+  },
+};
+
+export const Caution: Story = {
+  args: {
+    ...Default.args,
+    title: 'Caution Toast',
+    message: 'This is a caution toast message.',
+    type: 'caution',
+  },
+};
+
+export const Critical: Story = {
+  args: {
+    ...Default.args,
+    title: 'Critical Toast',
+    message: 'This is a critical toast message.',
+    type: 'critical',
   },
 };

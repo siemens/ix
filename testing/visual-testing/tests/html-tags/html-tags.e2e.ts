@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('html-tags', () => {
   regressionTest('basic', async ({ page }) => {
@@ -16,3 +16,16 @@ regressionTest.describe('html-tags', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
+
+regressionTest(
+  'should show focus-visible outline on link',
+  async ({ page }) => {
+    await page.goto('html-tags/basic');
+
+    await focusWithKeyboard(page, page.locator('a[href]').first());
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
+  }
+);

@@ -17,8 +17,8 @@ regressionTest.describe('echarts', () => {
     await expect(page).toHaveScreenshot();
   });
 
-  regressionTest('basic v5', async ({ page }) => {
-    await page.goto('v5/basic.html');
+  regressionTest('with timeline', async ({ page }) => {
+    await page.goto('with-timeline.html');
 
     await expect(page).toHaveScreenshot();
   });
@@ -29,8 +29,14 @@ regressionTest.describe('echarts', () => {
     await expect(page).toHaveScreenshot();
   });
 
-  regressionTest('more colors v5', async ({ page }) => {
-    await page.goto('v5/more-colors.html');
+  regressionTest('pie gauge', async ({ page }) => {
+    await page.goto('pie-gauge.html');
+
+    await expect(page).toHaveScreenshot();
+  });
+
+  regressionTest('token coverage', async ({ page }) => {
+    await page.goto('token-coverage.html');
 
     await expect(page).toHaveScreenshot();
   });

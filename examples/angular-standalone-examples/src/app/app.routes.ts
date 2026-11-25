@@ -152,6 +152,14 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/date-dropdown').then((m) => m.default),
   'preview/date-dropdown-presets': () =>
     import('../preview-examples/date-dropdown-presets').then((m) => m.default),
+  'preview/date-dropdown-display-format': () =>
+    import('../preview-examples/date-dropdown-display-format').then(
+      (m) => m.default
+    ),
+  'preview/date-dropdown-require-confirmation': () =>
+    import('../preview-examples/date-dropdown-require-confirmation').then(
+      (m) => m.default
+    ),
   'preview/date-range': () =>
     import('../preview-examples/date-range').then((m) => m.default),
   'preview/datetime-range': () =>
@@ -164,10 +172,22 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/date-input-label').then((m) => m.default),
   'preview/date-input-readonly': () =>
     import('../preview-examples/date-input-readonly').then((m) => m.default),
+  'preview/date-input-display-format': () =>
+    import('../preview-examples/date-input-display-format').then(
+      (m) => m.default
+    ),
+  'preview/date-input-require-confirmation': () =>
+    import('../preview-examples/date-input-require-confirmation').then(
+      (m) => m.default
+    ),
   'preview/date-input-validation': () =>
     import('../preview-examples/date-input-validation').then((m) => m.default),
   'preview/date-input-with-slots': () =>
     import('../preview-examples/date-input-with-slots').then((m) => m.default),
+  'preview/date-picker-require-confirmation': () =>
+    import('../preview-examples/date-picker-require-confirmation').then(
+      (m) => m.default
+    ),
   'preview/datepicker': () =>
     import('../preview-examples/datepicker').then((m) => m.default),
   'preview/datepicker-locale': () =>
@@ -194,12 +214,24 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/datetime-input-readonly').then(
       (m) => m.default
     ),
+  'preview/datetime-input-display-format': () =>
+    import('../preview-examples/datetime-input-display-format').then(
+      (m) => m.default
+    ),
+  'preview/datetime-input-require-confirmation': () =>
+    import('../preview-examples/datetime-input-require-confirmation').then(
+      (m) => m.default
+    ),
   'preview/datetime-input-validation': () =>
     import('../preview-examples/datetime-input-validation').then(
       (m) => m.default
     ),
   'preview/datetime-input-with-slots': () =>
     import('../preview-examples/datetime-input-with-slots').then(
+      (m) => m.default
+    ),
+  'preview/datetime-picker-require-confirmation': () =>
+    import('../preview-examples/datetime-picker-require-confirmation').then(
       (m) => m.default
     ),
   'preview/dropdown': () =>
@@ -266,6 +298,8 @@ export const routePaths: IxPreviewRoutes = {
     ),
   'preview/info-page': () =>
     import('../preview-examples/info-page').then((m) => m.default),
+  'preview/info-page-illustration': () =>
+    import('../preview-examples/info-page-illustration').then((m) => m.default),
   'preview/event-list': () =>
     import('../preview-examples/event-list').then((m) => m.default),
   'preview/event-list-compact': () =>
@@ -282,6 +316,30 @@ export const routePaths: IxPreviewRoutes = {
     import('../preview-examples/expanding-search').then((m) => m.default),
   'preview/flip-tile': () =>
     import('../preview-examples/flip-tile').then((m) => m.default),
+  'preview/generic-list-action-on-hover': () =>
+    import('../preview-examples/generic-list-action-on-hover').then(
+      (m) => m.default
+    ),
+  'preview/generic-list-additional-options': () =>
+    import('../preview-examples/generic-list-additional-options').then(
+      (m) => m.default
+    ),
+  'preview/generic-list-basic': () =>
+    import('../preview-examples/generic-list-basic').then((m) => m.default),
+  'preview/generic-list-custom-content': () =>
+    import('../preview-examples/generic-list-custom-content').then(
+      (m) => m.default
+    ),
+  'preview/generic-list-draggable': () =>
+    import('../preview-examples/generic-list-draggable').then((m) => m.default),
+  'preview/generic-list-notification-icon': () =>
+    import('../preview-examples/generic-list-notification-icon').then(
+      (m) => m.default
+    ),
+  'preview/generic-list-users': () =>
+    import('../preview-examples/generic-list-users').then((m) => m.default),
+  'preview/generic-list-variants': () =>
+    import('../preview-examples/generic-list-variants').then((m) => m.default),
   'preview/form-checkbox': () =>
     import('../preview-examples/form-checkbox').then((m) => m.default),
   'preview/form-checkbox-disabled': () =>
@@ -376,6 +434,10 @@ export const routePaths: IxPreviewRoutes = {
     ),
   'preview/key-value-list-with-icon': () =>
     import('../preview-examples/key-value-list-with-icon').then(
+      (m) => m.default
+    ),
+  'preview/key-value-list-without-divider': () =>
+    import('../preview-examples/key-value-list-without-divider').then(
       (m) => m.default
     ),
   'preview/key-value-with-custom-value': () =>

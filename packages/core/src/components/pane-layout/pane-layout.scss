@@ -11,12 +11,13 @@
 @use 'tokens/system' as sys;
 
 @use './pane-layout.vars' as *;
+@use 'mixins/component-vars' as cv;
 @mixin set-padding($composition) {
   @if $composition {
     @if $composition == top or $composition == bottom {
-      padding-#{$composition}: var(--ix-pane-layout--padding-block);
+      padding-#{$composition}: cv.get-var('pane-layout--padding-block');
     } @else {
-      padding-#{$composition}: var(--ix-pane-layout--padding-inline);
+      padding-#{$composition}: cv.get-var('pane-layout--padding-inline');
     }
   }
 }

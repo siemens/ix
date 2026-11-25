@@ -42,7 +42,7 @@ pnpm visual-regression --filter @siemens/ix-aggrid  # Specific package
 - **Unit Tests**: Jest (Stencil) + Vitest (React)
 - **Component Tests**: Playwright with `.ct.ts` files
 - **Visual Regression**: Docker-based Playwright across multiple themes
-- **Theme Testing**: All visual tests run against `theme-classic-light`, `theme-classic-dark`, and brand variants
+- **Theme Testing**: All visual tests run against `theme-community-light`, `theme-community-dark`, and brand variants
 
 ## Release & Versioning
 
@@ -81,7 +81,7 @@ export class Button {
 
 - Themes in `packages/core/scss/theme/`
 - CSS custom properties for theming
-- Multiple theme support: classic-light/dark, brand variants
+- Multiple theme support: community-light/dark, brand variants
 - Theme switching handled via CSS class application
 
 ### Framework Integration

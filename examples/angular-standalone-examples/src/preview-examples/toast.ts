@@ -8,6 +8,7 @@
  */
 
 import { Component, inject } from '@angular/core';
+import type { ToastType } from '@siemens/ix';
 import { IxButton, ToastService } from '@siemens/ix-angular/standalone';
 
 @Component({
@@ -22,8 +23,24 @@ export default class Toast {
   private readonly toastService = inject(ToastService);
 
   async showToastMessage() {
-    this.toastService.show({
-      message: 'My toast message!',
-    });
+    const toastTypes: ToastType[] = [
+      'information',
+      'success',
+      'caution',
+      'warning',
+      'danger',
+      'critical',
+      'error',
+      'base',
+    ];
+
+    for (const type of toastTypes) {
+      await this.toastService.show({
+        type,
+        title: 'Toast headline',
+        message: 'This is a toast test message!',
+        autoClose: false,
+      });
+    }
   }
 }

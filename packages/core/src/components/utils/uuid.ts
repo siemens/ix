@@ -7,14 +7,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 export function generateUUID(): string {
-  const randomString =
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15);
+  const randomValues = globalThis.crypto.getRandomValues(new Uint32Array(4));
+  const randomString = Array.from(randomValues, (value) =>
+    value.toString(36)
+  ).join('');
 
-  const timestampString = new Date().getTime().toString(36);
-  const uuid = randomString + timestampString;
+  const timestampString = Date.now().toString(36);
 
-  return uuid;
+  return randomString + timestampString;
 }
 
 export const createSequentialId = (prefix: string, sequenceId: number) => {

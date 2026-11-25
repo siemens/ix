@@ -60,7 +60,7 @@ async function importThemeStyles() {
 
 function applyTheme() {
   const search = new URLSearchParams(window.location.search);
-  const theme = search.get('theme') ?? 'classic';
+  const theme = search.get('theme') ?? 'community';
   const colorSchema = search.get('colorSchema') ?? 'dark';
 
   document.documentElement.dataset.ixTheme = theme;

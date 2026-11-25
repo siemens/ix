@@ -7,51 +7,69 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
+@use 'mixins/menu-rail';
 
 :host {
-  --ix-menu-item-tab--outline-color--focus: #{sys.$si-sys-color-effects-focus};
-  --ix-menu-item-notification--background: #{sys.$si-sys-color-text-accent};
-  --ix-menu-item-notification--color: #{sys.$si-sys-color-text-on-accent};
-  --ix-menu-item--color--disabled: #{sys.$si-sys-color-text-disabled};
-  --ix-menu-item-primary--background--selected: #{sys.$si-sys-color-background-0};
-  --ix-menu-item-primary--border-color--selected: #{sys.$si-sys-color-border-accent-hover};
-  --ix-menu-item-primary--color: #{sys.$si-sys-color-text-primary};
-  --ix-menu-item-primary-icon--color: #{sys.$si-sys-color-text-primary};
-  --ix-menu-item-primary-icon--color--selected: #{sys.$si-sys-color-text-primary};
-  --ix-menu-item-secondary--background--selected: #{sys.$si-sys-color-background-0};
+  @include cv.define-vars(
+    (
+      'menu-item-tab--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'menu-item--color--disabled': sys.$si-sys-color-text-disabled,
+      'menu-item--background--primary--selected': sys.$si-sys-color-background-0,
+      'menu-item--border-color--primary--selected':
+        sys.$si-sys-color-border-accent-hover,
+      'menu-item--color--primary': sys.$si-sys-color-text-primary,
+      'menu-item-icon--color--primary': sys.$si-sys-color-text-primary,
+      'menu-item-icon--color--primary--selected': sys.$si-sys-color-text-primary,
+      'menu-item--background--secondary--selected':
+        sys.$si-sys-color-background-0,
+    )
+  );
 }
 
 :host {
-  --ix-menu-item--height: #{sys.$si-sys-sizing-size-100};
-  --ix-menu-item--padding-inline: calc(
-    #{sys.$si-sys-sizing-spacing-x-50} + #{sys.$si-sys-sizing-spacing-x-10}
+  @include cv.define-vars(
+    (
+      'menu-item--height': sys.$si-sys-sizing-size-100,
+      'menu-item-tab-icon-slot--width': menu-rail.$icon-slot-width,
+    )
   );
-  --ix-menu-item-tab-icon--icon-size: #{sys.$si-sys-sizing-icon-md};
-  --ix-menu-item-tab-icon--margin-inline: calc(
-    (#{sys.$si-sys-sizing-icon-lg} - #{sys.$si-sys-sizing-icon-md}) / 2
+  @include cv.define-vars(
+    (
+      'menu-item--padding-inline':
+        calc(
+          (
+              #{menu-rail.$width} - #{cv.get-var(
+                  'menu-item-tab-icon-slot--width'
+                )}
+            ) / 2
+        ),
+      'menu-item-tab-icon--size': sys.$si-sys-sizing-icon-md,
+      'menu-item-tab-icon--margin-inline': sys.$si-sys-sizing-spacing-x-10,
+      'menu-item-tab-text--margin': 0 #{sys.$si-sys-sizing-spacing-x-60} 0 #{sys.$si-sys-sizing-spacing-x-70},
+      'menu-item-bottom-tab-bottom--height': sys.$si-sys-sizing-size-90,
+      'menu-item-tab--padding-left': sys.$si-sys-sizing-spacing-x-40,
+      'menu-item-tab-icon--padding-left': sys.$si-sys-sizing-spacing-x-40,
+      'menu-item-tab-icon--padding-right': sys.$si-sys-sizing-spacing-x-40,
+      'menu-item-tab-text--margin-left': sys.$si-sys-sizing-spacing-x-40,
+      'menu-item-tab--z-index': 500,
+      'menu-item--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
+    )
   );
-  --ix-menu-item-pill--padding: #{sys.$si-sys-sizing-spacing-y-20} #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-menu-item-tab-text--margin: 0 #{sys.$si-sys-sizing-spacing-x-60} 0 #{sys.$si-sys-sizing-spacing-x-70};
-  --ix-menu-item-bottom-tab-bottom--bottom-height: calc(
-    #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-20}
+  @include cv.define-vars(
+    (
+      'menu-item-tab--outline-offset':
+        calc(-1 * #{cv.get-var('menu-item--outline-width--focus')}),
+      'menu-item-notification--top': sys.$si-sys-sizing-spacing-y-20,
+      'menu-item-notification--right':
+        calc(100% - #{menu-rail.$width} + #{sys.$si-sys-sizing-spacing-x-20}),
+      'menu-item-tab--width': sys.$si-sys-sizing-border-width-emphasis,
+      'menu-item-notification--padding-left': sys.$si-sys-sizing-spacing-x-40,
+    )
   );
-  --ix-menu-item-tab--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-menu-item-tab-icon--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-menu-item-tab-icon--padding-right: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-menu-item-tab-text--margin-left: #{sys.$si-sys-sizing-spacing-x-40};
-  --ix-menu-item-tab--z-index: 500;
-  --ix-menu-item--outline-width--focus: #{sys.$si-sys-sizing-border-width-default};
-  --ix-menu-item-tab--outline-offset: calc(
-    calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2) * -1
-  );
-  --ix-menu-item-notification--top: #{sys.$si-sys-sizing-spacing-y-20};
-  --ix-menu-item-notification--left: #{sys.$si-sys-sizing-spacing-x-80};
-  --ix-menu-item-pill--height: 0.5rem;
-  --ix-menu-item-pill--min-width: 1rem;
-  --ix-menu-item-pill--border-radius: #{sys.$si-sys-sizing-border-radius-full};
-  --ix-menu-item-pill--font-size: 0.75rem;
-  --ix-menu-item-pill--font-weight: var(--si-ref-typography-font-weight-bold);
-  --ix-menu-item-tab--width: #{sys.$si-sys-sizing-border-width-emphasis};
-  --ix-menu-item-notification--padding-left: #{sys.$si-sys-sizing-spacing-x-40};
 }
