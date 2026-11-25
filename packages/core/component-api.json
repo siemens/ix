@@ -5084,7 +5084,7 @@
           "type": "\"auto\" | number",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "15.125",
+          "default": "242",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -5117,7 +5117,7 @@
           "type": "\"auto\" | number",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "16",
+          "default": "256",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -11578,7 +11578,7 @@
         {
           "name": "type",
           "attribute": "type",
-          "type": "\"caution\" | \"critical\" | \"danger\" | \"error\" | \"information\" | \"success\" | \"warning\"",
+          "type": "\"base\" | \"caution\" | \"critical\" | \"danger\" | \"error\" | \"information\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": true,
           "default": "'information'",

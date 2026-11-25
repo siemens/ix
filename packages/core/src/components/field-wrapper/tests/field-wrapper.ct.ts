@@ -14,7 +14,7 @@ regressionTest('renders', async ({ mount, page }) => {
   await mount(
     `
     <ix-field-wrapper helper-text="Helper text">
-      <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+      <div style="position: relative; width: 100%; height: 32px; background: red;">Content</div>
     </ix-field-wrapper>
     `
   );
@@ -34,7 +34,7 @@ regressionTest(
     await mount(
       `
     <ix-field-wrapper helper-text="Helper text" invalid-text="invalid text" is-invalid>
-      <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+      <div style="position: relative; width: 100%; height: 32px; background: red;">Content</div>
     </ix-field-wrapper>
     `
     );
@@ -79,7 +79,7 @@ regressionTest('doesnt render empty string text', async ({ mount, page }) => {
   await mount(
     `
     <ix-field-wrapper helper-text="">
-      <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+      <div style="position: relative; width: 100%; height: 32px; background: red;">Content</div>
     </ix-field-wrapper>
     `
   );
@@ -97,7 +97,7 @@ regressionTest('show text by tooltip', async ({ mount, page }) => {
   await mount(
     `
     <ix-field-wrapper helper-text="Helper text" invalid-text="invalid text" show-text-as-tooltip>
-      <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+      <div style="position: relative; width: 100%; height: 32px; background: red;">Content</div>
     </ix-field-wrapper>
     `
   );
@@ -115,7 +115,7 @@ regressionTest('show text by tooltip invalid', async ({ mount, page }) => {
   await mount(
     `
     <ix-field-wrapper helper-text="Helper text" invalid-text="invalid text" is-invalid show-text-as-tooltip>
-      <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+      <div style="position: relative; width: 100%; height: 32px; background: red;">Content</div>
     </ix-field-wrapper>
     `
   );
@@ -135,7 +135,7 @@ regressionTest(
     await mount(
       `
     <ix-field-wrapper helper-text=" " show-text-as-tooltip>
-      <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+      <div style="position: relative; width: 100%; height: 32px; background: red;">Content</div>
     </ix-field-wrapper>
     `
     );
@@ -156,7 +156,7 @@ regressionTest(
     await mount(
       `
     <ix-field-wrapper helper-text="initial helper" show-text-as-tooltip>
-      <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+      <div style="position: relative; width: 100%; height: 32px; background: red;">Content</div>
     </ix-field-wrapper>
     `
     );
@@ -210,7 +210,7 @@ regressionTest(
         invalid-text="This invalid message should be ignored"
         show-text-as-tooltip
       >
-        <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+        <div style="position: relative; width: 100%; height: 32px; background: red;">Content</div>
       </ix-field-wrapper>
       `
     );
@@ -241,7 +241,7 @@ regressionTest(
         is-invalid
         show-text-as-tooltip
       >
-        <div style="position: relative; width: 100%; height: 2rem; background: red;">Content</div>
+        <div style="position: relative; width: 100%; height: 32px; background: red;">Content</div>
       </ix-field-wrapper>
       `
     );

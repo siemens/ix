@@ -237,7 +237,7 @@ export namespace Components {
     /**
      * Top header bar of the application shell holding branding, navigation, and actions.
      * @documentation https://ix.siemens.io/docs/components/application-header/guide.md
-     * @figma-main-component-id 20920:77660
+     * @figma-main-component-id 162383:24794
      */
     interface IxApplicationHeader {
         /**
@@ -434,7 +434,7 @@ export namespace Components {
     /**
      * Collapsible container that expands and collapses to show or hide its content.
      * @documentation https://ix.siemens.io/docs/components/blind/guide.md
-     * @figma-main-component-id 388:3986
+     * @figma-main-component-id 162346:48011
      */
     interface IxBlind {
         /**
@@ -628,7 +628,7 @@ export namespace Components {
     /**
      * Flexible container that groups related content and actions.
      * @documentation https://ix.siemens.io/docs/components/card/guide.md
-     * @figma-main-component-id 104612:25530
+     * @figma-main-component-id 162440:171408
      */
     interface IxCard {
         /**
@@ -659,7 +659,7 @@ export namespace Components {
     /**
      * Expandable card section that shows or hides content within a card list.
      * @documentation https://ix.siemens.io/docs/components/card/guide.md
-     * @figma-main-component-id 104612:25530
+     * @figma-main-component-id 104612:25090
      */
     interface IxCardAccordion {
         /**
@@ -1181,6 +1181,7 @@ export namespace Components {
     /**
      * Main content region of an application page.
      * @documentation https://ix.siemens.io/docs/components/content/guide.md
+     * @figma-main-component-id 162440:168673
      */
     interface IxContent {
     }
@@ -1245,7 +1246,7 @@ export namespace Components {
     /**
      * Wrapper that adds label, helper text, and validation handling around custom form controls.
      * @documentation https://ix.siemens.io/docs/components/custom-field/guide.md
-     * @figma-main-component-id 42365:52677
+     * @figma-main-component-id 159477:16761
      */
     interface IxCustomField {
         /**
@@ -2445,7 +2446,8 @@ export namespace Components {
          */
         "compact": boolean;
         /**
-          * Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. In case a number is supplied it will get converted to rem internally. Defaults to 'S'.
+          * Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. Defaults to 'S'.
+          * @breaking-change 6.0.0 Numeric values are applied as pixels instead of being converted to rem
           * @default 'S'
          */
         "itemHeight": 'S' | 'L' | number;
@@ -2645,7 +2647,7 @@ export namespace Components {
     /**
      * Tile that flips between a front and back side to reveal additional content.
      * @documentation https://ix.siemens.io/docs/components/flip/code.md
-     * @figma-main-component-id 407:3446
+     * @figma-main-component-id 162362:111923
      */
     interface IxFlipTile {
         /**
@@ -2653,8 +2655,9 @@ export namespace Components {
          */
         "ariaLabelEyeIconButton"?: string;
         /**
-          * Height interpreted as REM
-          * @default 15.125
+          * Height in pixels
+          * @breaking-change 6.0.0 Numeric values are interpreted as pixels instead of rem
+          * @default 242
          */
         "height": number | 'auto';
         /**
@@ -2669,8 +2672,9 @@ export namespace Components {
          */
         "variant": FlipTileVariant;
         /**
-          * Width interpreted as REM
-          * @default 16
+          * Width in pixels
+          * @breaking-change 6.0.0 Numeric values are interpreted as pixels instead of rem
+          * @default 256
          */
         "width": number | 'auto';
     }
@@ -2689,7 +2693,7 @@ export namespace Components {
     /**
      * Collapsible list group with a selectable header and nested items.
      * @documentation https://ix.siemens.io/docs/components/group/code.md
-     * @figma-main-component-id 1274:38298
+     * @figma-main-component-id 162440:187838
      */
     interface IxGroup {
         /**
@@ -2743,7 +2747,7 @@ export namespace Components {
     /**
      * A single selectable item within a group.
      * @documentation https://ix.siemens.io/docs/components/group/code.md
-     * @figma-main-component-id 1274:34186
+     * @figma-main-component-id 162374:19834
      */
     interface IxGroupItem {
         /**
@@ -3191,7 +3195,7 @@ export namespace Components {
     /**
      * Button styled as a hyperlink that navigates to a target.
      * @documentation https://ix.siemens.io/docs/components/link-button/guide.md
-     * @figma-main-component-id 107603:15976
+     * @figma-main-component-id 154524:11000
      */
     interface IxLinkButton {
         /**
@@ -3845,6 +3849,7 @@ export namespace Components {
     /**
      * Dialog overlay that presents content or requires user interaction on top of the page.
      * @documentation https://ix.siemens.io/docs/components/modal/guide.md
+     * @figma-main-component-id 160960:19146
      */
     interface IxModal {
         /**
@@ -4159,7 +4164,7 @@ export namespace Components {
     /**
      * Collapsible side panel docked to an edge of the layout.
      * @documentation https://ix.siemens.io/docs/components/panes/guide.md
-     * @figma-main-component-id 19924:12291
+     * @figma-main-component-id 153304:26230
      */
     interface IxPane {
         /**
@@ -4237,7 +4242,7 @@ export namespace Components {
     /**
      * Layout container that arranges collapsible panes around a content area.
      * @documentation https://ix.siemens.io/docs/components/panes/guide.md
-     * @figma-main-component-id 19924:12291
+     * @figma-main-component-id 153304:27060
      */
     interface IxPaneLayout {
         /**
@@ -4680,11 +4685,11 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem"). By default the maximum width of the dropdown element is set to 100%.
+          * The maximum width of the dropdown element with value and unit (e.g. "200px"). By default the maximum width of the dropdown element is set to 100%.
          */
         "dropdownMaxWidth"?: string;
         /**
-          * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
+          * The width of the dropdown element with value and unit (e.g. "200px").
          */
         "dropdownWidth"?: string;
         /**
@@ -5249,7 +5254,7 @@ export namespace Components {
     /**
      * Container that presents grouped information in a compact tile.
      * @documentation https://ix.siemens.io/docs/components/tile/code.md
-     * @figma-main-component-id 1431:43158
+     * @figma-main-component-id 162362:68584
      */
     interface IxTile {
         /**
@@ -5639,7 +5644,7 @@ export namespace Components {
          */
         "toastTitle"?: string;
         /**
-          * Toast type, determining the status icon and left-side status strip color.
+          * Toast type, determining the status icon and left-side status strip color. Defaults to `information`.
           * @default 'information'
          */
         "type": ToastType;
@@ -5758,7 +5763,7 @@ export namespace Components {
     /**
      * Small overlay that shows contextual information when hovering or focusing an element.
      * @documentation https://ix.siemens.io/docs/components/tooltip/guide.md
-     * @figma-main-component-id 1239:30786
+     * @figma-main-component-id 160982:16759
      */
     interface IxTooltip {
         /**
@@ -6330,7 +6335,7 @@ declare global {
     /**
      * Top header bar of the application shell holding branding, navigation, and actions.
      * @documentation https://ix.siemens.io/docs/components/application-header/guide.md
-     * @figma-main-component-id 20920:77660
+     * @figma-main-component-id 162383:24794
      */
     interface HTMLIxApplicationHeaderElement extends Components.IxApplicationHeader, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxApplicationHeaderElementEventMap>(type: K, listener: (this: HTMLIxApplicationHeaderElement, ev: IxApplicationHeaderCustomEvent<HTMLIxApplicationHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6391,7 +6396,7 @@ declare global {
     /**
      * Collapsible container that expands and collapses to show or hide its content.
      * @documentation https://ix.siemens.io/docs/components/blind/guide.md
-     * @figma-main-component-id 388:3986
+     * @figma-main-component-id 162346:48011
      */
     interface HTMLIxBlindElement extends Components.IxBlind, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxBlindElementEventMap>(type: K, listener: (this: HTMLIxBlindElement, ev: IxBlindCustomEvent<HTMLIxBlindElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6469,7 +6474,7 @@ declare global {
     /**
      * Flexible container that groups related content and actions.
      * @documentation https://ix.siemens.io/docs/components/card/guide.md
-     * @figma-main-component-id 104612:25530
+     * @figma-main-component-id 162440:171408
      */
     interface HTMLIxCardElement extends Components.IxCard, HTMLStencilElement {
     }
@@ -6483,7 +6488,7 @@ declare global {
     /**
      * Expandable card section that shows or hides content within a card list.
      * @documentation https://ix.siemens.io/docs/components/card/guide.md
-     * @figma-main-component-id 104612:25530
+     * @figma-main-component-id 104612:25090
      */
     interface HTMLIxCardAccordionElement extends Components.IxCardAccordion, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxCardAccordionElementEventMap>(type: K, listener: (this: HTMLIxCardAccordionElement, ev: IxCardAccordionCustomEvent<HTMLIxCardAccordionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -6727,6 +6732,7 @@ declare global {
     /**
      * Main content region of an application page.
      * @documentation https://ix.siemens.io/docs/components/content/guide.md
+     * @figma-main-component-id 162440:168673
      */
     interface HTMLIxContentElement extends Components.IxContent, HTMLStencilElement {
     }
@@ -6778,7 +6784,7 @@ declare global {
     /**
      * Wrapper that adds label, helper text, and validation handling around custom form controls.
      * @documentation https://ix.siemens.io/docs/components/custom-field/guide.md
-     * @figma-main-component-id 42365:52677
+     * @figma-main-component-id 159477:16761
      */
     interface HTMLIxCustomFieldElement extends Components.IxCustomField, HTMLStencilElement {
     }
@@ -7150,7 +7156,7 @@ declare global {
     /**
      * Tile that flips between a front and back side to reveal additional content.
      * @documentation https://ix.siemens.io/docs/components/flip/code.md
-     * @figma-main-component-id 407:3446
+     * @figma-main-component-id 162362:111923
      */
     interface HTMLIxFlipTileElement extends Components.IxFlipTile, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxFlipTileElementEventMap>(type: K, listener: (this: HTMLIxFlipTileElement, ev: IxFlipTileCustomEvent<HTMLIxFlipTileElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7185,7 +7191,7 @@ declare global {
     /**
      * Collapsible list group with a selectable header and nested items.
      * @documentation https://ix.siemens.io/docs/components/group/code.md
-     * @figma-main-component-id 1274:38298
+     * @figma-main-component-id 162440:187838
      */
     interface HTMLIxGroupElement extends Components.IxGroup, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxGroupElementEventMap>(type: K, listener: (this: HTMLIxGroupElement, ev: IxGroupCustomEvent<HTMLIxGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7216,7 +7222,7 @@ declare global {
     /**
      * A single selectable item within a group.
      * @documentation https://ix.siemens.io/docs/components/group/code.md
-     * @figma-main-component-id 1274:34186
+     * @figma-main-component-id 162374:19834
      */
     interface HTMLIxGroupItemElement extends Components.IxGroupItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxGroupItemElementEventMap>(type: K, listener: (this: HTMLIxGroupItemElement, ev: IxGroupItemCustomEvent<HTMLIxGroupItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7374,7 +7380,7 @@ declare global {
     /**
      * Button styled as a hyperlink that navigates to a target.
      * @documentation https://ix.siemens.io/docs/components/link-button/guide.md
-     * @figma-main-component-id 107603:15976
+     * @figma-main-component-id 154524:11000
      */
     interface HTMLIxLinkButtonElement extends Components.IxLinkButton, HTMLStencilElement {
     }
@@ -7687,6 +7693,7 @@ declare global {
     /**
      * Dialog overlay that presents content or requires user interaction on top of the page.
      * @documentation https://ix.siemens.io/docs/components/modal/guide.md
+     * @figma-main-component-id 160960:19146
      */
     interface HTMLIxModalElement extends Components.IxModal, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxModalElementEventMap>(type: K, listener: (this: HTMLIxModalElement, ev: IxModalCustomEvent<HTMLIxModalElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7814,7 +7821,7 @@ declare global {
     /**
      * Collapsible side panel docked to an edge of the layout.
      * @documentation https://ix.siemens.io/docs/components/panes/guide.md
-     * @figma-main-component-id 19924:12291
+     * @figma-main-component-id 153304:26230
      */
     interface HTMLIxPaneElement extends Components.IxPane, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxPaneElementEventMap>(type: K, listener: (this: HTMLIxPaneElement, ev: IxPaneCustomEvent<HTMLIxPaneElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -7833,7 +7840,7 @@ declare global {
     /**
      * Layout container that arranges collapsible panes around a content area.
      * @documentation https://ix.siemens.io/docs/components/panes/guide.md
-     * @figma-main-component-id 19924:12291
+     * @figma-main-component-id 153304:27060
      */
     interface HTMLIxPaneLayoutElement extends Components.IxPaneLayout, HTMLStencilElement {
     }
@@ -8227,7 +8234,7 @@ declare global {
     /**
      * Container that presents grouped information in a compact tile.
      * @documentation https://ix.siemens.io/docs/components/tile/code.md
-     * @figma-main-component-id 1431:43158
+     * @figma-main-component-id 162362:68584
      */
     interface HTMLIxTileElement extends Components.IxTile, HTMLStencilElement {
     }
@@ -8367,7 +8374,7 @@ declare global {
     /**
      * Small overlay that shows contextual information when hovering or focusing an element.
      * @documentation https://ix.siemens.io/docs/components/tooltip/guide.md
-     * @figma-main-component-id 1239:30786
+     * @figma-main-component-id 160982:16759
      */
     interface HTMLIxTooltipElement extends Components.IxTooltip, HTMLStencilElement {
     }
@@ -8734,7 +8741,7 @@ declare namespace LocalJSX {
     /**
      * Top header bar of the application shell holding branding, navigation, and actions.
      * @documentation https://ix.siemens.io/docs/components/application-header/guide.md
-     * @figma-main-component-id 20920:77660
+     * @figma-main-component-id 162383:24794
      */
     interface IxApplicationHeader {
         /**
@@ -8939,7 +8946,7 @@ declare namespace LocalJSX {
     /**
      * Collapsible container that expands and collapses to show or hide its content.
      * @documentation https://ix.siemens.io/docs/components/blind/guide.md
-     * @figma-main-component-id 388:3986
+     * @figma-main-component-id 162346:48011
      */
     interface IxBlind {
         /**
@@ -9151,7 +9158,7 @@ declare namespace LocalJSX {
     /**
      * Flexible container that groups related content and actions.
      * @documentation https://ix.siemens.io/docs/components/card/guide.md
-     * @figma-main-component-id 104612:25530
+     * @figma-main-component-id 162440:171408
      */
     interface IxCard {
         /**
@@ -9182,7 +9189,7 @@ declare namespace LocalJSX {
     /**
      * Expandable card section that shows or hides content within a card list.
      * @documentation https://ix.siemens.io/docs/components/card/guide.md
-     * @figma-main-component-id 104612:25530
+     * @figma-main-component-id 104612:25090
      */
     interface IxCardAccordion {
         /**
@@ -9769,6 +9776,7 @@ declare namespace LocalJSX {
     /**
      * Main content region of an application page.
      * @documentation https://ix.siemens.io/docs/components/content/guide.md
+     * @figma-main-component-id 162440:168673
      */
     interface IxContent {
     }
@@ -9837,7 +9845,7 @@ declare namespace LocalJSX {
     /**
      * Wrapper that adds label, helper text, and validation handling around custom form controls.
      * @documentation https://ix.siemens.io/docs/components/custom-field/guide.md
-     * @figma-main-component-id 42365:52677
+     * @figma-main-component-id 159477:16761
      */
     interface IxCustomField {
         /**
@@ -11069,7 +11077,8 @@ declare namespace LocalJSX {
          */
         "compact"?: boolean;
         /**
-          * Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. In case a number is supplied it will get converted to rem internally. Defaults to 'S'.
+          * Determines the height of list items. This can either be one of two predefined sizes ('S' or 'L') or an absolute pixel value. Defaults to 'S'.
+          * @breaking-change 6.0.0 Numeric values are applied as pixels instead of being converted to rem
           * @default 'S'
          */
         "itemHeight"?: 'S' | 'L' | number;
@@ -11279,7 +11288,7 @@ declare namespace LocalJSX {
     /**
      * Tile that flips between a front and back side to reveal additional content.
      * @documentation https://ix.siemens.io/docs/components/flip/code.md
-     * @figma-main-component-id 407:3446
+     * @figma-main-component-id 162362:111923
      */
     interface IxFlipTile {
         /**
@@ -11287,8 +11296,9 @@ declare namespace LocalJSX {
          */
         "ariaLabelEyeIconButton"?: string;
         /**
-          * Height interpreted as REM
-          * @default 15.125
+          * Height in pixels
+          * @breaking-change 6.0.0 Numeric values are interpreted as pixels instead of rem
+          * @default 242
          */
         "height"?: number | 'auto';
         /**
@@ -11307,8 +11317,9 @@ declare namespace LocalJSX {
          */
         "variant"?: FlipTileVariant;
         /**
-          * Width interpreted as REM
-          * @default 16
+          * Width in pixels
+          * @breaking-change 6.0.0 Numeric values are interpreted as pixels instead of rem
+          * @default 256
          */
         "width"?: number | 'auto';
     }
@@ -11327,7 +11338,7 @@ declare namespace LocalJSX {
     /**
      * Collapsible list group with a selectable header and nested items.
      * @documentation https://ix.siemens.io/docs/components/group/code.md
-     * @figma-main-component-id 1274:38298
+     * @figma-main-component-id 162440:187838
      */
     interface IxGroup {
         /**
@@ -11393,7 +11404,7 @@ declare namespace LocalJSX {
     /**
      * A single selectable item within a group.
      * @documentation https://ix.siemens.io/docs/components/group/code.md
-     * @figma-main-component-id 1274:34186
+     * @figma-main-component-id 162374:19834
      */
     interface IxGroupItem {
         /**
@@ -11846,7 +11857,7 @@ declare namespace LocalJSX {
     /**
      * Button styled as a hyperlink that navigates to a target.
      * @documentation https://ix.siemens.io/docs/components/link-button/guide.md
-     * @figma-main-component-id 107603:15976
+     * @figma-main-component-id 154524:11000
      */
     interface IxLinkButton {
         /**
@@ -12558,6 +12569,7 @@ declare namespace LocalJSX {
     /**
      * Dialog overlay that presents content or requires user interaction on top of the page.
      * @documentation https://ix.siemens.io/docs/components/modal/guide.md
+     * @figma-main-component-id 160960:19146
      */
     interface IxModal {
         /**
@@ -12876,7 +12888,7 @@ declare namespace LocalJSX {
     /**
      * Collapsible side panel docked to an edge of the layout.
      * @documentation https://ix.siemens.io/docs/components/panes/guide.md
-     * @figma-main-component-id 19924:12291
+     * @figma-main-component-id 153304:26230
      */
     interface IxPane {
         /**
@@ -12968,7 +12980,7 @@ declare namespace LocalJSX {
     /**
      * Layout container that arranges collapsible panes around a content area.
      * @documentation https://ix.siemens.io/docs/components/panes/guide.md
-     * @figma-main-component-id 19924:12291
+     * @figma-main-component-id 153304:27060
      */
     interface IxPaneLayout {
         /**
@@ -13430,11 +13442,11 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem"). By default the maximum width of the dropdown element is set to 100%.
+          * The maximum width of the dropdown element with value and unit (e.g. "200px"). By default the maximum width of the dropdown element is set to 100%.
          */
         "dropdownMaxWidth"?: string;
         /**
-          * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
+          * The width of the dropdown element with value and unit (e.g. "200px").
          */
         "dropdownWidth"?: string;
         /**
@@ -14036,7 +14048,7 @@ declare namespace LocalJSX {
     /**
      * Container that presents grouped information in a compact tile.
      * @documentation https://ix.siemens.io/docs/components/tile/code.md
-     * @figma-main-component-id 1431:43158
+     * @figma-main-component-id 162362:68584
      */
     interface IxTile {
         /**
@@ -14420,7 +14432,7 @@ declare namespace LocalJSX {
          */
         "toastTitle"?: string;
         /**
-          * Toast type, determining the status icon and left-side status strip color.
+          * Toast type, determining the status icon and left-side status strip color. Defaults to `information`.
           * @default 'information'
          */
         "type"?: ToastType;
@@ -14548,7 +14560,7 @@ declare namespace LocalJSX {
     /**
      * Small overlay that shows contextual information when hovering or focusing an element.
      * @documentation https://ix.siemens.io/docs/components/tooltip/guide.md
-     * @figma-main-component-id 1239:30786
+     * @figma-main-component-id 160982:16759
      */
     interface IxTooltip {
         /**
@@ -16168,7 +16180,7 @@ declare module "@stencil/core" {
             /**
              * Top header bar of the application shell holding branding, navigation, and actions.
              * @documentation https://ix.siemens.io/docs/components/application-header/guide.md
-             * @figma-main-component-id 20920:77660
+             * @figma-main-component-id 162383:24794
              */
             "ix-application-header": LocalJSX.IntrinsicElements["ix-application-header"] & JSXBase.HTMLAttributes<HTMLIxApplicationHeaderElement>;
             /**
@@ -16198,7 +16210,7 @@ declare module "@stencil/core" {
             /**
              * Collapsible container that expands and collapses to show or hide its content.
              * @documentation https://ix.siemens.io/docs/components/blind/guide.md
-             * @figma-main-component-id 388:3986
+             * @figma-main-component-id 162346:48011
              */
             "ix-blind": LocalJSX.IntrinsicElements["ix-blind"] & JSXBase.HTMLAttributes<HTMLIxBlindElement>;
             /**
@@ -16222,13 +16234,13 @@ declare module "@stencil/core" {
             /**
              * Flexible container that groups related content and actions.
              * @documentation https://ix.siemens.io/docs/components/card/guide.md
-             * @figma-main-component-id 104612:25530
+             * @figma-main-component-id 162440:171408
              */
             "ix-card": LocalJSX.IntrinsicElements["ix-card"] & JSXBase.HTMLAttributes<HTMLIxCardElement>;
             /**
              * Expandable card section that shows or hides content within a card list.
              * @documentation https://ix.siemens.io/docs/components/card/guide.md
-             * @figma-main-component-id 104612:25530
+             * @figma-main-component-id 104612:25090
              */
             "ix-card-accordion": LocalJSX.IntrinsicElements["ix-card-accordion"] & JSXBase.HTMLAttributes<HTMLIxCardAccordionElement>;
             /**
@@ -16313,6 +16325,7 @@ declare module "@stencil/core" {
             /**
              * Main content region of an application page.
              * @documentation https://ix.siemens.io/docs/components/content/guide.md
+             * @figma-main-component-id 162440:168673
              */
             "ix-content": LocalJSX.IntrinsicElements["ix-content"] & JSXBase.HTMLAttributes<HTMLIxContentElement>;
             /**
@@ -16333,7 +16346,7 @@ declare module "@stencil/core" {
             /**
              * Wrapper that adds label, helper text, and validation handling around custom form controls.
              * @documentation https://ix.siemens.io/docs/components/custom-field/guide.md
-             * @figma-main-component-id 42365:52677
+             * @figma-main-component-id 159477:16761
              */
             "ix-custom-field": LocalJSX.IntrinsicElements["ix-custom-field"] & JSXBase.HTMLAttributes<HTMLIxCustomFieldElement>;
             /**
@@ -16449,7 +16462,7 @@ declare module "@stencil/core" {
             /**
              * Tile that flips between a front and back side to reveal additional content.
              * @documentation https://ix.siemens.io/docs/components/flip/code.md
-             * @figma-main-component-id 407:3446
+             * @figma-main-component-id 162362:111923
              */
             "ix-flip-tile": LocalJSX.IntrinsicElements["ix-flip-tile"] & JSXBase.HTMLAttributes<HTMLIxFlipTileElement>;
             /**
@@ -16461,7 +16474,7 @@ declare module "@stencil/core" {
             /**
              * Collapsible list group with a selectable header and nested items.
              * @documentation https://ix.siemens.io/docs/components/group/code.md
-             * @figma-main-component-id 1274:38298
+             * @figma-main-component-id 162440:187838
              */
             "ix-group": LocalJSX.IntrinsicElements["ix-group"] & JSXBase.HTMLAttributes<HTMLIxGroupElement>;
             /**
@@ -16471,7 +16484,7 @@ declare module "@stencil/core" {
             /**
              * A single selectable item within a group.
              * @documentation https://ix.siemens.io/docs/components/group/code.md
-             * @figma-main-component-id 1274:34186
+             * @figma-main-component-id 162374:19834
              */
             "ix-group-item": LocalJSX.IntrinsicElements["ix-group-item"] & JSXBase.HTMLAttributes<HTMLIxGroupItemElement>;
             /**
@@ -16541,7 +16554,7 @@ declare module "@stencil/core" {
             /**
              * Button styled as a hyperlink that navigates to a target.
              * @documentation https://ix.siemens.io/docs/components/link-button/guide.md
-             * @figma-main-component-id 107603:15976
+             * @figma-main-component-id 154524:11000
              */
             "ix-link-button": LocalJSX.IntrinsicElements["ix-link-button"] & JSXBase.HTMLAttributes<HTMLIxLinkButtonElement>;
             /**
@@ -16629,6 +16642,7 @@ declare module "@stencil/core" {
             /**
              * Dialog overlay that presents content or requires user interaction on top of the page.
              * @documentation https://ix.siemens.io/docs/components/modal/guide.md
+             * @figma-main-component-id 160960:19146
              */
             "ix-modal": LocalJSX.IntrinsicElements["ix-modal"] & JSXBase.HTMLAttributes<HTMLIxModalElement>;
             /**
@@ -16669,13 +16683,13 @@ declare module "@stencil/core" {
             /**
              * Collapsible side panel docked to an edge of the layout.
              * @documentation https://ix.siemens.io/docs/components/panes/guide.md
-             * @figma-main-component-id 19924:12291
+             * @figma-main-component-id 153304:26230
              */
             "ix-pane": LocalJSX.IntrinsicElements["ix-pane"] & JSXBase.HTMLAttributes<HTMLIxPaneElement>;
             /**
              * Layout container that arranges collapsible panes around a content area.
              * @documentation https://ix.siemens.io/docs/components/panes/guide.md
-             * @figma-main-component-id 19924:12291
+             * @figma-main-component-id 153304:27060
              */
             "ix-pane-layout": LocalJSX.IntrinsicElements["ix-pane-layout"] & JSXBase.HTMLAttributes<HTMLIxPaneLayoutElement>;
             /**
@@ -16812,7 +16826,7 @@ declare module "@stencil/core" {
             /**
              * Container that presents grouped information in a compact tile.
              * @documentation https://ix.siemens.io/docs/components/tile/code.md
-             * @figma-main-component-id 1431:43158
+             * @figma-main-component-id 162362:68584
              */
             "ix-tile": LocalJSX.IntrinsicElements["ix-tile"] & JSXBase.HTMLAttributes<HTMLIxTileElement>;
             /**
@@ -16854,7 +16868,7 @@ declare module "@stencil/core" {
             /**
              * Small overlay that shows contextual information when hovering or focusing an element.
              * @documentation https://ix.siemens.io/docs/components/tooltip/guide.md
-             * @figma-main-component-id 1239:30786
+             * @figma-main-component-id 160982:16759
              */
             "ix-tooltip": LocalJSX.IntrinsicElements["ix-tooltip"] & JSXBase.HTMLAttributes<HTMLIxTooltipElement>;
             /**

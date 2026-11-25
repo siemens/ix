@@ -14,6 +14,7 @@
 @use 'tokens/system' as sys;
 
 @use 'mixins/component-vars' as cv;
+@use 'mixins/icon-box' as ib;
 
 :host {
   @include cv.define-vars(
@@ -21,7 +22,7 @@
       'dropdown-button--border-radius-left': sys.$si-sys-sizing-border-radius-xs,
       'dropdown-button--border-radius-right':
         sys.$si-sys-sizing-border-radius-xs,
-      'dropdown-button--height': sys.$si-sys-sizing-size-80,
+      'dropdown-button--height': ib.icon-box-32(),
       'dropdown-button--padding': 0 #{sys.$si-sys-sizing-spacing-x-40},
       'dropdown-button-dropdown-icon--margin-right':
         sys.$si-sys-sizing-spacing-x-20,

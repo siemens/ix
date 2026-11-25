@@ -165,9 +165,9 @@ regressionTest(
     expect(footerBox?.y).toBe(ltrBox?.y);
 
     await page.locator('ix-application').evaluate((element) => {
-      element.style.setProperty('--ix-safe-area-inset-top', '1rem');
-      element.style.setProperty('--ix-safe-area-inset-left', '1rem');
-      element.style.setProperty('--ix-safe-area-inset-right', '1rem');
+      element.style.setProperty('--ix-safe-area-inset-top', '16px');
+      element.style.setProperty('--ix-safe-area-inset-left', '16px');
+      element.style.setProperty('--ix-safe-area-inset-right', '16px');
       element.setAttribute('dir', 'rtl');
     });
     await footerLink.focus();

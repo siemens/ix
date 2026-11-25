@@ -29,7 +29,7 @@
 
     appearance: button;
 
-    height: cv.get-var('card-accordion-expand-action--height');
+    min-height: cv.get-var('card-accordion-expand-action--height');
     width: 100%;
 
     align-items: center;

@@ -70,7 +70,7 @@ test('use brand logo if provided', async ({ mount, page }) => {
 
           // Need to define a width and height otherwise component will be shown as hidden
           wrapper.style.height = '16px';
-          wrapper.style.width = '4rem';
+          wrapper.style.width = '64px';
           wrapper.innerText = `THE BRAND LOGO`;
           shadow.appendChild(wrapper);
         }
@@ -109,7 +109,7 @@ test('use custom logo over brand logo', async ({ mount, page }) => {
           const wrapper = document.createElement('div');
           // Need to define a width and height otherwise component will be shown as hidden
           wrapper.style.height = '16px';
-          wrapper.style.width = '4rem';
+          wrapper.style.width = '64px';
           wrapper.innerText = `THE BRAND LOGO`;
           shadow.appendChild(wrapper);
         }
@@ -125,7 +125,7 @@ test('use custom logo over brand logo', async ({ mount, page }) => {
 
     // Need to define a width and height otherwise component will be shown as hidden
     alternativeLogo.style.height = '16px';
-    alternativeLogo.style.width = '4rem';
+    alternativeLogo.style.width = '64px';
 
     const header = document.createElement(
       'ix-application-header'
@@ -159,7 +159,7 @@ test('use company logo property over brand logo', async ({ mount, page }) => {
 
           // Need to define a width and height otherwise component will be shown as hidden
           wrapper.style.height = '16px';
-          wrapper.style.width = '4rem';
+          wrapper.style.width = '64px';
           wrapper.innerText = `THE BRAND LOGO`;
           shadow.appendChild(wrapper);
         }

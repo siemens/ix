@@ -13,6 +13,7 @@
 
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
+@use 'mixins/icon-box' as ib;
 
 :host {
   @include cv.define-vars(
@@ -34,7 +35,7 @@
       'tree-item-expand-icon--transition-duration': var(--theme-default-time),
       'tree-item--height': sys.$si-sys-sizing-size-80,
       'tree-item-tree-node-container--height': sys.$si-sys-sizing-size-80,
-      'tree-item-icon-toggle-container-icon--size': sys.$si-sys-sizing-size-80,
+      'tree-item-icon-toggle-container-icon--size': ib.icon-box-32-icon-24(),
       'tree-item--outline-color--focus': sys.$si-sys-color-effects-focus,
       'tree-item--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
       'tree-item--opacity': 0.5,

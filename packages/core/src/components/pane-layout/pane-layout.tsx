@@ -26,7 +26,7 @@ import type { Disposable } from '../utils/typed-event';
  * Layout container that arranges collapsible panes around a content area.
  *
  * @documentation https://ix.siemens.io/docs/components/panes/guide.md
- * @figma-main-component-id 19924:12291
+ * @figma-main-component-id 153304:27060
  *
  * @slot left - Content displayed in the left pane.
  * @slot top - Content displayed in the top pane.
@@ -443,7 +443,9 @@ export class Panes {
             <div
               key="top"
               style={{
-                minHeight: this.hasPaddingMobile('top') ? '48px' : '0',
+                minHeight: this.hasPaddingMobile('top')
+                  ? 'var(--ix-pane-layout-pane--min-height--mobile)'
+                  : '0',
                 display: this.slotExists('top') ? 'block' : 'none',
               }}
             >
@@ -452,7 +454,9 @@ export class Panes {
             <div
               key="left"
               style={{
-                minHeight: this.hasPaddingMobile('left') ? '48px' : '0',
+                minHeight: this.hasPaddingMobile('left')
+                  ? 'var(--ix-pane-layout-pane--min-height--mobile)'
+                  : '0',
                 display: this.slotExists('left') ? 'block' : 'none',
               }}
             >
@@ -469,7 +473,9 @@ export class Panes {
             <div
               key="right"
               style={{
-                minHeight: this.hasPaddingMobile('right') ? '48px' : '0',
+                minHeight: this.hasPaddingMobile('right')
+                  ? 'var(--ix-pane-layout-pane--min-height--mobile)'
+                  : '0',
                 display: this.slotExists('right') ? 'block' : 'none',
               }}
             >
@@ -478,7 +484,9 @@ export class Panes {
             <div
               key="bottom"
               style={{
-                minHeight: this.hasPaddingMobile('bottom') ? '48px' : '0',
+                minHeight: this.hasPaddingMobile('bottom')
+                  ? 'var(--ix-pane-layout-pane--min-height--mobile)'
+                  : '0',
                 display: this.slotExists('bottom') ? 'block' : 'none',
               }}
             >

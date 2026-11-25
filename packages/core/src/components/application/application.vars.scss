@@ -13,6 +13,7 @@
 
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
+@use 'mixins/menu-rail';
 
 // Runtime properties without a default (set per state or from TSX).
 @include cv.declare-var('application-menu--margin-left');
@@ -32,7 +33,7 @@
       'application-skip-link--padding': #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-60},
       'application--width': 100vw,
       'application--height': 100vh,
-      'application-menu--margin-left--md': sys.$si-sys-sizing-size-100,
+      'application-menu--margin-left--md': menu-rail.$width,
     )
   );
 }

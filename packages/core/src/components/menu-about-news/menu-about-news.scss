@@ -12,7 +12,7 @@
 @use './menu-about-news.vars' as *;
 @use 'mixins/component-vars' as cv;
 $left: cv.get-var('menu-about-news--left');
-$expanded-left-offset: cv.get-var('menu-about-news--left--expanded');
+$expanded-left: cv.get-var('menu-about-news--left--expanded');
 
 :host {
   --margin: #{cv.get-var('menu-about-news--margin')};
@@ -56,6 +56,9 @@ $expanded-left-offset: cv.get-var('menu-about-news--left--expanded');
   }
 
   .cui-popover-news-header {
+    min-height: cv.get-var(
+      'menu-about-news-cui-popover-news-header--min-height'
+    );
     margin-bottom: cv.get-var(
       'menu-about-news-cui-popover-news-header--margin-bottom'
     );
@@ -101,7 +104,7 @@ $expanded-left-offset: cv.get-var('menu-about-news--left--expanded');
 }
 
 :host(.expanded) {
-  left: calc(#{$left} + #{$expanded-left-offset});
+  left: $expanded-left;
 }
 
 :host(.show) {

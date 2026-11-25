@@ -977,11 +977,11 @@ test.describe('Enter selection with non-existing and existing items', () => {
 });
 
 test.describe('Dropdown width', () => {
-  test('should be 25rem when dropdown-width is set to 35rem and dropdown-max-width to 25rem', async ({
+  test('should be 400px when dropdown-width is set to 560px and dropdown-max-width to 400px', async ({
     mount,
     page,
   }) => {
-    await mount(`<ix-select value="1" dropdown-width="35rem" dropdown-max-width="25rem">
+    await mount(`<ix-select value="1" dropdown-width="560px" dropdown-max-width="400px">
       <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
     </ix-select>`);
 
@@ -996,11 +996,11 @@ test.describe('Dropdown width', () => {
     expect(box?.width).toBe(16 * 25);
   });
 
-  test('should be 25rem when dropdown-width is set to 25 and dropdown-max-width to 35rem', async ({
+  test('should be 400px when dropdown-width is set to 25 and dropdown-max-width to 560px', async ({
     mount,
     page,
   }) => {
-    await mount(`<ix-select value="1" dropdown-width="25rem" dropdown-max-width="35rem">
+    await mount(`<ix-select value="1" dropdown-width="400px" dropdown-max-width="560px">
       <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
     </ix-select>`);
 
@@ -1015,11 +1015,11 @@ test.describe('Dropdown width', () => {
     expect(box?.width).toBe(16 * 25);
   });
 
-  test('should be 25rem when dropdown-width is set to 25 and dropdown-max-width is not set', async ({
+  test('should be 400px when dropdown-width is set to 25 and dropdown-max-width is not set', async ({
     mount,
     page,
   }) => {
-    await mount(`<ix-select value="1" dropdown-width="25rem">
+    await mount(`<ix-select value="1" dropdown-width="400px">
       <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
     </ix-select>`);
 
@@ -1034,11 +1034,11 @@ test.describe('Dropdown width', () => {
     expect(box?.width).toBe(16 * 25);
   });
 
-  test('should be 35rem when dropdown-width is not set and dropdown-max-width is set to 35rem', async ({
+  test('should be 560px when dropdown-width is not set and dropdown-max-width is set to 560px', async ({
     mount,
     page,
   }) => {
-    await mount(`<ix-select value="1" dropdown-max-width="35rem">
+    await mount(`<ix-select value="1" dropdown-max-width="560px">
       <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
     </ix-select>`);
 
@@ -1079,7 +1079,7 @@ test('should be 100% when dropdown-max-width is greater than the viewport width'
   mount,
   page,
 }) => {
-  await mount(`<ix-select value="1" dropdown-max-width="10000rem">
+  await mount(`<ix-select value="1" dropdown-max-width="160000px">
     <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
   </ix-select>`);
 

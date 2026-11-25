@@ -46,14 +46,14 @@ $-border-width: var(
 
 @mixin element-input(
   $feature-read-only: true,
-  $padding: 0.25rem 0.5rem,
+  $padding: 4px 8px,
   $density-aware: false
 ) {
   & {
     @if $density-aware {
       min-height: #{sys.$si-sys-sizing-size-80};
     } @else {
-      min-height: 2rem;
+      min-height: 32px;
     }
     width: auto;
     @if $density-aware {

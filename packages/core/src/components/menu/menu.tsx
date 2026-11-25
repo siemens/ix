@@ -40,7 +40,6 @@ import {
 import { menuController } from '../utils/menu-service/menu-service';
 import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
-import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
@@ -528,7 +527,7 @@ export class Menu {
     const offset =
       window.innerHeight -
       (rectAbout.bottom - rectAbout.height / 2 + heightArrow / 2 + offsetArrow);
-    return convertToRemString(offset);
+    return `${offset}px`;
   }
 
   private appendAboutNewsPopover() {
@@ -769,11 +768,11 @@ export class Menu {
         [
           {
             backdropFilter: 'blur(0)',
-            transform: 'translateX(-4rem)',
+            transform: 'translateX(-64px)',
             opacity: 0,
           },
           {
-            backdropFilter: 'blur(1rem)',
+            backdropFilter: 'blur(16px)',
             transform: 'translateX(0)',
             opacity: 1,
           },
@@ -816,13 +815,13 @@ export class Menu {
         overlayContainer,
         [
           {
-            backdropFilter: 'blur(1rem)',
+            backdropFilter: 'blur(16px)',
             transform: 'translateX(0)',
             opacity: 1,
           },
           {
             backdropFilter: 'blur(0)',
-            transform: 'translateX(-4rem)',
+            transform: 'translateX(-64px)',
             opacity: 0,
           },
         ],

@@ -25,14 +25,23 @@
 :host {
   @include cv.define-vars(
     (
-      'pill--height': sys.$si-sys-sizing-size-60,
-      'pill--max-height': sys.$si-sys-sizing-size-60,
+      // Grows by the line height added above the default 16px (rem text, px box)
+      'pill--height':
+        max(
+          #{sys.$si-sys-sizing-size-60},
+          calc(#{sys.$si-sys-sizing-size-60} + 1lh - 16px)
+        ),
+      'pill--max-height':
+        max(
+          #{sys.$si-sys-sizing-size-60},
+          calc(#{sys.$si-sys-sizing-size-60} + 1lh - 16px)
+        ),
       'pill--padding-inline': sys.$si-sys-sizing-spacing-x-40,
       'pill-icon--padding-left--outline': sys.$si-sys-sizing-spacing-x-40,
       'pill-icon--padding-right--outline': sys.$si-sys-sizing-spacing-x-40,
       'pill-solid-icon--padding-left': sys.$si-sys-sizing-spacing-x-40,
       'pill-solid-icon--padding-right': sys.$si-sys-sizing-spacing-x-40,
-      'pill-with-gap--gap': sys.$si-sys-sizing-spacing-x-20,
+      'pill-with-gap--gap': sys.$si-sys-sizing-spacing-x-20
     )
   );
 }

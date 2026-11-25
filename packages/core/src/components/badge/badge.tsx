@@ -29,7 +29,6 @@ import {
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
 import { makeRef } from '../utils/make-ref';
-import { convertToRemString } from '../utils/rwd.util';
 import { hasSlottedElements } from '../utils/shadow-dom';
 import {
   getBadgeStatusIcon,
@@ -640,8 +639,8 @@ export class Badge
           ...customHostStyle,
           ...(this.hasAnchor
             ? {
-                '--ix-badge--offset-x': convertToRemString(offsets.x),
-                '--ix-badge--offset-y': convertToRemString(offsets.y),
+                '--ix-badge--offset-x': `${offsets.x}px`,
+                '--ix-badge--offset-y': `${offsets.y}px`,
               }
             : {}),
         }}

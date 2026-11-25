@@ -118,7 +118,7 @@ $outline-border-width: cv.get-var('chip--border-width--focus');
       min-width: 0;
     }
 
-    .with-icon {
+    .content-wrapper.has-label .with-icon {
       margin-right: cv.get-var('chip-with-icon--margin-right');
     }
 

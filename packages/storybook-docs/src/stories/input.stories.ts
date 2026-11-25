@@ -61,6 +61,7 @@ export const Slotted: Story = {
     const icon = document.createElement('ix-icon-button');
     icon.icon = 'search';
     icon.slot = 'start';
+    icon.size = '16';
     input.appendChild(icon);
 
     return container;

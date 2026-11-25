@@ -15,6 +15,7 @@
 @use 'mixins/component-vars' as cv;
 
 $toast-status-sys: (
+  base: sys.$si-sys-color-text-primary,
   danger: sys.$si-sys-color-border-danger,
   warning: sys.$si-sys-color-border-warning,
   caution: sys.$si-sys-color-border-caution,

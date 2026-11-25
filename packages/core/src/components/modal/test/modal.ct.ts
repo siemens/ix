@@ -94,7 +94,7 @@ async function createSelectOverflowExample(page: Page) {
     modal.setAttribute('size', '360');
 
     const content = document.createElement('ix-modal-content');
-    content.innerHTML = '<div style="height: 12rem;"></div>';
+    content.innerHTML = '<div style="height: 192px;"></div>';
 
     const select = document.createElement('ix-select');
     select.setAttribute('id', 'overflow-select');

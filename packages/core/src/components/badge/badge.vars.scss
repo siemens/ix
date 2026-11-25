@@ -66,8 +66,8 @@
 :host {
   @include cv.define-vars(
     (
-      'badge--offset-x': 0rem,
-      'badge--offset-y': 0rem,
+      'badge--offset-x': 0px,
+      'badge--offset-y': 0px,
       'badge--max-width': none,
       'badge--animation-duration': 2s,
       'badge-indicator--font': sys.$si-sys-typography-body-sbold,

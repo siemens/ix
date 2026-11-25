@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@siemens/ix": "workspace:*",
-    "@siemens/ix-icons": "^3.3.0",
+    "@siemens/ix-icons": "^4.0.0",
     "@siemens/ix-react": "workspace:*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
