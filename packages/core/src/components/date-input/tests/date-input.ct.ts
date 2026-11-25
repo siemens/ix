@@ -180,7 +180,7 @@ regressionTest(
   'preserves range-field focus while selecting a date from the first calendar',
   async ({ mount, page }) => {
     await mount(`
-      <ix-range-field type="date-range" style="width: 32rem">
+      <ix-range-field type="date-range" style="width: 512px">
         <ix-date-input label="Start date" value="2022/10/01"></ix-date-input>
         <ix-date-input label="End date" value="2022/10/31"></ix-date-input>
       </ix-range-field>

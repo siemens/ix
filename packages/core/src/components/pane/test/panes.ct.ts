@@ -797,3 +797,35 @@ regressionTest(
     await expect(pane).toHaveCSS('width', '200px');
   }
 );
+
+regressionTest(
+  'collapsed size grows with rem content when the root font size increases',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await mount(`
+      <div style="width: 600px; height: 400px">
+        <ix-pane heading="Pane" composition="top"></ix-pane>
+      </div>
+    `);
+    const pane = page.locator('ix-pane');
+    await expect(pane).toHaveAttribute('hydrated');
+    await expect(pane).toHaveCSS('height', '40px');
+
+    await page.evaluate(() => {
+      document.documentElement.style.fontSize = '32px';
+    });
+
+    const button = pane.locator('ix-icon-button');
+    await expect
+      .poll(async () => (await pane.boundingBox())?.height)
+      .toBeGreaterThan(40);
+    const paneBox = await pane.boundingBox();
+    const buttonBox = await button.boundingBox();
+    if (!paneBox || !buttonBox) {
+      throw new Error('Pane or icon button is not rendered');
+    }
+    expect(buttonBox.y + buttonBox.height).toBeLessThanOrEqual(
+      paneBox.y + paneBox.height
+    );
+  }
+);

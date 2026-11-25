@@ -13,6 +13,8 @@
 
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
+@use 'mixins/icon-box' as ib;
+@use 'mixins/menu-rail';
 
 :host {
   @include cv.define-vars(
@@ -34,12 +36,14 @@
       'menu-about-news--z-index': var(--theme-z-index-sticky),
       'menu-about-news--left':
         calc(
-          #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-30} +
-            #{sys.$si-sys-sizing-spacing-x-10} * 0.2
+          #{menu-rail.$width} + #{sys.$si-sys-sizing-spacing-x-30} + #{sys.$si-sys-sizing-spacing-x-10} *
+            0.2
         ),
       'menu-about-news--left--expanded':
         calc(
-          #{sys.$si-sys-sizing-size-150} + #{sys.$si-sys-sizing-size-90} + #{sys.$si-sys-sizing-spacing-x-20} *
+          #{sys.$si-sys-sizing-size-100} + #{sys.$si-sys-sizing-spacing-x-30} +
+            #{sys.$si-sys-sizing-spacing-x-10} * 0.2 + #{sys.$si-sys-sizing-size-150} +
+            #{sys.$si-sys-sizing-size-90} + #{sys.$si-sys-sizing-spacing-x-20} *
             0.8
         ),
       'menu-about-news--margin': sys.$si-sys-sizing-spacing-x-40,
@@ -50,8 +54,6 @@
       'menu-about-news-icon--margin': #{sys.$si-sys-sizing-spacing-y-40} #{sys.$si-sys-sizing-spacing-x-40},
       'menu-about-news-cui-popover-news-header--margin-bottom':
         sys.$si-sys-sizing-spacing-y-100,
-      'menu-about-news-cui-popover-news-header--margin-inline-start':
-        sys.$si-sys-sizing-spacing-x-120,
       'menu-about-news-cui-popover-news-footer--margin-top':
         sys.$si-sys-sizing-spacing-y-60,
       'menu-about-news-icon--top': sys.$si-sys-sizing-spacing-y-40,
@@ -59,26 +61,45 @@
       'menu-about-news-desktop--z-index': 10000,
       'menu-about-news-banner-container--top':
         calc(#{sys.$si-sys-sizing-spacing-y-10} / 2),
-      'menu-about-news-svg--height': 3.625rem,
-      'menu-about-news-svg--width': 3rem,
-      'menu-about-news-arrow--width': 0.5rem,
-      'menu-about-news-arrow--height': 0.5rem,
-      'menu-about-news-arrow--transform': 0.8rem,
-      'menu-about-news--viewport-offset--mobile': 4.75rem,
+      'menu-about-news-svg--width':
+        ib.icon-box(
+          sys.$si-sys-sizing-size-100,
+          sys.$si-sys-sizing-icon-xl,
+          sys.$si-sys-sizing-spacing-x-40
+        ),
+      'menu-about-news-arrow--width': 8px,
+      'menu-about-news-arrow--height': 8px,
+      'menu-about-news-arrow--transform': 12.8px,
+      'menu-about-news--viewport-offset--mobile': 76px,
     )
   );
   @include cv.define-vars(
     (
+      // Banner keeps its aspect ratio (48 x 58) when it grows with the icon.
+      'menu-about-news-svg--height':
+        calc(#{cv.get-var('menu-about-news-svg--width')} * 58 / 48),
+      'menu-about-news-cui-popover-news-header--margin-inline-start':
+        calc(
+          #{cv.get-var('menu-about-news-svg--width')} + #{sys.$si-sys-sizing-spacing-x-60}
+        ),
+      // Header and its bottom margin are at least as tall as the banner, so the
+      // content starts below the banner when it grows with the icon.
+      'menu-about-news-cui-popover-news-header--min-height':
+        calc(
+          #{cv.get-var('menu-about-news-svg--width')} * 58 / 48 - #{cv.get-var(
+              'menu-about-news-cui-popover-news-header--margin-bottom'
+            )}
+        ),
       'menu-about-news--max-height--mobile':
         calc(100vh - #{cv.get-var('menu-about-news--viewport-offset--mobile')}),
-      'menu-about-news-side--inset--mobile': sys.$si-sys-sizing-spacing-x-60,
+      'menu-about-news-side--inset--mobile': sys.$si-sys-sizing-spacing-x-60
     )
   );
   @include cv.define-vars(
     (
       'menu-about-news--width--mobile':
         calc(100% - 2 * #{cv.get-var('menu-about-news-side--inset--mobile')}),
-      'menu-about-news--max-width--mobile': 30rem,
+      'menu-about-news--max-width--mobile': 480px,
       'menu-about-news--bottom--mobile': sys.$si-sys-sizing-spacing-y-60,
     )
   );

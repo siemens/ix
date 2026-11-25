@@ -500,7 +500,7 @@ regressionTest.describe('ix-popover', () => {
       'does not close on outside click by default',
       async ({ mount, page }) => {
         await mount(html`
-          <div style="padding: 8rem 0 0 8rem;">
+          <div style="padding: 128px 0 0 128px;">
             ${interactivePopoverMarkup()}
           </div>
         `);

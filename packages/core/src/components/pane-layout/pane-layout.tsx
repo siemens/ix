@@ -443,7 +443,9 @@ export class Panes {
             <div
               key="top"
               style={{
-                minHeight: this.hasPaddingMobile('top') ? '48px' : '0',
+                minHeight: this.hasPaddingMobile('top')
+                  ? 'var(--ix-pane-layout-pane--min-height--mobile)'
+                  : '0',
                 display: this.slotExists('top') ? 'block' : 'none',
               }}
             >
@@ -452,7 +454,9 @@ export class Panes {
             <div
               key="left"
               style={{
-                minHeight: this.hasPaddingMobile('left') ? '48px' : '0',
+                minHeight: this.hasPaddingMobile('left')
+                  ? 'var(--ix-pane-layout-pane--min-height--mobile)'
+                  : '0',
                 display: this.slotExists('left') ? 'block' : 'none',
               }}
             >
@@ -469,7 +473,9 @@ export class Panes {
             <div
               key="right"
               style={{
-                minHeight: this.hasPaddingMobile('right') ? '48px' : '0',
+                minHeight: this.hasPaddingMobile('right')
+                  ? 'var(--ix-pane-layout-pane--min-height--mobile)'
+                  : '0',
                 display: this.slotExists('right') ? 'block' : 'none',
               }}
             >
@@ -478,7 +484,9 @@ export class Panes {
             <div
               key="bottom"
               style={{
-                minHeight: this.hasPaddingMobile('bottom') ? '48px' : '0',
+                minHeight: this.hasPaddingMobile('bottom')
+                  ? 'var(--ix-pane-layout-pane--min-height--mobile)'
+                  : '0',
                 display: this.slotExists('bottom') ? 'block' : 'none',
               }}
             >

@@ -112,8 +112,8 @@
       display: block;
       border-top: none;
       border-right: none;
-      border-bottom: 0.0625rem solid #{sys.$si-sys-color-text-on-accent};
-      border-left: 0.0625rem solid #{sys.$si-sys-color-text-on-accent};
+      border-bottom: 1px solid #{sys.$si-sys-color-text-on-accent};
+      border-left: 1px solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
       margin: $checkmark-margin-top 0 $checkmark-margin-bottom
         $checkmark-margin-horizontal;
@@ -152,9 +152,9 @@
       display: block;
       width: #{sys.$si-sys-sizing-size-40};
       height: 0;
-      border-bottom: 0.125rem solid #{sys.$si-sys-color-text-on-accent};
+      border-bottom: 2px solid #{sys.$si-sys-color-text-on-accent};
       position: absolute;
-      margin: calc(1lh / 2 - 0.0625rem) 0 0
+      margin: calc(1lh / 2 - 1px) 0 0
         calc(
           (#{sys.$si-sys-sizing-size-60} - #{sys.$si-sys-sizing-size-40}) / 2
         );

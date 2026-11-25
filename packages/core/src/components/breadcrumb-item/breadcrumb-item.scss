@@ -42,7 +42,7 @@
   .chevron {
     pointer-events: none;
     margin-left: cv.get-var('breadcrumb-item-chevron--margin-left');
-    margin-right: 0rem;
+    margin-right: 0px;
     color: cv.get-var('breadcrumb-item-separator--color');
   }
 

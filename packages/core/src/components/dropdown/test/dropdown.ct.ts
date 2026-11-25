@@ -1905,7 +1905,7 @@ regressionTest.describe('dropdown transition visibility', () => {
       .container {
         position: relative;
         height: 220px;
-        width: min(100%, 32rem);
+        width: min(100%, 512px);
         max-width: 100%;
         padding: 16px;
         border: 1px solid #cbd5dc;
@@ -1917,8 +1917,8 @@ regressionTest.describe('dropdown transition visibility', () => {
 
       .content {
         height: 500px;
-        min-width: 120rem;
-        padding: 40rem;
+        min-width: 1920px;
+        padding: 640px;
       }
 
       .manual-dropdown {

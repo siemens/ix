@@ -107,6 +107,16 @@
   button {
     border-radius: cv.get-var('avatar--border-radius') !important;
 
+    /* Application header has a fixed height, so the trigger avatar keeps its px size */
+    @each $part in image, initials {
+      @each $prop in height, width, min-height, min-width {
+        @include cv.set-var(
+          'avatar-#{$part}--#{$prop}',
+          cv.get-var('avatar-header--size')
+        );
+      }
+    }
+
     @include button-mixin.btn-base;
 
     & {

@@ -28,9 +28,9 @@
     (
       'menu-about--padding': #{sys.$si-sys-sizing-spacing-y-50} #{sys.$si-sys-sizing-spacing-x-60}
         #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-90},
-      'menu-about-about-header--height': sys.$si-sys-sizing-size-80,
+      'menu-about-about-header--min-height': sys.$si-sys-sizing-size-80,
       'menu-about-about-header--margin-bottom': sys.$si-sys-sizing-spacing-y-40,
-      'menu-about-heading--margin-bottom': sys.$si-sys-sizing-spacing-y-60,
+      'menu-about-heading--offset': sys.$si-sys-sizing-spacing-y-10,
       'menu-about--margin-bottom': sys.$si-sys-sizing-spacing-y-80,
     )
   );

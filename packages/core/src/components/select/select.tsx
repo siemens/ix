@@ -236,12 +236,12 @@ export class Select
   @Prop() hideListHeader = false;
 
   /**
-   * The width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
+   * The width of the dropdown element with value and unit (e.g. "200px").
    */
   @Prop() dropdownWidth?: string;
 
   /**
-   * The maximum width of the dropdown element with value and unit (e.g. "200px" or "12.5rem").
+   * The maximum width of the dropdown element with value and unit (e.g. "200px").
    * By default the maximum width of the dropdown element is set to 100%.
    */
   @Prop() dropdownMaxWidth?: string;

@@ -13,6 +13,7 @@
 
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
+@use 'mixins/icon-box' as ib;
 
 // Runtime properties without a default (set per state or from TSX).
 @include cv.declare-var('icon-button--color');
@@ -20,9 +21,12 @@
 :host {
   @include cv.define-vars(
     (
-      'icon-button--size--12': sys.$si-sys-sizing-size-50,
-      'icon-button--size--16': sys.$si-sys-sizing-size-70,
-      'icon-button--size--32': sys.$si-sys-sizing-size-80,
+      // Icons use rem tokens, so the button grows with its icon when the root
+      // font size increases (icon + padding), but never gets smaller than the token.
+      'icon-button--size--12': ib.icon-box-12(),
+      'icon-button--size--16': ib.icon-box-16(),
+      'icon-button--size--32': ib.icon-box-32(),
+      'icon-button--size--32-icon-24': ib.icon-box-32-icon-24(),
       'icon-button-btn-oval--border-radius':
         sys.$si-sys-sizing-border-radius-full,
       'icon-button-dropdown-indicator--size':
