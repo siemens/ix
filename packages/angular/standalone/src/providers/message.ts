@@ -1,5 +1,14 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import { Injectable } from '@angular/core';
-import { MessageConfig, TypedEvent } from '@siemens/ix';
+import { MessageConfig, ShowMessageVariant, TypedEvent } from '@siemens/ix';
 import { MessageService as BaseMessageService } from '@siemens/ix-angular/common';
 
 import { defineCustomElement } from '@siemens/ix/components/ix-modal.js';
@@ -24,93 +33,35 @@ export class MessageService extends BaseMessageService {
     return super.showMessage(config);
   }
 
-  public override info(
-    title: string,
-    message: string,
-    textOkay: string,
-    textCancel?: string,
-    payloadOkay?: any,
-    payloadCancel?: any
-  ) {
-    return super.info(
-      title,
-      message,
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    );
+  public override danger(...args: Parameters<ShowMessageVariant>) {
+    return super.danger(...args);
   }
 
-  public override warning(
-    title: string,
-    message: string,
-    textOkay: string,
-    textCancel?: string,
-    payloadOkay?: any,
-    payloadCancel?: any
-  ) {
-    return super.warning(
-      title,
-      message,
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    );
+  public override warning(...args: Parameters<ShowMessageVariant>) {
+    return super.warning(...args);
   }
 
-  public override error(
-    title: string,
-    message: string,
-    textOkay: string,
-    textCancel?: string,
-    payloadOkay?: any,
-    payloadCancel?: any
-  ) {
-    return super.error(
-      title,
-      message,
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    );
+  public override caution(...args: Parameters<ShowMessageVariant>) {
+    return super.caution(...args);
   }
 
-  public override success(
-    title: string,
-    message: string,
-    textOkay: string,
-    textCancel?: string,
-    payloadOkay?: any,
-    payloadCancel?: any
-  ) {
-    return super.success(
-      title,
-      message,
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    );
+  public override information(...args: Parameters<ShowMessageVariant>) {
+    return super.information(...args);
   }
 
-  public override question(
-    title: string,
-    message: string,
-    textOkay: string,
-    textCancel?: string,
-    payloadOkay?: any,
-    payloadCancel?: any
-  ) {
-    return super.question(
-      title,
-      message,
-      textOkay,
-      textCancel,
-      payloadOkay,
-      payloadCancel
-    );
+  public override critical(...args: Parameters<ShowMessageVariant>) {
+    return super.critical(...args);
+  }
+
+  public override error(...args: Parameters<ShowMessageVariant>) {
+    return super.error(...args);
+  }
+
+  public override success(...args: Parameters<ShowMessageVariant>) {
+    return super.success(...args);
+  }
+
+  public override question(...args: Parameters<ShowMessageVariant>) {
+    return super.question(...args);
   }
 }

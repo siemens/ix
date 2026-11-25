@@ -29,58 +29,37 @@ SPDX-License-Identifier: MIT
         await window.customElements.whenDefined('ix-toast-container');
         const toastContainer = document.querySelector('ix-toast-container');
 
-        const toast = {};
-        toast.info = (config) => {
-          toastContainer.showToast({
-            ...config,
-            autoClose: false,
-            type: 'info',
-          });
-        };
+        // Figma order: Success, Information, Warning, Error, Custom icon, Danger, Caution, Critical.
+        const types = [
+          'success',
+          'information',
+          'warning',
+          'error',
+          'danger',
+          'caution',
+          'critical',
+        ];
 
-        toast.error = (config) => {
-          toastContainer.showToast({
-            ...config,
+        for (const type of types) {
+          await toastContainer.showToast({
+            message: type.charAt(0).toUpperCase() + type.slice(1),
+            type,
             autoClose: false,
-            type: 'error',
           });
-        };
+        }
 
-        toast.success = (config) => {
-          toastContainer.showToast({
-            ...config,
-            autoClose: false,
-            type: 'success',
-          });
-        };
-
-        toast.warning = (config) => {
-          toastContainer.showToast({
-            ...config,
-            autoClose: false,
-            type: 'warning',
-          });
-        };
-
-        toast.info({
-          message: 'Info',
-        });
-        toast.error({
-          message: 'Error',
-        });
-        toast.success({
-          message: 'Success',
-        });
-        toast.warning({
-          message: 'Warning',
-        });
-        toast.info({
+        await toastContainer.showToast({
           icon: 'bulb',
           message: 'Custom icon',
+          type: 'information',
+          autoClose: false,
         });
-        toast.info({
-          message: 'Info - Icon Hidden',
+
+        await toastContainer.showToast({
+          message: 'Information - Icon Hidden',
+          type: 'information',
           hideIcon: true,
+          autoClose: false,
         });
       })();
     </script>

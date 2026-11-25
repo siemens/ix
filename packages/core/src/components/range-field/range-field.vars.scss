@@ -7,22 +7,30 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-range-field--gap: #{sys.$si-sys-sizing-spacing-x-20};
-  --ix-range-field-range-delimiter--block-size: #{sys.$si-sys-sizing-icon-md};
-  --ix-range-field-range-delimiter--inline-size: #{sys.$si-sys-sizing-icon-md};
-  --ix-range-field-range-delimiter--min-block-size: #{sys.$si-sys-sizing-icon-md};
-  --ix-range-field-range-delimiter--min-inline-size: #{sys.$si-sys-sizing-icon-md};
-  --ix-range-field-range-delimiter--margin-top: calc(
-    #{sys.$si-sys-sizing-spacing-y-20} + #{sys.$si-sys-sizing-spacing-y-10}
+  @include cv.define-vars(
+    (
+      'range-field--gap': sys.$si-sys-sizing-spacing-x-20,
+      'range-field-range-delimiter--block-size': sys.$si-sys-sizing-icon-md,
+      'range-field-range-delimiter--inline-size': sys.$si-sys-sizing-icon-md,
+      'range-field-range-delimiter--min-block-size': sys.$si-sys-sizing-icon-md,
+      'range-field-range-delimiter--min-inline-size': sys.$si-sys-sizing-icon-md,
+      'range-field-range-delimiter--margin-top':
+        calc(
+          #{sys.$si-sys-sizing-spacing-y-20} + #{sys.$si-sys-sizing-spacing-y-10}
+        ),
+      'range-field-has-label--margin-top':
+        calc(#{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-10}),
+      'range-field-fallback-label-margin--margin-top':
+        calc(#{sys.$si-sys-sizing-size-80} * 0.9),
+      'range-field-hide-arrow--gap': sys.$si-sys-sizing-spacing-x-40,
+    )
   );
-  --ix-range-field-has-label--margin-top: calc(
-    #{sys.$si-sys-sizing-size-80} + #{sys.$si-sys-sizing-spacing-y-10}
-  );
-  --ix-range-field-fallback-label-margin--margin-top: calc(
-    #{sys.$si-sys-sizing-size-80} * 0.9
-  );
-  --ix-range-field-hide-arrow--gap: #{sys.$si-sys-sizing-spacing-x-40};
 }

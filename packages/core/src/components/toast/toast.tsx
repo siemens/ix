@@ -18,22 +18,26 @@ import {
   Prop,
   State,
 } from '@stencil/core';
-import { ToastType } from './toast-utils';
+import type { ToastType } from './toast.types';
+import { hasSlottedContent } from '../utils/shadow-dom';
 import {
+  iconAlarm,
   iconClose,
   iconError,
   iconInfo,
   iconSuccess,
   iconWarning,
+  iconWarningOctagon,
+  iconWarningRhomb,
 } from '@siemens/ix-icons/icons';
 
 /**
  * Transient notification message that appears temporarily.
  *
- * @documentation https://ix.siemens.io//docs/components/toast/guide.md
+ * @documentation https://ix.siemens.io/docs/components/toast/guide.md
  *
  * @slot - Toast message content.
- * @slot action - Toast action content.
+ * @slot action - Optional toast action content. Empty actions do not reserve spacing.
  */
 @Component({
   tag: 'ix-toast',
@@ -42,9 +46,10 @@ import {
 })
 export class Toast {
   /**
-   * Toast type
+   * Toast type, determining the status icon and left-side status strip color.
+   * Defaults to `information`.
    */
-  @Prop({ reflect: true }) type: ToastType = 'info';
+  @Prop({ reflect: true }) type: ToastType = 'information';
 
   /**
    * Toast title
@@ -78,10 +83,8 @@ export class Toast {
   @Prop() hideIcon: boolean = false;
 
   /**
-   * ARIA label for the close icon button
-   * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
+   * ARIA label for the close icon button.
+   * Will be set as aria-label on the nested HTML button element.
    */
   @Prop() ariaLabelCloseIconButton?: string = 'Close toast';
 
@@ -93,8 +96,20 @@ export class Toast {
   @State() progress = 0;
   @State() touched = false;
   @State() paused = false;
+  @State() private hasAction = false;
 
   @Element() hostElement!: HTMLIxToastElement;
+
+  private static readonly toastTypeIcons: Record<ToastType, string> = {
+    base: iconInfo,
+    danger: iconAlarm,
+    warning: iconWarning,
+    caution: iconWarningRhomb,
+    information: iconInfo,
+    critical: iconWarningOctagon,
+    success: iconSuccess,
+    error: iconError,
+  };
 
   private getIcon() {
     if (this.icon) {
@@ -108,50 +123,19 @@ export class Toast {
       );
     }
 
-    switch (this.type) {
-      case 'info':
-        return (
-          <ix-icon
-            data-testid="toast-icon"
-            aria-hidden="true"
-            name={iconInfo}
-            color="--si-sys-color-background-information"
-          />
-        );
-
-      case 'error':
-        return (
-          <ix-icon
-            data-testid="toast-icon"
-            aria-hidden="true"
-            name={iconError}
-            color="--si-sys-color-text-danger"
-          />
-        );
-
-      case 'success':
-        return (
-          <ix-icon
-            data-testid="toast-icon"
-            aria-hidden="true"
-            name={iconSuccess}
-            color="--si-sys-color-text-success"
-          />
-        );
-
-      case 'warning':
-        return (
-          <ix-icon
-            data-testid="toast-icon"
-            aria-hidden="true"
-            name={iconWarning}
-            color="--si-sys-color-text-warning"
-          />
-        );
-
-      default:
-        return '';
+    const icon = Toast.toastTypeIcons[this.type];
+    if (!icon) {
+      return null;
     }
+
+    return (
+      <ix-icon
+        data-testid="toast-icon"
+        aria-hidden="true"
+        class="status-icon"
+        name={icon}
+      />
+    );
   }
 
   private isClosing = false;
@@ -224,7 +208,8 @@ export class Toast {
   }
 
   render() {
-    let progressBarStyle: Record<string, string> = {};
+    const icon = this.hideIcon ? null : this.getIcon();
+    let progressBarStyle: Record<string, string>;
 
     const progressBarClass = ['toast-progress-bar'];
 
@@ -246,8 +231,10 @@ export class Toast {
             this.touched = true;
           }}
         >
-          {(this.type || this.icon) && !this.hideIcon ? (
-            <div class="toast-icon">{this.getIcon()}</div>
+          {icon ? (
+            <div class="toast-icon" aria-hidden="true">
+              {icon}
+            </div>
           ) : null}
           <div class="toast-content">
             {this.toastTitle ? (
@@ -258,8 +245,20 @@ export class Toast {
             <div class="toast-message">
               <slot></slot>
             </div>
-            <div class="toast-action">
-              <slot name="action"></slot>
+            <div
+              class={{
+                'toast-action': true,
+                'toast-action--empty': !this.hasAction,
+              }}
+            >
+              <slot
+                name="action"
+                onSlotchange={(event) => {
+                  this.hasAction = hasSlottedContent(
+                    event.target as HTMLSlotElement
+                  );
+                }}
+              ></slot>
             </div>
           </div>
           <div class="toast-close">

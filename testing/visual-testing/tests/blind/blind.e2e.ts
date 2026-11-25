@@ -9,7 +9,7 @@
 
 import { expect } from '@playwright/test';
 import { iconContextMenu } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('blind', () => {
   regressionTest('basic', async ({ page }) => {
@@ -70,4 +70,18 @@ regressionTest.describe('blind', () => {
 
     await expect(blindElement).toHaveScreenshot();
   });
+});
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: fit-content">
+      <ix-blind label="Blind" style="width: 20rem"></ix-blind>
+    </div>`
+  );
+
+  await focusWithKeyboard(page, page.locator('ix-blind'));
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
 });

@@ -39,7 +39,7 @@ export const BasicUsage: Story = {
   args: {
     icon: 'info',
     defaultSlot: 'Example Text',
-    variant: 'primary',
+    variant: 'accent',
   },
 };
 
@@ -50,7 +50,7 @@ export const ClosableChip: Story = {
   args: {
     icon: 'filter',
     defaultSlot: 'Status',
-    variant: 'info',
+    variant: 'information',
     closable: true,
   },
 };
@@ -104,7 +104,7 @@ export const WithTooltip: Story = {
   render: () => html`
     <ix-chip
       icon="info"
-      variant="info"
+      variant="information"
       tooltip-text="Open details for this status"
     >
       Info
@@ -126,7 +126,7 @@ export const AriaLabelWithTooltip: Story = {
   render: () => html`
     <ix-chip
       icon="info"
-      variant="info"
+      variant="information"
       outline
       tooltip-text="Click to edit"
       aria-label="In review"

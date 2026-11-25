@@ -26,7 +26,7 @@ runs:
         restore-keys: |
           ${{ runner.os }}-turbo-
 
-    - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda
+    - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
       name: Install pnpm
       with:
         run_install: false
@@ -37,6 +37,11 @@ runs:
         node-version-file: './package.json'
         cache: 'pnpm'
 
+    # The root prepare script is skipped by --ignore-scripts, so disable turbo telemetry for the job here.
+    - name: Disable turbo telemetry
+      run: echo "TURBO_TELEMETRY_DISABLED=1" >> "$GITHUB_ENV"
+      shell: bash
+
     - name: Install dependencies
-      run: pnpm install
+      run: pnpm install --frozen-lockfile --ignore-scripts
       shell: bash

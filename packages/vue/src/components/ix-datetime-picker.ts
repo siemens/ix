@@ -20,6 +20,9 @@ export const IxDatetimePicker: StencilVueComponent<JSX.IxDatetimePicker> = /*@__
   'showTimeReference',
   'timeReference',
   'i18nDone',
+  'requireConfirmation',
+  'i18nConfirm',
+  'i18nCancel',
   'i18nTime',
   'i18nAm',
   'i18nPm',
@@ -35,9 +38,11 @@ export const IxDatetimePicker: StencilVueComponent<JSX.IxDatetimePicker> = /*@__
   'embedded',
   'timeChange',
   'dateChange',
-  'dateSelect'
+  'dateSelect',
+  'dateCancel'
 ], [
   'timeChange',
   'dateChange',
-  'dateSelect'
+  'dateSelect',
+  'dateCancel'
 ]);

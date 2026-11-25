@@ -16,7 +16,7 @@ type GridBreakpoint = Breakpoint | '';
 /**
  * Column within the responsive layout grid.
  *
- * @documentation https://ix.siemens.io//docs/components/layout-grid/guide.md
+ * @documentation https://ix.siemens.io/docs/components/layout-grid/guide.md
  * @slot - Column content.
  */
 @Component({
@@ -105,7 +105,7 @@ export class Col {
       };
     }
 
-    const colSize = `calc(calc(${size} / var(--ix-layout-grid-columns)) * 100%)`;
+    const colSize = `calc(calc(${size} / var(--ix-layout-grid--columns)) * 100%)`;
 
     return {
       flex: `0 0 ${colSize}`,

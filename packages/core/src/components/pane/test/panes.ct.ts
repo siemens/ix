@@ -7,9 +7,103 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import { iconStar } from '@siemens/ix-icons/icons';
-import { regressionTest } from '@utils/test';
+import {
+  expectCollectedAfterRemoval,
+  regressionTest,
+  viewPorts,
+} from '@utils/test';
+
+async function expectPaneIsMobile(page: Page, isMobile: boolean) {
+  const pane = page.locator('ix-pane').first();
+  await expect(pane).toHaveJSProperty('isMobile', isMobile);
+  await expect(pane.locator('.mobile-pane')).toHaveCount(isMobile ? 1 : 0);
+}
+
+async function remountRightPane(page: Page) {
+  await page.evaluate(() => {
+    const layout = document.querySelector('ix-pane-layout');
+    const previous = layout?.querySelector('ix-pane[slot="right"]');
+    previous?.remove();
+
+    const next = document.createElement('ix-pane');
+    next.setAttribute('slot', 'right');
+    next.setAttribute('heading', 'Change log');
+    next.setAttribute('size', '320px');
+    (next as HTMLIxPaneElement).expanded = true;
+    next.innerHTML = '<p>Remounted pane</p>';
+    layout?.appendChild(next);
+  });
+
+  await expect(page.locator('ix-pane').first()).toHaveAttribute('hydrated');
+}
+
+const paneLayoutMarkup = `
+  <ix-pane-layout variant="inline" layout="full-vertical">
+    <ix-pane slot="right" heading="Change log" size="320px" expanded>
+      <p>Change log content</p>
+    </ix-pane>
+    <div slot="content">Main content</div>
+  </ix-pane-layout>
+`;
+
+regressionTest(
+  'expanded pane toggle aria-controls is valid',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await mount(`
+      <div style="height: 100vh">
+        <ix-pane-layout>
+          <ix-pane slot="right" heading="Details" size="320px" expanded>
+            <p>Pane content</p>
+          </ix-pane>
+          <div slot="content">
+            <h1>Pane</h1>
+          </div>
+        </ix-pane-layout>
+      </div>
+    `);
+
+    const pane = page.locator('ix-pane');
+    await expect(pane).toHaveAttribute('hydrated');
+
+    const toggle = page.getByRole('button', { name: 'Collapse pane' });
+    await expect(toggle).toBeVisible();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    await expect
+      .poll(() =>
+        toggle.evaluate((button: HTMLButtonElement) => {
+          const controlled = (
+            button as HTMLButtonElement & {
+              ariaControlsElements?: ReadonlyArray<Element> | null;
+            }
+          ).ariaControlsElements?.[0];
+          return controlled instanceof HTMLElement ? controlled.id : '';
+        })
+      )
+      .toBe('pane-right');
+
+    const iconButton = pane.locator('ix-icon-button');
+    const checkAxe = async () => {
+      const { violations } = await makeAxeBuilder()
+        .include('ix-pane')
+        .withRules(['aria-valid-attr-value', 'aria-allowed-attr'])
+        .analyze();
+      expect(violations).toEqual([]);
+    };
+
+    await expect(iconButton).not.toHaveAttribute('aria-expanded');
+    await checkAxe();
+
+    await toggle.click();
+
+    const collapsed = page.getByRole('button', { name: 'Expand pane' });
+    await expect(collapsed).toHaveAttribute('aria-expanded', 'false');
+    await expect(iconButton).not.toHaveAttribute('aria-expanded');
+    await checkAxe();
+  }
+);
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-pane></ix-pane>`);
@@ -376,5 +470,362 @@ regressionTest(
     await expect(
       pane.locator('ix-icon-button[aria-label="Close pane"]')
     ).toBeFocused();
+  }
+);
+
+regressionTest.describe('pane under forced application layout', () => {
+  const forcedDesktopApp = `
+    <ix-application force-breakpoint="lg">
+      ${paneLayoutMarkup}
+    </ix-application>
+  `;
+
+  regressionTest(
+    'keeps desktop pane when window shrinks under force-breakpoint lg',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(forcedDesktopApp);
+
+      await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.sm);
+      await expectPaneIsMobile(page, false);
+    }
+  );
+
+  regressionTest(
+    'new pane stays desktop after remount while narrow under force-breakpoint lg',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(forcedDesktopApp);
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.sm);
+      await remountRightPane(page);
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.lg);
+      await expectPaneIsMobile(page, false);
+    }
+  );
+
+  regressionTest(
+    'pane is desktop when mounted on a narrow viewport under force-breakpoint lg',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.sm);
+      await mount(forcedDesktopApp);
+
+      await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
+      await expectPaneIsMobile(page, false);
+    }
+  );
+
+  regressionTest(
+    'pane is mobile when mounted on a wide viewport under force-breakpoint sm',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(`
+        <ix-application force-breakpoint="sm">
+          ${paneLayoutMarkup}
+        </ix-application>
+      `);
+
+      await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
+      await expectPaneIsMobile(page, true);
+    }
+  );
+
+  regressionTest(
+    'clearing force-breakpoint returns pane to viewport-driven mode',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(forcedDesktopApp);
+      await expectPaneIsMobile(page, false);
+
+      await page
+        .locator('ix-application')
+        .evaluate((el: HTMLIxApplicationElement) => {
+          el.removeAttribute('force-breakpoint');
+        });
+
+      await page.setViewportSize(viewPorts.sm);
+      await expectPaneIsMobile(page, true);
+
+      await page.setViewportSize(viewPorts.lg);
+      await expectPaneIsMobile(page, false);
+    }
+  );
+
+  regressionTest(
+    'reconnected pane still follows force-breakpoint updates',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(forcedDesktopApp);
+      await expectPaneIsMobile(page, false);
+
+      await page.evaluate(() => {
+        const layout = document.querySelector('ix-pane-layout');
+        const pane = layout?.querySelector('ix-pane[slot="right"]');
+        if (!layout || !pane) {
+          throw new Error('Expected pane layout and right pane');
+        }
+        pane.remove();
+        layout.appendChild(pane);
+      });
+
+      const pane = page.locator('ix-pane').first();
+      const application = page.locator('ix-application');
+      await expect(pane).toHaveAttribute('hydrated');
+      await expectPaneIsMobile(page, false);
+
+      await application.evaluate((el: HTMLIxApplicationElement) => {
+        el.forceBreakpoint = 'sm';
+      });
+      await expect(application).toHaveClass(/breakpoint-sm/);
+      await expectPaneIsMobile(page, true);
+    }
+  );
+
+  regressionTest(
+    'moving pane layout outside forced application restores viewport mode',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(`
+        <div id="host">
+          ${forcedDesktopApp}
+        </div>
+      `);
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.sm);
+      await expectPaneIsMobile(page, false);
+
+      await page.evaluate(() => {
+        const host = document.getElementById('host');
+        const layout = document.querySelector('ix-pane-layout');
+        if (!host || !layout) {
+          throw new Error('Expected host and pane layout');
+        }
+        layout.remove();
+        host.appendChild(layout);
+      });
+
+      await expect(page.locator('ix-pane').first()).toHaveAttribute('hydrated');
+      // Stale forced context must not keep the pane in desktop mode.
+      await expectPaneIsMobile(page, true);
+
+      // Application may still force the shared layout bus; the detached pane
+      // must keep listening to the viewport itself.
+      await page.setViewportSize(viewPorts.lg);
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.sm);
+      await expectPaneIsMobile(page, true);
+    }
+  );
+});
+
+regressionTest.describe('standalone pane follows viewport', () => {
+  regressionTest(
+    'enters and leaves mobile across remount while narrow',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(paneLayoutMarkup);
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.sm);
+      await expectPaneIsMobile(page, true);
+
+      await remountRightPane(page);
+      await expectPaneIsMobile(page, true);
+
+      await page.setViewportSize(viewPorts.lg);
+      await expectPaneIsMobile(page, false);
+    }
+  );
+});
+
+regressionTest.describe('pane under application without forced layout', () => {
+  regressionTest(
+    'follows viewport across remount while narrow',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(`
+        <ix-application>
+          ${paneLayoutMarkup}
+        </ix-application>
+      `);
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.sm);
+      await expectPaneIsMobile(page, true);
+
+      await remountRightPane(page);
+      await expectPaneIsMobile(page, true);
+
+      await page.setViewportSize(viewPorts.lg);
+      await expectPaneIsMobile(page, false);
+    }
+  );
+});
+
+regressionTest.describe('pane under pinned menu', () => {
+  const pinnedMenuApp = `
+    <ix-application>
+      <ix-menu pinned>
+        <ix-menu-item>Item</ix-menu-item>
+      </ix-menu>
+      ${paneLayoutMarkup}
+    </ix-application>
+  `;
+
+  regressionTest(
+    'stays desktop when window shrinks',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(pinnedMenuApp);
+
+      await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.sm);
+      await expectPaneIsMobile(page, false);
+    }
+  );
+
+  regressionTest(
+    'new pane stays desktop after remount while narrow',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(pinnedMenuApp);
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.sm);
+      await remountRightPane(page);
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.lg);
+      await expectPaneIsMobile(page, false);
+    }
+  );
+
+  regressionTest(
+    'new pane-layout stays desktop when mounted while narrow, then maximized',
+    async ({ mount, page }) => {
+      await page.setViewportSize(viewPorts.lg);
+      await mount(`
+        <ix-application>
+          <ix-menu pinned>
+            <ix-menu-item>Item</ix-menu-item>
+          </ix-menu>
+        </ix-application>
+      `);
+
+      await page.setViewportSize(viewPorts.sm);
+      await page.evaluate((markup) => {
+        document
+          .querySelector('ix-application')
+          ?.insertAdjacentHTML('beforeend', markup);
+      }, paneLayoutMarkup);
+
+      await expect(page.locator('ix-pane').first()).toHaveAttribute('hydrated');
+      await expectPaneIsMobile(page, false);
+
+      await page.setViewportSize(viewPorts.lg);
+      await expectPaneIsMobile(page, false);
+    }
+  );
+});
+
+regressionTest(
+  'is garbage collected after it was removed',
+  async ({ mount, page }) => {
+    const pane = await mount(`<ix-pane heading="Pane"></ix-pane>`);
+    await expectCollectedAfterRemoval(page, pane);
+  }
+);
+
+regressionTest(
+  'follows breakpoint changes after it was reattached',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    const pane = await mount(`<ix-pane heading="Pane"></ix-pane>`);
+    await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
+
+    await pane.evaluate((el) => el.parentElement?.append(el));
+    await page.setViewportSize(viewPorts.sm);
+
+    await expect
+      .poll(() => pane.evaluate((el: HTMLIxPaneElement) => el.isMobile))
+      .toBe(true);
+  }
+);
+
+regressionTest(
+  'follows slot changes after it was reattached',
+  async ({ mount, page }) => {
+    const pane = await mount(`<ix-pane slot="left" heading="Pane"></ix-pane>`);
+    await expect(page.locator('ix-pane')).toHaveAttribute('hydrated');
+
+    await pane.evaluate((el) => el.parentElement?.append(el));
+    await pane.evaluate((el) => el.setAttribute('slot', 'bottom'));
+
+    await expect
+      .poll(() => pane.evaluate((el: HTMLIxPaneElement) => el.composition))
+      .toBe('bottom');
+  }
+);
+
+regressionTest(
+  'follows the size of its parent after it was reattached',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await mount(`
+      <div style="width: 600px; height: 400px">
+        <ix-pane heading="Pane" composition="left" size="50%" expanded></ix-pane>
+      </div>
+    `);
+    const pane = page.locator('ix-pane');
+    await expect(pane).toHaveCSS('width', '300px');
+
+    await pane.evaluate((el) => el.parentElement?.append(el));
+    await pane.evaluate((el) => {
+      if (el.parentElement) el.parentElement.style.width = '400px';
+    });
+
+    await expect(pane).toHaveCSS('width', '200px');
+  }
+);
+
+regressionTest(
+  'collapsed size grows with rem content when the root font size increases',
+  async ({ mount, page }) => {
+    await page.setViewportSize(viewPorts.lg);
+    await mount(`
+      <div style="width: 600px; height: 400px">
+        <ix-pane heading="Pane" composition="top"></ix-pane>
+      </div>
+    `);
+    const pane = page.locator('ix-pane');
+    await expect(pane).toHaveAttribute('hydrated');
+    await expect(pane).toHaveCSS('height', '40px');
+
+    await page.evaluate(() => {
+      document.documentElement.style.fontSize = '32px';
+    });
+
+    const button = pane.locator('ix-icon-button');
+    await expect
+      .poll(async () => (await pane.boundingBox())?.height)
+      .toBeGreaterThan(40);
+    const paneBox = await pane.boundingBox();
+    const buttonBox = await button.boundingBox();
+    if (!paneBox || !buttonBox) {
+      throw new Error('Pane or icon button is not rendered');
+    }
+    expect(buttonBox.y + buttonBox.height).toBeLessThanOrEqual(
+      paneBox.y + paneBox.height
+    );
   }
 );

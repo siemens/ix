@@ -11,7 +11,7 @@ import { Component, h, Host } from '@stencil/core';
 /**
  * Container for quick action buttons displayed within a dropdown.
  *
- * @documentation https://ix.siemens.io//docs/components/dropdown-button/guide.md
+ * @documentation https://ix.siemens.io/docs/components/dropdown-button/guide.md
  * @figma-main-component-id 1233:34168
  *
  * @slot - Quick action items.

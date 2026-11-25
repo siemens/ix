@@ -32,7 +32,7 @@ import {
 /**
  * A single step within a workflow step sequence.
  *
- * @documentation https://ix.siemens.io//docs/components/workflow/code.md
+ * @documentation https://ix.siemens.io/docs/components/workflow/code.md
  * @slot custom-icon - Custom step icon.
  * @slot - Workflow step content.
  */
@@ -78,8 +78,6 @@ export class WorkflowStep {
 
   @State() iconName?: string;
 
-  @State() iconColor: string = 'workflow-step-icon-default--color';
-
   /**
    * @internal
    */
@@ -99,35 +97,25 @@ export class WorkflowStep {
   }
 
   setWorkflowStepStyles() {
-    const selectedStyle = this.selected ? '--selected' : '';
     switch (this.status) {
       case 'open':
         this.iconName = this.selected ? iconCircleDot : iconCircle;
-        this.iconColor = `workflow-step-icon-default--color${selectedStyle}`;
         break;
       case 'success':
         this.iconName = iconSuccess;
-        this.iconColor = 'workflow-step-icon-success--color';
         break;
       case 'done':
         this.iconName = iconCircleFilled;
-        this.iconColor = `workflow-step-icon-done--color${selectedStyle}`;
         break;
       case 'warning':
         this.iconName = iconWarning;
-        this.iconColor = 'workflow-step-icon-warning--color';
         break;
       case 'error':
         this.iconName = iconError;
-        this.iconColor = 'workflow-step-icon-error--color';
         break;
       default:
         this.iconName = iconCircle;
         break;
-    }
-
-    if (this.disabled) {
-      this.iconColor = 'workflow-step-icon-status--color--disabled';
     }
   }
 
@@ -186,9 +174,8 @@ export class WorkflowStep {
           aria-hidden="true"
         ></ix-icon>
         <ix-icon
-          style={{ color: `var(--ix-${this.iconColor})` }}
           name={this.iconName}
-          class="absolute"
+          class={{ absolute: true, 'status-icon': true, [this.status]: true }}
           aria-label={this.getIconAriaLabel()}
         ></ix-icon>
       </Fragment>

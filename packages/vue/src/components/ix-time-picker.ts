@@ -11,7 +11,7 @@ export const IxTimePicker: StencilVueComponent<JSX.IxTimePicker> = /*@__PURE__*/
   'locale',
   'corners',
   'embedded',
-  'dateTimePickerAppearance',
+  'hideFooter',
   'hideHeader',
   'hourInterval',
   'minuteInterval',
@@ -20,7 +20,8 @@ export const IxTimePicker: StencilVueComponent<JSX.IxTimePicker> = /*@__PURE__*/
   'time',
   'minTime',
   'maxTime',
-  'i18nConfirmTime',
+  'i18nConfirm',
+  'i18nCancel',
   'i18nHeader',
   'i18nHourColumnHeader',
   'i18nMinuteColumnHeader',
@@ -29,8 +30,10 @@ export const IxTimePicker: StencilVueComponent<JSX.IxTimePicker> = /*@__PURE__*/
   'i18nAm',
   'i18nPm',
   'timeSelect',
-  'timeChange'
+  'timeChange',
+  'timeCancel'
 ], [
   'timeSelect',
-  'timeChange'
+  'timeChange',
+  'timeCancel'
 ]);

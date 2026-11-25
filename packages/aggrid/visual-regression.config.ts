@@ -22,15 +22,15 @@ function defineVisualTestConfig(
 
 export const visualTestConfig = defineVisualTestConfig([
   {
-    name: 'classic-dark',
-    theme: 'classic',
+    name: 'community-dark',
+    theme: 'community',
     colorSchema: 'dark',
-    importPath: '@siemens/ix/dist/siemens-ix/theme/classic-dark.css',
+    importPath: '@siemens/ix/dist/siemens-ix/theme/community-dark.css',
   },
   {
-    name: 'classic-light',
-    theme: 'classic',
+    name: 'community-light',
+    theme: 'community',
     colorSchema: 'light',
-    importPath: '@siemens/ix/dist/siemens-ix/theme/classic-light.css',
+    importPath: '@siemens/ix/dist/siemens-ix/theme/community-light.css',
   },
 ]);

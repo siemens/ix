@@ -14,6 +14,12 @@
 
 set -euo pipefail
 
+# Node 25+ no longer bundles corepack, so install it when the image lacks it.
+# --force lets it replace the yarn shims the image ships globally.
+if ! command -v corepack >/dev/null 2>&1; then
+  npm install --global --force --silent corepack@0.36.0
+fi
+
 corepack enable
 
 # Karma resolves ChromeHeadless through CHROME_BIN and the image carries no
