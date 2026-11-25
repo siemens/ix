@@ -1,4 +1,5 @@
 @use 'mixins/shadow-dom/component';
+@use 'mixins/fonts';
 
 @use './empty-state.vars' as *;
 @use 'mixins/component-vars' as cv;
@@ -7,6 +8,8 @@
 
   .label__description {
     color: cv.get-var('empty-state-label--color');
+
+    @include fonts.typography-body-paragraph;
   }
 }
 

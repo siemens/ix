@@ -139,7 +139,7 @@ $status-icon-variants: danger, critical, warning, caution, information, success;
 
 :host([type='counter']) .indicator {
   padding-inline: cv.get-var('badge-indicator--padding-inline');
-  font-weight: cv.get-var('badge-counter--font-weight');
+  font: cv.get-var('badge-counter--font');
   line-height: max(#{cv.get-var('badge--line-height')}, 1.2em);
 }
 

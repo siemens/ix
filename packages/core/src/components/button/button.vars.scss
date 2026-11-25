@@ -79,9 +79,12 @@
       'button--background--primary--hover':
         sys.$si-sys-color-background-accent-hover,
       'button--background--primary--pressed':
-        sys.$si-sys-color-background-accent-hover,
+        sys.$si-sys-color-background-accent-active,
       'button--background--primary--pressed--hover':
         sys.$si-sys-color-background-accent-hover,
+      'button--background--primary--pressed--active':
+        sys.$si-sys-color-background-accent-active,
+      'button--border-color--primary--pressed': rgba(0, 0, 0, 0),
       'button--border-color--primary': rgba(0, 0, 0, 0),
       'button--border-color--primary--active': rgba(0, 0, 0, 0),
       'button--border-color--primary--disabled': rgba(0, 0, 0, 0),
@@ -105,6 +108,9 @@
         sys.$si-sys-color-background-accent-secondary-active,
       'button--background--secondary--pressed--hover':
         sys.$si-sys-color-background-accent-secondary-hover,
+      'button--background--secondary--pressed--active':
+        sys.$si-sys-color-background-accent-secondary-active,
+      'button--border-color--secondary--pressed': sys.$si-sys-color-border-accent-active,
       'button--border-color--secondary': sys.$si-sys-color-border-accent,
       'button--border-color--secondary--active':
         sys.$si-sys-color-border-accent-active,
@@ -115,7 +121,7 @@
       'button--color--secondary--active': sys.$si-sys-color-text-accent-active,
       'button--color--secondary--disabled': sys.$si-sys-color-text-disabled,
       'button--color--secondary--hover': sys.$si-sys-color-text-accent-hover,
-      'button--color--secondary--pressed': sys.$si-sys-color-text-accent-hover,
+      'button--color--secondary--pressed': sys.$si-sys-color-text-accent-active,
       'button--color--secondary--pressed--active':
         sys.$si-sys-color-text-accent-active,
       'button--color--secondary--pressed--hover':
@@ -131,6 +137,9 @@
         sys.$si-sys-color-background-accent-secondary-active,
       'button--background--subtle-primary--pressed--hover':
         sys.$si-sys-color-background-accent-secondary-hover,
+      'button--background--subtle-primary--pressed--active':
+        sys.$si-sys-color-background-accent-secondary-active,
+      'button--border-color--subtle-primary--pressed': rgba(0, 0, 0, 0),
       'button--border-color--subtle-primary': rgba(0, 0, 0, 0),
       'button--border-color--subtle-primary--active': rgba(0, 0, 0, 0),
       'button--border-color--subtle-primary--disabled': rgba(0, 0, 0, 0),
@@ -140,9 +149,9 @@
       'button--color--subtle-primary--disabled': sys.$si-sys-color-text-disabled,
       'button--color--subtle-primary--hover': sys.$si-sys-color-text-primary,
       'button--color--subtle-primary--pressed':
-        sys.$si-sys-color-text-accent-hover,
+        sys.$si-sys-color-text-accent-active,
       'button--color--subtle-primary--pressed--active':
-        sys.$si-sys-color-text-accent-hover,
+        sys.$si-sys-color-text-accent-active,
       'button--color--subtle-primary--pressed--hover':
         sys.$si-sys-color-text-accent-hover,
       'button--background--subtle-secondary': rgba(0, 0, 0, 0),
@@ -155,6 +164,9 @@
         sys.$si-sys-color-background-accent-secondary-active,
       'button--background--subtle-secondary--pressed--hover':
         sys.$si-sys-color-background-accent-secondary-hover,
+      'button--background--subtle-secondary--pressed--active':
+        sys.$si-sys-color-background-accent-secondary-active,
+      'button--border-color--subtle-secondary--pressed': sys.$si-sys-color-border-2,
       'button--border-color--subtle-secondary': sys.$si-sys-color-border-2,
       'button--border-color--subtle-secondary--active':
         sys.$si-sys-color-border-2,
@@ -168,9 +180,9 @@
         sys.$si-sys-color-text-disabled,
       'button--color--subtle-secondary--hover': sys.$si-sys-color-text-primary,
       'button--color--subtle-secondary--pressed':
-        sys.$si-sys-color-text-accent-hover,
+        sys.$si-sys-color-text-accent-active,
       'button--color--subtle-secondary--pressed--active':
-        sys.$si-sys-color-text-accent-hover,
+        sys.$si-sys-color-text-accent-active,
       'button--color--subtle-secondary--pressed--hover':
         sys.$si-sys-color-text-accent-hover,
       'button--background--subtle-tertiary': rgba(0, 0, 0, 0),
@@ -183,6 +195,9 @@
         sys.$si-sys-color-background-accent-secondary-active,
       'button--background--subtle-tertiary--pressed--hover':
         sys.$si-sys-color-background-accent-secondary-hover,
+      'button--background--subtle-tertiary--pressed--active':
+        sys.$si-sys-color-background-accent-secondary-active,
+      'button--border-color--subtle-tertiary--pressed': rgba(0, 0, 0, 0),
       'button--border-color--subtle-tertiary': rgba(0, 0, 0, 0),
       'button--border-color--subtle-tertiary--active': rgba(0, 0, 0, 0),
       'button--border-color--subtle-tertiary--disabled': rgba(0, 0, 0, 0),
@@ -193,9 +208,9 @@
         sys.$si-sys-color-text-disabled,
       'button--color--subtle-tertiary--hover': sys.$si-sys-color-text-primary,
       'button--color--subtle-tertiary--pressed':
-        sys.$si-sys-color-text-accent-hover,
+        sys.$si-sys-color-text-accent-active,
       'button--color--subtle-tertiary--pressed--active':
-        sys.$si-sys-color-text-accent-hover,
+        sys.$si-sys-color-text-accent-active,
       'button--color--subtle-tertiary--pressed--hover':
         sys.$si-sys-color-text-accent-hover,
       'button--background--tertiary': rgba(0, 0, 0, 0),
@@ -208,6 +223,9 @@
         sys.$si-sys-color-background-accent-secondary-active,
       'button--background--tertiary--pressed--hover':
         sys.$si-sys-color-background-accent-secondary-hover,
+      'button--background--tertiary--pressed--active':
+        sys.$si-sys-color-background-accent-secondary-active,
+      'button--border-color--tertiary--pressed': rgba(0, 0, 0, 0),
       'button--border-color--tertiary': rgba(0, 0, 0, 0),
       'button--border-color--tertiary--active': rgba(0, 0, 0, 0),
       'button--border-color--tertiary--disabled': rgba(0, 0, 0, 0),
@@ -216,7 +234,7 @@
       'button--color--tertiary--active': sys.$si-sys-color-text-accent-active,
       'button--color--tertiary--disabled': sys.$si-sys-color-text-disabled,
       'button--color--tertiary--hover': sys.$si-sys-color-text-accent-hover,
-      'button--color--tertiary--pressed': sys.$si-sys-color-text-accent-hover,
+      'button--color--tertiary--pressed': sys.$si-sys-color-text-accent-active,
       'button--color--tertiary--pressed--active':
         sys.$si-sys-color-text-accent-active,
       'button--color--tertiary--pressed--hover':

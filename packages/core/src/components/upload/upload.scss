@@ -9,6 +9,7 @@
 
 @use 'mixins/shadow-dom/component';
 @use 'mixins/text-truncation';
+@use 'mixins/fonts';
 
 @use './upload.vars' as *;
 @use 'mixins/component-vars' as cv;
@@ -36,6 +37,10 @@
       cv.get-var('upload--border-color');
     border-radius: cv.get-var('upload--border-radius');
     color: cv.get-var('upload-text--color');
+
+    .upload-text {
+      @include fonts.typography-body-paragraph;
+    }
 
     &.multiline {
       max-height: unset;

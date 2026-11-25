@@ -17,18 +17,24 @@
 :host {
   @include cv.define-vars(
     (
-      'popover--box-shadow': sys.$si-sys-color-effects-shadow-40,
+      'popover--box-shadow': sys.$si-sys-color-effects-shadow-30,
       'popover--background': sys.$si-sys-color-background-3,
       'popover--border-color': transparent,
       'popover--color': sys.$si-sys-color-text-primary,
       // The "spike" (arrow) shape disables box-shadow (it doesn't follow the
       // rotated element) in favor of a filter: drop-shadow() chain, which does
-      // follow the rendered shape. drop-shadow() cannot consume a single
-      // multi-layer combined shadow token, so each layer of
-      // --si-sys-color-effects-shadow-40 is applied as its own drop-shadow(); both
-      // layers currently share the same value in Community Light/Dark.
-      'popover--elevation-filter': drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.14))
-        drop-shadow(0px -0.25px 2px rgba(0, 0, 0, 0.08)),
+      // follow the rendered shape. drop-shadow() cannot consume a multi-layer
+      // shadow token, so each layer of --si-sys-color-effects-shadow-30 is
+      // applied as its own drop-shadow(). The layer geometry is the same in
+      // every theme, only the opacity differs between light and dark.
+      // drop-shadow() takes a standard deviation, so the blur is half the
+      // box-shadow blur radius.
+      'popover--elevation-filter':
+        drop-shadow(0px 2px 3px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.14))
+        drop-shadow(0px -0.25px 1px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.08)),
+      'popover--elevation-filter--dark':
+        drop-shadow(0px 2px 3px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.6))
+        drop-shadow(0px -0.25px 1px rgb(from var(--si-ref-color-main-brand-black) r g b / 0.2)),
       'popover-close--color': sys.$si-sys-color-text-secondary,
       'popover-close-button--background': transparent,
       'popover-close-button--background--active':

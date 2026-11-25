@@ -33,6 +33,8 @@ import {
  * A single step within a workflow step sequence.
  *
  * @documentation https://ix.siemens.io/docs/components/workflow/code.md
+ * @figma-main-component-id 1208:25241
+ *
  * @slot custom-icon - Custom step icon.
  * @slot - Workflow step content.
  */

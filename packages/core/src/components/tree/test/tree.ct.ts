@@ -120,8 +120,8 @@ regressionTest('renders', async ({ mount, page }) => {
   await expect(tree).toHaveAttribute('role', 'tree');
   await expect(item).toBeVisible();
   await expect(item).toHaveAttribute('role', 'treeitem');
-  await expect(item.locator('.icon-toggle')).toHaveCSS('width', '24px');
-  await expect(item.locator('.icon-toggle')).toHaveCSS('height', '24px');
+  await expect(item.locator('.icon-toggle')).toHaveCSS('width', '20px');
+  await expect(item.locator('.icon-toggle')).toHaveCSS('height', '20px');
 });
 
 regressionTest(

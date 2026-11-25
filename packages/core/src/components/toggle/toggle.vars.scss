@@ -207,10 +207,8 @@
       'toggle-switch--height': sys.$si-sys-sizing-size-70,
       'toggle-slider--height': sys.$si-sys-sizing-size-50,
       'toggle-slider--width': sys.$si-sys-sizing-size-50,
-      'toggle-slider--left': sys.$si-sys-sizing-spacing-x-10,
       'toggle-slider--transform--checked':
         translateX(#{sys.$si-sys-sizing-size-70}),
-      'toggle-slider--transform': translateX(#{sys.$si-sys-sizing-spacing-x-50}),
       'toggle-slider--border-radius': sys.$si-sys-sizing-border-radius-full,
       'toggle-slider--border-width': sys.$si-sys-sizing-border-width-default,
       'toggle-switch--border-width': sys.$si-sys-sizing-border-width-default,
@@ -218,6 +216,33 @@
       'toggle-switch--outline-offset':
         calc(#{sys.$si-sys-sizing-focus-ring-offset} / 2),
       'toggle-switch--opacity': 0.5,
+    )
+  );
+  // Thumb positions derived from the switch geometry so the thumb keeps the
+  // same inset on every side in each density.
+  @include cv.define-vars(
+    (
+      // The thumb sits inside the track border, so subtract its width to get
+      // an inset of (track height - thumb height) / 2 from the outer edge.
+      'toggle-slider--left':
+        calc(
+          (
+              #{cv.get-var('toggle-switch--height')} -
+                #{cv.get-var('toggle-slider--height')}
+            ) /
+            2 - #{cv.get-var('toggle-slider--border-width')}
+        ),
+      // Centres the thumb: (track width - thumb width) / 2 - inset.
+      'toggle-slider--transform':
+        translateX(
+          calc(
+            (
+                #{cv.get-var('toggle-switch--width')} -
+                  #{cv.get-var('toggle-switch--height')}
+              ) /
+              2
+          )
+        ),
     )
   );
 }

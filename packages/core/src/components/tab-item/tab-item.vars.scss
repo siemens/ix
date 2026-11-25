@@ -30,10 +30,10 @@
       'tab-item-animated-circle--border-color': rgba(0, 0, 0, 0),
       'tab-item-animated-circle--border-color--disabled': rgba(0, 0, 0, 0),
       'tab-item-animated-circle--border-color--selected':
-        sys.$si-sys-color-border-accent-hover,
+        sys.$si-sys-color-border-accent-active,
       'tab-item-animated-icon--color': sys.$si-sys-color-text-primary,
       'tab-item-animated-icon--color--selected':
-        sys.$si-sys-color-text-accent-hover,
+        sys.$si-sys-color-text-accent-active,
       'tab-item--background': rgba(0, 0, 0, 0),
       'tab-item--background--active':
         sys.$si-sys-color-background-accent-secondary-active,
@@ -45,10 +45,10 @@
       'tab-item--color--active': sys.$si-sys-color-text-primary,
       'tab-item--color--disabled': sys.$si-sys-color-text-disabled,
       'tab-item--color--hover': sys.$si-sys-color-text-primary,
-      'tab-item--color--selected': sys.$si-sys-color-text-accent-hover,
+      'tab-item--color--selected': sys.$si-sys-color-text-accent-active,
       'tab-item-indicator--background--disabled': sys.$si-sys-color-border-3,
       'tab-item-indicator--background--selected':
-        sys.$si-sys-color-background-accent-hover,
+        sys.$si-sys-color-background-accent-active,
       'tab-item-pill--border-color': sys.$si-sys-color-border-3,
       'tab-item-pill--border-color--disabled': sys.$si-sys-color-border-3,
       'tab-item-pill--border-color--selected':

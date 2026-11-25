@@ -8,6 +8,7 @@
  */
 
 @use 'tokens/system' as sys;
+@use 'mixins/fonts';
 
 @use './modal-loading.vars' as *;
 @use 'mixins/component-vars' as cv;
@@ -19,6 +20,8 @@
   overflow: hidden;
 
   .loading-text {
+    @include fonts.typography-body-paragraph;
+
     display: block;
     position: relative;
     overflow: hidden;

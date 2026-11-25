@@ -23,7 +23,7 @@
   @include cv.define-vars(
     (
       'progress-indicator-fill--background':
-        sys.$si-sys-color-border-accent-hover,
+        sys.$si-sys-color-border-accent-active,
       'progress-indicator-fill--background--error':
         sys.$si-sys-color-border-danger,
       'progress-indicator-fill--background--information':

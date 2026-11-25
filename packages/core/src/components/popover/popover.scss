@@ -52,6 +52,14 @@
     filter: cv.get-var('popover--elevation-filter');
   }
 
+  // Every IX theme exposes its active colour scheme as --theme-color-schema
+  // (color-scheme can't be used: the combined theme always sets "light dark").
+  @container style(--theme-color-schema: dark) {
+    .popover-container:has(.spike) {
+      filter: cv.get-var('popover--elevation-filter--dark');
+    }
+  }
+
   .spike,
   .spike::before {
     position: absolute;

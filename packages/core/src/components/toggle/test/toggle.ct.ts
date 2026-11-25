@@ -194,3 +194,55 @@ regressionTest(
     await expect(toggle).toHaveJSProperty('checked', false);
   }
 );
+
+regressionTest(
+  'keeps the thumb inset equal on every side in each density',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-toggle id="off"></ix-toggle>
+      <ix-toggle id="on" checked></ix-toggle>
+      <ix-toggle id="indeterminate" indeterminate></ix-toggle>
+    `);
+
+    const insets = (id: string) =>
+      page.locator(`#${id}`).evaluate((host) => {
+        const track = host.shadowRoot!.querySelector('.switch')!;
+        const slider = host.shadowRoot!.querySelector('.slider')!;
+        const thumb = getComputedStyle(slider, '::before');
+        const trackBox = track.getBoundingClientRect();
+        const sliderBox = slider.getBoundingClientRect();
+        const offset =
+          thumb.transform === 'none' ? 0 : new DOMMatrix(thumb.transform).m41;
+        const left =
+          sliderBox.x -
+          trackBox.x +
+          Number.parseFloat(getComputedStyle(slider).borderLeftWidth) +
+          Number.parseFloat(thumb.left) +
+          offset;
+        const size = Number.parseFloat(thumb.width);
+        return {
+          left: Math.round(left),
+          right: Math.round(trackBox.width - left - size),
+          vertical: Math.round((trackBox.height - size) / 2),
+        };
+      });
+
+    for (const density of ['default', 'compact']) {
+      await page
+        .locator('body')
+        .evaluate(
+          (body, value) => body.setAttribute('data-ix-density', value),
+          density
+        );
+
+      const off = await insets('off');
+      expect(off.left).toBe(off.vertical);
+
+      const on = await insets('on');
+      expect(on.right).toBe(on.vertical);
+
+      const indeterminate = await insets('indeterminate');
+      expect(indeterminate.left).toBe(indeterminate.right);
+    }
+  }
+);

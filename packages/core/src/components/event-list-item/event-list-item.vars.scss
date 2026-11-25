@@ -46,7 +46,7 @@
       'event-list-item--border-color--filled--disabled': rgba(0, 0, 0, 0),
       'event-list-item--border-color--filled--hover': rgba(0, 0, 0, 0),
       'event-list-item--border-color--filled--selected':
-        sys.$si-sys-color-border-accent-hover,
+        sys.$si-sys-color-border-accent-active,
       'event-list-item--background--outline': rgba(0, 0, 0, 0),
       'event-list-item--background--outline--active':
         sys.$si-sys-color-background-selected,
@@ -63,7 +63,7 @@
       'event-list-item--border-color--outline--hover':
         sys.$si-sys-color-border-3,
       'event-list-item--border-color--outline--selected':
-        sys.$si-sys-color-border-accent-hover,
+        sys.$si-sys-color-border-accent-active,
     )
   );
 }

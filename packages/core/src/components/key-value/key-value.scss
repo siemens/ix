@@ -1,4 +1,5 @@
 @use 'mixins/text-truncation';
+@use 'mixins/fonts';
 
 @use './key-value.vars' as *;
 @use 'mixins/component-vars' as cv;
@@ -25,6 +26,7 @@
       max-width: 100%;
 
       @include text-truncation.ellipsis;
+      @include fonts.typography-body-paragraph;
     }
 
     .content__label {

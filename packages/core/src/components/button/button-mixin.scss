@@ -49,6 +49,7 @@
     // Danger variants have no pressed style and keep their default look.
     @if not string.index($name, 'danger') {
       &.selected {
+        border-color: cv.get-var('button--border-color--#{$name}--pressed');
         background-color: cv.get-var('button--background--#{$name}--pressed');
         color: cv.get-var('button--color--#{$name}--pressed');
 
@@ -61,7 +62,7 @@
 
         @include hover.active {
           background-color: cv.get-var(
-            'button--background--#{$name}--pressed--hover'
+            'button--background--#{$name}--pressed--active'
           );
           color: cv.get-var('button--color--#{$name}--pressed--active');
         }

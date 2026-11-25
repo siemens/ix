@@ -26,6 +26,8 @@ import { a11yBoolean } from '../utils/a11y';
  * A single node within a tree.
  *
  * @documentation https://ix.siemens.io/docs/components/tree/code.md
+ * @figma-main-component-id 1369:41523
+ *
  * @slot - Tree item content.
  */
 @Component({
@@ -169,7 +171,7 @@ export class TreeItem {
             >
               <ix-icon
                 name={iconChevronRightSmall}
-                size="24"
+                size="20"
                 class={{
                   'icon-toggle-down': !!this.context?.isExpanded,
                 }}

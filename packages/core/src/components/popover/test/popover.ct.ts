@@ -1872,3 +1872,30 @@ regressionTest.describe('ix-popover', () => {
     );
   });
 });
+
+regressionTest.describe('spike elevation', () => {
+  regressionTest(
+    'uses the shadow opacity of the active colour schema',
+    async ({ mount, page }) => {
+      await mount(`
+      <ix-button id="trigger">Trigger</ix-button>
+      <ix-popover trigger="trigger" show has-spike heading="Heading">Body</ix-popover>
+    `);
+
+      const container = page
+        .locator('ix-popover')
+        .locator('.popover-container');
+      await expect(page.locator('ix-popover').locator('.spike')).toBeAttached();
+
+      await page.evaluate(() =>
+        document.body.setAttribute('data-ix-color-schema', 'dark')
+      );
+      await expect(container).toHaveCSS('filter', /0\.6\) 0px 2px 3px/);
+
+      await page.evaluate(() =>
+        document.body.setAttribute('data-ix-color-schema', 'light')
+      );
+      await expect(container).toHaveCSS('filter', /0\.14\) 0px 2px 3px/);
+    }
+  );
+});

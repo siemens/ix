@@ -5805,6 +5805,7 @@ export namespace Components {
     /**
      * Displays hierarchical data as an expandable tree.
      * @documentation https://ix.siemens.io/docs/components/tree/code.md
+     * @figma-main-component-id 1369:41578
      */
     interface IxTree {
         /**
@@ -5848,6 +5849,7 @@ export namespace Components {
     /**
      * A single node within a tree.
      * @documentation https://ix.siemens.io/docs/components/tree/code.md
+     * @figma-main-component-id 1369:41523
      */
     interface IxTreeItem {
         /**
@@ -5983,6 +5985,7 @@ export namespace Components {
     /**
      * A single step within a workflow step sequence.
      * @documentation https://ix.siemens.io/docs/components/workflow/code.md
+     * @figma-main-component-id 1208:25241
      */
     interface IxWorkflowStep {
         /**
@@ -8391,6 +8394,7 @@ declare global {
     /**
      * Displays hierarchical data as an expandable tree.
      * @documentation https://ix.siemens.io/docs/components/tree/code.md
+     * @figma-main-component-id 1369:41578
      */
     interface HTMLIxTreeElement extends Components.IxTree, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTreeElementEventMap>(type: K, listener: (this: HTMLIxTreeElement, ev: IxTreeCustomEvent<HTMLIxTreeElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -8413,6 +8417,7 @@ declare global {
     /**
      * A single node within a tree.
      * @documentation https://ix.siemens.io/docs/components/tree/code.md
+     * @figma-main-component-id 1369:41523
      */
     interface HTMLIxTreeItemElement extends Components.IxTreeItem, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxTreeItemElementEventMap>(type: K, listener: (this: HTMLIxTreeItemElement, ev: IxTreeItemCustomEvent<HTMLIxTreeItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -8467,6 +8472,7 @@ declare global {
     /**
      * A single step within a workflow step sequence.
      * @documentation https://ix.siemens.io/docs/components/workflow/code.md
+     * @figma-main-component-id 1208:25241
      */
     interface HTMLIxWorkflowStepElement extends Components.IxWorkflowStep, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIxWorkflowStepElementEventMap>(type: K, listener: (this: HTMLIxWorkflowStepElement, ev: IxWorkflowStepCustomEvent<HTMLIxWorkflowStepElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -14600,6 +14606,7 @@ declare namespace LocalJSX {
     /**
      * Displays hierarchical data as an expandable tree.
      * @documentation https://ix.siemens.io/docs/components/tree/code.md
+     * @figma-main-component-id 1369:41578
      */
     interface IxTree {
         /**
@@ -14651,6 +14658,7 @@ declare namespace LocalJSX {
     /**
      * A single node within a tree.
      * @documentation https://ix.siemens.io/docs/components/tree/code.md
+     * @figma-main-component-id 1369:41523
      */
     interface IxTreeItem {
         /**
@@ -14793,6 +14801,7 @@ declare namespace LocalJSX {
     /**
      * A single step within a workflow step sequence.
      * @documentation https://ix.siemens.io/docs/components/workflow/code.md
+     * @figma-main-component-id 1208:25241
      */
     interface IxWorkflowStep {
         /**
@@ -16874,11 +16883,13 @@ declare module "@stencil/core" {
             /**
              * Displays hierarchical data as an expandable tree.
              * @documentation https://ix.siemens.io/docs/components/tree/code.md
+             * @figma-main-component-id 1369:41578
              */
             "ix-tree": LocalJSX.IntrinsicElements["ix-tree"] & JSXBase.HTMLAttributes<HTMLIxTreeElement>;
             /**
              * A single node within a tree.
              * @documentation https://ix.siemens.io/docs/components/tree/code.md
+             * @figma-main-component-id 1369:41523
              */
             "ix-tree-item": LocalJSX.IntrinsicElements["ix-tree-item"] & JSXBase.HTMLAttributes<HTMLIxTreeItemElement>;
             /**
@@ -16896,6 +16907,7 @@ declare module "@stencil/core" {
             /**
              * A single step within a workflow step sequence.
              * @documentation https://ix.siemens.io/docs/components/workflow/code.md
+             * @figma-main-component-id 1208:25241
              */
             "ix-workflow-step": LocalJSX.IntrinsicElements["ix-workflow-step"] & JSXBase.HTMLAttributes<HTMLIxWorkflowStepElement>;
             /**

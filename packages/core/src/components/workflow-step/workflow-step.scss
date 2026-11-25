@@ -8,6 +8,7 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use 'mixins/fonts';
 
 @use './workflow-step.vars' as *;
 @use 'mixins/component-vars' as cv;
@@ -115,6 +116,8 @@
       margin-top: cv.get-var('workflow-step-text--margin-top');
       width: 100%;
       padding: cv.get-var('workflow-step-text--padding');
+
+      @include fonts.typography-body-paragraph;
 
       white-space: nowrap;
       text-overflow: ellipsis;

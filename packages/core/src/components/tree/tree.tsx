@@ -36,6 +36,8 @@ import { defaultRefreshTreeOptions, RefreshTreeOptions } from './tree.types';
  * Displays hierarchical data as an expandable tree.
  *
  * @documentation https://ix.siemens.io/docs/components/tree/code.md
+ * @figma-main-component-id 1369:41578
+ *
  * @slot - Tree items.
  */
 @Component({
