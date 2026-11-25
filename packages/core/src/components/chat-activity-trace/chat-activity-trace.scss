@@ -10,11 +10,12 @@
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
 @use './chat-activity-trace.vars';
+@use 'mixins/component-vars' as cv;
 
 :host {
   display: flex;
   flex-direction: column;
-  gap: var(--ix-chat-activity-trace--gap);
+  gap: cv.get-var('chat-activity-trace--gap');
   width: 100%;
   min-width: 0;
 
@@ -28,23 +29,23 @@
   .toggle {
     display: inline-flex;
     align-items: center;
-    gap: var(--ix-chat-activity-trace-header--gap);
+    gap: cv.get-var('chat-activity-trace-header--gap');
     max-width: 100%;
-    min-height: var(--ix-chat-activity-trace-header--min-height);
+    min-height: cv.get-var('chat-activity-trace-header--min-height');
     margin: 0;
     padding: 0;
     border: none;
-    border-radius: var(--ix-chat-activity-trace-header--border-radius);
+    border-radius: cv.get-var('chat-activity-trace-header--border-radius');
     background: transparent;
-    color: var(--ix-chat-activity-trace-header--color);
-    font: var(--ix-chat-activity-trace-header--font);
+    color: cv.get-var('chat-activity-trace-header--color');
+    font: cv.get-var('chat-activity-trace-header--font');
     text-align: start;
     cursor: pointer;
 
     @include hover.focus-visible {
-      outline: var(--ix-chat-activity-trace--outline-width--focus) solid
-        var(--ix-chat-activity-trace--outline-color--focus);
-      outline-offset: var(--ix-chat-activity-trace--outline-offset--focus);
+      outline: cv.get-var('chat-activity-trace--outline-width--focus') solid
+        cv.get-var('chat-activity-trace--outline-color--focus');
+      outline-offset: cv.get-var('chat-activity-trace--outline-offset--focus');
     }
   }
 
@@ -56,8 +57,8 @@
   .meta {
     display: inline-flex;
     align-items: center;
-    gap: var(--ix-chat-activity-trace-header--gap);
-    color: var(--ix-chat-activity-trace-meta--color);
+    gap: cv.get-var('chat-activity-trace-header--gap');
+    color: cv.get-var('chat-activity-trace-meta--color');
   }
 
   .chevron {
@@ -72,7 +73,7 @@
   .items {
     display: flex;
     flex-direction: column;
-    gap: var(--ix-chat-activity-trace-items--gap);
+    gap: cv.get-var('chat-activity-trace-items--gap');
     min-width: 0;
   }
 }

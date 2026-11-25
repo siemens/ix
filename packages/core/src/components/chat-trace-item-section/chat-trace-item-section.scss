@@ -10,14 +10,15 @@
 @use 'mixins/shadow-dom/component';
 @use 'mixins/hover';
 @use './chat-trace-item-section.vars';
+@use 'mixins/component-vars' as cv;
 
 :host {
   display: flex;
   flex-direction: column;
-  gap: var(--ix-chat-trace-item-section--gap);
+  gap: cv.get-var('chat-trace-item-section--gap');
   min-width: 0;
-  color: var(--ix-chat-trace-item-section--color);
-  font: var(--ix-chat-trace-item-section--font);
+  color: cv.get-var('chat-trace-item-section--color');
+  font: cv.get-var('chat-trace-item-section--font');
 
   @include component.ix-component;
 
@@ -25,28 +26,30 @@
     display: inline-flex;
     align-items: center;
     align-self: flex-start;
-    gap: var(--ix-chat-trace-item-section-heading--gap);
+    gap: cv.get-var('chat-trace-item-section-heading--gap');
     margin: 0;
     padding: 0;
-    color: var(--ix-chat-trace-item-section-heading--color);
-    font: var(--ix-chat-trace-item-section-heading--font);
+    color: cv.get-var('chat-trace-item-section-heading--color');
+    font: cv.get-var('chat-trace-item-section-heading--font');
   }
 
   .heading-toggle {
     border: none;
-    border-radius: var(--ix-chat-trace-item-section-heading--border-radius);
+    border-radius: cv.get-var('chat-trace-item-section-heading--border-radius');
     background: transparent;
     cursor: pointer;
     text-align: start;
 
     @include hover.hover {
-      color: var(--ix-chat-trace-item-section--color);
+      color: cv.get-var('chat-trace-item-section--color');
     }
 
     @include hover.focus-visible {
-      outline: var(--ix-chat-trace-item-section--outline-width--focus) solid
-        var(--ix-chat-trace-item-section--outline-color--focus);
-      outline-offset: var(--ix-chat-trace-item-section--outline-offset--focus);
+      outline: cv.get-var('chat-trace-item-section--outline-width--focus') solid
+        cv.get-var('chat-trace-item-section--outline-color--focus');
+      outline-offset: cv.get-var(
+        'chat-trace-item-section--outline-offset--focus'
+      );
     }
   }
 
@@ -68,4 +71,3 @@
     display: none;
   }
 }
-
