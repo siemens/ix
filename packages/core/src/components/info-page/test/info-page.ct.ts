@@ -15,8 +15,7 @@ regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(
     `<ix-info-page
       title-text="Report could not be generated"
-      copy-text="An error occurred while generating the report."
-      instructions="Contact your administrator for more information."
+      description="An error occurred while generating the report. Contact your administrator for more information."
     >
       <ix-button slot="actions">Return to overview</ix-button>
     </ix-info-page>`,
@@ -63,8 +62,7 @@ regressionTest(
     await mount(`
     <ix-info-page
       title-text="Invitation received"
-      copy-text="You were invited to join Sample Co."
-      instructions="Accept the invitation to continue."
+      description="You were invited to join Sample Co. Accept the invitation to continue."
     >
       <img slot="image" alt="Invitation" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" />
       <ix-button slot="actions">Accept invitation</ix-button>
@@ -73,10 +71,9 @@ regressionTest(
 
     const infoPage = page.locator('ix-info-page');
     await expect(
-      infoPage.getByText('You were invited to join Sample Co.')
-    ).toBeVisible();
-    await expect(
-      infoPage.getByText('Accept the invitation to continue.')
+      infoPage.getByText(
+        'You were invited to join Sample Co. Accept the invitation to continue.'
+      )
     ).toBeVisible();
     await expect(
       infoPage.getByRole('img', { name: 'Invitation' })
@@ -90,27 +87,27 @@ regressionTest(
 );
 
 regressionTest(
-  'applies default image size and allows consumer overrides',
+  'lets the slotted image determine its size',
   async ({ mount, page }) => {
     await mount(`
       <ix-info-page title-text="Invitation received">
-        <img slot="image" alt="Invitation" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" />
+        <img slot="image" alt="Invitation" width="130" height="98" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" />
       </ix-info-page>
     `);
 
-    const infoPage = page.locator('ix-info-page');
-    const imageContainer = infoPage.locator('.content__image');
-    await expect(imageContainer).toHaveCSS('width', '260px');
-    await expect(imageContainer).toHaveCSS('height', '196px');
-
-    await infoPage.evaluate((element) => {
-      element.style.setProperty('--ix-info-page-image-width', '130px');
-      element.style.setProperty('--ix-info-page-image-height', '98px');
-    });
+    const imageContainer = page.locator('ix-info-page .content__image');
     await expect(imageContainer).toHaveCSS('width', '130px');
     await expect(imageContainer).toHaveCSS('height', '98px');
   }
 );
+
+regressionTest('renders the default icon at 64px', async ({ mount, page }) => {
+  await mount(`<ix-info-page title-text="Invitation received"></ix-info-page>`);
+
+  const icon = page.locator('ix-info-page .content__image ix-icon');
+  await expect(icon).toHaveCSS('width', '64px');
+  await expect(icon).toHaveCSS('height', '64px');
+});
 
 regressionTest(
   'applies consistent vertical spacing',
@@ -119,8 +116,7 @@ regressionTest(
     await mount(`
     <ix-info-page
       title-text="Invitation received"
-      copy-text="You were invited to join Sample Co."
-      instructions="Accept the invitation to continue."
+      description="You were invited to join Sample Co. Accept the invitation to continue."
     >
       <ix-button slot="actions">Accept invitation</ix-button>
     </ix-info-page>
@@ -131,11 +127,7 @@ regressionTest(
       'margin-bottom',
       '40px'
     );
-    await expect(infoPage.locator('.message__copy')).toHaveCSS(
-      'margin-top',
-      '16px'
-    );
-    await expect(infoPage.locator('.message__instructions')).toHaveCSS(
+    await expect(infoPage.locator('.message__description')).toHaveCSS(
       'margin-top',
       '16px'
     );

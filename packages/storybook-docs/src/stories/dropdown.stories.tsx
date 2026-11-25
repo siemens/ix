@@ -35,3 +35,33 @@ export const Default: Story = {
     trigger: 'dropdown-trigger',
   },
 };
+
+export const ContextMenu: Story = {
+  render: stencil((args) => (
+    <div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '20rem',
+          border: '1px dashed var(--theme-color-soft-bdr)',
+        }}
+        onContextMenu={(event: MouseEvent) => {
+          event.preventDefault();
+          const dropdown = (event.currentTarget as HTMLElement)
+            .nextElementSibling as HTMLIxDropdownElement;
+          dropdown.showAt(event.clientX, event.clientY);
+        }}
+      >
+        Right-click in this area
+      </div>
+      <ix-dropdown {...args} role="menu">
+        <ix-dropdown-item label="Copy"></ix-dropdown-item>
+        <ix-dropdown-item label="Paste"></ix-dropdown-item>
+        <ix-dropdown-item label="Delete"></ix-dropdown-item>
+      </ix-dropdown>
+    </div>
+  )),
+  args: {},
+};

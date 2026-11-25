@@ -397,4 +397,45 @@ describe('OverlayCoordinator', () => {
     expect(child.dismiss).toHaveBeenCalledWith('outside');
     expect(parent.dismiss).not.toHaveBeenCalled();
   });
+
+  it('dismisses same-type and cross-type children separately', () => {
+    const coordinator = createCoordinator();
+    const parentHost = document.createElement('div');
+    const dropdownChildHost = document.createElement('div');
+    const popoverTrigger = document.createElement('button');
+    const popoverHost = document.createElement('div');
+    parentHost.append(dropdownChildHost, popoverTrigger);
+    document.body.append(parentHost, popoverHost);
+
+    const parent = createOverlay('dropdown:parent', {
+      kind: 'dropdown',
+      hostElement: parentHost,
+    });
+    const dropdownChild = createOverlay('dropdown:child', {
+      kind: 'dropdown',
+      hostElement: dropdownChildHost,
+    });
+    dropdownChild.entry.getParentReferenceElement = () => dropdownChildHost;
+    const popoverChild = createOverlay('popover:child', {
+      hostElement: popoverHost,
+      triggerElement: popoverTrigger,
+    });
+    coordinator.connect(parent.entry);
+    coordinator.connect(dropdownChild.entry);
+    coordinator.connect(popoverChild.entry);
+    coordinator.presented(parent.entry.key);
+    coordinator.presented(dropdownChild.entry.key);
+    coordinator.presented(popoverChild.entry.key);
+
+    coordinator.dismissSameTypeChildren(parent.entry.key, 'dropdown');
+
+    expect(dropdownChild.dismiss).toHaveBeenCalledWith('parent-close');
+    expect(popoverChild.dismiss).not.toHaveBeenCalled();
+    expect(parent.dismiss).not.toHaveBeenCalled();
+
+    coordinator.dismissCrossTypeChildren(parent.entry.key, 'dropdown');
+
+    expect(popoverChild.dismiss).toHaveBeenCalledWith('parent-close');
+    expect(parent.dismiss).not.toHaveBeenCalled();
+  });
 });

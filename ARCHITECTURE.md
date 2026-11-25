@@ -131,8 +131,9 @@ Preview example changes can affect accessibility tree snapshots in `testing/fram
 
 ### Date and Time Logic (core)
 
-- All calendar arithmetic for the date components belongs in `packages/core/src/components/utils/calendar.util.ts`. Add to that module instead of computing months, weekdays, grid rows, or date ranges inside a component.
-- Parsing and formatting stay in `packages/core/src/components/utils/date-time-locale.ts`. Keep the two concerns separate.
+- All calendar arithmetic for the date components belongs in `packages/core/src/components/utils/datetime/calendar.util.ts`. Add to that module instead of computing months, weekdays, grid rows, or date ranges inside a component.
+- Parsing and formatting stay in `packages/core/src/components/utils/datetime/date-time-locale.ts`. Keep the two concerns separate.
+- Pickers keep their committed and pending selection in a `PendingSelection` (`packages/core/src/components/utils/datetime/pending-selection.ts`), so picks, prop echoes from two-way bindings, confirm and discard behave the same in every component.
 - Carry a Luxon `DateTime` between components and helpers; do not pass bare month or weekday numbers around. Luxon counts months `1-12` and weekdays `1-7` (Monday = 1), while the `Info.months()` / `Info.weekdays()` name arrays are 0-based, and mixing the two bases silently shifts the calendar by one.
 - `weekStartIndex` is the one plain number that crosses the boundary. Narrow it with `weekStartFrom()` into a `WeekdayIndex` at the edge rather than passing the raw prop value inwards.
 - `calendar.util.ts` is the single module allowed to touch both bases. Move such logic into that module rather than mixing them inside a component.
@@ -185,7 +186,7 @@ Regeneration triggers on every `pnpm build` of core.
   component metadata, related-example mappings, and the central MiniSearch
   index.
 - Registry builds are parameterized by `REGISTRY_VERSION`, `REGISTRY_PATH_PREFIX`, and `REGISTRY_LATEST_TAG`; CI deploys the merged registry output to GitHub Pages.
-- `packages/cli` consumes the registry to initialize projects, add patterns/examples, search components, and expose MCP tools for code-generation clients.
+- `packages/cli` consumes the registry to initialize projects and install patterns.
 
 ### CLI responsibilities
 
@@ -193,15 +194,7 @@ Regeneration triggers on every `pnpm build` of core.
 - `ix init --target-folder <path>` creates `ix-patterns-lock.json`, which stores the target folder for installed patterns and tracks installed pattern names with their registry versions.
 - `ix add <patternName>` installs a registry pattern into the configured target folder. It resolves the requested registry tag (`latest` by default), detects React or Angular automatically unless `--framework react|angular` is passed, downloads the matching pattern variant files, applies optional token replacement via `--tokens`, and updates `ix-patterns-lock.json`.
 - `ix add <patternName> --dry-run` prints the installation plan without writing pattern files or updating configuration.
-- The CLI defaults to the public registry at `https://siemens.github.io/ix`, but both `add` and MCP server commands accept `--registry <url>` and `--tag <tag>` for testing versioned, branch, or local registry builds.
-
-### MCP integration
-
-- `ix mcp init --config vscode|cursor|claude` detects the current framework and writes MCP client configuration plus IX-specific generation instructions.
-- `ix mcp run-react` and `ix mcp run-angular` start stdio MCP servers backed by the selected registry and framework.
-- MCP tools expose registry-backed discovery for components, icons, examples, patterns, Figma mappings, setup guidance, and audit checks.
-- Pattern-specific MCP tools include `search_patterns` and `list_all_patterns`; their output points agents back to `ix add <patternName>` for installing copyable patterns into the host project.
-- Component/example MCP tools are backed by the central search index, generated component metadata, and registry example definitions, so generated code should use `get_component_details` and `search_examples` before composing IX UI.
+- The CLI defaults to the public registry at `https://siemens.github.io/ix`; `add` accepts `--registry <url>` and `--tag <tag>` for testing versioned, branch, or local registry builds.
 
 ---
 

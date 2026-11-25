@@ -11,6 +11,10 @@ export * from './components/category-filter/input-state';
 export * from './components/category-filter/logical-filter-operator';
 export * from './components/date-input/date-input.types';
 export * from './components/datetime-input/datetime-input.types';
+export type {
+  DateRange,
+  DateRangeWithIso,
+} from './components/utils/datetime/date-time.types';
 export { FlipTileVariant } from './components/flip-tile/flip-tile.types';
 export * from './components/time-input/time-input.types';
 export * from './components/toast/toast-utils';
@@ -19,6 +23,8 @@ export * from './components/tree/tree-model';
 export * from './components/tree/tree.types';
 export * from './components/breadcrumb/breadcrumb.types';
 export type { IxDropdownItemRole } from './components/dropdown-item/dropdown-item.types';
+export * from './components/list/list.types';
+export * from './components/list-item/list-item.types';
 export * from './components/upload/upload-file-state';
 export * from './components/utils/delegate';
 export type { StatusVariant } from './components/utils/status.types';
@@ -34,10 +40,7 @@ export { ElementReference } from './components/utils/element-reference';
 export * from './components/utils/modal';
 export * from './components/utils/typed-event';
 export { NotificationColor } from './components/utils/notification-color';
-export {
-  convertToAbbreviationString,
-  convertToRemString,
-} from './components/utils/rwd.util';
+export { convertToAbbreviationString } from './components/utils/rwd.util';
 export * from './components/utils/theme-switcher';
 export type { ChatAttachmentStatus } from './components/chat-attachment/chat-attachment.types';
 export type { ChatTraceItemState } from './components/chat-trace-item/chat-trace-item.types';

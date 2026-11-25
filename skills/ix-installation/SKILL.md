@@ -104,7 +104,7 @@ import '@siemens/ix/dist/siemens-ix/siemens-ix.css';
 Preserve existing `data-ix-theme` and `data-ix-color-schema` values. If they are absent, add them to the root `<html>` element using non-invasive defaults:
 
 ```html
-<html data-ix-theme="classic" data-ix-color-schema="system">
+<html data-ix-theme="community" data-ix-color-schema="system">
 ```
 
 Do not duplicate stylesheet imports or overwrite an existing theme choice.

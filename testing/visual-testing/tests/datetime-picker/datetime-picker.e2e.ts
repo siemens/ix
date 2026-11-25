@@ -26,4 +26,9 @@ regressionTest.describe('datetime picker', () => {
     await page.goto('datetime-picker/show-week-numbers');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+
+  regressionTest('require confirmation', async ({ page }) => {
+    await page.goto('datetime-picker/require-confirmation');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
+  });
 });
