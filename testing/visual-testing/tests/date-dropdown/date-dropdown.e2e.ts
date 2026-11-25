@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('date dropdown', () => {
   regressionTest('basic', async ({ page }) => {
@@ -60,4 +60,35 @@ regressionTest.describe('date dropdown', () => {
     await expect(dropdown).toHaveClass(/show/);
     await expect(page).toHaveScreenshot();
   });
+
+  regressionTest('require confirmation', async ({ page }) => {
+    await page.goto('date-dropdown/require-confirmation');
+    const dateDropdown = page.locator('ix-date-dropdown');
+    await dateDropdown.click();
+    const dropdown = dateDropdown.locator('ix-dropdown[data-date-dropdown]');
+
+    await expect(dropdown).toHaveClass(/show/);
+    await expect(page).toHaveScreenshot();
+  });
+});
+
+regressionTest('should show focus-visible outline', async ({ page }) => {
+  await page.goto('date-dropdown/range-options');
+  const dateDropdown = page.locator('ix-date-dropdown').first();
+  await dateDropdown
+    .getByTestId('date-dropdown-trigger')
+    .locator('button')
+    .focus();
+  await page.keyboard.press('Enter');
+  await expect(
+    dateDropdown.locator('ix-dropdown[data-date-dropdown]')
+  ).toHaveClass(/show/);
+
+  const quickSelection = dateDropdown
+    .locator('.quick-selection button')
+    .first();
+  await focusWithKeyboard(page, quickSelection, { key: 'Shift+Tab' });
+  await expect(quickSelection).toBeFocused();
+
+  expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
 });

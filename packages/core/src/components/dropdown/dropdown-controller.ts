@@ -25,6 +25,7 @@ export interface DropdownInterface extends IxComponentInterface {
   getAssignedSubmenuIds(): string[];
   getId(): string;
   getTriggerElement(): HTMLElement | undefined;
+  getParentReferenceElement?(): HTMLElement | undefined;
 
   discoverSubmenu(): void;
 
@@ -72,6 +73,7 @@ export class DropdownController {
       kind: 'dropdown',
       hostElement: dropdown.hostElement,
       getTriggerElement: () => dropdown.getTriggerElement(),
+      getParentReferenceElement: () => dropdown.getParentReferenceElement?.(),
       isPresent: () => dropdown.isPresent(),
       dismissOnOutside: () =>
         dropdown.closeBehavior === true ||
@@ -143,6 +145,10 @@ export class DropdownController {
         'dropdown'
       );
       this.registry.dismissChildren(dropdown.getId());
+      this.overlayCoordinator.dismissSameTypeChildren(
+        this.getOverlayKey(dropdown),
+        'dropdown'
+      );
       dropdown.dismiss();
       this.registry.deleteChildIdsEntry(dropdown.getId());
     }

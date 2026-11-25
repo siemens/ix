@@ -39,7 +39,7 @@ type Story = StoryObj<Element>;
 export const BasicUsage: Story = {
   args: {
     defaultSlot: 'Active',
-    variant: 'primary',
+    variant: 'accent',
   },
 };
 
@@ -112,7 +112,7 @@ export const DecorativeIcon: Story = {
   args: {
     defaultSlot: 'Featured',
     icon: 'star',
-    variant: 'primary',
+    variant: 'accent',
   },
 };
 

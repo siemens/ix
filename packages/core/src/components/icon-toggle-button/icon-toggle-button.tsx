@@ -34,7 +34,7 @@ import {
 /**
  * Icon button that toggles between a pressed and unpressed state.
  *
- * @documentation https://ix.siemens.io//docs/components/toggle-button/guide.md
+ * @documentation https://ix.siemens.io/docs/components/toggle-button/guide.md
  * @figma-main-component-id 107597:25227
  */
 @Component({
@@ -68,9 +68,6 @@ export class IconToggleButton
 
   /**
    * Button in oval shape
-   *
-   * @since 3.1.0
-   *
    */
   @Prop() oval: boolean = false;
 
@@ -85,6 +82,7 @@ export class IconToggleButton
    * Defaults to `20`.
    *
    * @since 6.0.0 Size `20` is available
+   * @breaking-change 6.0.0 Default changed to `20`
    */
   @Prop() size: ButtonIconSize = DEFAULT_BUTTON_ICON_SIZE;
 
@@ -117,6 +115,7 @@ export class IconToggleButton
         this.size === '24' ||
         this.size === DEFAULT_BUTTON_ICON_SIZE ||
         !this.size,
+      'icon-24': this.size === '24',
     };
   }
 

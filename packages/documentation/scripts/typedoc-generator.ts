@@ -282,7 +282,7 @@ function processStaticProperties(
     return;
   }
 
-  // If the function has static properties (e.g., showMessage.info), process its children
+  // If the function has static properties (e.g., showMessage.information), process its children
   for (const staticProp of child.children) {
     if (staticProp.signatures?.length > 0) {
       const staticFunctionDoc = processFunctionSignature(

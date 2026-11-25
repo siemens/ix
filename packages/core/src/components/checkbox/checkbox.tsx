@@ -17,19 +17,25 @@ import {
   h,
   Host,
   Method,
+  Mixin,
   Prop,
   State,
   Watch,
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 import { HookValidationLifecycle, IxFormComponent } from '../utils/input';
+import { DefaultMixins } from '../utils/internal/component';
+import {
+  InheritAriaAttributesMixin,
+  InheritAriaAttributesMixinContract,
+} from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { makeRef } from '../utils/make-ref';
 import { hasSlottedContent } from '../utils/shadow-dom';
 
 /**
  * Lets users select an option or toggle a single value on or off.
  *
- * @documentation https://ix.siemens.io//docs/components/checkbox/guide.md
+ * @documentation https://ix.siemens.io/docs/components/checkbox/guide.md
  * @figma-main-component-id 42365:47165
  *
  * @form-ready
@@ -42,8 +48,11 @@ import { hasSlottedContent } from '../utils/shadow-dom';
   shadow: true,
   formAssociated: true,
 })
-export class Checkbox implements IxFormComponent<string> {
-  @Element() hostElement!: HTMLIxCheckboxElement;
+export class Checkbox
+  extends Mixin(...DefaultMixins, InheritAriaAttributesMixin)
+  implements IxFormComponent<string>, InheritAriaAttributesMixinContract
+{
+  @Element() override hostElement!: HTMLIxCheckboxElement;
 
   @AttachInternals() formInternals!: ElementInternals;
 
@@ -107,6 +116,7 @@ export class Checkbox implements IxFormComponent<string> {
 
   private readonly inputRef = makeRef<HTMLInputElement>((checkboxRef) => {
     checkboxRef.checked = this.checked;
+    checkboxRef.indeterminate = this.indeterminate;
   });
 
   private setCheckedState(newChecked: boolean) {
@@ -125,11 +135,12 @@ export class Checkbox implements IxFormComponent<string> {
     this.valueChange.emit(this.value);
   }
 
-  componentWillLoad() {
+  override componentWillLoad() {
+    super.componentWillLoad();
     this.updateFormInternalValue();
   }
 
-  componentDidLoad() {
+  override componentDidLoad() {
     this.updateDefaultSlotElements();
   }
 
@@ -184,20 +195,14 @@ export class Checkbox implements IxFormComponent<string> {
         {this.indeterminate && (
           <Fragment>
             <rect width="18" height="18" fill="transparent" />
-            <rect
-              x="3"
-              y="8"
-              width="12"
-              height="2"
-              fill="var(--ix-checkbox-checkmark--color)"
-            />
+            <rect x="3" y="8" width="12" height="2" class="checkmark" />
           </Fragment>
         )}
 
         {this.checked && (
           <path
             d="M3.65625 8.15625L8.4375 12.9375L14.625 3.9375"
-            stroke="var(--ix-checkbox-checkmark--color)"
+            class="checkmark"
             stroke-width="2"
           />
         )}
@@ -205,12 +210,9 @@ export class Checkbox implements IxFormComponent<string> {
     );
   }
 
-  render() {
+  override render() {
     return (
       <Host
-        aria-checked={a11yBoolean(this.checked)}
-        aria-disabled={a11yBoolean(this.disabled)}
-        role="checkbox"
         class={{
           disabled: this.disabled,
           checked: this.checked,
@@ -222,28 +224,35 @@ export class Checkbox implements IxFormComponent<string> {
       >
         <label>
           <input
-            aria-checked={a11yBoolean(this.checked)}
+            {...this.inheritAriaAttributes}
+            aria-checked={
+              this.indeterminate ? 'mixed' : a11yBoolean(this.checked)
+            }
             required={this.required}
             disabled={this.disabled}
             checked={this.checked}
             ref={this.inputRef}
             type="checkbox"
-            onChange={() => this.setCheckedState(!this.checked)}
+            onChange={(event: Event) =>
+              this.setCheckedState(
+                (event.currentTarget as HTMLInputElement).checked
+              )
+            }
           />
           <div class="checkbox-button">
-            <button
-              disabled={this.disabled}
+            <div
+              aria-hidden="true"
               class={{
+                'checkbox-control': true,
                 checked: this.checked,
               }}
-              onClick={() => this.setCheckedState(!this.checked)}
             >
               {this.renderCheckmark()}
-            </button>
+            </div>
           </div>
           <ix-typography
             format="body"
-            textColor={this.disabled ? 'weak' : 'std'}
+            textColor={this.disabled ? 'disabled' : 'primary'}
           >
             {this.label}
             <slot

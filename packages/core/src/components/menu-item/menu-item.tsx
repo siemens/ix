@@ -13,6 +13,7 @@ import {
   Element,
   h,
   Host,
+  Listen,
   Method,
   Mixin,
   Prop,
@@ -38,7 +39,7 @@ let sequenceId = 0;
 /**
  * Navigation entry within the side menu.
  *
- * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
+ * @documentation https://ix.siemens.io/docs/components/application-menu/guide.md
  * @figma-main-component-id 308:1293
  * @slot - Menu item label.
  */
@@ -92,8 +93,6 @@ export class MenuItem
 
   /**
    * Will be shown as tooltip text, if not provided menu text content will be used.
-   *
-   * @since 4.0.0
    */
   @Prop() tooltipText?: string;
 
@@ -107,21 +106,19 @@ export class MenuItem
   /**
    * URL for the button link. When provided, the button will render as an anchor tag.
    *
-   * @since 4.0.0
+   * The value is forwarded unchanged to the `href` of the native anchor. URL schemes such as
+   * `javascript:` or `data:` are not rejected. Do not bind untrusted input; validate destinations
+   * against an allowlist (for example `https:` and relative URLs).
    */
   @Prop() href?: string;
 
   /**
    * Specifies where to open the linked document when href is provided.
-   *
-   * @since 4.0.0
    */
   @Prop() target?: AnchorTarget = '_self';
 
   /**
    * Specifies the relationship between the current document and the linked document when href is provided.
-   *
-   * @since 4.0.0
    */
   @Prop() rel?: string;
 
@@ -225,6 +222,14 @@ export class MenuItem
     }
   }
 
+  @Listen('click', { capture: true })
+  handleClick(event: Event) {
+    if (this.disabled) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+
   private handleCategoryKeyDown(e: KeyboardEvent) {
     if ((e.key === 'Enter' || e.key === ' ') && this.isHostedInsideCategory) {
       this.returnFocusToParentCategoryMenuItem();
@@ -312,9 +317,11 @@ export class MenuItem
         ></ix-icon>
       ),
       this.notifications ? (
-        <div class="notification">
-          <div class="pill">{this.notifications}</div>
-        </div>
+        <ix-badge
+          class="notification"
+          type="counter"
+          label={String(this.notifications)}
+        ></ix-badge>
       ) : null,
       <span id={this.internalItemId} class="tab-text typography-body">
         {this.label}
@@ -350,12 +357,6 @@ export class MenuItem
             }
             ref={this.buttonRef}
             onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
-            onClick={(e: Event) => {
-              if (this.disabled) {
-                e.preventDefault();
-                e.stopPropagation();
-              }
-            }}
             aria-disabled={a11yBoolean(this.disabled)}
             aria-label={ariaLabel}
             aria-current={this.active ? 'page' : undefined}

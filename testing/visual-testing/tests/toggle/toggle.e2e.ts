@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('toggle', () => {
   regressionTest('basic', async ({ page }) => {
@@ -34,4 +34,18 @@ regressionTest.describe('toggle', () => {
     await page.goto('toggle/disabled');
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+});
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: fit-content">
+      <ix-toggle></ix-toggle>
+    </div>`
+  );
+
+  await focusWithKeyboard(page, page.locator('ix-toggle'));
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
 });

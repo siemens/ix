@@ -10,60 +10,60 @@
   display: inline-flex;
   position: relative;
   align-items: center;
-  margin: 0 0.25rem;
+  margin: 0 4px;
 }
 
 .ag-radio-button-input-wrapper {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 24px;
+  height: 24px;
 }
 
 .ag-radio-button-input {
   appearance: none;
-  width: 1.125rem;
-  height: 1.125rem;
-  min-width: 1.125rem;
-  max-width: 1.125rem;
-  min-height: 1.125rem;
-  max-height: 1.125rem;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  max-width: 18px;
+  min-height: 18px;
+  max-height: 18px;
   margin: 0;
   border-radius: 100px;
   cursor: pointer;
   position: relative;
 
   background-color: var(--si-sys-color-background-1);
-  border: 0.0625rem solid var(--si-sys-color-border-2);
+  border: 1px solid var(--si-sys-color-border-2);
 }
 
 .ag-radio-button-input:hover {
   background-color: var(--si-sys-color-background-hover);
-  border: 0.0625rem solid var(--si-sys-color-border-2);
+  border: 1px solid var(--si-sys-color-border-2);
 }
 
 .ag-radio-button-input:active {
   background-color: var(--si-sys-color-background-active);
-  border: 0.0625rem solid var(--si-sys-color-border-2);
+  border: 1px solid var(--si-sys-color-border-2);
 }
 
 .ag-radio-button-input:checked,
 .ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input {
   background-color: var(--si-sys-color-background-accent);
-  border: 0.0625rem solid rgba(0, 0, 0, 0);
+  border: 1px solid rgba(0, 0, 0, 0);
 }
 
 .ag-radio-button-input:checked:hover,
 .ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:hover {
   background-color: var(--si-sys-color-background-accent-hover);
-  border: 0.0625rem solid rgba(0, 0, 0, 0);
+  border: 1px solid rgba(0, 0, 0, 0);
 }
 
 .ag-radio-button-input:checked:active,
 .ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:active {
   background-color: var(--si-sys-color-background-accent-active);
-  border: 0.0625rem solid rgba(0, 0, 0, 0);
+  border: 1px solid rgba(0, 0, 0, 0);
 }
 
 .ag-radio-button-input:checked::after,
@@ -75,31 +75,31 @@
   transform: translate(-50%, -50%);
   border-radius: 100px;
   background-color: var(--si-sys-color-text-on-accent);
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 8px;
+  height: 8px;
 }
 
 .ag-radio-button-input:disabled {
   cursor: not-allowed;
   pointer-events: none;
   background-color: rgba(0, 0, 0, 0);
-  border: 0.0625rem solid var(--si-sys-color-text-disabled);
+  border: 1px solid var(--si-sys-color-text-disabled);
 }
 
 .ag-radio-button-input:checked:disabled,
 .ag-radio-button-input-wrapper.ag-checked .ag-radio-button-input:disabled {
   background-color: var(--si-sys-color-text-disabled);
-  border: 0.0625rem solid rgba(0, 0, 0, 0);
+  border: 1px solid rgba(0, 0, 0, 0);
 }
 
 .ag-radio-button-input:focus-visible {
-  outline: 0.0625rem solid var(--si-sys-color-effects-focus);
-  outline-offset: 0.125rem;
+  outline: 1px solid var(--si-sys-color-effects-focus);
+  outline-offset: 2px;
 }
 
 .ag-filter-condition {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0;
+  gap: 8px;
+  padding: 8px 0;
 }

@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('radiobutton', () => {
   regressionTest('basic', async ({ page }) => {
@@ -60,3 +60,34 @@ regressionTest.describe('radiobutton', () => {
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
 });
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: fit-content">
+      <ix-radio label="Radio"></ix-radio>
+    </div>`
+  );
+
+  await focusWithKeyboard(page, page.locator('ix-radio'));
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
+});
+
+regressionTest(
+  'should show focus-visible outline on native radio',
+  async ({ page }) => {
+    await page.goto('radiobutton/basic');
+    await page.addStyleTag({ content: 'body { padding: 1rem !important; }' });
+
+    await focusWithKeyboard(
+      page,
+      page.locator('input.ix-form-control[type="radio"]').first()
+    );
+
+    expect(
+      await page.screenshot({ fullPage: true, animations: 'disabled' })
+    ).toMatchSnapshot();
+  }
+);

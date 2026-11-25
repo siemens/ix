@@ -201,7 +201,7 @@ regressionTest(
   'label-less radio has 20px layout size and 24px active area',
   async ({ mount, page }) => {
     await mount(
-      `<div style="padding: 1rem"><ix-radio aria-label="Option" name="no-label"></ix-radio></div>`
+      `<div style="padding: 16px"><ix-radio aria-label="Option" name="no-label"></ix-radio></div>`
     );
     const radio = page.locator('ix-radio');
     await expect(radio).toHaveCSS('width', '20px');

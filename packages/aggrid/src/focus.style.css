@@ -1,0 +1,20 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.ag-cell.ag-cell-focus:not(.ag-cell-range-selected):focus-within:not(
+    .ag-cell-inline-editing
+  ),
+.ag-header-cell:focus-visible,
+.ag-header-group-cell:focus-visible {
+  outline: var(--si-sys-sizing-focus-ring-width) solid
+    var(--si-sys-color-effects-focus);
+  /* Keep the ring inside clipped cells and headers. */
+  outline-offset: calc(-1 * var(--si-sys-sizing-focus-ring-width));
+  box-shadow: none;
+}

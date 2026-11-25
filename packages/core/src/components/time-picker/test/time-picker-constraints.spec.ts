@@ -10,8 +10,10 @@
 import { describe, expect, it } from 'vitest';
 import { DateTime } from 'luxon';
 import {
+  getTimeConstraintsOnDay,
   getTimePickerConstraintBounds,
   hasActiveTimePickerConstraints,
+  isTimeWithinConstraints,
   isWithinTimePickerConstraints,
   parseTimeOnDay,
   timeOfDayRangeIntersectsInclusiveBounds,
@@ -144,5 +146,93 @@ describe('timeOfDayRangeIntersectsInclusiveBounds', () => {
     expect(
       timeOfDayRangeIntersectsInclusiveBounds(h15, h15end, null, max14)
     ).toBe(false);
+  });
+});
+
+describe('isTimeWithinConstraints', () => {
+  it('respects min and max on the day of the time', () => {
+    const otherDay = baseDay.plus({ days: 3 });
+    expect(
+      isTimeWithinConstraints(
+        otherDay.set({ hour: 8 }),
+        '09:00',
+        '18:00',
+        'HH:mm'
+      )
+    ).toBe(false);
+    expect(
+      isTimeWithinConstraints(
+        otherDay.set({ hour: 12 }),
+        '09:00',
+        '18:00',
+        'HH:mm'
+      )
+    ).toBe(true);
+    expect(
+      isTimeWithinConstraints(
+        otherDay.set({ hour: 19 }),
+        '09:00',
+        '18:00',
+        'HH:mm'
+      )
+    ).toBe(false);
+  });
+
+  it('ignores missing and unparsable constraints', () => {
+    const time = baseDay.set({ hour: 8 });
+    expect(isTimeWithinConstraints(time, undefined, undefined, 'HH:mm')).toBe(
+      true
+    );
+    expect(isTimeWithinConstraints(time, 'invalid', undefined, 'HH:mm')).toBe(
+      true
+    );
+  });
+});
+
+describe('getTimeConstraintsOnDay', () => {
+  const constraints = { minTime: '09:00', maxTime: '18:00' };
+  const minDate = baseDay;
+  const maxDate = baseDay.plus({ days: 10 }).endOf('day');
+
+  it('applies both constraints on every day without date bounds', () => {
+    expect(getTimeConstraintsOnDay(constraints, null, null, null)).toEqual(
+      constraints
+    );
+    expect(
+      getTimeConstraintsOnDay(constraints, baseDay, DateTime.invalid('x'), null)
+    ).toEqual(constraints);
+  });
+
+  it('applies minTime only on the minDate day and maxTime only on the maxDate day', () => {
+    expect(
+      getTimeConstraintsOnDay(
+        constraints,
+        minDate.set({ hour: 12 }),
+        minDate,
+        maxDate
+      )
+    ).toEqual({ minTime: '09:00', maxTime: undefined });
+    expect(
+      getTimeConstraintsOnDay(
+        constraints,
+        maxDate.startOf('day'),
+        minDate,
+        maxDate
+      )
+    ).toEqual({ minTime: undefined, maxTime: '18:00' });
+    expect(
+      getTimeConstraintsOnDay(
+        constraints,
+        minDate.plus({ days: 1 }),
+        minDate,
+        maxDate
+      )
+    ).toEqual({ minTime: undefined, maxTime: undefined });
+  });
+
+  it('applies no constraints with date bounds but without a day', () => {
+    expect(getTimeConstraintsOnDay(constraints, null, minDate, null)).toEqual(
+      {}
+    );
   });
 });

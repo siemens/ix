@@ -8,14 +8,18 @@
  */
 
 @use 'mixins/shadow-dom/component';
+@use './../utils/confirmation-footer/confirmation-footer.mixins' as
+  confirmation-footer;
 
 @use './datetime-picker.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: block;
   position: relative;
   width: min-content;
 
   @include component.ix-component;
+  @include confirmation-footer.confirmation-footer;
 
   ix-time-picker {
     width: 100%;
@@ -38,23 +42,13 @@
   }
 
   .col-separator {
-    border-bottom: var(--ix-datetime-picker-col-separator--border-width) solid
-      var(--ix-datetime-picker-separator--background);
+    border-bottom: cv.get-var('datetime-picker-col-separator--border-width')
+      solid cv.get-var('datetime-picker-separator--background');
     border-right: none;
   }
 
   @media (min-width: 576px) {
     min-width: max-content;
-
-    .btn-select-date-container {
-      display: inline-flex;
-      flex-grow: 1;
-
-      ix-button {
-        margin-left: auto;
-        margin-top: auto;
-      }
-    }
 
     .min-width {
       width: min-content;
@@ -65,8 +59,8 @@
     }
 
     .col-separator {
-      border-right: var(--ix-datetime-picker-col-separator--border-width) solid
-        var(--ix-datetime-picker-separator--background);
+      border-right: cv.get-var('datetime-picker-col-separator--border-width')
+        solid cv.get-var('datetime-picker-separator--background');
       border-bottom: none;
     }
   }
@@ -74,16 +68,5 @@
   .individual {
     box-shadow: none;
     border: none;
-  }
-
-  .btn-select-date-container {
-    display: flex;
-    justify-content: flex-end;
-
-    @media (max-width: 576px) {
-      & .btn-select-date {
-        width: 100%;
-      }
-    }
   }
 }

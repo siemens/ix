@@ -1,0 +1,60 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.notification-list {
+  display: block;
+  width: 100%;
+  max-width: 24.375rem;
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 22.375rem;
+  max-width: calc(100vw - 4rem);
+  margin-left: -0.5rem;
+  padding-block: 0.25rem;
+  box-sizing: border-box;
+}
+
+.notification-item ix-avatar {
+  flex: 0 0 2rem;
+  padding-top: 0.25rem;
+}
+
+.notification-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-width: 0;
+  padding-right: 0.75rem;
+}
+
+.notification-text {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.375rem;
+  min-width: 0;
+}
+
+.notification-text ix-typography {
+  width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.notification-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
