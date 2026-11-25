@@ -55,6 +55,72 @@ async function requireBoundingBox(locator: {
   return box;
 }
 
+function menuWithCategory(items: string, { expanded = false } = {}) {
+  return `
+    <ix-application>
+      <ix-menu${expanded ? ' start-expanded' : ''}>
+        <ix-menu-category label="Category label">
+          ${items}
+        </ix-menu-category>
+      </ix-menu>
+    </ix-application>
+  `;
+}
+
+async function focusCategoryParent(page: Page) {
+  const categoryParent = page
+    .locator('ix-menu-category')
+    .locator('.category-parent');
+
+  // Focus can be lost while the menu is still initializing (hydration,
+  // roving tabindex), so retry until it sticks.
+  await expect(categoryParent).toHaveAttribute('hydrated');
+  await expect(async () => {
+    await categoryParent.focus();
+    await expect(categoryParent).toBeFocused({ timeout: 200 });
+  }).toPass({ timeout: 2000 });
+}
+
+async function openCategoryAndFocusSecondItem(page: Page) {
+  const category = page.locator('ix-menu-category');
+
+  await focusCategoryParent(page);
+  await page.keyboard.press('Enter');
+  await expect(
+    category.getByRole('menuitem', { name: 'Item 1' })
+  ).toBeFocused();
+
+  await page.keyboard.press('ArrowDown');
+  const item2 = category.getByRole('menuitem', { name: 'Item 2' });
+  await expect(item2).toBeFocused();
+
+  return item2;
+}
+
+async function trackMenuItemClicks(page: Page) {
+  await page.evaluate(() => {
+    const clicked: string[] = [];
+    (window as unknown as { clickedItems: string[] }).clickedItems = clicked;
+    document
+      .querySelectorAll('ix-menu-category ix-menu-item')
+      .forEach((item) =>
+        item.addEventListener('click', () =>
+          clicked.push(item.textContent?.trim() ?? '')
+        )
+      );
+  });
+}
+
+function getClickedMenuItems(page: Page) {
+  return page.evaluate(
+    () => (window as unknown as { clickedItems: string[] }).clickedItems
+  );
+}
+
+function getUrlHash(page: Page) {
+  return new URL(page.url()).hash;
+}
+
 regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
   await mount(`
     <ix-application>
@@ -490,6 +556,157 @@ regressionTest(
     await page.keyboard.press('Escape');
     await expect(dropdown).not.toBeVisible();
     await expect(categoryElement.locator('.category-parent')).toBeFocused();
+  }
+);
+
+for (const key of ['Enter', ' ']) {
+  regressionTest(
+    `should activate item in collapsed category dropdown with "${key}"`,
+    async ({ mount, page }) => {
+      await mount(
+        menuWithCategory(`
+          <ix-menu-item>Item 1</ix-menu-item>
+          <ix-menu-item>Item 2</ix-menu-item>
+        `)
+      );
+      const category = page.locator('ix-menu-category');
+      await trackMenuItemClicks(page);
+
+      await openCategoryAndFocusSecondItem(page);
+      await page.keyboard.press(key);
+
+      await expect.poll(() => getClickedMenuItems(page)).toEqual(['Item 2']);
+      await expect(category.locator('ix-dropdown')).not.toBeVisible();
+      await expect(category.locator('.category-parent')).toBeFocused();
+      // Checked again after the dropdown closed to rule out a second activation
+      expect(await getClickedMenuItems(page)).toEqual(['Item 2']);
+    }
+  );
+
+  regressionTest(
+    `should activate item in expanded category with "${key}"`,
+    async ({ mount, page }) => {
+      await page.setViewportSize({ width: 1920, height: 1080 });
+      await mount(
+        menuWithCategory(
+          `
+          <ix-menu-item>Item 1</ix-menu-item>
+          <ix-menu-item>Item 2</ix-menu-item>
+        `,
+          { expanded: true }
+        )
+      );
+      const category = page.locator('ix-menu-category');
+      await trackMenuItemClicks(page);
+
+      const item2 = await openCategoryAndFocusSecondItem(page);
+      await page.keyboard.press(key);
+
+      await expect.poll(() => getClickedMenuItems(page)).toEqual(['Item 2']);
+      await expect(category.locator('.menu-items')).toHaveClass(
+        /menu-items--expanded/
+      );
+      await expect(item2).toBeFocused();
+      // Checked again after the category settled to rule out a second activation
+      expect(await getClickedMenuItems(page)).toEqual(['Item 2']);
+    }
+  );
+
+  for (const expanded of [false, true]) {
+    const mode = expanded ? 'expanded category' : 'collapsed category dropdown';
+
+    regressionTest(
+      `should follow item href in ${mode} with "${key}"`,
+      async ({ mount, page }) => {
+        if (expanded) {
+          await page.setViewportSize({ width: 1920, height: 1080 });
+        }
+        await mount(
+          menuWithCategory(
+            `
+            <ix-menu-item href="#item-1">Item 1</ix-menu-item>
+            <ix-menu-item href="#item-2">Item 2</ix-menu-item>
+          `,
+            { expanded }
+          )
+        );
+
+        await openCategoryAndFocusSecondItem(page);
+        await page.keyboard.press(key);
+
+        await expect.poll(() => getUrlHash(page)).toBe('#item-2');
+      }
+    );
+  }
+
+  regressionTest(
+    `should follow anchor wrapping an item in collapsed category dropdown with "${key}"`,
+    async ({ mount, page }) => {
+      await mount(
+        menuWithCategory(`
+          <a href="#link-1"><ix-menu-item>Item 1</ix-menu-item></a>
+          <a href="#link-2"><ix-menu-item>Item 2</ix-menu-item></a>
+        `)
+      );
+
+      await openCategoryAndFocusSecondItem(page);
+      await page.keyboard.press(key);
+
+      await expect.poll(() => getUrlHash(page)).toBe('#link-2');
+    }
+  );
+
+  regressionTest(
+    `should skip disabled item and activate the next one in collapsed category dropdown with "${key}"`,
+    async ({ mount, page }) => {
+      await mount(
+        menuWithCategory(`
+          <ix-menu-item disabled href="#item-1">Item 1</ix-menu-item>
+          <ix-menu-item href="#item-2">Item 2</ix-menu-item>
+        `)
+      );
+      const category = page.locator('ix-menu-category');
+
+      await focusCategoryParent(page);
+      await page.keyboard.press('Enter');
+      await expect(category.locator('ix-dropdown')).toBeVisible();
+
+      await page.keyboard.press('ArrowDown');
+      await expect(
+        category.getByRole('menuitem', { name: 'Item 2' })
+      ).toBeFocused();
+
+      await page.keyboard.press(key);
+
+      await expect.poll(() => getUrlHash(page)).toBe('#item-2');
+    }
+  );
+}
+
+regressionTest(
+  'should activate href item once when Space is held down',
+  async ({ mount, page }) => {
+    await page.setViewportSize({ width: 1920, height: 1080 });
+    await mount(
+      menuWithCategory(
+        `
+        <ix-menu-item href="#item-1">Item 1</ix-menu-item>
+        <ix-menu-item href="#item-2">Item 2</ix-menu-item>
+      `,
+        { expanded: true }
+      )
+    );
+    await trackMenuItemClicks(page);
+
+    await openCategoryAndFocusSecondItem(page);
+    // Repeated keydown without keyup is sent with `repeat: true`
+    await page.keyboard.down(' ');
+    await page.keyboard.down(' ');
+    await page.keyboard.down(' ');
+    await page.keyboard.up(' ');
+
+    await expect.poll(() => getUrlHash(page)).toBe('#item-2');
+    expect(await getClickedMenuItems(page)).toEqual(['Item 2']);
   }
 );
 

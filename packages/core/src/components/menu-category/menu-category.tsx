@@ -353,12 +353,6 @@ export class MenuCategory
     });
   }
 
-  private onNestedItemSelect() {
-    if (!this.ixMenu?.expand) {
-      this.showDropdown = false;
-    }
-  }
-
   private onCategoryClick(event: MouseEvent) {
     event.stopPropagation();
     this.handleCategoryVisibility();
@@ -561,7 +555,6 @@ export class MenuCategory
         class={{
           expanded: this.showItems,
         }}
-        onIxMenuCategoryItemSelect={() => this.onNestedItemSelect()}
         onPointerEnter={() => {
           this.showMenuItemDropdown();
         }}
@@ -624,6 +617,9 @@ export class MenuCategory
           hostRole="menu"
           aria-label={this.label}
           closeBehavior={'both'}
+          // Menu items activate natively (button click or anchor navigation),
+          // so the dropdown must not intercept Enter/Space on them.
+          keyboardItemTriggerKeys={[]}
           show={this.showDropdown}
           onShowChange={({ detail }) => this.onDropdownShowChange(detail)}
           onShowChanged={({ detail }) => this.onDropdownShowChanged(detail)}
@@ -641,7 +637,10 @@ export class MenuCategory
           onClick={(e) => {
             if (e.target instanceof HTMLElement) {
               if (e.target.tagName === 'IX-MENU-ITEM') {
-                this.showDropdown = false;
+                // Close through the dropdown controller so `showChange` fires
+                // while the item still has focus and keyboard focus is restored
+                // to the category.
+                this.hideMenuItemDropdown();
               } else {
                 e.preventDefault();
               }
