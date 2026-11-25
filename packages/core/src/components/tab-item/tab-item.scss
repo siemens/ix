@@ -111,33 +111,14 @@
     }
   }
 
-  .counter {
-    position: absolute;
-    z-index: 1;
-    height: cv.get-var('tab-item-counter--height');
-    width: auto;
-    background-color: cv.get-var('tab-item-pill--background');
-    border: cv.get-var('tab-item-counter--border-width') solid
-      cv.get-var('tab-item-pill--border-color');
-    border-radius: cv.get-var('tab-item-counter--border-radius');
-    bottom: cv.get-var('tab-item-counter--bottom');
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: cv.get-var('tab-item-counter--padding-left');
-    padding-right: cv.get-var('tab-item-counter--padding-right');
-    font: cv.get-var('tab-item-pill--font');
-    color: cv.get-var('tab-item-pill--color--outline');
-    cursor: pointer;
-
-    &.selected {
-      border-color: cv.get-var('tab-item-pill--border-color--selected');
-    }
-
-    &.disabled {
-      border-color: cv.get-var('tab-item-pill--border-color--disabled');
-      cursor: default;
-    }
+  // Outline badges are transparent; give the attached counter a solid fill
+  // so the circle's border doesn't show through it.
+  .rounded-counter {
+    @include cv.set-var(
+      'badge--background--outline',
+      cv.get-var('tab-item-counter--background--rounded'),
+      $external: true
+    );
   }
 
   .hidden {

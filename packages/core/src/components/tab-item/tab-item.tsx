@@ -28,6 +28,12 @@ import {
 import { BaseTabMixin, BaseTabMixinContract } from './tab.mixin';
 
 /**
+ * Pulls the attached counter badge in from the corner of the circle's bounding box
+ * onto its curve (about 0.29 × radius at 45°).
+ */
+const ROUNDED_COUNTER_INSET = 7;
+
+/**
  * A single selectable tab within a tab set.
  *
  * @documentation https://ix.siemens.io/docs/components/tabs/code.md
@@ -64,7 +70,9 @@ export class TabItem
   @Prop() icon?: string;
 
   /**
-   * Set counter value
+   * Counter value, displayed as a counter badge whenever a value is set (including `0`).
+   * Rounded tab items attach the badge to the circle; other variants show it next to the label.
+   * Values above 99 render as `99+`.
    */
   @Prop() counter?: number;
 
@@ -146,6 +154,26 @@ export class TabItem
       variant = 'normal';
     }
 
+    const hasCounter = this.counter !== undefined && this.counter !== null;
+    const counterBadgeProps = {
+      type: 'counter' as const,
+      label: String(this.counter),
+      outline: true,
+      ...(this.disabled
+        ? {
+            variant: 'custom' as const,
+            background: 'var(--si-sys-color-border-disabled)',
+            badgeColor: 'var(--si-sys-color-text-disabled)',
+          }
+        : { variant: 'accent' as const }),
+    };
+    const circle = (
+      <div class="circle">
+        {this.icon && <ix-icon name={this.icon} size="32"></ix-icon>}
+        <slot></slot>
+      </div>
+    );
+
     return (
       <Host
         id={this.getHostElementId()}
@@ -176,15 +204,17 @@ export class TabItem
           }
         }}
       >
-        {variant === 'rounded' && (
-          <div
-            class={{
-              circle: true,
-            }}
+        {variant === 'rounded' && !hasCounter && circle}
+        {variant === 'rounded' && hasCounter && (
+          <ix-badge
+            class="rounded-counter"
+            {...counterBadgeProps}
+            position="bottom-after"
+            offsetX={ROUNDED_COUNTER_INSET}
+            offsetY={ROUNDED_COUNTER_INSET}
           >
-            {this.icon && <ix-icon name={this.icon} size="32"></ix-icon>}
-            <slot></slot>
-          </div>
+            {circle}
+          </ix-badge>
         )}
         {this.icon && variant === 'icon-only' && (
           <ix-icon name={this.icon} class={'tab-icon'}></ix-icon>
@@ -205,22 +235,8 @@ export class TabItem
           </div>
         )}
 
-        {variant === 'rounded' && this.counter !== undefined && (
-          <div
-            class={{
-              counter: true,
-              selected: this.selected,
-              disabled: this.disabled,
-            }}
-          >
-            {this.counter}
-          </div>
-        )}
-
-        {this.counter && variant !== 'rounded' && (
-          <ix-pill variant="accent" outline class={'tab-counter'}>
-            {this.counter}
-          </ix-pill>
+        {variant !== 'rounded' && hasCounter && (
+          <ix-badge class="tab-counter" {...counterBadgeProps}></ix-badge>
         )}
         {this.closable && variant !== 'rounded' && (
           <ix-icon-button
