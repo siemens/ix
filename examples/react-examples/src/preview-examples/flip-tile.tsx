@@ -15,21 +15,31 @@ import { iconInfo } from '@siemens/ix-icons/icons';
 export default () => {
   return (
     <div className="flip-tile">
+      <IxFlipTile variant={'outline'}>
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div className="footer-date">
+            <IxIcon name={iconInfo} size="16"></IxIcon>2021-06-22
+          </div>
+        </div>
+        <IxFlipTileContent> Example 1 </IxFlipTileContent>
+        <IxFlipTileContent> Example 2 </IxFlipTileContent>
+      </IxFlipTile>
+
       <IxFlipTile>
         <div slot="header">Flip header</div>
-
         <div slot="footer">
           <div>Predicted maintenance date</div>
           <div className="footer-date">
             <IxIcon name={iconInfo} size="16"></IxIcon>2021-06-22
           </div>
         </div>
-
         <IxFlipTileContent> Example 1 </IxFlipTileContent>
         <IxFlipTileContent> Example 2 </IxFlipTileContent>
       </IxFlipTile>
 
-      <IxFlipTile variant={'primary'}>
+      <IxFlipTile variant={'accent'}>
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
@@ -41,7 +51,43 @@ export default () => {
         <IxFlipTileContent> Example 2 </IxFlipTileContent>
       </IxFlipTile>
 
-      <IxFlipTile variant={'info'}>
+      <IxFlipTile variant={'neutral'}>
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div className="footer-date">
+            <IxIcon name={iconInfo} size="16"></IxIcon>2021-06-22
+          </div>
+        </div>
+        <IxFlipTileContent> Example 1 </IxFlipTileContent>
+        <IxFlipTileContent> Example 2 </IxFlipTileContent>
+      </IxFlipTile>
+
+      <IxFlipTile variant={'information'}>
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div className="footer-date">
+            <IxIcon name={iconInfo} size="16"></IxIcon>2021-06-22
+          </div>
+        </div>
+        <IxFlipTileContent> Example 1 </IxFlipTileContent>
+        <IxFlipTileContent> Example 2 </IxFlipTileContent>
+      </IxFlipTile>
+
+      <IxFlipTile variant={'success'}>
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div className="footer-date">
+            <IxIcon name={iconInfo} size="16"></IxIcon>2021-06-22
+          </div>
+        </div>
+        <IxFlipTileContent> Example 1 </IxFlipTileContent>
+        <IxFlipTileContent> Example 2 </IxFlipTileContent>
+      </IxFlipTile>
+
+      <IxFlipTile variant={'caution'}>
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>
@@ -65,7 +111,19 @@ export default () => {
         <IxFlipTileContent> Example 2 </IxFlipTileContent>
       </IxFlipTile>
 
-      <IxFlipTile variant={'alarm'}>
+      <IxFlipTile variant={'danger'}>
+        <div slot="header">Flip header</div>
+        <div slot="footer">
+          <div>Predicted maintenance date</div>
+          <div className="footer-date">
+            <IxIcon name={iconInfo} size="16"></IxIcon>2021-06-22
+          </div>
+        </div>
+        <IxFlipTileContent> Example 1 </IxFlipTileContent>
+        <IxFlipTileContent> Example 2 </IxFlipTileContent>
+      </IxFlipTile>
+
+      <IxFlipTile variant={'critical'}>
         <div slot="header">Flip header</div>
         <div slot="footer">
           <div>Predicted maintenance date</div>

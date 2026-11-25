@@ -13,7 +13,7 @@ import type { EmptyStateLayout } from './empty-state.types';
 /**
  * Placeholder shown when there is no content or data to display.
  *
- * @documentation https://ix.siemens.io//docs/components/empty-state/code.md
+ * @documentation https://ix.siemens.io/docs/components/empty-state/code.md
  * @figma-main-component-id 4727:112645
  */
 @Component({
@@ -38,9 +38,12 @@ export class EmptyState {
   @Prop() header!: string;
 
   /**
-   * Optional empty state sub header
+   * Optional empty state description
+   *
+   * @since 6.0.0
+   * @breaking-change 6.0.0 Replaces the removed `subHeader` property
    */
-  @Prop() subHeader?: string;
+  @Prop() description?: string;
 
   /**
    * Optional empty state action
@@ -49,8 +52,6 @@ export class EmptyState {
 
   /**
    * ARIA label for the empty state icon
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelEmptyStateIcon?: string;
 
@@ -80,8 +81,8 @@ export class EmptyState {
               {this.header}
             </ix-typography>
 
-            {this.subHeader && (
-              <div class="label__subHeader">{this.subHeader}</div>
+            {this.description && (
+              <div class="label__description">{this.description}</div>
             )}
           </div>
 

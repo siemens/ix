@@ -41,7 +41,7 @@ export class ModalNonBlockingContent {
   template: `
     <div>
       <div style="padding: 1rem">
-        <ix-typography format="body" text-color="std">
+        <ix-typography format="body" text-color="primary">
           Content behind the dialog
         </ix-typography>
         <ix-button id="behind">Behind control</ix-button>

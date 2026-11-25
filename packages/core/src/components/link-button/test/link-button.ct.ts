@@ -196,3 +196,37 @@ regressionTest(
     await expect(nextButton).toBeFocused();
   }
 );
+
+regressionTest(
+  'does not propagate clicks while disabled',
+  async ({ mount, page }) => {
+    await mount(`
+      <div id="container">
+        <ix-link-button disabled url="https://ix.siemens.io/">IX home</ix-link-button>
+      </div>
+    `);
+
+    const linkButton = page.locator('ix-link-button');
+    await expect(linkButton).toHaveAttribute('hydrated');
+
+    await page.evaluate(() => {
+      const clicks: string[] = [];
+      (window as any).__clicks = clicks;
+      document
+        .querySelector('ix-link-button')!
+        .addEventListener('click', () => clicks.push('host'));
+      document
+        .querySelector('#container')!
+        .addEventListener('click', () => clicks.push('container'));
+    });
+
+    await linkButton
+      .getByRole('link', { name: 'IX home' })
+      .click({ force: true });
+    await linkButton.evaluate((element) =>
+      element.shadowRoot!.querySelector('a')!.click()
+    );
+
+    expect(await page.evaluate(() => (window as any).__clicks)).toEqual([]);
+  }
+);

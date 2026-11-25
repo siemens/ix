@@ -1,0 +1,20 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+@use 'mixins/shadow-dom/component';
+@use './list-item-separator.vars' as *;
+@use 'mixins/component-vars' as cv;
+
+:host {
+  display: block;
+  width: 100%;
+  border-bottom: cv.get-var('list-item-separator--border-width') solid
+    cv.get-var('list-item-separator--border-color');
+
+  @include component.ix-component;
+}

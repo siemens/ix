@@ -28,7 +28,7 @@ const gridOptions = {
   rowSelection: {
     mode: 'multiRow',
   },
-  suppressCellFocus: true,
+  suppressCellFocus: !new URLSearchParams(location.search).has('cellFocus'),
   theme: theme,
 } satisfies agGridCommunity34.GridOptions;
 

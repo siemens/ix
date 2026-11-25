@@ -1,0 +1,53 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+// Size of a box that holds a rem-based icon (e.g. an icon button).
+// Returns the px `$size` at the default root font size and grows with the
+// icon (icon + padding on both sides) when the root font size increases.
+@function icon-box($size, $icon, $padding) {
+  @return max(#{$size}, calc(#{$icon} + 2 * #{$padding}));
+}
+
+// Matches `ix-icon-button` with `size="12"`.
+@function icon-box-12() {
+  @return icon-box(
+    sys.$si-sys-sizing-size-50,
+    sys.$si-sys-sizing-rem-size-40,
+    sys.$si-sys-sizing-spacing-x-10
+  );
+}
+
+// Matches `ix-icon-button` with `size="16"`.
+@function icon-box-16() {
+  @return icon-box(
+    sys.$si-sys-sizing-size-70,
+    sys.$si-sys-sizing-icon-sm,
+    sys.$si-sys-sizing-spacing-x-20
+  );
+}
+
+// Matches `ix-icon-button` with the default size (`20`/`32`).
+@function icon-box-32() {
+  @return icon-box(
+    sys.$si-sys-sizing-size-80,
+    sys.$si-sys-sizing-icon-md,
+    sys.$si-sys-sizing-spacing-x-30
+  );
+}
+
+// Matches `ix-icon-button` with `size="24"`.
+@function icon-box-32-icon-24() {
+  @return icon-box(
+    sys.$si-sys-sizing-size-80,
+    sys.$si-sys-sizing-icon-lg,
+    sys.$si-sys-sizing-spacing-x-20
+  );
+}

@@ -22,7 +22,7 @@ import { a11yBoolean } from '../utils/a11y';
 /**
  * A single entry within an event list.
  *
- * @documentation https://ix.siemens.io//docs/components/event-list/code.md
+ * @documentation https://ix.siemens.io/docs/components/event-list/code.md
  * @figma-main-component-id 1433:41688
  *
  * @slot - Event list item content.
@@ -35,8 +35,6 @@ import { a11yBoolean } from '../utils/a11y';
 export class EventListItem {
   /**
    * Variant of the event list item
-   *
-   * @since 4.0.0
    */
   @Prop() variant: 'outline' | 'filled' = 'outline';
 
@@ -46,6 +44,8 @@ export class EventListItem {
    * Example value: `--si-sys-color-background-danger`
    *
    * {@link https://ix.siemens.io/docs/styles/colors}
+   *
+   * @breaking-change 6.0.0 Requires the full CSS custom property name
    */
   @Prop() itemColor?: string;
 

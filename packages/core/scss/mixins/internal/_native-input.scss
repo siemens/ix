@@ -17,10 +17,14 @@ $-border-width: var(
 );
 
 @mixin element-input-focus {
-  outline: 1px solid
+  outline: var(
+      --ix-input--outline-width--focus,
+      #{sys.$si-sys-sizing-focus-ring-width}
+    )
+    solid
     var(--ix-input--outline-color--focus, #{sys.$si-sys-color-effects-focus});
   outline-offset: var(
-    --ix-input--focus--outline-offset,
+    --ix-input--outline-offset--focus,
     #{sys.$si-sys-sizing-focus-ring-offset}
   );
   border-color: var(
@@ -42,14 +46,14 @@ $-border-width: var(
 
 @mixin element-input(
   $feature-read-only: true,
-  $padding: 0.25rem 0.5rem,
+  $padding: 4px 8px,
   $density-aware: false
 ) {
   & {
     @if $density-aware {
       min-height: #{sys.$si-sys-sizing-size-80};
     } @else {
-      min-height: 2rem;
+      min-height: 32px;
     }
     width: auto;
     @if $density-aware {

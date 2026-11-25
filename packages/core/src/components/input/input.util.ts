@@ -18,7 +18,6 @@ import {
   shouldSuppressInternalValidation,
 } from '../utils/input';
 import { createMutationObserver } from '../utils/mutation-observer';
-import { convertToRemString } from '../utils/rwd.util';
 import { generateUUID } from '../utils/uuid';
 import { shakeInput } from './input.animation';
 
@@ -136,12 +135,12 @@ export function applyPaddingEnd(
     return;
   }
 
-  const padding = convertToRemString(width);
-  const basePadding = 'var(--si-sys-sizing-spacing-x-40, 0.5rem)';
+  const padding = `${width}px`;
+  const basePadding = 'var(--si-sys-sizing-spacing-x-40, 8px)';
 
   if (options.slotEnd) {
     inputElement.style.paddingRight = `calc(${padding} + ${basePadding} + ${
-      options.additionalPaddingRight ?? '0rem'
+      options.additionalPaddingRight ?? '0px'
     })`;
   } else {
     inputElement.style.paddingLeft = `calc(${padding} + ${basePadding})`;
@@ -179,15 +178,12 @@ export function adjustPaddingForStartAndEnd(
 export function getAriaAttributesForInput(
   component: IxInputFieldComponent
 ): A11yAttributes {
-  const inputAria: A11yAttributes = {
+  // `aria-errormessage` must reference an element id, it is set by
+  // `HookValidationLifecycle` to the error message element of `ix-field-wrapper`.
+  return {
     'aria-invalid': `${a11yBoolean(component.isInvalid)}`,
     'aria-required': `${a11yBoolean(component.required)}`,
   };
-
-  if (component.isInvalid && component.invalidText) {
-    inputAria['aria-errormessage'] = component.invalidText;
-  }
-  return inputAria;
 }
 
 export type DisposableChangesAndVisibilityObservers = () => void;
@@ -350,4 +346,16 @@ export async function emitPickerValidityStateChangeIfChanged(
     valueMissing: currentValueMissing,
     invalidReason: context.invalidReason,
   });
+}
+
+export function resetInputValidation<T>(
+  comp: IxInputFieldComponent<T>,
+  input: HTMLInputElement | HTMLTextAreaElement
+): void {
+  input.value = '';
+  input.removeAttribute('data-ix-touched');
+  lastValidityStates.delete(comp.hostElement);
+  clearInternalValidationClasses(comp.hostElement);
+  // Notify form integrations even when the value was already empty.
+  comp.hostElement.dispatchEvent(new Event('ixClear'));
 }

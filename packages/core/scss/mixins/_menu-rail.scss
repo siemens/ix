@@ -1,0 +1,26 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use 'tokens/system' as sys;
+
+// Collapsed menu rail: icon slot (rem, scales with text size) plus fixed px
+// padding, never narrower than the default rail size.
+$icon-slot-width: sys.$si-sys-sizing-icon-lg;
+$width: max(
+  #{sys.$si-sys-sizing-size-100},
+  calc(#{$icon-slot-width} + 2 * #{sys.$si-sys-sizing-spacing-x-50})
+);
+
+// Menu expand button: rem icon plus fixed px padding, never smaller than the
+// default button size.
+$expand-icon-size: sys.$si-sys-sizing-icon-md;
+$expand-button-size: max(
+  #{sys.$si-sys-sizing-size-80},
+  calc(#{$expand-icon-size} + 2 * #{sys.$si-sys-sizing-spacing-x-30})
+);

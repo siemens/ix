@@ -104,7 +104,7 @@ regressionTest(
     );
     await expect(
       page.locator('ix-chat-attachment').nth(1).locator('ix-chip')
-    ).toHaveAttribute('variant', 'alarm');
+    ).toHaveAttribute('variant', 'danger');
   }
 );
 

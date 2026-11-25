@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { defineConfig } from 'vitest/config';
+import { playwright } from '@vitest/browser-playwright';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
@@ -14,7 +15,7 @@ export default defineConfig({
   test: {
     browser: {
       enabled: true,
-      provider: 'playwright',
+      provider: playwright(),
       // https://vitest.dev/guide/browser/playwright
       instances: [{ browser: 'chromium' }],
     },

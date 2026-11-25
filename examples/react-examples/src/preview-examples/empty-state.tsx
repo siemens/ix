@@ -14,7 +14,7 @@ export default () => {
   return (
     <IxEmptyState
       header="No elements available"
-      subHeader="Create an element first"
+      description="Create an element first"
       icon={iconAdd}
       action="Create element"
       onActionClick={console.log}

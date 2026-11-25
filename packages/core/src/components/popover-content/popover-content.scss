@@ -12,11 +12,12 @@
 @use 'tokens/system' as sys;
 
 @use './popover-content.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   display: block;
   position: relative;
   overflow: auto;
-  padding: var(--ix-popover-content--padding);
+  padding: cv.get-var('popover-content--padding');
 
   @include fonts.typography-body-paragraph;
   @include component.ix-component;

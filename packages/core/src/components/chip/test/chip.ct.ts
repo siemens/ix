@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
+import { iconPrint } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 declare global {
@@ -15,12 +16,12 @@ declare global {
 
 regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
   await mount(`
-    <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:flex-start;">
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;">
       <ix-chip>Label</ix-chip>
-      <ix-chip variant="primary" closable>Primary closable</ix-chip>
-      <ix-chip variant="primary" outline closable>Primary outline closable</ix-chip>
+      <ix-chip variant="accent" closable>Accent closable</ix-chip>
+      <ix-chip variant="accent" outline closable>Accent outline closable</ix-chip>
       <ix-chip variant="warning" closable>Warning closable</ix-chip>
-      <ix-chip variant="info" outline>Info outline</ix-chip>
+      <ix-chip variant="information" outline>Information outline</ix-chip>
       <ix-chip closable aria-label="Filter: status">Status</ix-chip>
       <ix-chip inactive>Inactive</ix-chip>
       <ix-chip
@@ -67,44 +68,44 @@ regressionTest('renders', async ({ mount, page }) => {
 
 regressionTest.describe('default variant fallback', () => {
   regressionTest(
-    'applies primary styling when no variant attribute is set',
+    'applies accent styling when no variant attribute is set',
     async ({ mount, page }) => {
       await mount(`<ix-chip>Default</ix-chip>`);
       const chip = page.locator('ix-chip');
       await expect(chip).toHaveAttribute('hydrated');
-      await expect(chip).toHaveAttribute('variant', 'primary');
-      await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
+      await expect(chip).toHaveAttribute('variant', 'accent');
+      await expect(chip.locator('.chip-wrap')).toHaveClass(/accent/);
     }
   );
 
   regressionTest(
-    'falls back to primary styling when variant is empty',
+    'falls back to accent styling when variant is empty',
     async ({ mount, page }) => {
       await mount(`<ix-chip variant="">Empty variant</ix-chip>`);
       const chip = page.locator('ix-chip');
       await expect(chip).toHaveAttribute('hydrated');
-      await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
+      await expect(chip.locator('.chip-wrap')).toHaveClass(/accent/);
     }
   );
 
   regressionTest(
-    'falls back to primary styling when variant is unknown',
+    'falls back to accent styling when variant is unknown',
     async ({ mount, page }) => {
       await mount(`<ix-chip variant="not-a-variant">Bad variant</ix-chip>`);
       const chip = page.locator('ix-chip');
       await expect(chip).toHaveAttribute('hydrated');
-      await expect(chip.locator('.chip-wrap')).toHaveClass(/primary/);
+      await expect(chip.locator('.chip-wrap')).toHaveClass(/accent/);
     }
   );
 
   regressionTest(
-    'applies primary outline styling when only the outline attribute is set',
+    'applies accent outline styling when only the outline attribute is set',
     async ({ mount, page }) => {
       await mount(`<ix-chip outline>Default outline</ix-chip>`);
       const chip = page.locator('ix-chip');
       await expect(chip).toHaveAttribute('hydrated');
       const wrap = chip.locator('.chip-wrap');
-      await expect(wrap).toHaveClass(/primary/);
+      await expect(wrap).toHaveClass(/accent/);
       await expect(wrap).toHaveClass(/outline/);
     }
   );
@@ -159,7 +160,7 @@ regressionTest(
   'keeps inactive closable chip text from overlapping the close button',
   async ({ mount, page }) => {
     await mount(
-      `<ix-chip inactive closable style="width: 8rem">Long inactive chip text</ix-chip>`
+      `<ix-chip inactive closable style="width: 128px">Long inactive chip text</ix-chip>`
     );
 
     const chip = page.locator('ix-chip');
@@ -183,7 +184,7 @@ regressionTest(
   'truncates overflowing chip text with an ellipsis',
   async ({ mount, page }) => {
     await mount(
-      `<ix-chip closable style="width: 8rem">Long overflowing chip text</ix-chip>`
+      `<ix-chip closable style="width: 128px">Long overflowing chip text</ix-chip>`
     );
 
     const slotContainer = page.locator('ix-chip').locator('.slot-container');
@@ -313,6 +314,105 @@ regressionTest.describe('tooltip', () => {
       const tooltip = chip.locator('ix-tooltip');
       await expect(tooltip).toHaveClass(/visible/);
       await expect(tooltip).toHaveText(/custom tooltip text/);
+    }
+  );
+});
+
+regressionTest.describe('icon spacing', () => {
+  const icons = { iconPrint };
+
+  regressionTest(
+    'treats whitespace-only text as icon-only',
+    async ({ mount, page }) => {
+      await mount(`<ix-chip icon="print"> </ix-chip>`, { icons });
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveAttribute('hydrated');
+
+      await expect(chip.locator('.with-icon')).toHaveCSS('margin-right', '0px');
+    }
+  );
+
+  regressionTest(
+    'updates the icon gap when the label is added or removed',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-chip icon="print" aria-label="Print document"></ix-chip>`,
+        { icons }
+      );
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveAttribute('hydrated');
+      const icon = chip.locator('.with-icon');
+
+      await expect(icon).toHaveCSS('margin-right', '0px');
+
+      await chip.evaluate((element) => {
+        element.textContent = 'Later';
+      });
+      await expect(icon).toHaveCSS('margin-right', '4px');
+
+      await chip.evaluate((element) => {
+        element.textContent = '   ';
+      });
+      await expect(icon).toHaveCSS('margin-right', '0px');
+    }
+  );
+
+  regressionTest(
+    'keeps observing text changes after the chip is reattached',
+    async ({ mount, page }) => {
+      await mount(`<ix-chip icon="print"> </ix-chip>`, { icons });
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveAttribute('hydrated');
+      const icon = chip.locator('.with-icon');
+
+      await chip.evaluate((element) => {
+        const parent = element.parentNode;
+        if (!parent) {
+          throw new Error('Expected a parent node');
+        }
+        element.remove();
+        parent.appendChild(element);
+      });
+      await expect(chip).toHaveAttribute('hydrated');
+
+      await chip.evaluate((element) => {
+        const text = element.firstChild;
+        if (!(text instanceof Text)) {
+          throw new Error('Expected a text node');
+        }
+        text.data = 'Print';
+      });
+      await expect(icon).toHaveCSS('margin-right', '4px');
+    }
+  );
+
+  regressionTest(
+    'updates the icon gap when the same text node changes',
+    async ({ mount, page }) => {
+      await mount(`<ix-chip icon="print"> </ix-chip>`, { icons });
+      const chip = page.locator('ix-chip');
+      await expect(chip).toHaveAttribute('hydrated');
+      const icon = chip.locator('.with-icon');
+
+      await expect(icon).toHaveCSS('margin-right', '0px');
+
+      await chip.evaluate((element) => {
+        const text = element.firstChild;
+        if (!(text instanceof Text)) {
+          throw new Error('Expected a text node');
+        }
+        text.data = 'Print';
+      });
+      await expect(icon).toHaveCSS('margin-right', '4px');
+
+      await chip.evaluate((element) => {
+        const text = element.firstChild;
+        if (!(text instanceof Text)) {
+          throw new Error('Expected a text node');
+        }
+        text.data = ' ';
+      });
+      await expect(icon).toHaveCSS('margin-right', '0px');
     }
   );
 });

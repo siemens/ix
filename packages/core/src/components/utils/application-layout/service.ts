@@ -61,22 +61,29 @@ class ApplicationLayoutService {
       }
 
       const [breakpoint] = matchBreakpoints[breakPointIndex];
-      requestAnimationFrame(() =>
-        this.#breakpointChangeListener.emit(breakpoint)
-      );
+      this.emitDetectedBreakpoint(breakpoint);
       this.#breakpoint = breakpoint;
       return;
     }
 
     for (const [breakpoint, match] of matchBreakpoints.reverse()) {
       if (match) {
-        requestAnimationFrame(() =>
-          this.#breakpointChangeListener.emit(breakpoint)
-        );
+        this.emitDetectedBreakpoint(breakpoint);
         this.#breakpoint = breakpoint;
         break;
       }
     }
+  }
+
+  private emitDetectedBreakpoint(breakpoint: Breakpoint) {
+    requestAnimationFrame(() => {
+      // Detection may have been disabled (e.g. pinned menu or forced breakpoint)
+      // while this emission was pending.
+      if (!this.#isDetectionEnabled) {
+        return;
+      }
+      this.#breakpointChangeListener.emit(breakpoint);
+    });
   }
 
   public disableBreakpointDetection() {

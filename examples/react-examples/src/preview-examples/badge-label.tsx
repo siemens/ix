@@ -21,28 +21,28 @@ export default () => {
     <div className="container">
       <IxBadge
         type="label"
-        label="Primary"
-        variant="primary"
+        label="Accent"
+        variant="accent"
         icon={iconInfo}
       ></IxBadge>
       <IxBadge
         type="label"
-        label="Primary"
-        variant="primary"
+        label="Accent"
+        variant="accent"
         outline
         icon={iconInfo}
       ></IxBadge>
       <IxBadge
         type="label"
-        label="Primary"
-        variant="primary"
+        label="Accent"
+        variant="accent"
         enableAnimation
         icon={iconInfo}
       ></IxBadge>
       <IxBadge
         type="label"
-        label="Primary"
-        variant="primary"
+        label="Accent"
+        variant="accent"
         outline
         enableAnimation
         icon={iconInfo}
@@ -50,28 +50,28 @@ export default () => {
 
       <IxBadge
         type="label"
-        label="Alarm"
-        variant="alarm"
+        label="Danger"
+        variant="danger"
         icon={iconInfo}
       ></IxBadge>
       <IxBadge
         type="label"
-        label="Alarm"
-        variant="alarm"
+        label="Danger"
+        variant="danger"
         outline
         icon={iconInfo}
       ></IxBadge>
       <IxBadge
         type="label"
-        label="Alarm"
-        variant="alarm"
+        label="Danger"
+        variant="danger"
         enableAnimation
         icon={iconInfo}
       ></IxBadge>
       <IxBadge
         type="label"
-        label="Alarm"
-        variant="alarm"
+        label="Danger"
+        variant="danger"
         outline
         enableAnimation
         icon={iconInfo}
@@ -137,28 +137,28 @@ export default () => {
 
       <IxBadge
         type="label"
-        label="Info"
-        variant="info"
+        label="Information"
+        variant="information"
         icon={iconInfo}
       ></IxBadge>
       <IxBadge
         type="label"
-        label="Info"
-        variant="info"
+        label="Information"
+        variant="information"
         outline
         icon={iconInfo}
       ></IxBadge>
       <IxBadge
         type="label"
-        label="Info"
-        variant="info"
+        label="Information"
+        variant="information"
         enableAnimation
         icon={iconInfo}
       ></IxBadge>
       <IxBadge
         type="label"
-        label="Info"
-        variant="info"
+        label="Information"
+        variant="information"
         outline
         enableAnimation
         icon={iconInfo}

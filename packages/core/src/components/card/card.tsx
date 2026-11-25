@@ -12,8 +12,8 @@ import type { StatusVariant } from '../utils/status.types';
 /**
  * Flexible container that groups related content and actions.
  *
- * @documentation https://ix.siemens.io//docs/components/card/guide.md
- * @figma-main-component-id 104612:25530
+ * @documentation https://ix.siemens.io/docs/components/card/guide.md
+ * @figma-main-component-id 162440:171408
  *
  * @slot - Card content.
  * @slot card-accordion - Accordion content displayed at the bottom of the card.
@@ -28,6 +28,8 @@ export class Card {
 
   /**
    * Card status variant
+   *
+   * @breaking-change 6.0.0 Status variant values renamed (`default` is now `base`), `outline` and `filled` replaced by the `outline` property
    */
   @Prop() variant: StatusVariant = 'base';
 
@@ -37,6 +39,7 @@ export class Card {
    * When `false`, uses a filled surface; status variants then show a top color strip.
    *
    * @since 6.0.0
+   * @breaking-change 6.0.0 Replaces the `outline` and `filled` values of `variant`
    */
   @Prop() outline?: boolean;
 
@@ -50,6 +53,7 @@ export class Card {
    * Default is `false` (non-clickable).
    *
    * @since 6.0.0
+   * @breaking-change 6.0.0 Replaces the `passive` property
    */
   @Prop() clickable: boolean = false;
 

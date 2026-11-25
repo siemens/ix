@@ -10,11 +10,12 @@
 @use 'mixins/shadow-dom/component';
 
 @use './date-time-card.vars' as *;
+@use 'mixins/component-vars' as cv;
 :host {
   @include component.ix-component;
 
   .card {
-    background-color: var(--ix-date-time-card--background);
+    background-color: cv.get-var('date-time-card--background');
     width: 100%;
     box-shadow: none;
     border: none;
@@ -23,25 +24,25 @@
     flex-direction: column;
 
     &.standaloneAppearance {
-      box-shadow: var(--ix-date-time-card--box-shadow);
-      border-radius: var(
-        --ix-date-time-card-standalone-appearance--border-radius
+      box-shadow: cv.get-var('date-time-card--box-shadow');
+      border-radius: cv.get-var(
+        'date-time-card-standalone-appearance--border-radius'
       );
     }
 
     &.rounded {
-      border-radius: var(--ix-date-time-card-rounded--border-radius);
+      border-radius: cv.get-var('date-time-card-rounded--border-radius');
     }
 
     &.left {
-      border-radius: var(--ix-date-time-card-left--border-radius) 0 0
-        var(--ix-date-time-card-left--border-radius);
+      border-radius: cv.get-var('date-time-card-left--border-radius') 0 0
+        cv.get-var('date-time-card-left--border-radius');
       height: 100%;
     }
 
     &.right {
-      border-radius: 0 var(--ix-date-time-card-right--border-radius)
-        var(--ix-date-time-card-right--border-radius) 0;
+      border-radius: 0 cv.get-var('date-time-card-right--border-radius')
+        cv.get-var('date-time-card-right--border-radius') 0;
       height: 100%;
     }
 
@@ -53,27 +54,27 @@
       width: 100%;
 
       .header {
-        padding: var(--ix-date-time-card-header--padding);
+        padding: cv.get-var('date-time-card-header--padding');
         flex: 0 1 auto;
       }
     }
 
     .separator {
-      height: var(--ix-date-time-card-separator--height);
-      background-color: var(--ix-date-time-card-separator--background);
+      height: cv.get-var('date-time-card-separator--height');
+      background-color: cv.get-var('date-time-card-separator--background');
       width: 100%;
       flex: 0 1 auto;
     }
 
     .content {
-      padding: var(--ix-date-time-card-content--padding);
+      padding: cv.get-var('date-time-card-content--padding');
       flex: 1 1 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
 
       &--time-picker {
-        padding: var(--ix-date-time-card-time-picker--padding);
+        padding: cv.get-var('date-time-card-time-picker--padding');
       }
 
       &--no-padding {
@@ -85,7 +86,7 @@
       width: 100%;
 
       .footer {
-        padding: var(--ix-date-time-card-footer--padding);
+        padding: cv.get-var('date-time-card-footer--padding');
       }
     }
   }
