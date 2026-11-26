@@ -91,12 +91,14 @@ export class TabSet {
     }
 
     const panels = this.tabPanels;
-    this.tabListItems.forEach((tab) => {
+    const tabItems = this.tabListItems;
+    tabItems.forEach((tab) => {
       const panel = panels.find((panel) => panel.tabKey === tab.tabKey);
       setIdReference(tab, 'aria-controls', panel);
-      if (panel) {
-        setIdReference(panel, 'aria-labelledby', tab);
-      }
+    });
+    panels.forEach((panel) => {
+      const tab = tabItems.find((tab) => tab.tabKey === panel.tabKey);
+      setIdReference(panel, 'aria-labelledby', tab);
     });
 
     if (tabs.activeTabKey) {

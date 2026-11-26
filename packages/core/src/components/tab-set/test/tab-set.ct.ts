@@ -178,15 +178,41 @@ regressionTest(
       await expect(tabs.nth(index)).toHaveAttribute('id', /./);
       await expect(panels.nth(index)).toHaveAttribute('id', /./);
 
-      const tabId = (await tabs.nth(index).getAttribute('id'))!;
-      const panelId = (await panels.nth(index).getAttribute('id'))!;
+      const tabId = await tabs.nth(index).getAttribute('id');
+      const panelId = await panels.nth(index).getAttribute('id');
+
+      if (!tabId || !panelId) {
+        throw new Error(`Expected tab and panel ids at index ${index}`);
+      }
 
       await expect(tabs.nth(index)).toHaveAttribute('aria-controls', panelId);
-      await expect(panels.nth(index)).toHaveAttribute(
-        'aria-labelledby',
-        tabId
-      );
+      await expect(panels.nth(index)).toHaveAttribute('aria-labelledby', tabId);
     }
+  }
+);
+
+regressionTest(
+  'should remove aria-labelledby from panel when its tab is removed',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-tab-set>
+        <ix-tabs active-tab-key="tab-1">
+          <ix-tab-item tab-key="tab-1" label="Tab 1"></ix-tab-item>
+          <ix-tab-item tab-key="tab-2" label="Tab 2"></ix-tab-item>
+        </ix-tabs>
+        <ix-tab-panel tab-key="tab-1">Content 1</ix-tab-panel>
+        <ix-tab-panel tab-key="tab-2">Content 2</ix-tab-panel>
+      </ix-tab-set>
+    `);
+
+    const secondPanel = page.locator('ix-tab-panel').nth(1);
+    await expect(secondPanel).toHaveAttribute('aria-labelledby', /./);
+
+    await page.evaluate(() => {
+      document.querySelector('ix-tab-item[tab-key="tab-2"]')?.remove();
+    });
+
+    await expect(secondPanel).not.toHaveAttribute('aria-labelledby');
   }
 );
 
