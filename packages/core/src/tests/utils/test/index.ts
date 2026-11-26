@@ -35,18 +35,22 @@ export const preventFormSubmission = async (formLocator: Locator) => {
 };
 
 /**
- * Reads the current form value for `key`. Form values update asynchronously,
- * so assert with `expect.poll(() => getFormValue(...))`.
+ * Asserts the `FormData` entry for `key`, retrying until it matches or the
+ * expect timeout is reached.
  */
-export const getFormValue = async (
+export const expectFormValue = async (
   formLocator: Locator,
   key: string,
-  _page?: Page
+  expected: string | null
 ) => {
-  return formLocator.evaluate((form: HTMLFormElement, key: string) => {
-    const formData = new FormData(form);
-    return formData.get(key);
-  }, key);
+  await expect
+    .poll(() =>
+      formLocator.evaluate(
+        (form: HTMLFormElement, key: string) => new FormData(form).get(key),
+        key
+      )
+    )
+    .toBe(expected);
 };
 
 export type RecordedEvent = { type: string; detail: unknown };

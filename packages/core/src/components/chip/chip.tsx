@@ -17,6 +17,7 @@ import {
   Host,
   Mixin,
   Prop,
+  State,
 } from '@stencil/core';
 import { a11yBoolean, type A11yAttributeName } from '../utils/a11y';
 import { DefaultMixins } from '../utils/internal/component';
@@ -25,12 +26,13 @@ import {
   InheritAriaAttributesMixinContract,
 } from '../utils/internal/mixins/accessibility/inherit-aria-attributes.mixin';
 import { makeRef } from '../utils/make-ref';
+import { hasSlottedContent } from '../utils/shadow-dom';
 import { CHIP_VARIANTS, ChipVariant } from './chip.types';
 
 /**
  * Compact element that represents an attribute, tag, or entity, optionally dismissible.
  *
- * @documentation https://ix.siemens.io//docs/components/chip/guide.md
+ * @documentation https://ix.siemens.io/docs/components/chip/guide.md
  * @figma-main-component-id 286:1758
  *
  * @slot - Chip content.
@@ -49,6 +51,8 @@ export class Chip
   /**
    * Chip variant.
    * Defaults to `accent`. When unset or set to an unknown value the chip falls back to `accent` styling.
+   *
+   * @breaking-change 6.0.0 Status variant values renamed and default changed from `primary` to `accent`
    */
   @Prop({ reflect: true }) variant: ChipVariant = 'accent';
 
@@ -96,15 +100,12 @@ export class Chip
   /**
    * Display a tooltip. By default, no tooltip will be displayed.
    * Add the attribute to display the text content of the component as a tooltip or use a string to display a custom text.
-   *
-   * @since 3.0.0
    */
   @Prop() tooltipText: string | boolean = false;
 
   /**
    * Center the content of the chip.
    * Set to false to disable centering.
-   * @since 3.2.0
    */
   @Prop() centerContent = false;
 
@@ -119,6 +120,10 @@ export class Chip
    */
   @Event() closeChip!: EventEmitter;
 
+  @State() private hasLabel = false;
+
+  private labelObserver?: MutationObserver;
+
   private readonly containerElementRef = makeRef<HTMLElement>();
 
   override getIgnoredAriaAttributes(): A11yAttributeName[] {
@@ -127,7 +132,49 @@ export class Chip
 
   override componentWillLoad() {
     super.componentWillLoad();
+    this.hasLabel = this.hostHasLabel();
   }
+
+  override connectedCallback() {
+    super.connectedCallback();
+    this.hasLabel = this.hostHasLabel();
+
+    if (typeof MutationObserver === 'undefined') {
+      return;
+    }
+
+    if (!this.labelObserver) {
+      this.labelObserver = new MutationObserver(() => {
+        this.hasLabel = this.hostHasLabel();
+      });
+    }
+    this.labelObserver.observe(this.hostElement, {
+      characterData: true,
+      subtree: true,
+    });
+  }
+
+  override disconnectedCallback() {
+    this.labelObserver?.disconnect();
+    super.disconnectedCallback();
+  }
+
+  private hostHasLabel() {
+    return Array.from(this.hostElement.childNodes).some((node) => {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        return true;
+      }
+
+      return (
+        node.nodeType === Node.TEXT_NODE &&
+        (node.textContent ?? '').trim().length > 0
+      );
+    });
+  }
+
+  private handleSlotChange = (event: Event) => {
+    this.hasLabel = hasSlottedContent(event.target as HTMLSlotElement);
+  };
 
   private getTooltip() {
     if (!this.tooltipText && !this.hostElement.hasAttribute('tooltip-text')) {
@@ -243,7 +290,12 @@ export class Chip
             disabled={this.inactive}
             style={customMainStyle}
           >
-            <div class="content-wrapper">
+            <div
+              class={{
+                'content-wrapper': true,
+                'has-label': this.hasLabel,
+              }}
+            >
               {this.icon && (
                 <ix-icon
                   class={{
@@ -256,7 +308,7 @@ export class Chip
                 />
               )}
               <span class="slot-container">
-                <slot></slot>
+                <slot onSlotchange={this.handleSlotChange}></slot>
               </span>
             </div>
           </button>

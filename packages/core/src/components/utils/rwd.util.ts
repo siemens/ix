@@ -28,12 +28,19 @@ export const convertToAbbreviationString = (num: number) => {
     { unit: 'K', value: Math.pow(10, 3) },
   ];
 
-  units.some((pow) => {
+  units.some((pow, index) => {
     let formattedNum = Math.abs(num);
     if (formattedNum >= pow.value) {
-      formattedNum /= pow.value;
+      // Rounding can reach the next unit (e.g. 999950 would become 1000K)
+      const nextUnit = units[index - 1];
+      const target =
+        nextUnit && Math.round((formattedNum / pow.value) * 10) >= 10000
+          ? nextUnit
+          : pow;
+
+      formattedNum /= target.value;
       num = (Math.sign(num) * Math.round(formattedNum * 10)) / 10;
-      unit = pow.unit;
+      unit = target.unit;
       return true;
     }
 

@@ -9,6 +9,11 @@
 import { expect, Locator } from '@playwright/test';
 import { test, waitForRender } from '@utils/test';
 
+type ClearableInput =
+  | HTMLIxInputElement
+  | HTMLIxNumberInputElement
+  | HTMLIxTextareaElement;
+
 test.describe('validation', () => {
   test.describe('ix-input', () => {
     test('validation class should persist if provided by user', async ({
@@ -38,6 +43,110 @@ test.describe('validation', () => {
       await shadowDomInput.blur();
 
       await expect(input).toHaveClass(/ix-invalid/);
+    });
+  });
+
+  test.describe('custom validation with ix-invalid class', () => {
+    ['ix-input', 'ix-textarea'].forEach((selector) => {
+      test(`${selector} - should expose the invalid state to assistive technology`, async ({
+        mount,
+        page,
+      }) => {
+        await mount(
+          `<${selector} label="Phone" invalid-text="Enter a valid phone number." class="ix-invalid"></${selector}>`
+        );
+        const component = page.locator(selector);
+        const control = component.getByRole('textbox', { name: 'Phone' });
+
+        const expectInvalidAria = async () => {
+          await expect(control).toHaveAttribute('aria-invalid', 'true');
+          const errorMessageId =
+            await control.getAttribute('aria-errormessage');
+          expect(errorMessageId).toMatch(/^ix-component-ix-field-wrapper-.*/);
+          await expect(component.locator(`#${errorMessageId}`)).toHaveText(
+            'Enter a valid phone number.'
+          );
+        };
+
+        await expectInvalidAria();
+
+        await control.fill('12');
+        await control.blur();
+
+        await expectInvalidAria();
+      });
+
+      test(`${selector} - should update the invalid state when ix-invalid is toggled without interaction`, async ({
+        mount,
+        page,
+      }) => {
+        await mount(
+          `<${selector} label="Phone" invalid-text="Enter a valid phone number."></${selector}>`
+        );
+        const component = page.locator(selector);
+        const control = component.getByRole('textbox', { name: 'Phone' });
+
+        await expect(control).not.toHaveAttribute('aria-invalid', 'true');
+        await expect(control).not.toHaveAttribute('aria-errormessage');
+
+        await component.evaluate((element) =>
+          element.classList.add('ix-invalid')
+        );
+
+        await expect(control).toHaveAttribute('aria-invalid', 'true');
+        await expect(control).toHaveAttribute(
+          'aria-errormessage',
+          /^ix-component-ix-field-wrapper-.*/
+        );
+        const errorMessageId = await control.getAttribute('aria-errormessage');
+        expect(errorMessageId).toBeTruthy();
+        await expect(control).toHaveAttribute(
+          'aria-describedby',
+          `${errorMessageId}`
+        );
+
+        await component.evaluate((element) =>
+          element.classList.remove('ix-invalid')
+        );
+
+        await expect(control).not.toHaveAttribute('aria-invalid', 'true');
+        await expect(control).not.toHaveAttribute('aria-errormessage');
+        await expect(control).not.toHaveAttribute(
+          'aria-describedby',
+          new RegExp(`(^|\\s)${errorMessageId}(\\s|$)`)
+        );
+      });
+
+      test(`${selector} - should expose the invalid state of every control on the page`, async ({
+        mount,
+        page,
+      }) => {
+        await mount(`
+          <${selector} label="Phone" invalid-text="Enter a valid phone number." class="ix-invalid"></${selector}>
+          <${selector} label="Fax" invalid-text="Enter a valid fax number." class="ix-invalid"></${selector}>
+        `);
+
+        for (const [name, invalidText] of [
+          ['Phone', 'Enter a valid phone number.'],
+          ['Fax', 'Enter a valid fax number.'],
+        ]) {
+          const component = page.locator(selector, {
+            has: page.getByRole('textbox', { name }),
+          });
+          const control = component.getByRole('textbox', { name });
+
+          await expect(control).toHaveAttribute('aria-invalid', 'true');
+          await expect(control).toHaveAttribute(
+            'aria-errormessage',
+            /^ix-component-ix-field-wrapper-.*/
+          );
+          const errorMessageId =
+            await control.getAttribute('aria-errormessage');
+          await expect(component.locator(`#${errorMessageId}`)).toHaveText(
+            invalidText
+          );
+        }
+      });
     });
   });
 
@@ -279,6 +388,17 @@ function setElementValue(el: Element, value: string): void {
   (el as any).value = value;
 }
 
+const getMessageIds = async (host: Locator) => ({
+  errorId: await host
+    .locator('ix-field-wrapper .error-message-container')
+    .getAttribute('id')
+    .then((id) => id ?? ''),
+  helperId: await host
+    .locator('ix-field-wrapper .helper-message-container')
+    .getAttribute('id')
+    .then((id) => id ?? ''),
+});
+
 test.describe('toggling required', () => {
   [
     'ix-input',
@@ -491,6 +611,9 @@ test.describe('novalidate form', () => {
     const host = page.locator('ix-input');
     const nativeInput = host.locator('input');
 
+    await expect(host).toHaveAttribute('hydrated', '');
+    await nativeInput.focus();
+    await nativeInput.blur();
     await expect(nativeInput).toHaveAttribute('aria-invalid', 'true');
 
     await page
@@ -532,17 +655,6 @@ test.describe('novalidate form', () => {
 });
 
 test.describe('aria message references', () => {
-  const getMessageIds = async (host: Locator) => ({
-    errorId: await host
-      .locator('ix-field-wrapper .error-message-container')
-      .getAttribute('id')
-      .then((id) => id ?? ''),
-    helperId: await host
-      .locator('ix-field-wrapper .helper-message-container')
-      .getAttribute('id')
-      .then((id) => id ?? ''),
-  });
-
   test('ix-input - should only swap generated message ids and keep other references', async ({
     mount,
     page,
@@ -552,6 +664,8 @@ test.describe('aria message references', () => {
     const nativeInput = host.locator('input');
     const { errorId, helperId } = await getMessageIds(host);
 
+    await nativeInput.focus();
+    await nativeInput.blur();
     await expect(nativeInput).toHaveAttribute('aria-errormessage', errorId);
     await nativeInput.evaluate((el) =>
       el.setAttribute(
@@ -583,11 +697,16 @@ test.describe('aria message references', () => {
     mount,
     page,
   }) => {
-    await mount('<form><ix-input required></ix-input></form>');
+    // Announced before it is touched, unlike a missing required value
+    await mount(
+      '<form><ix-input pattern="[0-9]+" value="abc"></ix-input></form>'
+    );
     const host = page.locator('ix-input');
     const nativeInput = host.locator('input');
     const { errorId, helperId } = await getMessageIds(host);
 
+    await nativeInput.focus();
+    await nativeInput.blur();
     await expect(nativeInput).toHaveAttribute('aria-describedby', errorId);
 
     await page
@@ -1261,4 +1380,383 @@ test.describe('prevent initial require validation', async () => {
       await expect(inputComponent).toHaveClass(/ix-invalid/);
     });
   });
+
+  // Only fields with `getValidityState` get `aria-invalid` from the validation hook
+  ['ix-input', 'ix-date-input'].forEach((selector) => {
+    test(`${selector} - should not mark the native control invalid on initial load`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(`<${selector} required></${selector}>`);
+
+      const inputComponent = page.locator(selector);
+      const input = inputComponent.locator('input');
+      const { helperId } = await getMessageIds(inputComponent);
+
+      // The helper message is referenced at the end of the validation run
+      await expect(input).toHaveAttribute('aria-describedby', helperId);
+      await expect(input).not.toHaveAttribute('aria-invalid', 'true');
+      await expect(input).not.toHaveAttribute('aria-errormessage');
+    });
+  });
+
+  test('ix-input - should keep a consumer-set invalid state before it is touched', async ({
+    mount,
+    page,
+  }) => {
+    await mount(
+      '<ix-input required class="ix-invalid" invalid-text="Server error"></ix-input>'
+    );
+
+    const inputComponent = page.locator('ix-input');
+    const input = inputComponent.locator('input');
+    const { errorId } = await getMessageIds(inputComponent);
+
+    await expect(input).toHaveAttribute('aria-invalid', 'true');
+    await expect(input).toHaveAttribute(
+      'aria-errormessage',
+      new RegExp(String.raw`(^|\s)${errorId}(\s|$)`)
+    );
+    await expect(input).toHaveAttribute('aria-describedby', errorId);
+  });
+
+  test('ix-input - should mark the native control invalid once touched', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-input required></ix-input>');
+
+    const inputComponent = page.locator('ix-input');
+    const input = inputComponent.locator('input');
+
+    await expect(inputComponent).toBeVisible();
+    await input.focus();
+    await input.blur();
+
+    await expect(input).toHaveAttribute('aria-invalid', 'true');
+    await expect(input).toHaveAttribute(
+      'aria-errormessage',
+      /^ix-component-ix-field-wrapper-.*/
+    );
+  });
+
+  test('ix-date-input - should mark unparsable text invalid before it is touched', async ({
+    mount,
+    page,
+  }) => {
+    await mount('<ix-date-input required></ix-date-input>');
+
+    const input = page.locator('ix-date-input').locator('input');
+
+    await input.fill('invalid-date');
+
+    await expect(input).toHaveAttribute('aria-invalid', 'true');
+  });
 });
+
+test.describe('clear() method', () => {
+  const clearTestConfigs = [
+    {
+      selector: 'ix-input',
+      initialValue: 'test',
+      validValue: 'valid',
+      valueWithInitial: 'initial',
+      expectedClearedValue: '',
+    },
+    {
+      selector: 'ix-number-input',
+      initialValue: '42',
+      validValue: '100',
+      valueWithInitial: '100',
+      expectedClearedValue: 0,
+    },
+    {
+      selector: 'ix-textarea',
+      initialValue: 'test',
+      validValue: 'valid',
+      valueWithInitial: 'initial',
+      expectedClearedValue: '',
+    },
+  ];
+
+  clearTestConfigs.forEach(
+    ({
+      selector,
+      initialValue,
+      validValue,
+      valueWithInitial,
+      expectedClearedValue,
+    }) => {
+      test.describe(selector, () => {
+        test('should clear value and reset validation state', async ({
+          mount,
+          page,
+          makeAxeBuilder,
+        }) => {
+          await mount(
+            `<${selector} label="Required value" required value="${initialValue}"></${selector}>`
+          );
+
+          const component = page.locator(selector);
+          await expect(component).toHaveAttribute('hydrated', '');
+          const input = component.locator(getInputSelector(selector));
+
+          await input.fill('');
+          await input.blur();
+          await expect(component).toHaveClass(/ix-invalid/);
+
+          await input.fill(validValue);
+          await input.blur();
+          await expect(component).not.toHaveClass(/ix-invalid/);
+
+          await component.evaluate((el: ClearableInput) => el.clear());
+
+          await expect(input).toHaveValue('');
+          await expect(component).not.toHaveClass(/ix-invalid/);
+          await expect(input).not.toHaveAttribute('data-ix-touched');
+          expect(
+            await component.evaluate((el: ClearableInput) => el.isTouched())
+          ).toBe(false);
+          expect((await makeAxeBuilder().analyze()).violations).toEqual([]);
+        });
+
+        test('should emit valueChange event when cleared', async ({
+          mount,
+          page,
+        }) => {
+          await mount(
+            `<${selector} value="${valueWithInitial}"></${selector}>`
+          );
+
+          const component = page.locator(selector);
+          await expect(component).toHaveAttribute('hydrated', '');
+
+          const emittedValues = await component.evaluate(
+            async (el: ClearableInput) => {
+              const values: Array<string | number | undefined> = [];
+              el.addEventListener('valueChange', (event: Event) =>
+                values.push(
+                  (event as CustomEvent<string | number | undefined>).detail
+                )
+              );
+              await el.clear();
+              return values;
+            }
+          );
+          expect(emittedValues).toEqual([expectedClearedValue]);
+        });
+
+        test('should remove invalid class when clearing invalid field', async ({
+          mount,
+          page,
+          makeAxeBuilder,
+        }) => {
+          await mount(
+            `<${selector} label="Required value" required></${selector}>`
+          );
+
+          const component = page.locator(selector);
+          await expect(component).toHaveAttribute('hydrated', '');
+          const input = component.locator(getInputSelector(selector));
+
+          await input.focus();
+          await input.fill('');
+          await input.blur();
+          await expect(component).toHaveClass(/ix-invalid--required/);
+
+          await component.evaluate((el: ClearableInput) => el.clear());
+          await expect(component).not.toHaveClass(/ix-invalid/);
+          expect((await makeAxeBuilder().analyze()).violations).toEqual([]);
+        });
+
+        test('clears native and form values before resolving, including repeated clears', async ({
+          mount,
+          page,
+        }) => {
+          await mount(
+            `<form><${selector} name="field" required value="${initialValue}"></${selector}></form>`
+          );
+          const component = page.locator(selector);
+          await expect(component).toHaveAttribute('hydrated', '');
+          const input = component.locator(getInputSelector(selector));
+          await input.fill('');
+          await input.blur();
+          await input.fill(validValue);
+          await input.fill('');
+
+          for (let i = 0; i < 2; i++) {
+            const result = await component.evaluate(
+              async (el: ClearableInput) => {
+                (await el.getNativeInputElement()).value = '123';
+                await el.clear();
+                const form = el.closest('form');
+                if (!form) {
+                  throw new Error('Expected the input to be inside a form');
+                }
+                return {
+                  value: (await el.getNativeInputElement()).value,
+                  formValue: new FormData(form).get('field'),
+                  touched: await el.isTouched(),
+                };
+              }
+            );
+            expect(result).toEqual({
+              value: '',
+              formValue: '',
+              touched: false,
+            });
+            await expect(component).not.toHaveClass(/ix-invalid/);
+          }
+          await input.focus();
+          await input.blur();
+          await expect(component).toHaveClass(/ix-invalid--required/);
+        });
+
+        test('preserves consumer validation classes when cleared', async ({
+          mount,
+          page,
+        }) => {
+          await mount(
+            `<${selector} class="ix-invalid" value="${initialValue}"></${selector}>`
+          );
+          const component = page.locator(selector);
+          await expect(component).toHaveAttribute('hydrated', '');
+          await component.evaluate((el: ClearableInput) => el.clear());
+          await expect(component).toHaveClass(/\bix-invalid\b/);
+        });
+
+        for (const required of [true, false]) {
+          test(`programmatic empty values preserve touched validation (required=${required})`, async ({
+            mount,
+            page,
+          }) => {
+            await mount(
+              `<form><${selector} name="field" ${
+                required ? 'required' : ''
+              } value="${initialValue}"></${selector}></form>`
+            );
+            const component = page.locator(selector);
+            const input = component.locator(getInputSelector(selector));
+            await expect(component).toHaveAttribute('hydrated', '');
+            await input.focus();
+            await input.blur();
+            await component.evaluate((el: ClearableInput) => {
+              if (el.tagName === 'IX-NUMBER-INPUT') {
+                (el as HTMLIxNumberInputElement).value = undefined;
+              } else {
+                (el as HTMLIxInputElement | HTMLIxTextareaElement).value = '';
+              }
+            });
+            await expect(input).toHaveValue('');
+            if (required) {
+              await expect(component).toHaveClass(/ix-invalid/);
+            } else {
+              await expect(component).not.toHaveClass(/ix-invalid/);
+            }
+            expect(
+              await page
+                .locator('form')
+                .evaluate((form: HTMLFormElement) =>
+                  new FormData(form).get('field')
+                )
+            ).toBe('');
+          });
+        }
+      });
+    }
+  );
+});
+
+test.describe('getValidityState() method', () => {
+  ['ix-input', 'ix-number-input', 'ix-textarea'].forEach((selector) => {
+    test.describe(selector, () => {
+      test('should return valid state when field is valid', async ({
+        mount,
+        page,
+      }) => {
+        await mount(`<${selector} value="100"></${selector}>`);
+
+        const component = page.locator(selector);
+        await expect(component).toHaveAttribute('hydrated', '');
+
+        const validityState = await component.evaluate(
+          async (el: ClearableInput) => {
+            const state = await el.getValidityState();
+            return { valid: state.valid, valueMissing: state.valueMissing };
+          }
+        );
+
+        expect(validityState.valid).toBe(true);
+        expect(validityState.valueMissing).toBe(false);
+      });
+
+      test('should return invalid state when required field is empty', async ({
+        mount,
+        page,
+      }) => {
+        await mount(`<${selector} required></${selector}>`);
+
+        const component = page.locator(selector);
+        await expect(component).toHaveAttribute('hydrated', '');
+
+        await component.locator(getInputSelector(selector)).fill('');
+        const validityState = await component.evaluate(
+          async (el: ClearableInput) => {
+            const state = await el.getValidityState();
+            return { valid: state.valid, valueMissing: state.valueMissing };
+          }
+        );
+
+        expect(validityState.valid).toBe(false);
+        expect(validityState.valueMissing).toBe(true);
+      });
+    });
+  });
+});
+
+test('number input preserves decimal typing after being touched', async ({
+  mount,
+  page,
+}) => {
+  await mount('<ix-number-input value="1" step="0.01"></ix-number-input>');
+  const component = page.locator('ix-number-input');
+  await expect(component).toHaveAttribute('hydrated', '');
+  const input = component.getByRole('spinbutton');
+  await input.focus();
+  await input.blur();
+  await input.focus();
+  await input.press('End');
+  await input.press('.');
+  await input.press('0');
+  await input.press('5');
+  await expect(input).toHaveValue('1.05');
+  await expect(component).toHaveJSProperty('value', 1.05);
+});
+
+for (const allowEmptyValueChange of [true, false]) {
+  test(`number clear() respects allowEmptyValueChange=${allowEmptyValueChange}`, async ({
+    mount,
+    page,
+  }) => {
+    await mount(
+      `<ix-number-input value="42" ${
+        allowEmptyValueChange ? 'allow-empty-value-change' : ''
+      }></ix-number-input>`
+    );
+    const component = page.locator('ix-number-input');
+    await expect(component).toHaveAttribute('hydrated', '');
+    const values = await component.evaluate(
+      async (el: HTMLIxNumberInputElement) => {
+        const events: Array<number | undefined> = [];
+        el.addEventListener('valueChange', (event) =>
+          events.push(event.detail)
+        );
+        await el.clear();
+        return events;
+      }
+    );
+    expect(values).toEqual([allowEmptyValueChange ? null : 0]);
+    await expect(component.locator('input')).toHaveValue('');
+    await expect(component).toHaveJSProperty('value', undefined);
+  });
+}

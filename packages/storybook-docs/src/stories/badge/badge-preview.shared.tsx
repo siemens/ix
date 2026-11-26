@@ -71,7 +71,7 @@ export function themePanel(
     <section
       class="theme-panel"
       data-ix-color-schema={colorSchema}
-      data-ix-theme="classic"
+      data-ix-theme="community"
     >
       <h3 class="theme-panel-title">{title}</h3>
       {content}

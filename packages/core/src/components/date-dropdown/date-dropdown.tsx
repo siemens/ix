@@ -23,7 +23,11 @@ import {
   Mixin,
 } from '@stencil/core';
 import { DateTime } from 'luxon';
-import { parseWithLocale, toISODate } from '../utils/datetime/date-time-locale';
+import {
+  convertDateFormat,
+  parseWithLocale,
+  toISODate,
+} from '../utils/datetime/date-time-locale';
 import { ButtonVariant } from '../button/button';
 import { IxButtonComponent } from '../button/button-component';
 import { IxDatePickerComponent } from '../date-picker/date-picker-component';
@@ -50,7 +54,7 @@ type DropdownRange = DateRange<string> & { id: string };
 /**
  * Dropdown for selecting a date or a relative date range.
  *
- * @documentation https://ix.siemens.io//docs/components/date-dropdown/code.md
+ * @documentation https://ix.siemens.io/docs/components/date-dropdown/code.md
  * @figma-main-component-id 45886:27067
  */
 @Component({
@@ -76,6 +80,16 @@ export class DateDropdown
    * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
    */
   @Prop() format = 'yyyy/LL/dd';
+
+  /**
+   * Date format used to display the selected dates in the dropdown button.
+   * `from`, `to`, `minDate`, `maxDate` and emitted values keep using `format`.
+   * Defaults to `format`.
+   * See {@link https://moment.github.io/luxon/#/formatting?id=table-of-tokens} for all available tokens.
+   *
+   * @since 6.0.0
+   */
+  @Prop() displayFormat?: string;
 
   /**
    * If true disables date range selection (from/to).
@@ -128,8 +142,6 @@ export class DateDropdown
 
   /**
    * Shows week numbers displayed on the left side of the date picker
-   *
-   * @since 3.0.0
    */
   @Prop() showWeekNumbers = false;
 
@@ -218,6 +230,7 @@ export class DateDropdown
    *
    * @deprecated The done button was removed. Without `requireConfirmation`
    * the dropdown closes once a complete date or range is selected.
+   * @breaking-change 6.0.0 The done button was removed, the property has no effect
    */
   @Prop({ attribute: 'i18n-done' }) i18nDone = 'Done';
 
@@ -258,7 +271,6 @@ export class DateDropdown
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 
@@ -271,6 +283,8 @@ export class DateDropdown
    * range again.
    *
    * Use `dateSelect` to only receive applied ranges.
+   *
+   * @breaking-change 6.0.0 Emitted for every pick instead of on close, `from` and `to` are localized (use `isoFrom` and `isoTo`)
    */
   @Event()
   private readonly dateRangeChange!: EventEmitter<DateRangeChangeEvent>;
@@ -488,6 +502,15 @@ export class DateDropdown
     }
   }
 
+  private toDisplayDate(value: string): string {
+    return convertDateFormat(
+      value,
+      this.format,
+      this.displayFormat ?? this.format,
+      this.locale
+    );
+  }
+
   private getButtonLabel() {
     // Without requireConfirmation the label also shows a pending start date
     const rangeValue = this.requireConfirmation
@@ -495,14 +518,14 @@ export class DateDropdown
       : this.selection.displayed;
 
     if (rangeValue?.from) {
-      let range = rangeValue.from;
+      let range = this.toDisplayDate(rangeValue.from);
 
       if (rangeValue.to === rangeValue.from) {
         return range;
       }
 
       if (rangeValue.to) {
-        range += ` - ${rangeValue.to}`;
+        range += ` - ${this.toDisplayDate(rangeValue.to)}`;
       } else if (
         rangeValue === this.selection.pending &&
         this.isIncomplete(rangeValue)

@@ -8,7 +8,7 @@
  */
 import { expect } from '@playwright/test';
 import {
-  getFormValue,
+  expectFormValue,
   preventFormSubmission,
   regressionTest,
   test,
@@ -24,9 +24,7 @@ regressionTest('form-ready', async ({ mount, page }) => {
   const radio = page.locator('ix-radio');
   await radio.click();
 
-  await expect
-    .poll(() => getFormValue(formElement, 'my-radio', page))
-    .toBe('Test');
+  await expectFormValue(formElement, 'my-radio', 'Test');
 });
 
 regressionTest('form-ready with default value', async ({ mount, page }) => {
@@ -37,9 +35,7 @@ regressionTest('form-ready with default value', async ({ mount, page }) => {
   const radio = page.locator('ix-radio');
   await radio.click();
 
-  await expect
-    .poll(() => getFormValue(formElement, 'my-radio', page))
-    .toBe('on');
+  await expectFormValue(formElement, 'my-radio', 'on');
 });
 
 regressionTest(`form-ready default active`, async ({ mount, page }) => {
@@ -49,9 +45,7 @@ regressionTest(`form-ready default active`, async ({ mount, page }) => {
 
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
-  await expect
-    .poll(() => getFormValue(formElement, 'my-field-name', page))
-    .toBe('on');
+  await expectFormValue(formElement, 'my-field-name', 'on');
 });
 
 regressionTest(`disabled = undefined`, async ({ mount, page }) => {
@@ -204,7 +198,7 @@ regressionTest(
   'label-less radio has 20px layout size and 24px active area',
   async ({ mount, page }) => {
     await mount(
-      `<div style="padding: 1rem"><ix-radio aria-label="Option" name="no-label"></ix-radio></div>`
+      `<div style="padding: 16px"><ix-radio aria-label="Option" name="no-label"></ix-radio></div>`
     );
     const radio = page.locator('ix-radio');
     await expect(radio).toHaveCSS('width', '20px');

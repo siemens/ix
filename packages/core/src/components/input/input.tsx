@@ -26,6 +26,7 @@ import {
   HookValidationLifecycle,
   IxInputFieldComponent,
   ValidationResults,
+  revalidate,
 } from '../utils/input';
 import { makeRef } from '../utils/make-ref';
 import { InputElement, SlotEnd, SlotStart } from './input.fc';
@@ -34,6 +35,7 @@ import {
   adjustPaddingForStartAndEnd,
   checkAllowedKeys,
   checkInternalValidity,
+  resetInputValidation,
   DisposableChangesAndVisibilityObservers,
   getAriaAttributesForInput,
   mapValidationResult,
@@ -41,6 +43,7 @@ import {
   onInputBlurWithChange,
   revalidateAfterPropChange,
   onEnterKeyChangeEmit,
+  syncNativeControlValue,
 } from './input.util';
 
 let inputIds = 0;
@@ -49,10 +52,10 @@ let inputIds = 0;
  * Text input for entering and validating a single-line value.
  *
  *
- * @documentation https://ix.siemens.io//docs/components/input/guide.md
- * @documentation https://ix.siemens.io//docs/components/forms-field/guide.md
- * @documentation https://ix.siemens.io//docs/components/forms-layout/guide.md
- * @documentation https://ix.siemens.io//docs/components/forms-validation/guide.md
+ * @documentation https://ix.siemens.io/docs/components/input/guide.md
+ * @documentation https://ix.siemens.io/docs/components/forms-field/guide.md
+ * @documentation https://ix.siemens.io/docs/components/forms-layout/guide.md
+ * @documentation https://ix.siemens.io/docs/components/forms-validation/guide.md
  *
  * @figma-main-component-id 42365:39459
  *
@@ -196,7 +199,6 @@ export class Input implements IxInputFieldComponent<string> {
 
   /**
    * Event emitted when the text field loses focus and the value has changed.
-   * @since 4.4.0
    */
   @Event() ixChange!: EventEmitter<string>;
 
@@ -219,9 +221,15 @@ export class Input implements IxInputFieldComponent<string> {
 
   private disposableChangesAndVisibilityObservers?: DisposableChangesAndVisibilityObservers;
 
-  @HookValidationLifecycle()
+  @HookValidationLifecycle({ useTouchedForAria: true })
   updateClassMappings(result: ValidationResults) {
     mapValidationResult(this, result);
+  }
+
+  @Watch('value')
+  onValueChange(value: string) {
+    syncNativeControlValue(this.inputRef.current, value);
+    this.syncFormInternals(value);
   }
 
   @Watch('type')
@@ -230,7 +238,7 @@ export class Input implements IxInputFieldComponent<string> {
   }
 
   componentWillLoad() {
-    this.updateFormInternalValue(this.value);
+    this.syncFormInternals(this.value);
     this.inputType = this.type;
   }
 
@@ -254,6 +262,8 @@ export class Input implements IxInputFieldComponent<string> {
     if (this.revalidateAfterRender) {
       this.revalidateAfterRender = false;
       void revalidateAfterPropChange(this, this.inputRef.current, this.touched);
+    } else {
+      void revalidate(this);
     }
   }
 
@@ -262,8 +272,12 @@ export class Input implements IxInputFieldComponent<string> {
   }
 
   updateFormInternalValue(value: string) {
-    this.formInternals.setFormValue(value);
+    // Form value and validity are synced in `onValueChange`
     this.value = value;
+  }
+
+  private syncFormInternals(value: string) {
+    this.formInternals.setFormValue(value);
 
     if (this.inputRef.current && this.touched) {
       checkInternalValidity(this, this.inputRef.current);
@@ -314,6 +328,21 @@ export class Input implements IxInputFieldComponent<string> {
   @Method()
   isTouched(): Promise<boolean> {
     return Promise.resolve(this.touched);
+  }
+
+  /**
+   * Clears the input field value and resets validation state.
+   * Sets the value to empty and removes touched state to suppress validation.
+   * @since 6.0.0
+   */
+  @Method()
+  async clear(): Promise<void> {
+    const input = await this.getNativeInputElement();
+    this.touched = false;
+    this.initialValue = '';
+    resetInputValidation(this, input);
+    this.updateFormInternalValue('');
+    this.valueChange.emit('');
   }
 
   render() {
@@ -406,7 +435,7 @@ export class Input implements IxInputFieldComponent<string> {
             <ix-typography
               class="bottom-text"
               slot="bottom-right"
-              textColor="soft"
+              textColor="secondary"
             >
               {(this.value ?? '').length}/{this.maxLength}
             </ix-typography>

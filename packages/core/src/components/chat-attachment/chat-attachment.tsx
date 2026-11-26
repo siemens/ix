@@ -12,7 +12,7 @@ import { Component, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
 import type { ChatAttachmentStatus } from './chat-attachment.types';
 
 /**
- * @documentation https://ix.siemens.io//docs/components/chat-attachment/guide.md
+ * @documentation https://ix.siemens.io/docs/components/chat-attachment/guide.md
  * @figma-main-component-id 133528:33258
  * @since 5.2.0
  */

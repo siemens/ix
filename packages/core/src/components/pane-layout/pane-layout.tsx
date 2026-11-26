@@ -19,15 +19,14 @@ import {
   Watch,
 } from '@stencil/core';
 import type { Composition } from '../pane/pane.types';
-import { applicationLayoutService } from '../utils/application-layout';
-import { matchBreakpoint } from '../utils/breakpoints';
+import { subscribeApplicationLayoutMobile } from '../utils/application-layout';
 import type { Disposable } from '../utils/typed-event';
 
 /**
  * Layout container that arranges collapsible panes around a content area.
  *
- * @documentation https://ix.siemens.io//docs/components/panes/guide.md
- * @figma-main-component-id 19924:12291
+ * @documentation https://ix.siemens.io/docs/components/panes/guide.md
+ * @figma-main-component-id 153304:27060
  *
  * @slot left - Content displayed in the left pane.
  * @slot top - Content displayed in the top pane.
@@ -71,10 +70,26 @@ export class Panes {
   }> = [];
 
   private observer?: MutationObserver;
-  private layoutChangeDisposable?: Disposable;
+  private layoutMobileDisposable?: Disposable;
 
   get currentPanes() {
     return this.hostElement.querySelectorAll('ix-pane');
+  }
+
+  private subscribeApplicationLayoutMobile() {
+    this.layoutMobileDisposable?.dispose();
+    this.layoutMobileDisposable = subscribeApplicationLayoutMobile(
+      this.hostElement,
+      (isMobile) => {
+        this.isMobile = isMobile;
+        this.configurePanes();
+      }
+    );
+  }
+
+  componentWillLoad() {
+    // Re-subscribe after providers in the tree have finished willLoad.
+    this.subscribeApplicationLayoutMobile();
   }
 
   componentDidLoad() {
@@ -96,18 +111,13 @@ export class Panes {
       childList: true,
     });
 
-    this.isMobile = matchBreakpoint('sm');
-    this.layoutChangeDisposable?.dispose();
-    this.layoutChangeDisposable = applicationLayoutService.onChange.on(() => {
-      this.isMobile = matchBreakpoint('sm');
-      this.configurePanes();
-    });
+    this.subscribeApplicationLayoutMobile();
   }
 
   disconnectedCallback() {
-    this.layoutChangeDisposable?.dispose();
-    this.layoutChangeDisposable = undefined;
     this.observer?.disconnect();
+    this.layoutMobileDisposable?.dispose();
+    this.layoutMobileDisposable = undefined;
   }
 
   private setPaneVariant(pane: HTMLIxPaneElement) {
@@ -433,7 +443,9 @@ export class Panes {
             <div
               key="top"
               style={{
-                minHeight: this.hasPaddingMobile('top') ? '48px' : '0',
+                minHeight: this.hasPaddingMobile('top')
+                  ? 'var(--ix-pane-layout-pane--min-height--mobile)'
+                  : '0',
                 display: this.slotExists('top') ? 'block' : 'none',
               }}
             >
@@ -442,7 +454,9 @@ export class Panes {
             <div
               key="left"
               style={{
-                minHeight: this.hasPaddingMobile('left') ? '48px' : '0',
+                minHeight: this.hasPaddingMobile('left')
+                  ? 'var(--ix-pane-layout-pane--min-height--mobile)'
+                  : '0',
                 display: this.slotExists('left') ? 'block' : 'none',
               }}
             >
@@ -459,7 +473,9 @@ export class Panes {
             <div
               key="right"
               style={{
-                minHeight: this.hasPaddingMobile('right') ? '48px' : '0',
+                minHeight: this.hasPaddingMobile('right')
+                  ? 'var(--ix-pane-layout-pane--min-height--mobile)'
+                  : '0',
                 display: this.slotExists('right') ? 'block' : 'none',
               }}
             >
@@ -468,7 +484,9 @@ export class Panes {
             <div
               key="bottom"
               style={{
-                minHeight: this.hasPaddingMobile('bottom') ? '48px' : '0',
+                minHeight: this.hasPaddingMobile('bottom')
+                  ? 'var(--ix-pane-layout-pane--min-height--mobile)'
+                  : '0',
                 display: this.slotExists('bottom') ? 'block' : 'none',
               }}
             >

@@ -11,6 +11,8 @@ import { spawnSync } from 'child_process';
 import path from 'path';
 import { ensureDir, readFile, readFileSync, writeFile } from 'fs-extra';
 import { Component, HashDictionary } from '@cyclonedx/cyclonedx-library/Models';
+import { PackageURL } from 'packageurl-js';
+import parseSpdxExpression from 'spdx-expression-parse';
 
 function splitPkgName(dependencyName: string) {
   const hasScope = dependencyName.startsWith('@');
@@ -77,7 +79,7 @@ async function resolveComponentData(
   return new Promise((resolve) => {
     const { stdout } = spawnSync(
       'pnpm',
-      ['v', '--json', '--long', `${packageName}@${version}`],
+      ['v', '--json', `${packageName}@${version}`],
       { shell: true }
     );
 
@@ -96,18 +98,19 @@ function resolveLinked(property: string, dependency: { path: string }) {
   return pkg[property];
 }
 
-class CustomPUrlFactory extends CDX.Factories.PackageUrlFactory {
-  constructor() {
-    super('npm');
+function makeNpmPurl(component: Component): string | undefined {
+  if (component.version?.startsWith('link:')) {
+    component.version = component.version.substring('link:'.length);
   }
-
-  makeFromComponent(component: Component, sort?: boolean): any {
-    const purl = super.makeFromComponent(component, sort);
-    if (component.version?.startsWith('link:')) {
-      component.version = component.version.substring('link:'.length);
-      return super.makeFromComponent(component, sort);
-    }
-    return purl;
+  try {
+    return new PackageURL(
+      'npm',
+      component.group,
+      component.name,
+      component.version
+    ).toString();
+  } catch {
+    return undefined;
   }
 }
 
@@ -140,8 +143,11 @@ async function createSBom(packageName: string) {
     npmJson = await handleIconsLibraryDependencies(npmJson);
   }
 
-  const lFac = new CDX.Factories.LicenseFactory();
-  const purlFac = new CustomPUrlFactory();
+  const lFac = new CDX.Contrib.License.Factories.LicenseFactory(
+    (expression) => {
+      parseSpdxExpression(expression);
+    }
+  );
 
   const bom = new CDX.Models.Bom();
 
@@ -181,7 +187,7 @@ async function createSBom(packageName: string) {
           }
         );
         component.licenses.add(lFac.makeFromString(dep.license));
-        component.purl = purlFac.makeFromComponent(component);
+        component.purl = makeNpmPurl(component);
 
         if (repository?.url) {
           component.externalReferences.add(

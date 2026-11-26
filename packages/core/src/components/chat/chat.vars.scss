@@ -7,16 +7,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// Internal: these CSS custom properties are implementation details of the
+// component, not a public API. They are not covered by semantic versioning and
+// can change or be removed in any release without notice.
+
 @use 'tokens/system' as sys;
+@use 'mixins/component-vars' as cv;
 
 :host {
-  --ix-chat--min-width: #{sys.$si-sys-sizing-size-170};
-  --ix-chat--max-width: calc(
-    #{sys.$si-sys-sizing-size-200} + #{sys.$si-sys-sizing-spacing-x-90}
+  @include cv.define-vars(
+    (
+      'chat--min-width': sys.$si-sys-sizing-size-170,
+      'chat--max-width':
+        calc(
+          #{sys.$si-sys-sizing-size-200} + #{sys.$si-sys-sizing-spacing-x-90}
+        ),
+      'chat-messages--max-width': sys.$si-sys-sizing-size-200,
+      'chat-messages--gap': sys.$si-sys-sizing-spacing-y-90,
+      'chat-messages--padding': #{sys.$si-sys-sizing-spacing-y-90} #{sys.$si-sys-sizing-spacing-x-90},
+      'chat-prompt--max-width': sys.$si-sys-sizing-size-200,
+      'chat-prompt--padding': #{sys.$si-sys-sizing-spacing-y-90} #{sys.$si-sys-sizing-spacing-x-90},
+    )
   );
-  --ix-chat-messages--max-width: #{sys.$si-sys-sizing-size-200};
-  --ix-chat-messages--gap: #{sys.$si-sys-sizing-spacing-y-90};
-  --ix-chat-messages--padding: #{sys.$si-sys-sizing-spacing-y-90} #{sys.$si-sys-sizing-spacing-x-90};
-  --ix-chat-prompt--max-width: #{sys.$si-sys-sizing-size-200};
-  --ix-chat-prompt--padding: #{sys.$si-sys-sizing-spacing-y-90} #{sys.$si-sys-sizing-spacing-x-90};
 }

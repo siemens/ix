@@ -12,7 +12,7 @@ regressionTest(
   'accessibility time-range',
   async ({ mount, makeAxeBuilder }) => {
     await mount(`
-    <ix-range-field type="time-range" style="width: 32rem" aria-label="Time range">
+    <ix-range-field type="time-range" style="width: 512px" aria-label="Time range">
       <ix-time-input label="start" required></ix-time-input>
       <ix-time-input label="end" helper-text="Hallo layout!"></ix-time-input>
     </ix-range-field>
@@ -27,7 +27,7 @@ regressionTest(
   'accessibility date-range',
   async ({ mount, makeAxeBuilder }) => {
     await mount(`
-    <ix-range-field type="date-range" style="width: 32rem" aria-label="Date range">
+    <ix-range-field type="date-range" style="width: 512px" aria-label="Date range">
       <ix-date-input label="start" required></ix-date-input>
       <ix-date-input label="end" helper-text="Hallo layout!"></ix-date-input>
     </ix-range-field>
@@ -42,7 +42,7 @@ regressionTest(
   'accessibility datetime-range',
   async ({ mount, makeAxeBuilder }) => {
     await mount(`
-    <ix-range-field type="datetime-range" style="width: 32rem" aria-label="Datetime range">
+    <ix-range-field type="datetime-range" style="width: 512px" aria-label="Datetime range">
       <ix-datetime-input label="start" required></ix-datetime-input>
       <ix-datetime-input label="end" helper-text="Hallo layout!"></ix-datetime-input>
     </ix-range-field>
@@ -56,7 +56,7 @@ regressionTest(
 regressionTest('renders time-range', async ({ mount, page }) => {
   await mount(
     `
-    <ix-range-field type="time-range" style="width: 32rem">
+    <ix-range-field type="time-range" style="width: 512px">
       <ix-time-input required></ix-time-input>
       <ix-time-input helper-text="Hallo layout!"></ix-time-input>
     </ix-range-field>
@@ -72,7 +72,7 @@ regressionTest('renders time-range', async ({ mount, page }) => {
 regressionTest('renders date-range', async ({ mount, page }) => {
   await mount(
     `
-    <ix-range-field type="date-range" style="width: 32rem">
+    <ix-range-field type="date-range" style="width: 512px">
       <ix-date-input required></ix-date-input>
       <ix-date-input helper-text="Hallo layout!"></ix-date-input>
     </ix-range-field>
@@ -88,7 +88,7 @@ regressionTest('renders date-range', async ({ mount, page }) => {
 regressionTest('renders datetime-range', async ({ mount, page }) => {
   await mount(
     `
-    <ix-range-field type="datetime-range" style="width: 32rem">
+    <ix-range-field type="datetime-range" style="width: 512px">
       <ix-datetime-input required></ix-datetime-input>
       <ix-datetime-input helper-text="Hallo layout!"></ix-datetime-input>
     </ix-range-field>
@@ -114,7 +114,7 @@ regressionTest(
 
     await mount(
       `
-    <ix-range-field type="time-range" style="width: 32rem">
+    <ix-range-field type="time-range" style="width: 512px">
       <ix-time-input required></ix-time-input>
       <ix-date-input helper-text="Hallo layout!"></ix-date-input>
     </ix-range-field>
@@ -134,7 +134,7 @@ regressionTest(
 regressionTest('hide arrow between range inputs', async ({ mount, page }) => {
   await mount(
     `
-    <ix-range-field type="date-range" style="width: 32rem" hide-arrow>
+    <ix-range-field type="date-range" style="width: 512px" hide-arrow>
       <ix-date-input required></ix-date-input>
       <ix-date-input helper-text="Hallo layout!"></ix-date-input>
     </ix-range-field>
@@ -156,7 +156,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(
       `
-    <ix-range-field type="date-range" style="width: 32rem">
+    <ix-range-field type="date-range" style="width: 512px">
       <ix-date-input required aria-label="first"></ix-date-input>
       <ix-date-input helper-text="Hallo layout!" aria-label="second"></ix-date-input>
     </ix-range-field>
@@ -183,7 +183,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(
       `
-    <ix-range-field type="date-range" style="width: 32rem">
+    <ix-range-field type="date-range" style="width: 512px">
       <ix-date-input label="first" required></ix-date-input>
       <ix-date-input label="second" helper-text="Hallo layout!"></ix-date-input>
     </ix-range-field>
@@ -210,7 +210,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(
       `
-    <ix-range-field type="date-range" style="width: 32rem">
+    <ix-range-field type="date-range" style="width: 512px">
       <ix-date-input required></ix-date-input>
       <ix-date-input label="second" helper-text="Hallo layout!"></ix-date-input>
     </ix-range-field>
@@ -237,7 +237,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(
       `
-    <ix-range-field type="date-range" style="width: 32rem">
+    <ix-range-field type="date-range" style="width: 512px">
       <ix-date-input label="second" required></ix-date-input>
       <ix-date-input helper-text="Hallo layout!"></ix-date-input>
     </ix-range-field>
@@ -264,7 +264,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(
       `
-    <ix-range-field type="date-range" style="width: 32rem">
+    <ix-range-field type="date-range" style="width: 512px">
       <ix-date-input label="second" required value="2022/03/01"></ix-date-input>
       <ix-date-input helper-text="Hallo layout!" value="2022/03/01"></ix-date-input>
     </ix-range-field>
@@ -307,7 +307,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(
       `
-    <ix-range-field type="time-range" style="width: 32rem">
+    <ix-range-field type="time-range" style="width: 512px">
       <ix-time-input label="second" required value="10:11:12"></ix-time-input>
       <ix-time-input helper-text="Hallo layout!" value="10:11:12"></ix-time-input>
     </ix-range-field>
@@ -352,7 +352,7 @@ regressionTest(
   async ({ mount, page }) => {
     await mount(
       `
-    <ix-range-field type="datetime-range" style="width: 32rem">
+    <ix-range-field type="datetime-range" style="width: 512px">
       <ix-datetime-input label="second" required value="2022/03/01 10:11:12"></ix-datetime-input>
       <ix-datetime-input helper-text="Hallo layout!" value="2022/03/01 10:11:12"></ix-datetime-input>
     </ix-range-field>

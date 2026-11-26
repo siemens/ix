@@ -45,11 +45,17 @@ import {
   monthNameOf,
   monthsOfYear,
   WeekdayIndex,
+  weekdayLabelsFrom,
   weekdayNamesFrom,
   weekStartFrom,
 } from '../utils/datetime/calendar.util';
+import type {
+  NavigationBoundaryDirection,
+  NavigationBoundaryHandler,
+} from '../dropdown/dropdown-focus';
 import { queryElements } from '../utils/focus/focus-utilities';
 import { DefaultMixins } from '../utils/internal/component';
+import { waitForComponentReady } from '../utils/component-ready';
 import { makeRef } from '../utils/make-ref';
 import type { DateRange } from '../utils/datetime/date-time.types';
 import { PendingSelection } from '../utils/datetime/pending-selection';
@@ -60,10 +66,13 @@ import { hasKeyboardMode } from '../utils/internal/mixins/setup.mixin';
 import { DatePickerYearMonth } from './date-picker.types';
 import { ConfirmationFooter } from '../utils/confirmation-footer/confirmation-footer.fc';
 
+/** Number of years added when the year list is scrolled or navigated past its end. */
+const YEAR_RANGE_EXTENSION = 5;
+
 /**
  * Calendar for selecting a single date or a date range.
  *
- * @documentation https://ix.siemens.io//docs/components/date-picker/guide.md
+ * @documentation https://ix.siemens.io/docs/components/date-picker/guide.md
  * @figma-main-component-id 561:6290
  */
 @Component({
@@ -291,8 +300,6 @@ export class DatePicker
 
   /**
    * Shows week numbers displayed on the left side of the date picker.
-   *
-   * @since 3.0.0
    */
   @Prop() showWeekNumbers = false;
 
@@ -306,7 +313,6 @@ export class DatePicker
    * Enable Popover API rendering for dropdown.
    *
    * @default false
-   * @since 4.3.0
    */
   @Prop() enableTopLayer: boolean = false;
 
@@ -317,6 +323,8 @@ export class DatePicker
    * Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
    * When a pending selection is discarded, it is emitted with the confirmed
    * selection again. Use `dateSelect` to receive only the applied selection.
+   *
+   * @breaking-change 6.0.0 `from` and `to` are localized, use `isoFrom` and `isoTo` for ISO 8601 values
    */
   @Event() dateChange!: EventEmitter<DateChangeEvent>;
 
@@ -329,6 +337,7 @@ export class DatePicker
    *
    * @deprecated since 6.0.0, use `dateChange` instead, which carries the same
    * `from`/`to` range. Will be removed in 7.0.0.
+   * @breaking-change 6.0.0 Deprecated, `from` and `to` are localized (use `isoFrom` and `isoTo`)
    */
   @Event() dateRangeChange!: EventEmitter<DateChangeEvent>;
 
@@ -339,6 +348,8 @@ export class DatePicker
    * so it is emitted together with `dateChange` when a date is picked.
    * The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
    * Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+   *
+   * @breaking-change 6.0.0 `from` and `to` are localized, use `isoFrom` and `isoTo` for ISO 8601 values
    */
   @Event() dateSelect!: EventEmitter<DateChangeEvent>;
 
@@ -448,6 +459,10 @@ export class DatePicker
 
   @State() startYear = 0;
   @State() endYear = 0;
+  @State() private yearDropdownInitialized = false;
+
+  private readonly monthDropdownButtonRef =
+    makeRef<HTMLIxDropdownButtonElement>();
 
   private readonly yearDropdownButtonRef =
     makeRef<HTMLIxDropdownButtonElement>();
@@ -456,6 +471,7 @@ export class DatePicker
     makeRef<HTMLIxDropdownElement>();
 
   @State() dayNames: string[] = [];
+  @State() dayLabels: string[] = [];
   @State() focusedDay: number = 1;
 
   private isDayFocus = false;
@@ -618,6 +634,8 @@ export class DatePicker
   override disconnectedCallback() {
     this.keyboardNavigationYearSelection?.();
     this.keyboardNavigationMonthSelection?.();
+    // A detached picker no longer renders; release a pending year extension.
+    this.resolveYearRangeRendered?.();
   }
 
   override componentDidLoad() {
@@ -632,6 +650,9 @@ export class DatePicker
   }
 
   override componentDidRender() {
+    this.resolveYearRangeRendered?.();
+    this.resolveYearRangeRendered = undefined;
+
     if (!this.monthChangedFromFocus && !this.isDayFocus) {
       return;
     }
@@ -710,6 +731,7 @@ export class DatePicker
 
   private setTranslations() {
     this.dayNames = weekdayNamesFrom(this.weekStart, this.locale);
+    this.dayLabels = weekdayLabelsFrom(this.weekStart, this.locale);
   }
 
   private async onDone() {
@@ -879,6 +901,7 @@ export class DatePicker
       rows.push(
         <ix-dropdown-item
           key={year}
+          data-year={year}
           checked={selected}
           class={{
             'month-dropdown-item': true,
@@ -946,7 +969,7 @@ export class DatePicker
       const target = entry.target as HTMLElement;
       if (entry.isIntersecting) {
         if (target.dataset.sentinel === 'top') {
-          this.startYear -= 5;
+          this.startYear -= YEAR_RANGE_EXTENSION;
 
           if (!this.skipFirstScrollOffset) {
             requestAnimationFrameNoNgZone(() => {
@@ -956,10 +979,94 @@ export class DatePicker
           }
           this.skipFirstScrollOffset = false;
         } else {
-          this.endYear += 5;
+          this.endYear += YEAR_RANGE_EXTENSION;
         }
       }
     });
+  }
+
+  /**
+   * Scrolls the selected month/year of an opened dropdown into the middle.
+   * Only the dropdown is scrolled: `scrollIntoView` would also scroll the
+   * surrounding containers, which can move the trigger out of view and
+   * close the dropdown.
+   */
+  private async centerCheckedItem(
+    dropdownButton?: HTMLIxDropdownButtonElement | null
+  ) {
+    // Year items render lazily on first open and may not be hydrated yet, so
+    // the `checked` attribute is not reflected. Match on the property instead.
+    const checkedItem = Array.from(
+      dropdownButton?.querySelectorAll('ix-dropdown-item') ?? []
+    ).find((item) => item.checked);
+
+    if (!dropdownButton || !checkedItem) {
+      return;
+    }
+
+    await waitForComponentReady(checkedItem);
+
+    const container = await dropdownButton.getDropdownReference();
+    const containerRect = container.getBoundingClientRect();
+    const itemRect = checkedItem.getBoundingClientRect();
+
+    container.scrollTop +=
+      itemRect.top -
+      containerRect.top -
+      (container.clientHeight - itemRect.height) / 2;
+  }
+
+  private resolveYearRangeRendered?: () => void;
+  private pendingYearRangeExtension?: Promise<HTMLElement | undefined>;
+
+  /**
+   * Arrow keys past the first/last year extend the year list, like scrolling
+   * does, and move to the newly added adjacent year instead of wrapping.
+   * Key presses arriving while an extension renders share it, so a key repeat
+   * cannot extend the list twice and skip years.
+   */
+  private readonly extendYearRange: NavigationBoundaryHandler = (direction) => {
+    this.pendingYearRangeExtension ??= this.renderYearRangeExtension(
+      direction
+    ).finally(() => {
+      this.pendingYearRangeExtension = undefined;
+    });
+
+    return this.pendingYearRangeExtension;
+  };
+
+  private async renderYearRangeExtension(
+    direction: NavigationBoundaryDirection
+  ): Promise<HTMLElement | undefined> {
+    const targetYear =
+      direction === 'next' ? this.endYear + 1 : this.startYear - 1;
+    const rendered = new Promise<void>((resolve) => {
+      this.resolveYearRangeRendered = resolve;
+    });
+
+    if (direction === 'next') {
+      this.endYear += YEAR_RANGE_EXTENSION;
+    } else {
+      this.startYear -= YEAR_RANGE_EXTENSION;
+    }
+
+    await rendered;
+
+    const targetItem =
+      this.yearDropdownButtonRef.current?.querySelector<HTMLIxDropdownItemElement>(
+        `ix-dropdown-item[data-year="${targetYear}"]`
+      );
+
+    if (!targetItem) {
+      return undefined;
+    }
+
+    // The new items are children of the year dropdown button, so the date
+    // picker's render does not wait for them. Until an item has rendered, it
+    // lacks its focus-visible class and focusing it would leave no year active.
+    await waitForComponentReady(targetItem);
+
+    return targetItem;
   }
 
   private skipFirstScrollOffset = true;
@@ -1001,11 +1108,20 @@ export class DatePicker
                 class="month-selector"
                 focusCheckedItem={true}
                 aria-label={this.ariaLabelMonthSelection}
+                ref={this.monthDropdownButtonRef}
                 variant="tertiary"
                 label={null}
                 onShowChanged={(event) => {
                   // Need to stop event propagation to trigger initial focus handling of the calendar days
                   event.stopPropagation();
+
+                  if (event.detail) {
+                    requestAnimationFrameNoNgZone(() =>
+                      this.centerCheckedItem(
+                        this.monthDropdownButtonRef.current
+                      )
+                    );
+                  }
                 }}
               >
                 <ix-typography
@@ -1022,9 +1138,15 @@ export class DatePicker
                 class="year-selector"
                 focusCheckedItem={true}
                 aria-label={this.ariaLabelYearSelection}
+                navigationBoundaryHandler={this.extendYearRange}
                 ref={this.yearDropdownButtonRef}
                 variant="tertiary"
                 label={null}
+                onShowChange={(event) => {
+                  if (event.detail) {
+                    this.yearDropdownInitialized = true;
+                  }
+                }}
                 onShowChanged={(event) => {
                   // Need to stop event propagation to trigger initial focus handling of the calendar days
                   event.stopPropagation();
@@ -1041,20 +1163,9 @@ export class DatePicker
                           '[data-sentinel="bottom"]'
                         ) as HTMLElement
                       );
-                      const selectedYearItem =
-                        this.yearDropdownButtonRef.current?.querySelector(
-                          'ix-dropdown-item[checked]'
-                        ) as HTMLElement | null;
-
-                      if (!selectedYearItem) {
-                        return;
-                      }
-
-                      requestAnimationFrameNoNgZone(() => {
-                        selectedYearItem.scrollIntoView({
-                          block: 'center',
-                        });
-                      });
+                      this.centerCheckedItem(
+                        this.yearDropdownButtonRef.current
+                      );
                     });
                   } else {
                     this.intersectStart.disconnect();
@@ -1072,7 +1183,7 @@ export class DatePicker
                 >
                   {yearLabel}
                 </ix-typography>
-                {this.renderYears()}
+                {this.yearDropdownInitialized ? this.renderYears() : null}
                 <div class="infinite-scrolling-spacer">
                   <div class="sentinel" data-sentinel="bottom"></div>
                 </div>
@@ -1097,13 +1208,14 @@ export class DatePicker
               {this.showWeekNumbers && (
                 <div class="calendar-item week-day" role="columnheader"></div>
               )}
-              {this.dayNames.map((name) => (
+              {this.dayNames.map((name, column) => (
                 <div
                   key={name}
                   class="calendar-item week-day"
                   role="columnheader"
+                  aria-label={name}
                 >
-                  <div class="overflow">{name.slice(0, 3)}</div>
+                  <div class="overflow">{this.dayLabels[column]}</div>
                 </div>
               ))}
             </div>

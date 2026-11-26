@@ -15,6 +15,7 @@ import {
   timePickerCell,
   timePickerHourCell,
 } from '@utils/test';
+import { ELEMENT_LIST_SCROLL_OFFSET } from '../time-picker-scroll';
 
 const TIME_PICKER_SELECTOR = 'ix-time-picker';
 
@@ -771,25 +772,26 @@ regressionTest.describe('time picker tests', () => {
       await page.keyboard.press('Tab');
 
       const checkScrollAlignment = async (locator: Locator) => {
-        return await locator.evaluate((el: HTMLElement) => {
-          const list = el.parentElement;
+        return await locator.evaluate(
+          (el: HTMLElement, scrollPositionOffset: number) => {
+            const list = el.parentElement;
 
-          if (!list) {
-            throw new Error('Expected time picker list element');
-          }
+            if (!list) {
+              throw new Error('Expected time picker list element');
+            }
 
-          // Offset from time-picker.tsx elementListScrollToTop
-          const scrollPositionOffset = 11;
-          // Scrollposition calculation from time-picker.tsx elementListScrollToTop
-          const expected =
-            el.offsetTop -
-            list.clientHeight / 2 +
-            el.clientHeight -
-            scrollPositionOffset;
+            // Scrollposition calculation from time-picker.tsx elementListScrollToTop
+            const expected =
+              el.offsetTop -
+              list.clientHeight / 2 +
+              el.clientHeight -
+              scrollPositionOffset;
 
-          // <= 5 px tolerance
-          return Math.abs(list.scrollTop - expected) <= 5;
-        });
+            // Keep tolerance tight to catch alignment regressions
+            return Math.abs(list.scrollTop - expected) <= 2;
+          },
+          ELEMENT_LIST_SCROLL_OFFSET
+        );
       };
 
       const hourColumn = firstPicker.locator(
@@ -809,6 +811,40 @@ regressionTest.describe('time picker tests', () => {
       expect(await checkScrollAlignment(secondColumn)).toBe(true);
     }
   );
+});
+
+regressionTest.describe('interval validation', () => {
+  for (const [attribute, invalidValue] of [
+    ['minute-interval', '0'],
+    ['second-interval', '0.001'],
+    ['minute-interval', 'NaN'],
+  ] as const) {
+    regressionTest(
+      `falls back to default for ${attribute}="${invalidValue}"`,
+      async ({ mount, page }) => {
+        const errors: string[] = [];
+        page.on('console', (message) => {
+          if (message.type() === 'error') {
+            errors.push(message.text());
+          }
+        });
+
+        await mount(
+          `<ix-time-picker format="HH:mm:ss" time="00:00:00" ${attribute}="${invalidValue}"></ix-time-picker>`
+        );
+        const timePicker = page.locator(TIME_PICKER_SELECTOR);
+        await expect(timePicker).toHaveAttribute('hydrated');
+
+        const unit = attribute === 'minute-interval' ? 'min' : 'sec';
+        await expect(
+          timePickerUnitList(timePicker, unit).getByRole('option')
+        ).toHaveCount(60);
+        expect(errors.some((error) => error.includes('is not valid for'))).toBe(
+          true
+        );
+      }
+    );
+  }
 });
 
 // Times used by the confirmation and disabled state tests.

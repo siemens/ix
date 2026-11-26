@@ -31,14 +31,14 @@ export declare interface IxActionCard extends Components.IxActionCard {}
 
 
 @ProxyCmp({
-  inputs: ['appSwitchConfig', 'breakpoints', 'colorSchema', 'forceBreakpoint', 'theme']
+  inputs: ['appSwitchConfig', 'breakpoints', 'colorSchema', 'disableSkipLinks', 'forceBreakpoint', 'i18nSkipToFooter', 'i18nSkipToMain', 'skipLinkMainTarget', 'theme']
 })
 @Component({
   selector: 'ix-application',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['appSwitchConfig', 'breakpoints', 'colorSchema', 'forceBreakpoint', 'theme'],
+  inputs: ['appSwitchConfig', 'breakpoints', 'colorSchema', 'disableSkipLinks', 'forceBreakpoint', 'i18nSkipToFooter', 'i18nSkipToMain', 'skipLinkMainTarget', 'theme'],
   standalone: false
 })
 export class IxApplication {
@@ -84,7 +84,7 @@ export declare interface IxApplicationHeader extends Components.IxApplicationHea
    */
   menuToggle: EventEmitter<IxApplicationHeaderCustomEvent<boolean>>;
   /**
-   * Event emitted when the app switch button is clicked @since 3.0.0
+   * Event emitted when the app switch button is clicked
    */
   openAppSwitch: EventEmitter<IxApplicationHeaderCustomEvent<void>>;
 }
@@ -728,14 +728,14 @@ export declare interface IxContent extends Components.IxContent {}
 
 
 @ProxyCmp({
-  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'textOverflow', 'variant']
+  inputs: ['ariaLabelMoreActions', 'hasBackButton', 'headerSubtitle', 'headerTitle', 'textOverflow', 'variant']
 })
 @Component({
   selector: 'ix-content-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['hasBackButton', 'headerSubtitle', 'headerTitle', 'textOverflow', 'variant'],
+  inputs: ['ariaLabelMoreActions', 'hasBackButton', 'headerSubtitle', 'headerTitle', 'textOverflow', 'variant'],
   outputs: ['backButtonClick'],
   standalone: false
 })
@@ -783,7 +783,7 @@ export declare interface IxCustomField extends Components.IxCustomField {}
 
 
 @ProxyCmp({
-  inputs: ['dateRangeId', 'dateRangeOptions', 'disabled', 'enableTopLayer', 'format', 'from', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'requireConfirmation', 'showWeekNumbers', 'singleSelection', 'to', 'variant', 'weekStartIndex'],
+  inputs: ['dateRangeId', 'dateRangeOptions', 'disabled', 'displayFormat', 'enableTopLayer', 'format', 'from', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'requireConfirmation', 'showWeekNumbers', 'singleSelection', 'to', 'variant', 'weekStartIndex'],
   methods: ['getDateRange']
 })
 @Component({
@@ -791,7 +791,7 @@ export declare interface IxCustomField extends Components.IxCustomField {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['dateRangeId', 'dateRangeOptions', 'disabled', 'enableTopLayer', 'format', 'from', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'requireConfirmation', 'showWeekNumbers', 'singleSelection', 'to', 'variant', 'weekStartIndex'],
+  inputs: ['dateRangeId', 'dateRangeOptions', 'disabled', 'displayFormat', 'enableTopLayer', 'format', 'from', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nNoRange', 'loading', 'locale', 'maxDate', 'minDate', 'requireConfirmation', 'showWeekNumbers', 'singleSelection', 'to', 'variant', 'weekStartIndex'],
   outputs: ['dateRangeChange', 'dateSelect'],
   standalone: false
 })
@@ -818,7 +818,7 @@ The event payload contains information about the selected date range.
 When a pending selection is discarded, it is emitted with the applied
 range again.
 
-Use `dateSelect` to only receive applied ranges.
+Use `dateSelect` to only receive applied ranges. @breaking-change 6.0.0 Emitted for every pick instead of on close, `from` and `to` are localized (use `isoFrom` and `isoTo`)
    */
   dateRangeChange: EventEmitter<IxDateDropdownCustomEvent<IIxDateDropdownDateRangeChangeEvent>>;
   /**
@@ -832,15 +832,15 @@ It is not emitted for programmatic prop input changes. @since 6.0.0
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nCancel', 'i18nConfirm', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
-  methods: ['getNativeInputElement', 'focusInput']
+  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'displayFormat', 'enableTopLayer', 'format', 'helperText', 'i18nCancel', 'i18nConfirm', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
+  methods: ['getNativeInputElement', 'focusInput', 'clear']
 })
 @Component({
   selector: 'ix-date-input',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nCancel', 'i18nConfirm', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
+  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'displayFormat', 'enableTopLayer', 'format', 'helperText', 'i18nCancel', 'i18nConfirm', 'i18nErrorDateUnparsable', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'minDate', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
   outputs: ['valueChange', 'validityStateChange', 'ixChange'],
   standalone: false
 })
@@ -861,7 +861,7 @@ import type { DateInputValidityState as IIxDateInputDateInputValidityState } fro
 
 export declare interface IxDateInput extends Components.IxDateInput {
   /**
-   * Value change event. Emitted when the input value changes.
+   * Value change event. Emitted when the input value changes. @breaking-change 6.0.0 Emit timing changed with `requireConfirmation`
    */
   valueChange: EventEmitter<IxDateInputCustomEvent<string | undefined>>;
   /**
@@ -869,7 +869,7 @@ export declare interface IxDateInput extends Components.IxDateInput {
    */
   validityStateChange: EventEmitter<IxDateInputCustomEvent<IIxDateInputDateInputValidityState>>;
   /**
-   * Change event. Emitted when the date input loses focus and the value has changed. @since 4.4.0
+   * Change event. Emitted when the date input loses focus and the value has changed.
    */
   ixChange: EventEmitter<IxDateInputCustomEvent<string | undefined>>;
 }
@@ -911,7 +911,7 @@ formatted according to the `format` and `locale` properties.
 Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
 Note: Since 2.0.0 `dateChange` does not dispatch detail property as `string`
 When a pending selection is discarded, it is emitted with the confirmed
-selection again. Use `dateSelect` to receive only the applied selection.
+selection again. Use `dateSelect` to receive only the applied selection. @breaking-change 6.0.0 `from` and `to` are localized, use `isoFrom` and `isoTo` for ISO 8601 values
    */
   dateChange: EventEmitter<IxDatePickerCustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
@@ -920,7 +920,7 @@ The `DateChangeEvent` contains `from` and `to` properties formatted according to
 Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
 
 Emitted together with `dateChange`. @deprecated since 6.0.0, use `dateChange` instead, which carries the same
-`from`/`to` range. Will be removed in 7.0.0.
+`from`/`to` range. Will be removed in 7.0.0.,@breaking-change 6.0.0 Deprecated, `from` and `to` are localized (use `isoFrom` and `isoTo`)
    */
   dateRangeChange: EventEmitter<IxDatePickerCustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
@@ -929,7 +929,7 @@ button, or via the confirm button with `requireConfirmation`. With
 `singleSelection` and without `requireConfirmation` there is no button,
 so it is emitted together with `dateChange` when a date is picked.
 The `DateChangeEvent` contains `from` and `to` properties formatted according to the `format` and `locale` properties.
-Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
+Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings. @breaking-change 6.0.0 `from` and `to` are localized, use `isoFrom` and `isoTo` for ISO 8601 values
    */
   dateSelect: EventEmitter<IxDatePickerCustomEvent<IIxDatePickerDateChangeEvent>>;
   /**
@@ -940,14 +940,14 @@ Use `isoFrom` and `isoTo` for locale-independent ISO 8601 date strings.
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nErrorDateTimeUnparsable', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex']
+  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'displayFormat', 'enableTopLayer', 'format', 'helperText', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nErrorDateTimeUnparsable', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex']
 })
 @Component({
   selector: 'ix-datetime-input',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'enableTopLayer', 'format', 'helperText', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nErrorDateTimeUnparsable', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
+  inputs: ['ariaLabelCalendarButton', 'ariaLabelNextMonthButton', 'ariaLabelPreviousMonthButton', 'disabled', 'displayFormat', 'enableTopLayer', 'format', 'helperText', 'i18nCancel', 'i18nConfirm', 'i18nDone', 'i18nErrorDateTimeUnparsable', 'i18nTime', 'infoText', 'invalidText', 'label', 'locale', 'maxDate', 'maxTime', 'minDate', 'minTime', 'name', 'placeholder', 'readonly', 'requireConfirmation', 'required', 'showTextAsTooltip', 'showWeekNumbers', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText', 'weekStartIndex'],
   outputs: ['valueChange', 'validityStateChange', 'ixFocus', 'ixBlur', 'ixChange'],
   standalone: false
 })
@@ -970,7 +970,7 @@ import type { DateTimeInputValidityState as IIxDatetimeInputDateTimeInputValidit
 
 export declare interface IxDatetimeInput extends Components.IxDatetimeInput {
   /**
-   * Emitted when the datetime value changes. Payload is display format or undefined
+   * Emitted when the datetime value changes. Payload is in `format` or undefined @breaking-change 6.0.0 Emit timing changed for picker selections
    */
   valueChange: EventEmitter<IxDatetimeInputCustomEvent<string | undefined>>;
   /**
@@ -996,7 +996,7 @@ Fires in two scenarios:
 Does NOT fire when:
 - The picker is opened/closed without changing the value
 - The input is blurred without modifying the value
-- The value is changed programmatically via the value property
+- The value is changed programmatically via the value property @breaking-change 6.0.0 Emitted once when the picker closes, or on Confirm with `requireConfirmation`
    */
   ixChange: EventEmitter<IxDatetimeInputCustomEvent<string | undefined>>;
 }
@@ -1053,7 +1053,7 @@ again. Use `dateSelect` for the applied selection.
   dateChange: EventEmitter<IxDatetimePickerCustomEvent<IIxDatetimePickerDateTimeDateChangeEvent>>;
   /**
    * Datetime selection event. Emitted when the selection is applied via the
-done button, or via the confirm button with `requireConfirmation`.
+done button, or via the confirm button with `requireConfirmation`. @breaking-change 6.0.0 `from`, `to` and `time` are localized, use `isoFrom`, `isoTo` and `isoTime` for ISO 8601 values
    */
   dateSelect: EventEmitter<IxDatetimePickerCustomEvent<IIxDatetimePickerDateTimeSelectEvent>>;
   /**
@@ -1231,14 +1231,14 @@ export declare interface IxDropdownQuickActions extends Components.IxDropdownQui
 
 
 @ProxyCmp({
-  inputs: ['action', 'ariaLabelEmptyStateIcon', 'header', 'icon', 'layout', 'subHeader']
+  inputs: ['action', 'ariaLabelEmptyStateIcon', 'description', 'header', 'icon', 'layout']
 })
 @Component({
   selector: 'ix-empty-state',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['action', 'ariaLabelEmptyStateIcon', { name: 'header', required: true }, 'icon', 'layout', 'subHeader'],
+  inputs: ['action', 'ariaLabelEmptyStateIcon', 'description', { name: 'header', required: true }, 'icon', 'layout'],
   outputs: ['actionClick'],
   standalone: false
 })
@@ -1430,7 +1430,7 @@ import type { IxFlipTileCustomEvent } from '@siemens/ix';
 
 export declare interface IxFlipTile extends Components.IxFlipTile {
   /**
-   * Event emitted when the index changes @since 3.0.0
+   * Event emitted when the index changes
    */
   toggle: EventEmitter<IxFlipTileCustomEvent<number>>;
 }
@@ -1633,14 +1633,14 @@ export declare interface IxIconToggleButton extends Components.IxIconToggleButto
 
 
 @ProxyCmp({
-  inputs: ['copyText', 'icon', 'iconColor', 'instructions', 'titleText']
+  inputs: ['description', 'icon', 'iconColor', 'titleText']
 })
 @Component({
   selector: 'ix-info-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['copyText', 'icon', 'iconColor', 'instructions', { name: 'titleText', required: true }],
+  inputs: ['description', 'icon', 'iconColor', { name: 'titleText', required: true }],
   standalone: false
 })
 export class IxInfoPage {
@@ -1657,7 +1657,7 @@ export declare interface IxInfoPage extends Components.IxInfoPage {}
 
 @ProxyCmp({
   inputs: ['allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showTextAsTooltip', 'suppressSubmitOnEnter', 'textAlignment', 'type', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'getValidityState', 'focusInput']
+  methods: ['getNativeInputElement', 'getValidityState', 'focusInput', 'clear']
 })
 @Component({
   selector: 'ix-input',
@@ -1697,21 +1697,21 @@ export declare interface IxInput extends Components.IxInput {
    */
   ixBlur: EventEmitter<IxInputCustomEvent<void>>;
   /**
-   * Event emitted when the text field loses focus and the value has changed. @since 4.4.0
+   * Event emitted when the text field loses focus and the value has changed.
    */
   ixChange: EventEmitter<IxInputCustomEvent<string>>;
 }
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelIcon', 'icon', 'label', 'labelPosition', 'value']
+  inputs: ['ariaLabelIcon', 'hideDivider', 'icon', 'label', 'labelPosition', 'value']
 })
 @Component({
   selector: 'ix-key-value',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelIcon', 'icon', { name: 'label', required: true }, 'labelPosition', 'value'],
+  inputs: ['ariaLabelIcon', 'hideDivider', 'icon', { name: 'label', required: true }, 'labelPosition', 'value'],
   standalone: false
 })
 export class IxKeyValue {
@@ -1727,14 +1727,14 @@ export declare interface IxKeyValue extends Components.IxKeyValue {}
 
 
 @ProxyCmp({
-  inputs: ['striped']
+  inputs: ['hideDividers', 'striped']
 })
 @Component({
   selector: 'ix-key-value-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['striped'],
+  inputs: ['hideDividers', 'striped'],
   standalone: false
 })
 export class IxKeyValueList {
@@ -1750,14 +1750,14 @@ export declare interface IxKeyValueList extends Components.IxKeyValueList {}
 
 
 @ProxyCmp({
-  inputs: ['ariaLabelAlarmIcon', 'ariaLabelWarningIcon', 'label', 'orientation', 'state', 'unit', 'value']
+  inputs: ['label', 'orientation', 'state', 'unit', 'value']
 })
 @Component({
   selector: 'ix-kpi',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaLabelAlarmIcon', 'ariaLabelWarningIcon', 'label', 'orientation', 'state', 'unit', 'value'],
+  inputs: ['label', 'orientation', 'state', 'unit', 'value'],
   standalone: false
 })
 export class IxKpi {
@@ -1842,6 +1842,98 @@ export declare interface IxLinkButton extends Components.IxLinkButton {}
 
 
 @ProxyCmp({
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'checkbox', 'disabled', 'divider', 'dragBehavior', 'draggable', 'i18nListItem', 'i18nReorderCancelled', 'i18nReorderDropped', 'i18nReorderLifted', 'i18nReorderPosition', 'itemGap', 'variant']
+})
+@Component({
+  selector: 'ix-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'checkbox', 'disabled', 'divider', 'dragBehavior', 'draggable', 'i18nListItem', 'i18nReorderCancelled', 'i18nReorderDropped', 'i18nReorderLifted', 'i18nReorderPosition', 'itemGap', 'variant'],
+  outputs: ['itemOrderChange'],
+  standalone: false
+})
+export class IxList {
+  protected el: HTMLIxListElement;
+  @Output() itemOrderChange = new EventEmitter<IxListCustomEvent<IIxListListItemOrderChangeEvent>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { IxListCustomEvent } from '@siemens/ix';
+import type { ListItemOrderChangeEvent as IIxListListItemOrderChangeEvent } from '@siemens/ix';
+
+export declare interface IxList extends Components.IxList {
+  /**
+   * Emitted after a list item has been reordered. @since 6.0.0
+   */
+  itemOrderChange: EventEmitter<IxListCustomEvent<IIxListListItemOrderChangeEvent>>;
+}
+
+
+@ProxyCmp({
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'ariaLabelCheckbox', 'ariaLabelDragGripper', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'divider', 'icon', 'label', 'selected', 'variant']
+})
+@Component({
+  selector: 'ix-list-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['actionOnHover', 'actionSlotAlignment', 'active', 'ariaLabelCheckbox', 'ariaLabelDragGripper', 'ariaLabelIcon', 'checkbox', 'description', 'disabled', 'divider', 'icon', 'label', 'selected', 'variant'],
+  outputs: ['itemClick', 'selectedChange'],
+  standalone: false
+})
+export class IxListItem {
+  protected el: HTMLIxListItemElement;
+  @Output() itemClick = new EventEmitter<IxListItemCustomEvent<HTMLIxListItemElement>>();
+  @Output() selectedChange = new EventEmitter<IxListItemCustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { IxListItemCustomEvent } from '@siemens/ix';
+
+export declare interface IxListItem extends Components.IxListItem {
+  /**
+   * Emitted when the primary item surface is activated. @since 6.0.0
+   */
+  itemClick: EventEmitter<IxListItemCustomEvent<HTMLIxListItemElement>>;
+  /**
+   * Requests a controlled selection update when a checkbox item is activated. @since 6.0.0
+   */
+  selectedChange: EventEmitter<IxListItemCustomEvent<boolean>>;
+}
+
+
+@ProxyCmp({
+})
+@Component({
+  selector: 'ix-list-item-separator',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  standalone: false
+})
+export class IxListItemSeparator {
+  protected el: HTMLIxListItemSeparatorElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxListItemSeparator extends Components.IxListItemSeparator {}
+
+
+@ProxyCmp({
   inputs: ['applicationDescription', 'applicationName', 'enableToggleTheme', 'expand', 'i18nAriaLabelMenu', 'i18nCollapse', 'i18nExpand', 'i18nLegal', 'i18nNavigationHint', 'i18nSettings', 'i18nToggleTheme', 'pinned', 'showAbout', 'showSettings', 'startExpanded'],
   methods: ['toggleMapExpand', 'toggleMenu', 'toggleSettings', 'toggleAbout']
 })
@@ -1880,15 +1972,15 @@ export declare interface IxMenu extends Components.IxMenu {
    */
   mapExpandChange: EventEmitter<IxMenuCustomEvent<boolean>>;
   /**
-   * Event emitted when the app switch button is clicked @since 3.0.0
+   * Event emitted when the app switch button is clicked
    */
   openAppSwitch: EventEmitter<IxMenuCustomEvent<void>>;
   /**
-   * Event emitted when the settings button is clicked @since 3.0.0
+   * Event emitted when the settings button is clicked
    */
   openSettings: EventEmitter<IxMenuCustomEvent<void>>;
   /**
-   * Event emitted when the about button is clicked @since 3.0.0
+   * Event emitted when the about button is clicked
    */
   openAbout: EventEmitter<IxMenuCustomEvent<void>>;
 }
@@ -1922,7 +2014,7 @@ import type { CustomCloseEvent as IIxMenuAboutCustomCloseEvent } from '@siemens/
 
 export declare interface IxMenuAbout extends Components.IxMenuAbout {
   /**
-   * Active tab changed @since 3.0.0
+   * Active tab changed
    */
   tabChange: EventEmitter<IxMenuAboutCustomEvent<string>>;
   /**
@@ -2140,7 +2232,7 @@ import type { CustomCloseEvent as IIxMenuSettingsCustomCloseEvent } from '@sieme
 
 export declare interface IxMenuSettings extends Components.IxMenuSettings {
   /**
-   * Active tab changed @since 3.0.0
+   * Active tab changed
    */
   tabChange: EventEmitter<IxMenuSettingsCustomEvent<string>>;
   /**
@@ -2327,7 +2419,7 @@ Can be prevented, in which case only the event is triggered, and the modal remai
 
 @ProxyCmp({
   inputs: ['allowEmptyValueChange', 'allowedCharactersPattern', 'disabled', 'helperText', 'infoText', 'invalidText', 'label', 'max', 'min', 'name', 'pattern', 'placeholder', 'readonly', 'required', 'showStepperButtons', 'showTextAsTooltip', 'step', 'suppressSubmitOnEnter', 'textAlignment', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'focusInput']
+  methods: ['getNativeInputElement', 'focusInput', 'clear', 'getValidityState']
 })
 @Component({
   selector: 'ix-number-input',
@@ -2367,7 +2459,7 @@ export declare interface IxNumberInput extends Components.IxNumberInput {
    */
   ixBlur: EventEmitter<IxNumberInputCustomEvent<void>>;
   /**
-   * Event emitted when the input field loses focus and the value has changed @since 4.4.0
+   * Event emitted when the input field loses focus and the value has changed
    */
   ixChange: EventEmitter<IxNumberInputCustomEvent<number>>;
 }
@@ -3050,7 +3142,7 @@ export declare interface IxTabs extends Components.IxTabs {
 
 @ProxyCmp({
   inputs: ['disabled', 'helperText', 'infoText', 'invalidText', 'label', 'maxLength', 'minLength', 'name', 'placeholder', 'readonly', 'required', 'resizeBehavior', 'showTextAsTooltip', 'textareaCols', 'textareaHeight', 'textareaRows', 'textareaWidth', 'validText', 'value', 'warningText'],
-  methods: ['getNativeInputElement', 'focusInput']
+  methods: ['getNativeInputElement', 'getValidityState', 'focusInput', 'clear']
 })
 @Component({
   selector: 'ix-textarea',
@@ -3090,7 +3182,7 @@ export declare interface IxTextarea extends Components.IxTextarea {
    */
   ixBlur: EventEmitter<IxTextareaCustomEvent<void>>;
   /**
-   * Event emitted when the textarea field loses focus and the value has changed. @since 4.4.0
+   * Event emitted when the textarea field loses focus and the value has changed.
    */
   ixChange: EventEmitter<IxTextareaCustomEvent<string>>;
 }
@@ -3157,7 +3249,7 @@ export declare interface IxTimeInput extends Components.IxTimeInput {
    */
   validityStateChange: EventEmitter<IxTimeInputCustomEvent<IIxTimeInputTimeInputValidityState>>;
   /**
-   * Change event. Emitted when the time input loses focus and the value has changed. @since 4.4.0
+   * Change event. Emitted when the time input loses focus and the value has changed.
    */
   ixChange: EventEmitter<IxTimeInputCustomEvent<string>>;
 }
@@ -3200,7 +3292,7 @@ Use it for the applied time.
    * Time change event. Emitted for every change made, also for a time that is
 not confirmed yet. When a pending time is discarded, it is emitted with
 the confirmed time again, or the default time if none is confirmed, which
-is also emitted on load. Use `timeSelect` for the applied time.
+is also emitted on load. Use `timeSelect` for the applied time. @breaking-change 6.0.0 Emitted for every pick, the applied time is emitted with `timeSelect`
    */
   timeChange: EventEmitter<IxTimePickerCustomEvent<string>>;
   /**
@@ -3338,14 +3430,14 @@ export declare interface IxToggleButton extends Components.IxToggleButton {
 
 
 @ProxyCmp({
-  inputs: ['for', 'interactive', 'placement', 'titleContent']
+  inputs: ['for', 'hideDelay', 'interactive', 'placement', 'showDelay', 'titleContent']
 })
 @Component({
   selector: 'ix-tooltip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['for', 'interactive', 'placement', 'titleContent'],
+  inputs: ['for', 'hideDelay', 'interactive', 'placement', 'showDelay', 'titleContent'],
   standalone: false
 })
 export class IxTooltip {

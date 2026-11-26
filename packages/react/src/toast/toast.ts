@@ -31,22 +31,22 @@ export async function showToast(
     return toastInstance;
   }
 
-  let toastContainer: HTMLElement | undefined;
-  let root: ReactDOMClient.Root | undefined;
+  const roots: ReactDOMClient.Root[] = [];
 
-  if (config.message) {
-    toastContainer = document.createElement('DIV');
-    root = ReactDOMClient.createRoot(toastContainer);
-    root.render(config.message);
-  }
+  const renderIntoContainer = (node: React.ReactNode) => {
+    const container = document.createElement('DIV');
+    const root = ReactDOMClient.createRoot(container);
+    root.render(node);
+    roots.push(root);
+    return container;
+  };
 
-  let toastContainerAction: HTMLElement | undefined;
-
-  if (config.action) {
-    toastContainerAction = document.createElement('DIV');
-    root = ReactDOMClient.createRoot(toastContainerAction);
-    root.render(config.action);
-  }
+  const toastContainer = config.message
+    ? renderIntoContainer(config.message)
+    : undefined;
+  const toastContainerAction = config.action
+    ? renderIntoContainer(config.action)
+    : undefined;
 
   const toastInstance = await toast({
     ...config,
@@ -55,7 +55,7 @@ export async function showToast(
   });
 
   toastInstance.onClose.once(() => {
-    root?.unmount();
+    roots.forEach((root) => root.unmount());
   });
 
   return toastInstance;

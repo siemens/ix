@@ -102,7 +102,7 @@ export const ConfirmationFooter = ({
       {requireConfirmation && (
         <ix-button
           data-testid="cancel"
-          variant="subtle-primary"
+          variant="secondary"
           onClick={() => onCancel?.()}
         >
           {i18nCancel}

@@ -28,8 +28,8 @@ import { hasSlottedElements } from '../utils/shadow-dom';
 /**
  * Tile that flips between a front and back side to reveal additional content.
  *
- * @documentation https://ix.siemens.io//docs/components/flip/code.md
- * @figma-main-component-id 407:3446
+ * @documentation https://ix.siemens.io/docs/components/flip/code.md
+ * @figma-main-component-id 162362:111923
  *
  * @slot header - Header content.
  * @slot - Front-side content.
@@ -46,37 +46,39 @@ export class FlipTile {
   /**
    * Variation of the Flip
    *
-   * @since 4.0.0
+   * Use `outline` or `filled` for a neutral tile, or a status for a colored border and footer.
+   *
+   * @breaking-change 6.0.0 Status variant values renamed
    */
   @Prop() variant: FlipTileVariant = 'filled';
 
   /**
-   * Height interpreted as REM
+   * Height in pixels
+   *
+   * @breaking-change 6.0.0 Numeric values are interpreted as pixels instead of rem
    */
-  @Prop() height: number | 'auto' = 15.125;
+  @Prop() height: number | 'auto' = 242;
 
   /**
-   * Width interpreted as REM
+   * Width in pixels
+   *
+   * @breaking-change 6.0.0 Numeric values are interpreted as pixels instead of rem
    */
-  @Prop() width: number | 'auto' = 16;
+  @Prop() width: number | 'auto' = 256;
 
   /**
    * Index of the currently visible content
-   * @since 3.0.0
    */
   @Prop() index = 0;
 
   /**
    * ARIA label for the eye icon button
    * Will be set as aria-label on the nested HTML button element
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelEyeIconButton?: string;
 
   /**
    * Event emitted when the index changes
-   * @since 3.0.0
    */
   @Event() toggle!: EventEmitter<number>;
 
@@ -193,12 +195,12 @@ export class FlipTile {
           [`flip-tile-variant-${this.variant}`]: true,
         }}
         style={{
-          height: `${this.height}${this.height === 'auto' ? '' : 'rem'}`,
-          'min-height': `${this.height}${this.height === 'auto' ? '' : 'rem'}`,
-          'max-height': `${this.height}${this.height === 'auto' ? '' : 'rem'}`,
-          width: `${this.width}${this.width === 'auto' ? '' : 'rem'}`,
-          'min-width': `${this.width}${this.width === 'auto' ? '' : 'rem'}`,
-          'max-width': `${this.width}${this.width === 'auto' ? '' : 'rem'}`,
+          height: `${this.height}${this.height === 'auto' ? '' : 'px'}`,
+          'min-height': `${this.height}${this.height === 'auto' ? '' : 'px'}`,
+          'max-height': `${this.height}${this.height === 'auto' ? '' : 'px'}`,
+          width: `${this.width}${this.width === 'auto' ? '' : 'px'}`,
+          'min-width': `${this.width}${this.width === 'auto' ? '' : 'px'}`,
+          'max-width': `${this.width}${this.width === 'auto' ? '' : 'px'}`,
         }}
       >
         <div class="flip-tile-container">

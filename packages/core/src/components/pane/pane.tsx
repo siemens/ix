@@ -27,8 +27,7 @@ import {
 } from '@stencil/core';
 import { animate, AnimationControl, Easing } from '../utils/animate';
 import Animation from '../utils/animation';
-import { applicationLayoutService } from '../utils/application-layout';
-import { matchBreakpoint } from '../utils/breakpoints';
+import { subscribeApplicationLayoutMobile } from '../utils/application-layout';
 import {
   addDisposableEventListener,
   DisposableEventListener,
@@ -49,8 +48,8 @@ import { a11yBoolean } from '../utils/a11y';
 /**
  * Collapsible side panel docked to an edge of the layout.
  *
- * @documentation https://ix.siemens.io//docs/components/panes/guide.md
- * @figma-main-component-id 19924:12291
+ * @documentation https://ix.siemens.io/docs/components/panes/guide.md
+ * @figma-main-component-id 153304:26230
  *
  * @slot header - Additional slot for the header content
  *
@@ -181,8 +180,13 @@ export class Pane {
   @State() private parentHeightPx = 0;
 
   private static readonly validPositions = ['top', 'left', 'bottom', 'right'];
-  private static readonly collapsedPane = '40px';
-  private static readonly collapsedPaneMobile = '48px';
+  private static readonly collapsedPane = 'var(--ix-pane--size--collapsed)';
+  private static readonly collapsedPaneMobile =
+    'var(--ix-pane--size--collapsed--mobile)';
+  private static readonly titlePaddingBlock =
+    'var(--ix-pane-title--padding-block--expanded)';
+  private static readonly titlePaddingInline =
+    'var(--ix-pane-title--padding-inline--expanded)';
   private readonly animations: Map<string, AnimationControl> = new Map();
   private animationCounter = 0;
 
@@ -192,7 +196,7 @@ export class Pane {
   private disposableKeydown?: DisposableEventListener;
   private focusTrap?: FocusTrapResult;
   private focusReturnElement?: HTMLElement;
-  private layoutChangeDisposable?: Disposable;
+  private layoutMobileDisposable?: Disposable;
 
   get currentSlot() {
     return this.hostElement.getAttribute('slot');
@@ -210,12 +214,18 @@ export class Pane {
     return this.composition === 'top' || this.composition === 'left';
   }
 
+  private subscribeApplicationLayoutMobile() {
+    this.layoutMobileDisposable?.dispose();
+    this.layoutMobileDisposable = subscribeApplicationLayoutMobile(
+      this.hostElement,
+      (isMobile) => {
+        this.isMobile = isMobile;
+      }
+    );
+  }
+
   connectedCallback() {
-    this.isMobile = matchBreakpoint('sm');
-    this.layoutChangeDisposable?.dispose();
-    this.layoutChangeDisposable = applicationLayoutService.onChange.on(() => {
-      this.isMobile = matchBreakpoint('sm');
-    });
+    this.subscribeApplicationLayoutMobile();
 
     this.mutationObserver?.disconnect();
     this.mutationObserver = new MutationObserver((mutations) => {
@@ -255,13 +265,13 @@ export class Pane {
   }
 
   disconnectedCallback() {
-    this.layoutChangeDisposable?.dispose();
-    this.layoutChangeDisposable = undefined;
     this.mutationObserver?.disconnect();
     this.resizeObserver?.disconnect();
     this.disposableWindowClick?.();
     this.disposableKeydown?.();
     this.focusTrap?.destroy();
+    this.layoutMobileDisposable?.dispose();
+    this.layoutMobileDisposable = undefined;
   }
 
   @Watch('expanded')
@@ -309,6 +319,10 @@ export class Pane {
   }
 
   componentWillLoad() {
+    // Re-subscribe after providers in the tree have finished willLoad, before
+    // sizing so onParentSizeChange sees the resolved mobile mode.
+    this.subscribeApplicationLayoutMobile();
+
     this.onExpandedChange();
 
     this.floating = this.variant === 'floating';
@@ -425,7 +439,7 @@ export class Pane {
           this.showContent = false;
           this.animateVerticalPadding('0px');
         } else {
-          this.animateVerticalPadding('8px');
+          this.animateVerticalPadding(Pane.titlePaddingInline);
         }
       },
       onComplete: () => {
@@ -446,7 +460,8 @@ export class Pane {
           this.showContent = false;
           if (!this.isMobile) this.animateHorizontalPadding('0px');
         } else {
-          if (!this.isMobile) this.animateHorizontalPadding('8px');
+          if (!this.isMobile)
+            this.animateHorizontalPadding(Pane.titlePaddingBlock);
         }
       },
       onComplete: () => {
@@ -579,6 +594,36 @@ export class Pane {
     });
   }
 
+  componentDidRender() {
+    this.linkToggleToPane();
+  }
+
+  private linkToggleToPane() {
+    const iconButton =
+      this.hostElement.shadowRoot?.querySelector<HTMLIxIconButtonElement>(
+        '.title-icon'
+      );
+    const button = iconButton?.shadowRoot?.querySelector('button');
+    const region = this.hostElement.shadowRoot?.getElementById(
+      `pane-${this.composition}`
+    );
+    if (!button || !region) {
+      return;
+    }
+
+    button.setAttribute('aria-expanded', a11yBoolean(this.expanded));
+
+    const toggle = button as HTMLButtonElement & {
+      ariaControlsElements: ReadonlyArray<Element> | null;
+    };
+    const controlled = toggle.ariaControlsElements;
+    if (controlled?.length === 1 && controlled[0] === region) {
+      return;
+    }
+
+    toggle.ariaControlsElements = [region];
+  }
+
   private focusFirstSlottedElement() {
     const autofocusEl =
       this.hostElement.querySelector<HTMLElement>('[autofocus]');
@@ -642,10 +687,10 @@ export class Pane {
 
         if (this.isBottomTopPane) {
           this.hostElement.style.height = expandPaneSize;
-          this.animateHorizontalPadding('8px', 0);
+          this.animateHorizontalPadding(Pane.titlePaddingBlock, 0);
         } else {
           this.hostElement.style.width = expandPaneSize;
-          this.animateVerticalPadding('8px', 0);
+          this.animateVerticalPadding(Pane.titlePaddingInline, 0);
         }
       }
 
@@ -755,7 +800,6 @@ export class Pane {
             !this.floating,
           'not-visible': this.hideOnCollapse && !this.expanded,
         }}
-        aria-expanded={a11yBoolean(this.expanded)}
       >
         <aside
           id={`pane-${this.composition}`}
@@ -796,7 +840,6 @@ export class Pane {
               }
               variant="subtle-tertiary"
               onClick={() => this.dispatchExpandedChangedEvent()}
-              aria-controls={`pane-${this.composition}`}
               aria-label={paneButtonAriaLabel}
             />
             <div
