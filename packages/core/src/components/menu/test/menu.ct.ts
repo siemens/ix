@@ -1085,6 +1085,9 @@ regressionTest(
 regressionTest(
   'should not throw on window resize when the menu is not rendered yet',
   async ({ mount, page }) => {
+    const pageErrors: Error[] = [];
+    page.on('pageerror', (error) => pageErrors.push(error));
+
     const menu = await mount(`
       <ix-menu>
         <ix-menu-item>Home</ix-menu-item>
@@ -1107,10 +1110,7 @@ regressionTest(
       return errors;
     });
 
-    expect(
-      consoleErrors.filter((error) =>
-        error.includes('Menu items container not found')
-      )
-    ).toEqual([]);
+    expect(consoleErrors).toEqual([]);
+    expect(pageErrors).toEqual([]);
   }
 );
