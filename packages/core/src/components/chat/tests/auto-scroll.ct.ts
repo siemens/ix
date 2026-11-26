@@ -12,6 +12,15 @@ import { regressionTest, waitForRender } from '@utils/test';
 const longParagraph =
   'Effective asset performance management improves uptime, reduces maintenance costs and ensures long-term equipment health across all production lines.';
 
+function createAiOnlyConversation(count = 6) {
+  return Array.from({ length: count })
+    .map(
+      () =>
+        `<ix-chat-ai-message><p>${longParagraph}</p><p>${longParagraph}</p></ix-chat-ai-message>`
+    )
+    .join('');
+}
+
 function createConversation(turns = 6) {
   return Array.from({ length: turns })
     .map(
@@ -28,11 +37,12 @@ function createConversation(turns = 6) {
 async function mountChat(
   mount: (html: string) => Promise<unknown>,
   page: Page,
-  attributes = ''
+  attributes = '',
+  content = createConversation()
 ) {
   await mount(`
     <ix-chat style="height: 24rem; width: 40rem" ${attributes}>
-      ${createConversation()}
+      ${content}
       <ix-chat-input slot="prompt"></ix-chat-input>
     </ix-chat>
   `);
@@ -339,6 +349,52 @@ regressionTest(
 
     expect(await getDistanceFromBottom(chat)).toBeGreaterThan(100);
     await expect(getScrollToLatestButton(page)).toBeVisible();
+  }
+);
+
+regressionTest(
+  'jumps to the bottom when the first user message follows AI-only content',
+  async ({ mount, page }) => {
+    const chat = await mountChat(mount, page, '', createAiOnlyConversation());
+    await scrollUpAsUser(page, chat);
+
+    await addUserMessage(chat, 'A first question');
+
+    await expectAtBottom(chat);
+    await expect(getScrollToLatestButton(page)).toBeHidden();
+  }
+);
+
+regressionTest(
+  'does not jump to the bottom when a user message is prepended to AI-only content',
+  async ({ mount, page }) => {
+    const chat = await mountChat(mount, page, '', createAiOnlyConversation());
+    await scrollUpAsUser(page, chat);
+
+    await addUserMessage(chat, 'An earlier question', 'prepend');
+    await waitForRender(page);
+
+    expect(await getDistanceFromBottom(chat)).toBeGreaterThan(100);
+    await expect(getScrollToLatestButton(page)).toBeVisible();
+  }
+);
+
+regressionTest(
+  'resumes following when a resize reveals the bottom',
+  async ({ mount, page }) => {
+    const chat = await mountChat(mount, page);
+    await scrollUpAsUser(page, chat);
+
+    const distance = await getDistanceFromBottom(chat);
+    // Grow the viewport to (almost) the bottom without clamping the scroll position
+    await chat.evaluate((element, distance) => {
+      const height = element.getBoundingClientRect().height;
+      element.style.height = `${height + distance - 4}px`;
+    }, distance);
+    await expect(getScrollToLatestButton(page)).toBeHidden();
+
+    await growLastAiMessage(page);
+    await expectAtBottom(chat);
   }
 );
 
