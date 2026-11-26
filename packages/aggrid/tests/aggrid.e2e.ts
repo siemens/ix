@@ -302,6 +302,57 @@ regressionTest.describe('aggrid', () => {
     );
   });
 
+  regressionTest(
+    'uses the theme font family token with SiemensSans Pro fallback',
+    async ({ page }) => {
+      await page.goto('basic/basic.html');
+      const grid = page.locator('.ag-root-wrapper');
+      const cell = page.getByRole('gridcell', { name: 'Toyota', exact: true });
+      await expect(grid).toBeVisible();
+
+      await expect(grid).toHaveCSS(
+        'font-family',
+        'Arial, helvetica, sans-serif'
+      );
+      await expect(cell).toHaveCSS(
+        'font-family',
+        'Arial, helvetica, sans-serif'
+      );
+
+      await page.evaluate(() => {
+        document.documentElement.style.setProperty(
+          '--si-ref-typography-font-family-sans',
+          '"SiemensSans Pro", sans-serif'
+        );
+      });
+
+      await expect(grid).toHaveCSS(
+        'font-family',
+        '"SiemensSans Pro", sans-serif'
+      );
+      await expect(cell).toHaveCSS(
+        'font-family',
+        '"SiemensSans Pro", sans-serif'
+      );
+
+      await page.evaluate(() => {
+        document.documentElement.style.setProperty(
+          '--si-ref-typography-font-family-sans',
+          'initial'
+        );
+      });
+
+      await expect(grid).toHaveCSS(
+        'font-family',
+        '"SiemensSans Pro VF", "SiemensSans Pro", sans-serif'
+      );
+      await expect(cell).toHaveCSS(
+        'font-family',
+        '"SiemensSans Pro VF", "SiemensSans Pro", sans-serif'
+      );
+    }
+  );
+
   regressionTest.describe('dropdown top layer (enableTopLayer=true)', () => {
     regressionTest(
       'dropdown-button in cell should appear above other rows',
