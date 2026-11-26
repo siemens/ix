@@ -14,7 +14,7 @@ import {
   createDropdownPickerAccessor,
   DEFAULT_DATETIME_FORMAT,
   formatDateTime,
-  getFormValue,
+  expectFormValue,
   mountHydrated,
   PENDING_SELECTION_DISMISSALS,
   preventFormSubmission,
@@ -1815,8 +1815,7 @@ regressionTest('form-ready - basic submission', async ({ mount, page }) => {
   await input.fill('2024/05/05 14:30:00');
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'appointment-time', page);
-  expect(formData).toBe('2024/05/05 14:30:00');
+  await expectFormValue(formElement, 'appointment-time', '2024/05/05 14:30:00');
 });
 
 regressionTest('form-ready - initial value', async ({ mount, page }) => {
@@ -1832,8 +1831,7 @@ regressionTest('form-ready - initial value', async ({ mount, page }) => {
   const formElement = page.locator('form');
   preventFormSubmission(formElement);
 
-  const formData = await getFormValue(formElement, 'appointment-time', page);
-  expect(formData).toBe('2024/12/25 10:00:00');
+  await expectFormValue(formElement, 'appointment-time', '2024/12/25 10:00:00');
 });
 
 regressionTest(
