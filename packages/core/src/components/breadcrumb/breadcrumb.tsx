@@ -114,6 +114,41 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
     this.itemClick.emit(item);
   }
 
+  /**
+   * Hidden items are rendered as dropdown items, which have no anchor of their own.
+   * Follow the item's link the same way the anchor of a visible item would:
+   * a canceled click does not navigate, and a modifier click or a middle click
+   * opens the link in another browsing context.
+   */
+  private navigateToItem(item: HTMLIxBreadcrumbItemElement, event: MouseEvent) {
+    // Read the link when the item is clicked, in case it changes before navigating.
+    const { href, target, rel } = item;
+    if (!href) {
+      return;
+    }
+
+    // Wait until the click has reached every listener, so an application
+    // can still cancel it with `preventDefault()`.
+    setTimeout(() => {
+      if (event.defaultPrevented) {
+        return;
+      }
+
+      const opensNewContext =
+        event.ctrlKey || event.metaKey || event.shiftKey || event.button === 1;
+
+      const anchor = document.createElement('a');
+      anchor.href = href;
+      anchor.target = opensNewContext ? '_blank' : (target ?? '_self');
+      if (rel) {
+        anchor.rel = rel;
+      }
+
+      // The anchor stays detached, so its click event does not reach any listeners on the page.
+      anchor.click();
+    });
+  }
+
   override componentDidLoad() {
     this.mutationObserver = createMutationObserver(() =>
       this.onChildMutation()
@@ -198,11 +233,19 @@ export class Breadcrumb extends Mixin(...DefaultMixins) {
                 return (
                   <ix-dropdown-item
                     label={label}
-                    onClick={() => {
+                    onClick={(event) => {
                       this.onItemClick({
                         breadcrumbKey: item.breadcrumbKey,
                         label,
                       });
+                      this.navigateToItem(item, event);
+                    }}
+                    onAuxClick={(event) => {
+                      // A middle click opens the link in a new tab, like it
+                      // does on the anchor of a visible item.
+                      if (event.button === 1) {
+                        this.navigateToItem(item, event);
+                      }
                     }}
                     onItemClick={(event) => event.stopPropagation()}
                   ></ix-dropdown-item>
