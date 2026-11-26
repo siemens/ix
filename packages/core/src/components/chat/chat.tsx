@@ -72,6 +72,7 @@ export class Chat {
   private followLatest = true;
   private lastScrollTop = 0;
   private readonly knownUserMessages = new WeakSet<Element>();
+  private lastKnownMessage?: Element;
 
   @Watch('suppressAutoScroll')
   onSuppressAutoScrollChange() {
@@ -180,6 +181,10 @@ export class Chat {
     }
 
     this.updateIsAtBottom();
+
+    if (!this.suppressAutoScroll && this.isAtBottom) {
+      this.followLatest = true;
+    }
   }
 
   private handleScroll() {
@@ -210,14 +215,29 @@ export class Chat {
     const latestUserMessage = userMessages[userMessages.length - 1];
     // Only a new latest user message (a sent prompt) re-engages Auto-scroll, not prepended history
     const hasNewLatestUserMessage =
-      !!latestUserMessage && !this.knownUserMessages.has(latestUserMessage);
+      !!latestUserMessage &&
+      !this.knownUserMessages.has(latestUserMessage) &&
+      this.isAfterLastKnownMessage(latestUserMessage, messages);
 
     userMessages.forEach((element) => this.knownUserMessages.add(element));
+    this.lastKnownMessage = messages[messages.length - 1];
 
     if (hasNewLatestUserMessage && !this.suppressAutoScroll) {
       this.followLatest = true;
       this.scrollMessagesTo('bottom', 'auto');
     }
+  }
+
+  private isAfterLastKnownMessage(element: Element, messages: Element[]) {
+    const lastKnownMessage = this.lastKnownMessage;
+    if (!lastKnownMessage || !messages.includes(lastKnownMessage)) {
+      return true;
+    }
+
+    return !!(
+      lastKnownMessage.compareDocumentPosition(element) &
+      Node.DOCUMENT_POSITION_FOLLOWING
+    );
   }
 
   private handleScrollToLatestClick() {
