@@ -1,8 +1,8 @@
 ---
 name: ix
-description: 'Implement, review, migrate, or answer development questions about Siemens iX. Use version-matched registry documentation for component APIs, examples, patterns, and Figma mappings; use the official design-system documentation for usage guidance, accessibility, migrations, writing, charts, and icons.'
+description: 'Implement, review, migrate, or answer development questions about Siemens iX v6.0.0 and later. Use version-matched registry documentation for component APIs, examples, patterns, and Figma mappings; use the official design-system documentation for usage guidance, styling with design tokens, accessibility, migrations, writing, charts, and icons.'
 license: MIT
-compatibility: 'Requires only file reading or HTTP fetch access to the Siemens iX registry and documentation. No scripts or runtimes are needed. Installed package metadata can be used offline.'
+compatibility: 'Supports Siemens iX v6.0.0 and later. Requires only file reading or HTTP fetch access to the Siemens iX registry and documentation. No scripts or runtimes are needed. Installed package metadata can be used offline.'
 ---
 
 # Siemens iX Development
@@ -14,10 +14,23 @@ compatibility: 'Requires only file reading or HTTP fetch access to the Siemens i
 - Build a larger UI section from an available iX pattern.
 - Translate a Figma component into the matching iX implementation.
 - Find and use an iX icon.
+- Style application markup with iX color, sizing, typography, border, and shadow tokens.
 - Apply iX design, accessibility, UX writing, chart, or migration guidance.
 - Review generated or existing iX code for API, framework, accessibility, and setup mistakes.
 
 If iX is not installed or configured correctly, use the `ix-installation` skill before implementing application features.
+
+## Supported Versions
+
+This skill supports `@siemens/ix` v6.0.0 and later. Its registry, design
+tokens, and component guidance depend on v6.0.0.
+
+When the target application resolves to iX below v6.0.0, or the user requests a
+version below v6.0.0, stop before giving implementation, API, styling, or review
+guidance. Tell the user that the skill requires iX v6.0.0 or later and offer a
+migration to v6 instead. A migration whose target is v6.0.0 or later is in
+scope; follow the migration guidance in
+[General Guidance, Migration, and Review](#general-guidance-migration-and-review).
 
 ## Required Principles
 
@@ -26,6 +39,7 @@ If iX is not installed or configured correctly, use the `ix-installation` skill 
 - Before generating code with an iX component, open that component's detail documentation and at least one relevant example for the target framework.
 - Use the target framework's wrapper and conventions. Do not translate syntax mechanically from another framework when a matching example exists.
 - Treat properties, events, methods, slots, accessibility behavior, and Figma IDs as contracts. Do not invent unavailable relationships or APIs.
+- Take every color, size, spacing, font, border, radius, and shadow value from an iX component property or an iX design token. A raw value needs an explicit user requirement. See [Styling Workflow](#styling-workflow).
 - Preserve the application's architecture, state management, styling strategy, accessibility behavior, and existing iX setup.
 - Do not edit generated React, Angular, or Vue wrapper output.
 
@@ -39,6 +53,7 @@ If iX is not installed or configured correctly, use the `ix-installation` skill 
 | Practical framework examples                                                 | Matching version's registry `llms/examples/<framework>.md` and linked files  | Related examples in component details                          |
 | Complete reusable UI patterns                                                | Matching version's registry `llms/patterns.md` and linked materialized files | Existing application patterns built from documented components |
 | Component usage and design guidance                                          | Documentation links from the versioned component detail                      | `https://ix.siemens.io/llms.txt`                               |
+| Design tokens for color, sizing, typography, borders, and shadows            | Style pages listed in the [Styling Workflow](#styling-workflow)              | Installed `@siemens/ix/tokens/manifest.json`                   |
 | Installation, migration, accessibility, UX writing, charts, general guidance | `https://ix.siemens.io/llms.txt` and the relevant linked page                | Repository-local guidance for the target project               |
 | Icon discovery                                                               | `https://ix.siemens.io/docs/icons/icon-library.md`                           | Installed `@siemens/ix-icons/dist/sample.json`                 |
 | Icon usage semantics                                                         | Icon usage page linked from `https://ix.siemens.io/llms.txt`                 | Version-matched `add-icons` example                            |
@@ -64,6 +79,7 @@ For implementation, API, example, pattern, Figma, or migration work:
    - the resolved `@siemens/ix` version, using the installed package or lockfile
 4. If `@siemens/ix` is absent and code should be implemented, stop and use the `ix-installation` skill. For planning or documentation-only work, use the user-requested version or clearly label the registry version used.
 5. If only a wrapper version is visible, use it as a provisional iX version and confirm compatibility with `@siemens/ix`.
+6. If the resolved version is below v6.0.0, follow [Supported Versions](#supported-versions).
 
 ## Phase 2: Read the Version-Matched Registry
 
@@ -73,11 +89,11 @@ fetch tool; do not write or run a search script.
 ### Select the Registry Version
 
 1. Open `https://siemens.github.io/ix/llms.txt`. It lists every deployed
-   registry version (for example `main`, `v5.2.1`) and its `latest` tag.
+   registry version (for example `main`, `v6.0.0`) and its `latest` tag.
 2. Choose the version that matches the resolved iX version from Phase 1,
    normally `v<major.minor.patch>`. An explicit user-requested version wins.
 3. Set `BASE` to that version root, for example
-   `https://siemens.github.io/ix/v5.2.1/`. All registry paths below are
+   `https://siemens.github.io/ix/v6.0.0/`. All registry paths below are
    relative to `BASE`.
 4. If `siemens.github.io` is unreachable, use the raw mirror with the same
    paths: `https://raw.githubusercontent.com/siemens/ix/gh-pages/<version>/`.
@@ -106,14 +122,6 @@ behavior, not only on exact words: for example, "toast", "snackbar", and
 "notification" can all point to `ix-toast`. Compare several plausible
 candidates before choosing.
 
-Older registry versions may not have `llms/catalog.md`, `llms/figma.md`, or
-`llms/examples/<fw>.md` (HTTP 404). In that case:
-
-- use `BASE/llms/components.md` instead of the catalog
-- use the `Figma IDs` sections of component details instead of `figma.md`
-- use `BASE/llms/examples.md` instead of the per-framework example index; it is
-  large, so read only the sections you need
-
 ### Version Unavailable
 
 If the exact version is not deployed:
@@ -132,7 +140,8 @@ If the exact version is not deployed:
    relationships and Figma mappings are unavailable. Do not report a Figma ID as
    unmapped in that case; report that the mapping could not be verified.
 4. If local metadata is also unavailable, state the limitation and ask before
-   using the nearest lower deployed version, or `latest`, as an approximation.
+   using the nearest lower deployed version of v6.0.0 or later, or `latest`, as
+   an approximation.
    Disclose the version actually used.
 
 Documentation URLs are never inferred from package names, homepages, or
@@ -187,6 +196,94 @@ Open the selected component's detail markdown at `BASE/llms/components/<tag>.md`
 If a relationship is marked `unavailable`, do not infer it.
 
 Open the linked usage guide when the task involves component choice, composition, visual variants, behavior, accessibility, or content rather than API syntax alone.
+
+## Styling Workflow
+
+Use this workflow for every style value written for the application: CSS, Sass,
+inline styles, and style values held in JavaScript or TypeScript such as chart
+colors. Keep the application's styling mechanism (CSS modules, Sass, utility
+classes, CSS-in-JS); this workflow governs the values.
+
+### Choose the Source of a Style Value
+
+When the user explicitly requires a specific raw value, such as an exact brand
+color, use that value as given. Take every other color, size, spacing, font,
+border, radius, and shadow value from the first source in this list that covers
+the need:
+
+1. A documented property or variant of the iX component, for example the
+   `variant` of `ix-button`.
+2. An iX component built for the purpose: `ix-typography` for text,
+   `ix-layout-grid` with `ix-row` and `ix-col` or `ix-layout-auto` for layout,
+   `ix-divider` for separators.
+3. A system token, referenced by its complete name through `var()`. When an API
+   takes a number instead of a CSS value, for example a canvas `lineWidth` or a
+   chart option, read the token's computed value with
+   `getComputedStyle(element).getPropertyValue('--si-sys-...')` and convert it
+   to the unit the API expects. Read it again when theme or density changes.
+4. A raw value, such as a hex color or a `px`, `rem`, or `em` length, only when
+   the user explicitly requires that value.
+
+A value read from a Figma spec, a screenshot, or existing application code
+identifies a role; map it to the token for that role. Keywords, percentages,
+`fr`, and `0` describe layout relationships and stay as they are.
+
+### System Tokens
+
+Read the reference for the foundation you
+need and choose a token by its documented role. Token values change with theme,
+color scheme, and density, so the role is the only stable selector.
+
+| Foundation                                                  | Token family                                                                                                                             | Reference                                                                                                         |
+| ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Color: surfaces, text, status, code, and data visualization | `--si-sys-color-background-*`, `--si-sys-color-text-*`, `--si-sys-color-code-*`, `--si-sys-color-data-*`, `--si-sys-color-effects-*`     | `https://ix.siemens.io/docs/styles/colors.md`; surface layers in `https://ix.siemens.io/docs/styles/elevation.md` |
+| Border color                                                | `--si-sys-color-border-*`                                                                                                                | `https://ix.siemens.io/docs/styles/borders.md`                                                                    |
+| Border width, radius, and focus ring                        | `--si-sys-sizing-border-width-*`, `--si-sys-sizing-border-radius-*`, `--si-sys-sizing-focus-ring-*`                                      | Token manifest groups `sizing.border-width`, `sizing.border-radius`, `sizing.focus-ring`                          |
+| Size and spacing                                            | `--si-sys-sizing-size-*`, `--si-sys-sizing-spacing-x-*` (horizontal), `--si-sys-sizing-spacing-y-*` (vertical), `--si-sys-sizing-icon-*` | `https://ix.siemens.io/docs/styles/sizing.md`                                                                     |
+| Typography                                                  | `--si-sys-typography-*`                                                                                                                  | `https://ix.siemens.io/docs/styles/typography/guide.md`                                                           |
+| Shadow                                                      | `--si-sys-color-effects-shadow-*`                                                                                                        | `https://ix.siemens.io/docs/styles/shadows.md`                                                                    |
+
+The style pages describe the latest release. The token manifest of the installed
+version is `node_modules/@siemens/ix/tokens/manifest.json` in the consumer's
+target application or workspace. It is about 157 KB, so search it for a token
+`name` or `group` instead of reading it whole. Every token name you write must
+exist in that manifest; when the manifest is not installed, use the style pages
+and disclose that the names were not checked against the installed version.
+
+Typography and shadow tokens hold complete values. Apply each one whole to the
+`font` or `box-shadow` property. Build a border from a width token, a style, and
+a border color token:
+
+```css
+.dashboard-section {
+  padding: var(--si-sys-sizing-spacing-y-40) var(--si-sys-sizing-spacing-x-40);
+  border: var(--si-sys-sizing-border-width-default) solid var(--si-sys-color-border-4);
+  border-radius: var(--si-sys-sizing-border-radius-sm);
+  background-color: var(--si-sys-color-background-1);
+  color: var(--si-sys-color-text-primary);
+  font: var(--si-sys-typography-body);
+}
+```
+
+### Component Appearance
+
+The documented properties, variants, and slots of an iX component are the only
+way to change its appearance.
+
+Never set or override a component-internal CSS custom property
+(`--ix-<component>--*`) in application code. These variables are private to the
+design system. This rule has no exception, including an explicit user request.
+
+When the documented API cannot produce the requested appearance:
+
+1. State that iX does not support that customization.
+2. Offer the closest documented property, variant, or component.
+3. Leave the component's appearance unchanged.
+
+### No Matching Token
+
+When no token has the required role or value, use the nearest semantic token and
+report the requested value, the chosen token, and the difference.
 
 ### Validate with an Example
 
@@ -342,12 +439,15 @@ After implementation, check:
 - the selected framework variant was used
 - component properties, events, methods, and slots exist in the matched version
 - icon registration and accessible naming are correct
+- every added or changed style value follows the [Styling Workflow](#styling-workflow)
 - no wrapper project calls custom-element loaders
 - TypeScript/build errors are resolved
 - relevant lint errors are resolved
 - the resulting interaction is covered by the project's existing test approach when behavior changed
 
 Run the smallest existing type-check, build, lint, or targeted test command that proves the change. Do not introduce new validation tooling.
+
+When reviewing existing code, list each hard-coded color, size, spacing, font, border, radius, and shadow value that the Styling Workflow does not permit as a finding; keywords, percentages, `fr`, `0`, and values the user explicitly required are permitted. Name the token that fits its role. List each existing `--ix-<component>--*` override as a finding too. Rewrite existing values only when the user asks for it.
 
 ## Failure Handling
 
@@ -358,6 +458,8 @@ Run the smallest existing type-check, build, lint, or targeted test command that
 - Matching framework example unavailable: use the API and usage guide, preserve framework conventions, and disclose the missing example.
 - Pattern framework variant unavailable: do not translate a different framework automatically; implement from documented components or ask the user.
 - Icon not found: suggest documented related icons, not an invented icon name.
+- iX below v6.0.0: follow [Supported Versions](#supported-versions).
+- No matching design token or a component appearance the documented API cannot produce: follow the matching section of the [Styling Workflow](#styling-workflow).
 - Figma ID unmapped: report it as unmapped and continue with requirement-based discovery.
 
 ## Output
@@ -368,4 +470,5 @@ Report:
 2. Registry/documentation pages and examples used.
 3. Components, pattern, icons, or Figma mapping selected.
 4. Files changed and meaningful implementation decisions.
-5. Any unavailable version, relationship, example, or mapping that limited confidence.
+5. Every raw style value written, with the user requirement behind it, and every nearest-token substitution.
+6. Any unavailable version, relationship, example, or mapping that limited confidence.

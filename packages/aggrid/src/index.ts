@@ -23,7 +23,10 @@ import {
   iconDragGripper,
 } from '@siemens/ix-icons/icons';
 
-const additionalThemeParams = { fontFamily: ['Siemens Sans', 'sans-serif'] };
+const additionalThemeParams = {
+  fontFamily:
+    "var(--si-ref-typography-font-family-sans, 'SiemensSans Pro VF', 'SiemensSans Pro', sans-serif)",
+};
 const stripedRowThemeParams = {
   oddRowBackgroundColor: 'var(--si-sys-color-background-0)',
 };

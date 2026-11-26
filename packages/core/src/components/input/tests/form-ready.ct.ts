@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import {
-  getFormValue,
+  expectFormValue,
   preventFormSubmission,
   regressionTest,
 } from '@utils/test';
@@ -27,8 +27,7 @@ regressionTest(`form-ready - ix-input`, async ({ mount, page }) => {
   await input.fill('my example');
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('my example');
+  await expectFormValue(formElement, 'my-field-name', 'my example');
 });
 
 const inputTags = [
@@ -149,8 +148,7 @@ regressionTest(`form-ready - ix-number-input`, async ({ mount, page }) => {
   await input.fill('123');
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('123');
+  await expectFormValue(formElement, 'my-field-name', '123');
 });
 
 regressionTest(
@@ -167,20 +165,17 @@ regressionTest(
     // Test positive scientific notation
     await input.fill('1E6');
     await input.blur();
-    let formData = await getFormValue(formElement, 'my-field-name', page);
-    expect(formData).toBe('1000000');
+    await expectFormValue(formElement, 'my-field-name', '1000000');
 
     // Test negative scientific notation
     await input.fill('1E-6');
     await input.blur();
-    formData = await getFormValue(formElement, 'my-field-name', page);
-    expect(formData).toBe('0.000001');
+    await expectFormValue(formElement, 'my-field-name', '0.000001');
 
     // Test lowercase scientific notation
     await input.fill('2.5e3');
     await input.blur();
-    formData = await getFormValue(formElement, 'my-field-name', page);
-    expect(formData).toBe('2500');
+    await expectFormValue(formElement, 'my-field-name', '2500');
   }
 );
 
@@ -229,8 +224,7 @@ regressionTest(`form-ready - ix-textarea`, async ({ mount, page }) => {
   await input.fill('Some longer text');
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('Some longer text');
+  await expectFormValue(formElement, 'my-field-name', 'Some longer text');
 });
 
 regressionTest(
@@ -242,8 +236,7 @@ regressionTest(
 
     const formElement = page.locator('form');
     preventFormSubmission(formElement);
-    const formData = await getFormValue(formElement, 'my-field-name', page);
-    expect(formData).toBe('initial value');
+    await expectFormValue(formElement, 'my-field-name', 'initial value');
   }
 );
 
@@ -256,8 +249,7 @@ regressionTest(
 
     const formElement = page.locator('form');
     preventFormSubmission(formElement);
-    const formData = await getFormValue(formElement, 'my-field-name', page);
-    expect(formData).toBe('1337');
+    await expectFormValue(formElement, 'my-field-name', '1337');
   }
 );
 
@@ -294,8 +286,7 @@ regressionTest(
 
     const formElement = page.locator('form');
     preventFormSubmission(formElement);
-    const formData = await getFormValue(formElement, 'my-field-name', page);
-    expect(formData).toBe('initial value');
+    await expectFormValue(formElement, 'my-field-name', 'initial value');
   }
 );
 
