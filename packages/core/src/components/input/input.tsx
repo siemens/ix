@@ -43,6 +43,7 @@ import {
   onInputBlurWithChange,
   revalidateAfterPropChange,
   onEnterKeyChangeEmit,
+  syncNativeControlValue,
 } from './input.util';
 
 let inputIds = 0;
@@ -226,8 +227,9 @@ export class Input implements IxInputFieldComponent<string> {
   }
 
   @Watch('value')
-  onValueChange(newValue: string) {
-    this.updateFormInternalValue(newValue);
+  onValueChange(value: string) {
+    syncNativeControlValue(this.inputRef.current, value);
+    this.syncFormInternals(value);
   }
 
   @Watch('type')
@@ -236,7 +238,7 @@ export class Input implements IxInputFieldComponent<string> {
   }
 
   componentWillLoad() {
-    this.updateFormInternalValue(this.value);
+    this.syncFormInternals(this.value);
     this.inputType = this.type;
   }
 
@@ -270,13 +272,14 @@ export class Input implements IxInputFieldComponent<string> {
   }
 
   updateFormInternalValue(value: string) {
-    this.formInternals.setFormValue(value);
+    // Form value and validity are synced in `onValueChange`
     this.value = value;
+  }
+
+  private syncFormInternals(value: string) {
+    this.formInternals.setFormValue(value);
 
     if (this.inputRef.current && this.touched) {
-      if (this.inputRef.current.value !== value) {
-        this.inputRef.current.value = value;
-      }
       checkInternalValidity(this, this.inputRef.current);
     }
   }
