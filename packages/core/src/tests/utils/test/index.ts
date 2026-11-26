@@ -34,16 +34,23 @@ export const preventFormSubmission = async (formLocator: Locator) => {
   );
 };
 
-export const getFormValue = async (
+/**
+ * Asserts the `FormData` entry for `key`, retrying until it matches or the
+ * expect timeout is reached.
+ */
+export const expectFormValue = async (
   formLocator: Locator,
   key: string,
-  page: Page
+  expected: string | null
 ) => {
-  await page.waitForTimeout(100);
-  return formLocator.evaluate((form: HTMLFormElement, key: string) => {
-    const formData = new FormData(form);
-    return formData.get(key);
-  }, key);
+  await expect
+    .poll(() =>
+      formLocator.evaluate(
+        (form: HTMLFormElement, key: string) => new FormData(form).get(key),
+        key
+      )
+    )
+    .toBe(expected);
 };
 
 export type RecordedEvent = { type: string; detail: unknown };

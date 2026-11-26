@@ -9,7 +9,7 @@
 
 import { expect } from '@playwright/test';
 import {
-  getFormValue,
+  expectFormValue,
   preventFormSubmission,
   regressionTest,
 } from '@utils/test';
@@ -110,8 +110,7 @@ regressionTest(`form-readiness`, async ({ mount, page }) => {
   });
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'ix-slider', page);
-  expect(formData).toBe('50');
+  await expectFormValue(formElement, 'ix-slider', '50');
 });
 
 regressionTest(
