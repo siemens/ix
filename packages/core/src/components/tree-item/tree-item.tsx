@@ -173,7 +173,6 @@ export class TreeItem {
                 class={{
                   'icon-toggle-down': !!this.context?.isExpanded,
                 }}
-                color="--si-sys-color-text-primary"
                 aria-hidden="true"
               />
             </span>

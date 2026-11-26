@@ -25,13 +25,8 @@ import {
   ComponentIdMixin,
   ComponentIdMixinContract,
 } from '../utils/internal/mixins/id.mixin';
+import { formatBadgeLabel } from '../badge/badge.utils';
 import { BaseTabMixin, BaseTabMixinContract } from './tab.mixin';
-
-/**
- * Pulls the attached counter badge in from the corner of the circle's bounding box
- * onto its curve (about 0.29 × radius at 45°).
- */
-const ROUNDED_COUNTER_INSET = 7;
 
 /**
  * A single selectable tab within a tab set.
@@ -155,18 +150,19 @@ export class TabItem
     }
 
     const hasCounter = this.counter !== undefined && this.counter !== null;
+    const counterLabel = hasCounter ? String(this.counter) : undefined;
     const counterBadgeProps = {
       type: 'counter' as const,
-      label: String(this.counter),
+      variant: 'accent' as const,
+      label: counterLabel,
       outline: true,
-      ...(this.disabled
-        ? {
-            variant: 'custom' as const,
-            background: 'var(--si-sys-color-border-disabled)',
-            badgeColor: 'var(--si-sys-color-text-disabled)',
-          }
-        : { variant: 'accent' as const }),
     };
+    // The attached badge describes the circle, which is not the focusable tab,
+    // so expose the count on the tab itself.
+    const roundedCounterDescription =
+      variant === 'rounded'
+        ? (formatBadgeLabel('counter', counterLabel) ?? undefined)
+        : undefined;
     const circle = (
       <div class="circle">
         {this.icon && <ix-icon name={this.icon} size="32"></ix-icon>}
@@ -178,6 +174,7 @@ export class TabItem
       <Host
         id={this.getHostElementId()}
         role="tab"
+        aria-description={roundedCounterDescription}
         aria-selected={a11yBoolean(this.selected)}
         tabIndex={this.selected && !this.disabled ? 0 : -1}
         class={{
@@ -210,8 +207,6 @@ export class TabItem
             class="rounded-counter"
             {...counterBadgeProps}
             position="bottom-after"
-            offsetX={ROUNDED_COUNTER_INSET}
-            offsetY={ROUNDED_COUNTER_INSET}
           >
             {circle}
           </ix-badge>

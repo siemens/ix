@@ -880,6 +880,7 @@ regressionTest.describe('counter', () => {
       await expect(badge).toHaveAttribute('outline', '');
       await expect(badge).not.toHaveClass(/attached/);
       await expect(twelve).toHaveAccessibleName('Twelve 12');
+      await expect(twelve).not.toHaveAttribute('aria-description');
 
       const zero = page.getByRole('tab', { name: 'Zero' });
       await expect(zero.locator('ix-badge')).toHaveAttribute('label', '0');
@@ -911,9 +912,59 @@ regressionTest.describe('counter', () => {
       await expect(badge.locator('.circle')).toBeVisible();
       await expect(badge.locator('.indicator')).toHaveText('99+');
 
+      await expect(many).toHaveAccessibleDescription('99+');
+
       const none = page.getByRole('tab', { name: 'None' });
       await expect(none.locator('ix-badge')).toHaveCount(0);
       await expect(none.locator('.circle')).toBeVisible();
+      await expect(none).not.toHaveAttribute('aria-description');
+    }
+  );
+
+  regressionTest(
+    'places the attached badge on the circle curve in both densities',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-tabs rounded><ix-tab-item icon="rocket" counter="7" aria-label="Seven"></ix-tab-item></ix-tabs>`,
+        { icons: { iconRocket } }
+      );
+
+      const tab = page.getByRole('tab', { name: 'Seven' });
+      const circle = tab.locator('.circle');
+      const indicator = tab.locator('ix-badge').locator('.indicator');
+
+      // Badge counter default offset (-10px) minus the 45° curve inset of the circle.
+      const expectOnCurve = async (diameter: number) => {
+        await expect(circle).toHaveCSS('height', `${diameter}px`);
+        const expectedOverhang = 10 - diameter * 0.1464;
+
+        await expect(async () => {
+          const circleBox = await circle.boundingBox();
+          const indicatorBox = await indicator.boundingBox();
+          if (!circleBox || !indicatorBox) {
+            throw new Error('Expected bounding boxes');
+          }
+
+          expect(
+            indicatorBox.y +
+              indicatorBox.height -
+              (circleBox.y + circleBox.height)
+          ).toBeCloseTo(expectedOverhang, 0);
+          expect(
+            indicatorBox.x +
+              indicatorBox.width -
+              (circleBox.x + circleBox.width)
+          ).toBeCloseTo(expectedOverhang, 0);
+        }).toPass({ timeout: 2000 });
+      };
+
+      await expectOnCurve(48);
+
+      await page.locator('body').evaluate((body) => {
+        body.setAttribute('data-ix-density', 'compact');
+      });
+
+      await expectOnCurve(40);
     }
   );
 
@@ -966,9 +1017,10 @@ regressionTest.describe('counter', () => {
       );
 
       for (const name of ['Normal', 'Rounded']) {
-        const badge = page.getByRole('tab', { name }).locator('ix-badge');
-        await expect(badge).toHaveAttribute('variant', 'custom');
-        const indicator = badge.locator('.indicator');
+        const indicator = page
+          .getByRole('tab', { name })
+          .locator('ix-badge')
+          .locator('.indicator');
         await expect(indicator).toHaveCSS('color', textDisabled);
         await expect(indicator).toHaveCSS('border-top-color', borderDisabled);
       }

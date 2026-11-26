@@ -19,6 +19,9 @@
     (
       'tab-item--outline-color--focus': sys.$si-sys-color-effects-focus,
       'tab-item-counter--background--rounded': sys.$si-sys-color-background-0,
+      'tab-item-counter--border-color--disabled':
+        sys.$si-sys-color-border-disabled,
+      'tab-item-counter--color--disabled': sys.$si-sys-color-text-disabled,
       'tab-item-animated-circle--background': sys.$si-sys-color-background-1,
       'tab-item-animated-circle--background--active':
         sys.$si-sys-color-background-accent-secondary-active,
@@ -80,6 +83,14 @@
       'tab-item--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
       'tab-item-circle--outline-offset--focus':
         sys.$si-sys-sizing-focus-ring-offset,
+    )
+  );
+  @include cv.define-vars(
+    (
+      // Distance from the corner of the circle's bounding box to its curve at
+      // 45°: r × (1 − 1/√2) ≈ 0.1464 × diameter.
+      'tab-item-counter--inset--rounded':
+        calc(#{cv.get-var('tab-item-circle--width')} * 0.1464),
     )
   );
 }
