@@ -110,7 +110,7 @@ export class Chat {
 
   componentWillLoad() {
     this.hasMessages = Array.from(this.hostElement.children).some(
-      (element) => !element.hasAttribute('slot')
+      (element) => !element.getAttribute('slot')
     );
   }
 

@@ -89,6 +89,21 @@ regressionTest(
 );
 
 regressionTest(
+  'hides the welcome slot when a message has an empty slot attribute',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-chat style="height: 32rem">
+        ${welcome}
+        <ix-chat-user-message slot="" message="Summarize open alarms"></ix-chat-user-message>
+      </ix-chat>
+    `);
+
+    await expect(page.locator('ix-chat-user-message')).toBeVisible();
+    await expect(page.getByRole('heading', welcomeHeading)).toBeHidden();
+  }
+);
+
+regressionTest(
   'hides the welcome slot once a message is added and shows it again when all messages are removed',
   async ({ mount, page }) => {
     await mount(`
