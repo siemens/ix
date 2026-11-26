@@ -34,7 +34,9 @@ export class ChatAiMessage {
 
   componentWillLoad() {
     this.hasContent = hasDefaultSlotContent(this.hostElement);
-    this.hasTrace = !!this.hostElement.querySelector(':scope > [slot="trace"]');
+    this.hasTrace = Array.from(this.hostElement.children).some(
+      (el) => el.getAttribute('slot') === 'trace'
+    );
   }
 
   private hasAssignedContent(slot: HTMLSlotElement) {
