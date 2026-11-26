@@ -307,7 +307,7 @@ regressionTest.describe('aggrid', () => {
     async ({ page }) => {
       await page.goto('basic/basic.html');
       const grid = page.locator('.ag-root-wrapper');
-      const cell = page.locator('.ag-cell').first();
+      const cell = page.getByRole('gridcell', { name: 'Toyota', exact: true });
       await expect(grid).toBeVisible();
 
       await expect(grid).toHaveCSS(
