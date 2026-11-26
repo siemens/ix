@@ -33,7 +33,7 @@
 - `placeholder`; attr: `placeholder`; type: `string | undefined` - placeholder of the input element
 - `readonly`; attr: `readonly`; type: `boolean`; default: `false` - Indicates if the field is read-only
 - `required`; attr: `required`; type: `boolean`; default: `false` - Indicates if the field is required. When required, empty values (undefined) are not accepted.
-- `showStepperButtons`; attr: `show-stepper-buttons`; type: `boolean | undefined` - Indicates if the stepper buttons should be shown
+- `showStepperButtons`; attr: `show-stepper-buttons`; type: `boolean | undefined` - Indicates if the stepper buttons should be shown. Pressing and holding a stepper button keeps stepping the value (mouse, pen and touch), speeding up the longer the button is held.
 - `showTextAsTooltip`; attr: `show-text-as-tooltip`; type: `boolean | undefined` - Indicates if the text should be shown as a tooltip
 - `step`; attr: `step`; type: `number | string | undefined`; default: `1` - Step value to increment or decrement the input value. Default step value is 1.
 - `suppressSubmitOnEnter`; attr: `suppress-submit-on-enter`; type: `boolean`; default: `false` - If false, pressing Enter will submit the form (if inside a form). Set to true to suppress submit on Enter.
