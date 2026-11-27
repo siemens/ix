@@ -146,6 +146,7 @@ regressionTest(
 
     await expect(mainLink).toBeInViewport();
     await expect(footerLink).not.toBeInViewport();
+    await expect(mainLink).toHaveCSS('outline-width', '2px');
     const outlineInset = await mainLink.evaluate((element) => {
       const style = getComputedStyle(element);
       return (
@@ -205,6 +206,8 @@ regressionTest(
     await footerLink.press('Enter');
 
     await expect(footer).toBeFocused();
+    await expect(footer).toHaveCSS('outline-width', '2px');
+    await expect(footer).toHaveCSS('outline-offset', '-2px');
     expect(await main.evaluate((element) => element.scrollTop)).toBe(300);
 
     await page.keyboard.press('Tab');
@@ -236,6 +239,8 @@ regressionTest(
     await link.press('Enter');
 
     await expect(main).toBeFocused();
+    await expect(main).toHaveCSS('outline-width', '2px');
+    await expect(main).toHaveCSS('outline-offset', '-2px');
     expect(await main.evaluate((element) => element.scrollTop)).toBe(0);
   }
 );
