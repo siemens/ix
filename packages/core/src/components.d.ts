@@ -5026,7 +5026,7 @@ export namespace Components {
          */
         "closable": boolean;
         /**
-          * Set counter value
+          * Counter value, displayed as a counter badge whenever a value is set (including `0`). Rounded tab items attach the badge to the circle; other variants show it next to the label. Values above 99 render as `99+`.
          */
         "counter"?: number;
         /**
@@ -13806,7 +13806,7 @@ declare namespace LocalJSX {
          */
         "closable"?: boolean;
         /**
-          * Set counter value
+          * Counter value, displayed as a counter badge whenever a value is set (including `0`). Rounded tab items attach the badge to the circle; other variants show it next to the label. Values above 99 render as `99+`.
          */
         "counter"?: number;
         /**

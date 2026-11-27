@@ -111,32 +111,28 @@
     }
   }
 
-  .counter {
-    position: absolute;
-    z-index: 1;
-    height: cv.get-var('tab-item-counter--height');
-    width: auto;
-    background-color: cv.get-var('tab-item-pill--background');
-    border: cv.get-var('tab-item-counter--border-width') solid
-      cv.get-var('tab-item-pill--border-color');
-    border-radius: cv.get-var('tab-item-counter--border-radius');
-    bottom: cv.get-var('tab-item-counter--bottom');
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: cv.get-var('tab-item-counter--padding-left');
-    padding-right: cv.get-var('tab-item-counter--padding-right');
-    font: cv.get-var('tab-item-pill--font');
-    color: cv.get-var('tab-item-pill--color--outline');
-    cursor: pointer;
+  .rounded-counter {
+    // Outline badges are transparent; give the attached counter a solid fill
+    // so the circle's border doesn't show through it.
+    @include cv.set-var(
+      'badge--background--outline',
+      cv.get-var('tab-item-counter--background--rounded'),
+      $external: true
+    );
 
-    &.selected {
-      border-color: cv.get-var('tab-item-pill--border-color--selected');
-    }
+    // The badge aligns its counter with the bottom-end corner of the anchor's
+    // box. Letting the circle overflow the badge by the inset moves that corner
+    // onto the curve; the matching margin keeps the outer footprint unchanged.
+    margin-block-end: cv.get-var('tab-item-counter--inset--rounded');
+    margin-inline-end: cv.get-var('tab-item-counter--inset--rounded');
 
-    &.disabled {
-      border-color: cv.get-var('tab-item-pill--border-color--disabled');
-      cursor: default;
+    > .circle {
+      margin-block-end: calc(
+        -1 * #{cv.get-var('tab-item-counter--inset--rounded')}
+      );
+      margin-inline-end: calc(
+        -1 * #{cv.get-var('tab-item-counter--inset--rounded')}
+      );
     }
   }
 
@@ -239,6 +235,20 @@
       'tab-item-animated-circle--border-color--disabled'
     );
     cursor: default;
+  }
+
+  .tab-counter,
+  .rounded-counter {
+    @include cv.set-var(
+      'badge--border-color--accent',
+      cv.get-var('tab-item-counter--border-color--disabled'),
+      $external: true
+    );
+    @include cv.set-var(
+      'badge-default--color',
+      cv.get-var('tab-item-counter--color--disabled'),
+      $external: true
+    );
   }
 }
 

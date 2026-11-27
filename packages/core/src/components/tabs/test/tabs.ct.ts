@@ -7,6 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
+import { iconRocket } from '@siemens/ix-icons/icons';
 import { regressionTest } from '@utils/test';
 
 regressionTest.describe('accessibility', () => {
@@ -31,6 +32,24 @@ regressionTest.describe('accessibility', () => {
       <ix-tab-item tab-key="tab-3" label="Item 3"></ix-tab-item>
     </ix-tabs>
   `);
+
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  regressionTest('tabs with counters', async ({ mount, makeAxeBuilder }) => {
+    await mount(
+      `
+    <ix-tabs>
+      <ix-tab-item counter="12">Item 1</ix-tab-item>
+      <ix-tab-item icon="rocket" counter="3" aria-label="Item 2"></ix-tab-item>
+    </ix-tabs>
+    <ix-tabs rounded>
+      <ix-tab-item icon="rocket" counter="7" aria-label="Item 3"></ix-tab-item>
+    </ix-tabs>
+  `,
+      { icons: { iconRocket } }
+    );
 
     const accessibilityScanResults = await makeAxeBuilder().analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
@@ -841,3 +860,170 @@ regressionTest(
     );
   }
 );
+
+regressionTest.describe('counter', () => {
+  regressionTest(
+    'shows a standalone badge next to the label, including zero',
+    async ({ mount, page }) => {
+      await mount(`
+      <ix-tabs>
+        <ix-tab-item counter="12">Twelve</ix-tab-item>
+        <ix-tab-item counter="0">Zero</ix-tab-item>
+        <ix-tab-item>None</ix-tab-item>
+      </ix-tabs>
+    `);
+
+      const twelve = page.getByRole('tab', { name: 'Twelve' });
+      const badge = twelve.locator('ix-badge');
+      await expect(badge).toHaveAttribute('type', 'counter');
+      await expect(badge).toHaveAttribute('label', '12');
+      await expect(badge).toHaveAttribute('outline', '');
+      await expect(badge).not.toHaveClass(/attached/);
+      await expect(twelve).toHaveAccessibleName('Twelve 12');
+      await expect(twelve).not.toHaveAttribute('aria-description');
+
+      const zero = page.getByRole('tab', { name: 'Zero' });
+      await expect(zero.locator('ix-badge')).toHaveAttribute('label', '0');
+      await expect(zero).toHaveAccessibleName('Zero 0');
+
+      await expect(
+        page.getByRole('tab', { name: 'None' }).locator('ix-badge')
+      ).toHaveCount(0);
+    }
+  );
+
+  regressionTest(
+    'attaches the badge to the circle of a rounded tab',
+    async ({ mount, page }) => {
+      await mount(
+        `
+      <ix-tabs rounded>
+        <ix-tab-item icon="rocket" counter="150" aria-label="Many"></ix-tab-item>
+        <ix-tab-item icon="rocket" aria-label="None"></ix-tab-item>
+      </ix-tabs>
+    `,
+        { icons: { iconRocket } }
+      );
+
+      const many = page.getByRole('tab', { name: 'Many' });
+      const badge = many.locator('ix-badge');
+      await expect(badge).toHaveAttribute('position', 'bottom-after');
+      await expect(badge).toHaveClass(/attached/);
+      await expect(badge.locator('.circle')).toBeVisible();
+      await expect(badge.locator('.indicator')).toHaveText('99+');
+
+      await expect(many).toHaveAccessibleDescription('99+');
+
+      const none = page.getByRole('tab', { name: 'None' });
+      await expect(none.locator('ix-badge')).toHaveCount(0);
+      await expect(none.locator('.circle')).toBeVisible();
+      await expect(none).not.toHaveAttribute('aria-description');
+    }
+  );
+
+  regressionTest(
+    'places the attached badge on the circle curve in both densities',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-tabs rounded><ix-tab-item icon="rocket" counter="7" aria-label="Seven"></ix-tab-item></ix-tabs>`,
+        { icons: { iconRocket } }
+      );
+
+      const tab = page.getByRole('tab', { name: 'Seven' });
+      const circle = tab.locator('.circle');
+      const indicator = tab.locator('ix-badge').locator('.indicator');
+
+      // Badge counter default offset (-10px) minus the 45° curve inset of the circle.
+      const expectOnCurve = async (diameter: number) => {
+        await expect(circle).toHaveCSS('height', `${diameter}px`);
+        const expectedOverhang = 10 - diameter * 0.1464;
+
+        await expect(async () => {
+          const circleBox = await circle.boundingBox();
+          const indicatorBox = await indicator.boundingBox();
+          if (!circleBox || !indicatorBox) {
+            throw new Error('Expected bounding boxes');
+          }
+
+          expect(
+            indicatorBox.y +
+              indicatorBox.height -
+              (circleBox.y + circleBox.height)
+          ).toBeCloseTo(expectedOverhang, 0);
+          expect(
+            indicatorBox.x +
+              indicatorBox.width -
+              (circleBox.x + circleBox.width)
+          ).toBeCloseTo(expectedOverhang, 0);
+        }).toPass({ timeout: 2000 });
+      };
+
+      await expectOnCurve(48);
+
+      await page.locator('body').evaluate((body) => {
+        body.setAttribute('data-ix-density', 'compact');
+      });
+
+      await expectOnCurve(40);
+    }
+  );
+
+  regressionTest(
+    'gives the attached badge a solid background so the circle border does not show through',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-tabs rounded><ix-tab-item icon="rocket" counter="7" aria-label="Seven"></ix-tab-item></ix-tabs>`,
+        { icons: { iconRocket } }
+      );
+
+      const indicator = page
+        .getByRole('tab', { name: 'Seven' })
+        .locator('ix-badge')
+        .locator('.indicator');
+      await expect(indicator).not.toHaveCSS(
+        'background-color',
+        'rgba(0, 0, 0, 0)'
+      );
+    }
+  );
+
+  regressionTest(
+    'uses disabled colours for the badge of a disabled tab',
+    async ({ mount, page }) => {
+      await mount(
+        `
+      <ix-tabs>
+        <ix-tab-item counter="4" disabled>Normal</ix-tab-item>
+      </ix-tabs>
+      <ix-tabs rounded>
+        <ix-tab-item icon="rocket" counter="5" disabled aria-label="Rounded"></ix-tab-item>
+      </ix-tabs>
+    `,
+        { icons: { iconRocket } }
+      );
+
+      const resolveColor = (token: string) =>
+        page.evaluate((name) => {
+          const probe = document.createElement('div');
+          probe.style.color = `var(${name})`;
+          document.body.appendChild(probe);
+          const value = getComputedStyle(probe).color;
+          probe.remove();
+          return value;
+        }, token);
+      const textDisabled = await resolveColor('--si-sys-color-text-disabled');
+      const borderDisabled = await resolveColor(
+        '--si-sys-color-border-disabled'
+      );
+
+      for (const name of ['Normal', 'Rounded']) {
+        const indicator = page
+          .getByRole('tab', { name })
+          .locator('ix-badge')
+          .locator('.indicator');
+        await expect(indicator).toHaveCSS('color', textDisabled);
+        await expect(indicator).toHaveCSS('border-top-color', borderDisabled);
+      }
+    }
+  );
+});

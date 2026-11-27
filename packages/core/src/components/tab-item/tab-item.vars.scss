@@ -17,9 +17,11 @@
 :host {
   @include cv.define-vars(
     (
-      'tab-item-pill--background': sys.$si-sys-color-background-0,
       'tab-item--outline-color--focus': sys.$si-sys-color-effects-focus,
-      'tab-item-pill--color--outline': sys.$si-sys-color-text-primary,
+      'tab-item-counter--background--rounded': sys.$si-sys-color-background-0,
+      'tab-item-counter--border-color--disabled':
+        sys.$si-sys-color-border-disabled,
+      'tab-item-counter--color--disabled': sys.$si-sys-color-text-disabled,
       'tab-item-animated-circle--background': sys.$si-sys-color-background-1,
       'tab-item-animated-circle--background--active':
         sys.$si-sys-color-background-accent-secondary-active,
@@ -49,10 +51,6 @@
       'tab-item-indicator--background--disabled': sys.$si-sys-color-border-3,
       'tab-item-indicator--background--selected':
         sys.$si-sys-color-background-accent-hover,
-      'tab-item-pill--border-color': sys.$si-sys-color-border-3,
-      'tab-item-pill--border-color--disabled': sys.$si-sys-color-border-3,
-      'tab-item-pill--border-color--selected':
-        sys.$si-sys-color-border-accent-hover,
     )
   );
 }
@@ -61,7 +59,6 @@
   @include cv.define-vars(
     (
       'tab-item--font': sys.$si-sys-typography-h5,
-      'tab-item-pill--font': sys.$si-sys-typography-body-sm,
       'tab-item--size': sys.$si-sys-sizing-size-90,
       'tab-item--min-height': sys.$si-sys-sizing-size-90,
       'tab-item--max-height': sys.$si-sys-sizing-size-90,
@@ -82,17 +79,18 @@
       'tab-item--padding--small': #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-60},
       'tab-item-icon--padding': #{sys.$si-sys-sizing-spacing-y-60} #{sys.$si-sys-sizing-spacing-x-20},
       'tab-item-circle--border-width': sys.$si-sys-sizing-border-width-selected,
-      // Grows with the rem counter text at larger root font sizes
-      'tab-item-counter--height': max(16px, 1lh),
-      'tab-item-counter--border-width': sys.$si-sys-sizing-border-width-default,
-      'tab-item-counter--border-radius': sys.$si-sys-sizing-border-radius-full,
-      'tab-item-counter--bottom': sys.$si-sys-sizing-spacing-y-30,
-      'tab-item-counter--padding-left': sys.$si-sys-sizing-spacing-x-20,
-      'tab-item-counter--padding-right': sys.$si-sys-sizing-spacing-x-20,
       'tab-item-indicator--height': sys.$si-sys-sizing-border-width-selected,
       'tab-item--outline-width--focus': sys.$si-sys-sizing-focus-ring-width,
       'tab-item-circle--outline-offset--focus':
         sys.$si-sys-sizing-focus-ring-offset,
+    )
+  );
+  @include cv.define-vars(
+    (
+      // Distance from the corner of the circle's bounding box to its curve at
+      // 45°: r × (1 − 1/√2) ≈ 0.1464 × diameter.
+      'tab-item-counter--inset--rounded':
+        calc(#{cv.get-var('tab-item-circle--width')} * 0.1464),
     )
   );
 }

@@ -11,7 +11,6 @@
 // component, not a public API. They are not covered by semantic versioning and
 // can change or be removed in any release without notice.
 
-@use 'misc/common-variables' as vars;
 @use 'tokens/system' as sys;
 @use 'mixins/component-vars' as cv;
 
@@ -73,15 +72,15 @@
     (
       'event-list-item--transition-duration': var(--theme-default-time),
       'event-list-item--height': sys.$si-sys-sizing-size-90,
-      'event-list-item--border-radius': vars.$default-border-radius,
+      'event-list-item--border-radius': sys.$si-sys-sizing-border-radius-sm,
       'event-list-item--margin-bottom': sys.$si-sys-sizing-spacing-y-40,
       'event-list-item-indicator-visual--width': sys.$si-sys-sizing-spacing-x-40,
       'event-list-item-indicator--max-width': sys.$si-sys-sizing-spacing-x-40,
       'event-list-item-indicator--min-width': sys.$si-sys-sizing-spacing-x-40,
       'event-list-item-indicator--border-top-left-radius':
-        vars.$default-border-radius,
+        sys.$si-sys-sizing-border-radius-sm,
       'event-list-item-indicator--border-bottom-left-radius':
-        vars.$default-border-radius,
+        sys.$si-sys-sizing-border-radius-sm,
       'event-list-item-container--width':
         calc(
           100% -
@@ -90,9 +89,9 @@
             )
         ),
       'event-list-item-container--border-top-right-radius':
-        vars.$default-border-radius,
+        sys.$si-sys-sizing-border-radius-sm,
       'event-list-item-container--border-bottom-right-radius':
-        vars.$default-border-radius,
+        sys.$si-sys-sizing-border-radius-sm,
       'event-list-item-container--padding-left': sys.$si-sys-sizing-spacing-x-60,
       'event-list-item-event-content--padding-inline-end':
         sys.$si-sys-sizing-spacing-x-40,
