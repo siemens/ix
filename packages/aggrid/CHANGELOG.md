@@ -1,5 +1,11 @@
 # @siemens/ix-aggrid
 
+## 6.0.1
+
+### Patch Changes
+
+- [#3034](https://github.com/siemens/ix/pull/3034) [`7d01b83`](https://github.com/siemens/ix/commit/7d01b83e86074965e786b0bb2097afc54bc595ac) Thanks [@chintankavathia](https://github.com/chintankavathia)! - Use `--si-ref-typography-font-family-sans` with a `SiemensSans Pro` fallback for AG Grid typography so grids follow the active IX v6 theme font instead of referencing the legacy `Siemens Sans` font. Fixes [#3033](https://github.com/siemens/ix/issues/3033).
+
 ## 6.0.0
 
 ### Major Changes

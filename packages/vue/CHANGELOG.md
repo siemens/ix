@@ -1,5 +1,12 @@
 # @siemens/ix-vue
 
+## 6.1.0
+
+### Patch Changes
+
+- Updated dependencies [[`9d38399`](https://github.com/siemens/ix/commit/9d38399e396e6eca174ea5cb00cfa41099fde9f4), [`0a24ef5`](https://github.com/siemens/ix/commit/0a24ef55f6868bac37beda816a161b9c5a9e8e40), [`9d76027`](https://github.com/siemens/ix/commit/9d7602746080b5968914d21e550e2713972c6c71), [`10ed590`](https://github.com/siemens/ix/commit/10ed590ae970e6ac4791343d8d67e1e153c7d99b)]:
+  - @siemens/ix@6.1.0
+
 ## 6.0.0
 
 ### Major Changes

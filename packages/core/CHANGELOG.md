@@ -1,5 +1,25 @@
 # @siemens/ix
 
+## 6.1.0
+
+### Minor Changes
+
+- [#2971](https://github.com/siemens/ix/pull/2971) [`9d76027`](https://github.com/siemens/ix/commit/9d7602746080b5968914d21e550e2713972c6c71) Thanks [@Mohith26](https://github.com/Mohith26)! - Add press and hold to the `ix-number-input` stepper buttons. Holding the increment or decrement button keeps stepping the value after a short delay and speeds up the longer it is held. It works for mouse, pen and touch, and stops on release, when the pointer leaves the button, or when `min`/`max` is reached.
+
+  Fixes [#2593](https://github.com/siemens/ix/issues/2593)
+
+### Patch Changes
+
+- [#2985](https://github.com/siemens/ix/pull/2985) [`9d38399`](https://github.com/siemens/ix/commit/9d38399e396e6eca174ea5cb00cfa41099fde9f4) Thanks [@benjgil](https://github.com/benjgil)! - **ix-input**, **ix-textarea**: Setting `value` programmatically now always updates the displayed text and the form value.
+
+  Fixes [#2982](https://github.com/siemens/ix/issues/2982)
+
+- [#3027](https://github.com/siemens/ix/pull/3027) [`0a24ef5`](https://github.com/siemens/ix/commit/0a24ef55f6868bac37beda816a161b9c5a9e8e40) Thanks [@0xABCD01](https://github.com/0xABCD01)! - `ix-menu` no longer throws an uncaught error when a window resize arrives before the menu is rendered. The overflow indicator update is now skipped until the menu items container exists.
+
+  Fixes [#3026](https://github.com/siemens/ix/issues/3026)
+
+- [#2999](https://github.com/siemens/ix/pull/2999) [`10ed590`](https://github.com/siemens/ix/commit/10ed590ae970e6ac4791343d8d67e1e153c7d99b) Thanks [@kwy404](https://github.com/kwy404)! - **ix-textarea**: Accept `textareaHeight` and `textareaWidth` units in any case (e.g. `200PX`, `10REM`). Such values were ignored before, so the textarea fell back to its default size.
+
 ## 6.0.0
 
 ### Major Changes
