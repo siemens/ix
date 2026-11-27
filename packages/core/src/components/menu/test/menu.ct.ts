@@ -12,6 +12,7 @@ import {
   expectCollectedAfterRemoval,
   regressionTest,
   viewPorts,
+  waitForRender,
 } from '@utils/test';
 
 regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
@@ -818,13 +819,13 @@ regressionTest(
 async function clickAboutButton(element: Locator, page: Page) {
   const aboutButton = element.locator('ix-menu-item#aboutAndLegal');
   await aboutButton.click();
-  await page.waitForTimeout(1000);
+  await waitForRender(page);
 }
 
 async function clickSettingsButton(element: Locator, page: Page) {
   const settingsButton = element.locator('ix-menu-item#settings');
   await settingsButton.click();
-  await page.waitForTimeout(1000);
+  await waitForRender(page);
 }
 
 regressionTest(

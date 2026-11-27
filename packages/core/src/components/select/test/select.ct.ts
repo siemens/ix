@@ -7,7 +7,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { expectFormValue, preventFormSubmission, test } from '@utils/test';
+import {
+  expectFormValue,
+  preventFormSubmission,
+  test,
+  waitForRender,
+} from '@utils/test';
 import { selectController } from './select-controller';
 
 test('a test', async ({ mount, page }) => {
@@ -407,8 +412,6 @@ test('open filtered dropdown on input arrow down', async ({ mount, page }) => {
   await expect(selectCtrl.getDropdownLocator()).toBeVisible();
 
   await page.keyboard.press('Escape');
-  // Short timeout to allow for the closing animation to finish
-  await page.waitForTimeout(100);
   await expect(selectCtrl.getDropdownLocator()).not.toBeVisible();
 
   await selectCtrl.focusInput();
@@ -1463,7 +1466,7 @@ test('input does not clear when items added during search', async ({
     select?.appendChild(newItem);
   });
 
-  await page.waitForTimeout(100);
+  await waitForRender(page);
 
   await expect(input).toHaveValue('test');
   await expect(

@@ -9,7 +9,11 @@
 
 import { expect } from '@playwright/test';
 import { iconStar } from '@siemens/ix-icons/icons';
-import { expectCollectedAfterRemoval, regressionTest } from '@utils/test';
+import {
+  expectCollectedAfterRemoval,
+  regressionTest,
+  waitForRender,
+} from '@utils/test';
 
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-pane-layout></ix-pane-layout>`);
@@ -66,7 +70,7 @@ regressionTest.describe('pane-layout with floating pane', () => {
     await page.waitForSelector('h1');
     const title = page.locator('h1');
     // timeout to make sure it is currently not closing
-    await page.waitForTimeout(1000);
+    await waitForRender(page);
     await expect(title).toBeVisible();
   });
 
@@ -94,7 +98,7 @@ regressionTest.describe('pane-layout with floating pane', () => {
 
       await page.setViewportSize({ width: 375, height: 667 });
 
-      await page.waitForTimeout(100);
+      await waitForRender(page);
 
       const mobileLayout = page.locator('.col');
       await expect(mobileLayout).toBeVisible();
@@ -115,21 +119,26 @@ regressionTest.describe('pane-layout with floating pane', () => {
       </ix-pane-layout>
     `);
 
-      await page.setViewportSize({ width: 1024, height: 768 });
-      await page.waitForTimeout(100);
-
-      await page.setViewportSize({ width: 375, height: 667 });
-      await page.waitForTimeout(100);
-
-      await page.setViewportSize({ width: 1024, height: 768 });
-      await page.waitForTimeout(100);
-
+      const layout = page.locator('ix-pane-layout');
+      const desktopWrapper = layout.locator('.side-panes-wrapper');
       const leftPane = page.locator('ix-pane[slot="left"]');
       const topPane = page.locator('ix-pane[slot="top"]');
 
+      await page.setViewportSize({ width: 1024, height: 768 });
+      await expect(desktopWrapper).toBeVisible();
       await expect(leftPane).toHaveCSS('z-index', '3');
       await expect(topPane).toHaveCSS('z-index', '1');
-      await expect(page.locator('.side-panes-wrapper')).toBeVisible();
+
+      await page.setViewportSize({ width: 375, height: 667 });
+      await expect(desktopWrapper).toHaveCount(0);
+      await expect(layout.locator('.col')).toBeVisible();
+      await expect(leftPane).toHaveCSS('z-index', '1');
+      await expect(topPane).toHaveCSS('z-index', '3');
+
+      await page.setViewportSize({ width: 1024, height: 768 });
+      await expect(desktopWrapper).toBeVisible();
+      await expect(leftPane).toHaveCSS('z-index', '3');
+      await expect(topPane).toHaveCSS('z-index', '1');
     }
   );
 });
