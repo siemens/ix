@@ -1,0 +1,93 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Chat activity trace</title>
+    <style>
+      :root {
+        color: var(--si-sys-color-text-primary);
+        font-family: var(--si-ref-typography-font-family-sans);
+      }
+
+      .chat-visual-page {
+        box-sizing: border-box;
+        min-height: 100vh;
+        padding: 1.5rem;
+        background: var(--si-sys-color-background-0);
+      }
+
+      ix-chat-ai-message {
+        width: 36rem;
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconCogwheel,
+        iconDocument,
+        iconSearch,
+      } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconCogwheel,
+        iconDocument,
+        iconSearch,
+      });
+    </script>
+  </head>
+  <body>
+    <main class="chat-visual-page">
+      <ix-chat-ai-message>
+        <ix-chat-activity-trace
+          slot="trace"
+          summary="Analyzed compressor data"
+          expanded
+        >
+          <span slot="summary-meta">4 steps, 12 s</span>
+          <ix-chat-trace-item
+            label="Searched maintenance logs"
+            icon="search"
+            expanded
+          >
+            <ix-chat-trace-item-section heading="Asset">
+              <ix-pill variant="neutral" outline>Compressor C-12</ix-pill>
+            </ix-chat-trace-item-section>
+            <ix-chat-trace-item-section heading="Output" collapsible expanded>
+              <p>Found 3 vibration alarms in the last 7 days.</p>
+            </ix-chat-trace-item-section>
+          </ix-chat-trace-item>
+          <ix-chat-trace-item
+            label="Reading vibration-trend.csv"
+            icon="document"
+            state="running"
+          ></ix-chat-trace-item>
+          <ix-chat-trace-item
+            label="Read service-schedule.xlsx"
+            icon="document"
+            state="failed"
+          ></ix-chat-trace-item>
+          <ix-chat-trace-item
+            label="Stopped checking spare parts"
+            icon="cogwheel"
+            state="warning"
+          ></ix-chat-trace-item>
+        </ix-chat-activity-trace>
+        <p>
+          The compressor vibration is within the expected range. Schedule the
+          next inspection during the Friday service window.
+        </p>
+      </ix-chat-ai-message>
+    </main>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

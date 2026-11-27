@@ -43,6 +43,7 @@ export { NotificationColor } from './components/utils/notification-color';
 export { convertToAbbreviationString } from './components/utils/rwd.util';
 export * from './components/utils/theme-switcher';
 export type { ChatAttachmentStatus } from './components/chat-attachment/chat-attachment.types';
+export type { ChatTraceItemState } from './components/chat-trace-item/chat-trace-item.types';
 export type {
   MarkdownComponentContext,
   MarkdownComponentFactory,

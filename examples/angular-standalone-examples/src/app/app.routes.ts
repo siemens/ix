@@ -114,6 +114,8 @@ export const routePaths: IxPreviewRoutes = {
     ),
   'preview/chat': () =>
     import('../preview-examples/chat').then((m) => m.default),
+  'preview/chat-activity-trace': () =>
+    import('../preview-examples/chat-activity-trace').then((m) => m.default),
   'preview/chat-ai-message': () =>
     import('../preview-examples/chat-ai-message').then((m) => m.default),
   'preview/chat-input': () =>

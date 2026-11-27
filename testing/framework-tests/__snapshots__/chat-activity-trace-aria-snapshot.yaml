@@ -1,0 +1,9 @@
+- main:
+  - button "Analyzed compressor data 4 steps, 12 s" [expanded]
+  - list:
+    - listitem:
+      - button "Searched maintenance logs, completed"
+    - listitem: Read vibration-trend.csv, completed
+    - listitem: Read service-schedule.xlsx, failed
+    - listitem: Stopped checking spare parts, warning
+  - paragraph: The compressor vibration is within the expected range. Schedule the next inspection during the Friday service window.
