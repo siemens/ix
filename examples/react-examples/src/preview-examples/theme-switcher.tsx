@@ -27,7 +27,7 @@ export default () => {
   const [useSystemTheme, setUseSystemTheme] = useState(false);
 
   useEffect(() => {
-    themeSwitcher.setTheme('classic', selectedVariant);
+    themeSwitcher.setTheme('community', selectedVariant);
   }, []);
 
   const onValueChange = (event: CustomEvent<string | string[]>) => {

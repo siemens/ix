@@ -10,6 +10,11 @@
 import { expect, Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+// Fake clock for the delay tests: time runs normally until hydration,
+// then is paused so the delay timers only fire when the test advances them
+const CLOCK_START = new Date('2026-01-01T00:00:00Z');
+const CLOCK_PAUSE = new Date('2026-01-01T01:00:00Z');
+
 // Reduce flaky behavior
 regressionTest.describe.configure({
   mode: 'serial',
@@ -142,36 +147,74 @@ regressionTest.describe('a11y', () => {
     const tooltip = page.locator('ix-tooltip');
     await expect(tooltip).not.toHaveClass(/visible/);
   });
+
+  regressionTest(
+    'closes on ESC without hide delay',
+    async ({ mount, page }) => {
+      await mount(`
+      <ix-tooltip for=".test" hide-delay="60000">tooltip</ix-tooltip>
+      <ix-button class="test"></ix-button>
+    `);
+      const button = page.locator('ix-button');
+      const tooltip = page.locator('ix-tooltip');
+      await expect(tooltip).toHaveAttribute('hydrated');
+      await button.hover();
+      await expect(tooltip).toHaveClass(/visible/);
+
+      await page.keyboard.press('Escape');
+      await expect(tooltip).not.toHaveClass(/visible/);
+    }
+  );
 });
 
 regressionTest('show tooltip after delay', async ({ mount, page }) => {
+  await page.clock.install({ time: CLOCK_START });
   await mount(`
     <ix-tooltip for=".test" show-delay="1000">tooltip</ix-tooltip>
     <ix-button class="test">button</ix-button>
   `);
   const tooltip = page.locator('ix-tooltip');
+  const dialog = tooltip.locator('dialog');
   const button = page.locator('ix-button');
+  await expect(tooltip).toHaveAttribute('hydrated');
+  await page.clock.pauseAt(CLOCK_PAUSE);
 
   await button.hover();
-  await expect(tooltip).not.toHaveClass(/visible/);
-  await page.waitForTimeout(1000);
+  await page.clock.runFor(999);
+  await expect(dialog).toBeHidden();
+
+  await page.clock.runFor(1);
+  await expect(dialog).toBeVisible();
+
+  await page.clock.resume();
   await expect(tooltip).toHaveClass(/visible/);
 });
 
 regressionTest('hide tooltip after delay', async ({ mount, page }) => {
+  await page.clock.install({ time: CLOCK_START });
   await mount(`
-    <div style="margin: 2rem">
+    <div style="margin: 32px">
       <ix-tooltip for=".test" hide-delay="1000">tooltip</ix-tooltip>
       <ix-button class="test">button</ix-button>
     </div>
   `);
   const tooltip = page.locator('ix-tooltip');
+  const dialog = tooltip.locator('dialog');
   const button = page.locator('ix-button');
+  await expect(tooltip).toHaveAttribute('hydrated');
 
   await button.hover();
   await expect(tooltip).toHaveClass(/visible/);
+  await page.clock.pauseAt(CLOCK_PAUSE);
+
   await page.mouse.move(0, 0);
-  await page.waitForTimeout(1000);
+  await page.clock.runFor(999);
+  await expect(dialog).toBeVisible();
+
+  await page.clock.runFor(1);
+  await expect(dialog).toBeHidden();
+
+  await page.clock.resume();
   await expect(tooltip).not.toHaveClass(/visible/);
 });
 
@@ -228,7 +271,7 @@ regressionTest.describe('handles all reference types', () => {
 
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(`
-      <div style="margin: 2rem">
+      <div style="margin: 32px">
         <ix-tooltip id="tooltip">Tooltip</ix-tooltip>
         <ix-button id="button">Button</ix-button>
       </div>
@@ -293,7 +336,7 @@ regressionTest.describe('handles multiple references', () => {
 
   regressionTest.beforeEach(async ({ mount }) => {
     await mount(`
-      <div style="margin: 2rem">
+      <div style="margin: 32px">
         <ix-tooltip id="tooltip">Tooltip</ix-tooltip>
         <ix-button id="button1">Button1</ix-button>
         <ix-button id="button2">Button2</ix-button>

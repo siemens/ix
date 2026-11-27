@@ -26,7 +26,7 @@ const DEFAULT_SKIP_LINK_FOOTER_TARGET_ID = 'ix-application-footer';
 /**
  * Root container that sets up the overall application shell and layout.
  *
- * @documentation https://ix.siemens.io//docs/components/application/guide.md
+ * @documentation https://ix.siemens.io/docs/components/application/guide.md
  *
  * @slot application-header - Application header, typically an `ix-application-header`.
  * @slot menu - Application menu, typically an `ix-menu`.
@@ -63,6 +63,7 @@ export class Application {
   onForceBreakpointChange(forceBreakpoint: Breakpoint | undefined) {
     this.setBreakpoints(this.breakpoints);
     this.forceLayoutChange(forceBreakpoint);
+    this.emitLayoutContext();
   }
 
   forceLayoutChange(newMode: Breakpoint | undefined) {
@@ -91,6 +92,8 @@ export class Application {
    * Application `url`s are opened unchanged via `window.open()`. URL schemes such as
    * `javascript:` or `data:` are not rejected. Only configure trusted applications and do not
    * derive URLs from untrusted input.
+   *
+   * @breaking-change 6.0.0 New-tab apps open with `noopener` and `noreferrer`
    */
   @Prop() appSwitchConfig?: AppSwitchConfiguration;
 
@@ -224,11 +227,7 @@ export class Application {
     this.contextProvider = useContextProvider(
       this.hostElement,
       ApplicationLayoutContext,
-      {
-        hideHeader: false,
-        sidebar: this.applicationSidebarSlotted,
-        appSwitchConfig: this.appSwitchConfig,
-      }
+      this.createLayoutContext()
     );
 
     this.modeDisposable = applicationLayoutService.onChange.on((mode) => {
@@ -267,15 +266,24 @@ export class Application {
   @Watch('appSwitchConfig')
   @Watch('applicationSidebarSlotted')
   onApplicationSidebarChange() {
+    this.emitLayoutContext();
+  }
+
+  private createLayoutContext() {
+    return {
+      hideHeader: false,
+      sidebar: this.applicationSidebarSlotted,
+      appSwitchConfig: this.appSwitchConfig,
+      forceBreakpoint: this.forceBreakpoint,
+    };
+  }
+
+  private emitLayoutContext() {
     if (!this.contextProvider) {
       console.error('Context provider not available');
       return;
     }
-    this.contextProvider.emit({
-      hideHeader: false,
-      sidebar: this.applicationSidebarSlotted,
-      appSwitchConfig: this.appSwitchConfig,
-    });
+    this.contextProvider.emit(this.createLayoutContext());
   }
 
   render() {

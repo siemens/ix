@@ -222,21 +222,8 @@ regressionTest(
     await firstPrimaryAction.press('ArrowRight');
     await expect(firstGripper).toBeFocused();
 
-    await expect
-      .poll(() =>
-        firstGripper.evaluate(
-          (element) => getComputedStyle(element, '::after').display
-        )
-      )
-      .not.toBe('none');
-    await expect(firstGripper).toHaveCSS('position', 'relative');
-    await expect
-      .poll(() =>
-        firstGripper.evaluate(
-          (element) => getComputedStyle(element, '::after').inset
-        )
-      )
-      .not.toBe('0px');
+    await expect(firstGripper).toHaveCSS('outline-style', 'solid');
+    await expect(firstGripper).toHaveCSS('outline-offset', '-2px');
   }
 );
 
@@ -643,9 +630,7 @@ regressionTest(
     await expect(gripper).toBeFocused();
     await expect
       .poll(() =>
-        gripper.evaluate(
-          (element) => getComputedStyle(element, '::after').display
-        )
+        gripper.evaluate((element) => getComputedStyle(element).outlineStyle)
       )
       .not.toBe('none');
 
@@ -659,9 +644,7 @@ regressionTest(
 
     await expect
       .poll(() =>
-        gripper.evaluate(
-          (element) => getComputedStyle(element, '::after').display
-        )
+        gripper.evaluate((element) => getComputedStyle(element).outlineStyle)
       )
       .toBe('none');
     await page.mouse.up();

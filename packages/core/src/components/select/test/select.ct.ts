@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import { expect } from '@playwright/test';
-import { getFormValue, preventFormSubmission, test } from '@utils/test';
+import { expectFormValue, preventFormSubmission, test } from '@utils/test';
 import { selectController } from './select-controller';
 
 test('a test', async ({ mount, page }) => {
@@ -726,8 +726,7 @@ test('form-ready', async ({ mount, page }) => {
   const inputValue = await select.locator('input').inputValue();
   expect(inputValue).toEqual('Item 2');
 
-  const formData = await getFormValue(formElement, 'my-custom-entry', page);
-  expect(formData).toEqual('2');
+  await expectFormValue(formElement, 'my-custom-entry', '2');
 });
 
 test('form-ready - with initial value', async ({ mount, page }) => {
@@ -743,8 +742,7 @@ test('form-ready - with initial value', async ({ mount, page }) => {
 
   const formElement = page.locator('form');
   await preventFormSubmission(formElement);
-  const formData = await getFormValue(formElement, 'my-custom-entry', page);
-  expect(formData).toEqual('some other');
+  await expectFormValue(formElement, 'my-custom-entry', 'some other');
 });
 
 test('form-ready - programmatic value update', async ({ mount, page }) => {
@@ -767,8 +765,7 @@ test('form-ready - programmatic value update', async ({ mount, page }) => {
   });
 
   await expect(select.locator('input')).toHaveValue('Item 2');
-  const formData = await getFormValue(formElement, 'my-custom-entry', page);
-  expect(formData).toEqual('2');
+  await expectFormValue(formElement, 'my-custom-entry', '2');
 });
 
 test('form-ready - cancelled value change keeps form value', async ({
@@ -794,8 +791,7 @@ test('form-ready - cancelled value change keeps form value', async ({
   await page.locator('[data-select-dropdown]').click();
   await page.locator('ix-select-item').nth(1).click();
 
-  const formData = await getFormValue(formElement, 'my-custom-entry', page);
-  expect(formData).toEqual('1');
+  await expectFormValue(formElement, 'my-custom-entry', '1');
 });
 
 test.describe('Events', () => {
@@ -977,11 +973,11 @@ test.describe('Enter selection with non-existing and existing items', () => {
 });
 
 test.describe('Dropdown width', () => {
-  test('should be 25rem when dropdown-width is set to 35rem and dropdown-max-width to 25rem', async ({
+  test('should be 400px when dropdown-width is set to 560px and dropdown-max-width to 400px', async ({
     mount,
     page,
   }) => {
-    await mount(`<ix-select value="1" dropdown-width="35rem" dropdown-max-width="25rem">
+    await mount(`<ix-select value="1" dropdown-width="560px" dropdown-max-width="400px">
       <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
     </ix-select>`);
 
@@ -996,11 +992,11 @@ test.describe('Dropdown width', () => {
     expect(box?.width).toBe(16 * 25);
   });
 
-  test('should be 25rem when dropdown-width is set to 25 and dropdown-max-width to 35rem', async ({
+  test('should be 400px when dropdown-width is set to 25 and dropdown-max-width to 560px', async ({
     mount,
     page,
   }) => {
-    await mount(`<ix-select value="1" dropdown-width="25rem" dropdown-max-width="35rem">
+    await mount(`<ix-select value="1" dropdown-width="400px" dropdown-max-width="560px">
       <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
     </ix-select>`);
 
@@ -1015,11 +1011,11 @@ test.describe('Dropdown width', () => {
     expect(box?.width).toBe(16 * 25);
   });
 
-  test('should be 25rem when dropdown-width is set to 25 and dropdown-max-width is not set', async ({
+  test('should be 400px when dropdown-width is set to 25 and dropdown-max-width is not set', async ({
     mount,
     page,
   }) => {
-    await mount(`<ix-select value="1" dropdown-width="25rem">
+    await mount(`<ix-select value="1" dropdown-width="400px">
       <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
     </ix-select>`);
 
@@ -1034,11 +1030,11 @@ test.describe('Dropdown width', () => {
     expect(box?.width).toBe(16 * 25);
   });
 
-  test('should be 35rem when dropdown-width is not set and dropdown-max-width is set to 35rem', async ({
+  test('should be 560px when dropdown-width is not set and dropdown-max-width is set to 560px', async ({
     mount,
     page,
   }) => {
-    await mount(`<ix-select value="1" dropdown-max-width="35rem">
+    await mount(`<ix-select value="1" dropdown-max-width="560px">
       <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
     </ix-select>`);
 
@@ -1079,7 +1075,7 @@ test('should be 100% when dropdown-max-width is greater than the viewport width'
   mount,
   page,
 }) => {
-  await mount(`<ix-select value="1" dropdown-max-width="10000rem">
+  await mount(`<ix-select value="1" dropdown-max-width="160000px">
     <ix-select-item label="this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option. this is an example for a very long selection option." value="1"></ix-select-item>
   </ix-select>`);
 
@@ -1853,4 +1849,347 @@ test('does not emit unhandled rejection when select is unmounted during validati
   );
 
   expect([...inputNotFoundErrors, ...injected]).toEqual([]);
+});
+
+test('required select prevents form submission when empty', async ({
+  mount,
+  page,
+  makeAxeBuilder,
+}) => {
+  await mount(`
+      <form>
+        <ix-select name="department" required>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        </ix-select>
+        <button type="submit">Submit</button>
+      </form>
+    `);
+
+  const form = page.locator('form');
+  const select = page.locator('ix-select');
+  const submitButton = page.locator('button[type="submit"]');
+
+  await preventFormSubmission(form);
+
+  await expect(select).toHaveAttribute('hydrated', '');
+  const submissions = await form.evaluateHandle((element) => {
+    const counter = { count: 0 };
+    element.addEventListener('submit', () => counter.count++);
+    return counter;
+  });
+  await expect(select).not.toHaveClass(/ix-invalid--required/);
+
+  await submitButton.click();
+
+  await expect(select).toHaveClass(/ix-invalid--required/);
+  expect(await submissions.evaluate((counter) => counter.count)).toBe(0);
+  expect((await makeAxeBuilder().analyze()).violations).toEqual([]);
+
+  await select.evaluate((element: HTMLIxSelectElement) => {
+    element.value = '1';
+  });
+  await expect(select).not.toHaveClass(/ix-invalid--required/);
+  await submitButton.click();
+  expect(await submissions.evaluate((counter) => counter.count)).toBe(1);
+});
+
+test('multiple required selects prevent form submission when any is empty', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <form>
+        <ix-select name="department" required>
+          <ix-select-item value="1" label="Department 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Department 2">Test</ix-select-item>
+        </ix-select>
+        <ix-select name="location" required>
+          <ix-select-item value="ny" label="New York">Test</ix-select-item>
+          <ix-select-item value="london" label="London">Test</ix-select-item>
+        </ix-select>
+        <button type="submit">Submit</button>
+      </form>
+    `);
+
+  const form = page.locator('form');
+  const departmentSelect = page.locator('ix-select[name="department"]');
+  const locationSelect = page.locator('ix-select[name="location"]');
+  const submitButton = page.locator('button[type="submit"]');
+
+  await preventFormSubmission(form);
+
+  await expect(departmentSelect).toHaveAttribute('hydrated', '');
+  await expect(locationSelect).toHaveAttribute('hydrated', '');
+  await departmentSelect.locator('[data-select-dropdown]').click();
+  await departmentSelect.locator('ix-select-item').first().click();
+
+  await submitButton.click();
+  await expect(locationSelect).toHaveClass(/ix-invalid--required/);
+
+  await locationSelect.locator('[data-select-dropdown]').click();
+  await locationSelect.locator('ix-select-item').first().click();
+
+  const isFormValidNow = await form.evaluate((form: HTMLFormElement) =>
+    form.checkValidity()
+  );
+  expect(isFormValidNow).toBe(true);
+});
+
+test('custom invalidText is used for validation feedback', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <form>
+        <ix-select name="department" required invalid-text="Please select your department">
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        </ix-select>
+        <button type="submit">Submit</button>
+      </form>
+    `);
+
+  const form = page.locator('form');
+  const select = page.locator('ix-select');
+  const submitButton = page.locator('button[type="submit"]');
+
+  await preventFormSubmission(form);
+
+  await expect(select).toHaveAttribute('hydrated', '');
+  await submitButton.click();
+  const fieldWrapper = select.locator('ix-field-wrapper');
+  await expect(fieldWrapper).toContainText('Please select your department');
+});
+
+test('novalidate form allows submission without validation feedback', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <form novalidate>
+        <ix-select name="department" required>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        </ix-select>
+        <button type="submit">Submit</button>
+      </form>
+    `);
+
+  const form = page.locator('form');
+  const select = page.locator('ix-select');
+  const submitButton = page.locator('button[type="submit"]');
+
+  await preventFormSubmission(form);
+
+  await expect(select).toHaveAttribute('hydrated', '');
+  const submissions = await form.evaluateHandle((element) => {
+    const counter = { count: 0 };
+    element.addEventListener('submit', () => counter.count++);
+    return counter;
+  });
+  const isFormValid = await form.evaluate((form: HTMLFormElement) =>
+    form.checkValidity()
+  );
+  expect(isFormValid).toBe(false);
+
+  await submitButton.click();
+  expect(await submissions.evaluate((counter) => counter.count)).toBe(1);
+  await expect(select).not.toHaveClass(/ix-invalid--required/);
+});
+
+test('required select validity follows property changes', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form>
+      <ix-select name="department" required>
+        <ix-select-item value="1" label="Item 1"></ix-select-item>
+      </ix-select>
+      <button type="submit">Submit</button>
+    </form>
+  `);
+
+  const form = page.locator('form');
+  const select = page.locator('ix-select');
+  await preventFormSubmission(form);
+  await expect(select).toHaveAttribute('hydrated', '');
+  await page.getByRole('button', { name: 'Submit' }).click();
+  await expect(select).toHaveClass(/ix-invalid--required/);
+
+  for (const property of ['required', 'disabled', 'readonly'] as const) {
+    await select.evaluate((element: HTMLIxSelectElement, property) => {
+      element[property] = property !== 'required';
+    }, property);
+    await expect
+      .poll(() =>
+        form.evaluate((element: HTMLFormElement) => element.checkValidity())
+      )
+      .toBe(true);
+    await expect(select).not.toHaveClass(/ix-invalid--required/);
+
+    await select.evaluate((element: HTMLIxSelectElement, property) => {
+      element[property] = property === 'required';
+    }, property);
+    await expect
+      .poll(() =>
+        form.evaluate((element: HTMLFormElement) => element.checkValidity())
+      )
+      .toBe(false);
+    await expect(select).toHaveClass(/ix-invalid--required/);
+  }
+});
+
+test('required select honors formnovalidate on the submitter', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <form>
+      <ix-select name="department" required>
+        <ix-select-item value="1" label="Item 1"></ix-select-item>
+      </ix-select>
+      <button type="submit" formnovalidate>Save draft</button>
+      <button type="submit">Submit</button>
+    </form>
+  `);
+
+  const form = page.locator('form');
+  const select = page.locator('ix-select');
+  await preventFormSubmission(form);
+  await expect(select).toHaveAttribute('hydrated', '');
+  const submissions = await form.evaluateHandle((element) => {
+    const counter = { count: 0 };
+    element.addEventListener('submit', () => counter.count++);
+    return counter;
+  });
+
+  await page.getByRole('button', { name: 'Save draft' }).click();
+  expect(await submissions.evaluate((counter) => counter.count)).toBe(1);
+  await expect(select).not.toHaveClass(/ix-invalid--required/);
+
+  await page.getByRole('button', { name: 'Submit', exact: true }).click();
+  await expect(select).toHaveClass(/ix-invalid--required/);
+  expect(await submissions.evaluate((counter) => counter.count)).toBe(1);
+});
+
+test('required select retains external form validation after reconnecting', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+    <div>
+      <form id="first-form"></form>
+      <form id="second-form">
+        <button type="submit">Submit</button>
+      </form>
+      <ix-select form="first-form" name="department" required>
+        <ix-select-item value="1" label="Item 1"></ix-select-item>
+      </ix-select>
+    </div>
+  `);
+
+  const select = page.locator('ix-select');
+  const firstForm = page.locator('#first-form');
+  const secondForm = page.locator('#second-form');
+  await preventFormSubmission(secondForm);
+  await expect(select).toHaveAttribute('hydrated', '');
+  expect(
+    await firstForm.evaluate((element) => element.matches(':invalid'))
+  ).toBe(true);
+
+  await select.evaluate((element) => {
+    const parent = element.parentElement;
+    if (!parent) {
+      throw new Error('Select parent element not found');
+    }
+    element.remove();
+    element.setAttribute('form', 'second-form');
+    parent.appendChild(element);
+  });
+  await expect
+    .poll(() => firstForm.evaluate((element) => element.matches(':invalid')))
+    .toBe(false);
+  await expect
+    .poll(() => secondForm.evaluate((element) => element.matches(':invalid')))
+    .toBe(true);
+
+  const submissions = await secondForm.evaluateHandle((element) => {
+    const counter = { count: 0 };
+    element.addEventListener('submit', () => counter.count++);
+    return counter;
+  });
+  await page.getByRole('button', { name: 'Submit' }).click();
+  await expect(select).toHaveClass(/ix-invalid--required/);
+  expect(await submissions.evaluate((counter) => counter.count)).toBe(0);
+
+  await select.evaluate((element: HTMLIxSelectElement) => {
+    element.value = '1';
+  });
+  await expect(select).not.toHaveClass(/ix-invalid--required/);
+  await page.getByRole('button', { name: 'Submit' }).click();
+  expect(await submissions.evaluate((counter) => counter.count)).toBe(1);
+});
+
+test('multiple mode validation works correctly', async ({ mount, page }) => {
+  await mount(`
+      <form>
+        <ix-select name="departments" required mode="multiple">
+          <ix-select-item value="1" label="Sales">Test</ix-select-item>
+          <ix-select-item value="2" label="Marketing">Test</ix-select-item>
+          <ix-select-item value="3" label="Engineering">Test</ix-select-item>
+        </ix-select>
+        <button type="submit">Submit</button>
+      </form>
+    `);
+
+  const form = page.locator('form');
+  const select = page.locator('ix-select');
+  const submitButton = page.locator('button[type="submit"]');
+
+  await preventFormSubmission(form);
+
+  await expect(select).toHaveAttribute('hydrated', '');
+  await submitButton.click();
+  await expect(select).toHaveClass(/ix-invalid--required/);
+
+  await page.locator('[data-select-dropdown]').click();
+  await page.locator('ix-select-item').first().click();
+  await page.locator('ix-select-item').nth(1).click();
+
+  const isFormValid = await form.evaluate((form: HTMLFormElement) =>
+    form.checkValidity()
+  );
+  expect(isFormValid).toBe(true);
+  await expect(select).not.toHaveClass(/ix-invalid--required/);
+});
+
+test('programmatic value setting updates validation state', async ({
+  mount,
+  page,
+}) => {
+  await mount(`
+      <form>
+        <ix-select name="department" required>
+          <ix-select-item value="1" label="Item 1">Test</ix-select-item>
+          <ix-select-item value="2" label="Item 2">Test</ix-select-item>
+        </ix-select>
+        <button type="submit">Submit</button>
+      </form>
+    `);
+
+  const select = page.locator('ix-select');
+  const submitButton = page.locator('button[type="submit"]');
+
+  await preventFormSubmission(page.locator('form'));
+  await expect(select).toHaveAttribute('hydrated', '');
+  await submitButton.click();
+  await expect(select).toHaveClass(/ix-invalid--required/);
+
+  await select.evaluate((el: HTMLIxSelectElement) => {
+    el.value = '1';
+  });
+
+  await expect(select).not.toHaveClass(/ix-invalid--required/);
 });

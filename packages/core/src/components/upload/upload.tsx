@@ -25,7 +25,7 @@ import { A11yAttributes, a11yHostAttributes } from '../utils/a11y';
 /**
  * Control for selecting and uploading files.
  *
- * @documentation https://ix.siemens.io//docs/components/upload/guide.md
+ * @documentation https://ix.siemens.io/docs/components/upload/guide.md
  * @figma-main-component-id 1028:14676
  */
 @Component({

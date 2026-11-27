@@ -19,6 +19,7 @@ import {
   State,
 } from '@stencil/core';
 import type { ToastType } from './toast.types';
+import { hasSlottedContent } from '../utils/shadow-dom';
 import {
   iconAlarm,
   iconClose,
@@ -30,18 +31,13 @@ import {
   iconWarningRhomb,
 } from '@siemens/ix-icons/icons';
 
-interface ToastTypeConfig {
-  icon: string;
-  color: string;
-}
-
 /**
  * Transient notification message that appears temporarily.
  *
- * @documentation https://ix.siemens.io//docs/components/toast/guide.md
+ * @documentation https://ix.siemens.io/docs/components/toast/guide.md
  *
  * @slot - Toast message content.
- * @slot action - Toast action content.
+ * @slot action - Optional toast action content. Empty actions do not reserve spacing.
  */
 @Component({
   tag: 'ix-toast',
@@ -50,7 +46,8 @@ interface ToastTypeConfig {
 })
 export class Toast {
   /**
-   * Toast type
+   * Toast type, determining the status icon and left-side status strip color.
+   * Defaults to `information`.
    */
   @Prop({ reflect: true }) type: ToastType = 'information';
 
@@ -88,8 +85,6 @@ export class Toast {
   /**
    * ARIA label for the close icon button.
    * Will be set as aria-label on the nested HTML button element.
-   *
-   * @since 3.2.0
    */
   @Prop() ariaLabelCloseIconButton?: string = 'Close toast';
 
@@ -101,40 +96,20 @@ export class Toast {
   @State() progress = 0;
   @State() touched = false;
   @State() paused = false;
+  @State() private hasAction = false;
 
   @Element() hostElement!: HTMLIxToastElement;
 
-  private static readonly toastTypeConfigs: Record<ToastType, ToastTypeConfig> =
-    {
-      danger: {
-        icon: iconAlarm,
-        color: '--si-sys-color-border-danger',
-      },
-      warning: {
-        icon: iconWarning,
-        color: '--si-sys-color-border-warning',
-      },
-      caution: {
-        icon: iconWarningRhomb,
-        color: '--si-sys-color-border-caution',
-      },
-      information: {
-        icon: iconInfo,
-        color: '--si-sys-color-border-information',
-      },
-      critical: {
-        icon: iconWarningOctagon,
-        color: '--si-sys-color-border-critical',
-      },
-      success: {
-        icon: iconSuccess,
-        color: '--si-sys-color-border-success',
-      },
-      error: {
-        icon: iconError,
-        color: '--si-sys-color-border-danger',
-      },
-    };
+  private static readonly toastTypeIcons: Record<ToastType, string> = {
+    base: iconInfo,
+    danger: iconAlarm,
+    warning: iconWarning,
+    caution: iconWarningRhomb,
+    information: iconInfo,
+    critical: iconWarningOctagon,
+    success: iconSuccess,
+    error: iconError,
+  };
 
   private getIcon() {
     if (this.icon) {
@@ -148,17 +123,17 @@ export class Toast {
       );
     }
 
-    const config = Toast.toastTypeConfigs[this.type];
-    if (!config) {
-      return '';
+    const icon = Toast.toastTypeIcons[this.type];
+    if (!icon) {
+      return null;
     }
 
     return (
       <ix-icon
         data-testid="toast-icon"
         aria-hidden="true"
-        name={config.icon}
-        color={config.color}
+        class="status-icon"
+        name={icon}
       />
     );
   }
@@ -233,7 +208,8 @@ export class Toast {
   }
 
   render() {
-    let progressBarStyle: Record<string, string> = {};
+    const icon = this.hideIcon ? null : this.getIcon();
+    let progressBarStyle: Record<string, string>;
 
     const progressBarClass = ['toast-progress-bar'];
 
@@ -255,8 +231,10 @@ export class Toast {
             this.touched = true;
           }}
         >
-          {(this.type || this.icon) && !this.hideIcon ? (
-            <div class="toast-icon">{this.getIcon()}</div>
+          {icon ? (
+            <div class="toast-icon" aria-hidden="true">
+              {icon}
+            </div>
           ) : null}
           <div class="toast-content">
             {this.toastTitle ? (
@@ -267,8 +245,20 @@ export class Toast {
             <div class="toast-message">
               <slot></slot>
             </div>
-            <div class="toast-action">
-              <slot name="action"></slot>
+            <div
+              class={{
+                'toast-action': true,
+                'toast-action--empty': !this.hasAction,
+              }}
+            >
+              <slot
+                name="action"
+                onSlotchange={(event) => {
+                  this.hasAction = hasSlottedContent(
+                    event.target as HTMLSlotElement
+                  );
+                }}
+              ></slot>
             </div>
           </div>
           <div class="toast-close">

@@ -77,7 +77,7 @@ function getThemeMetaData(testInfo: TestInfo): {
   theme: string;
   colorSchema: string;
 } {
-  const theme = testInfo.project.metadata?.theme ?? 'classic';
+  const theme = testInfo.project.metadata?.theme ?? 'community';
   const colorSchema = testInfo.project.metadata?.colorSchema ?? 'dark';
 
   return {

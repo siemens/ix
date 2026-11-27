@@ -24,6 +24,24 @@ export const matchBreakpoint = (breakpoint: Breakpoint) => {
   return false;
 };
 
+/**
+ * Listen to viewport changes for a breakpoint even when the shared layout bus
+ * has detection disabled (e.g. while an application sets forceBreakpoint).
+ */
+export const addBreakpointMediaListener = (
+  breakpoint: Breakpoint,
+  listener: () => void
+): (() => void) => {
+  if (typeof window === 'undefined' || !window.matchMedia) {
+    return () => undefined;
+  }
+
+  const mediaQueryList = window.matchMedia(mediaQueries[breakpoint]);
+  const onChange = () => listener();
+  mediaQueryList.addEventListener('change', onChange);
+  return () => mediaQueryList.removeEventListener('change', onChange);
+};
+
 export const getCurrentBreakpoint = (): Breakpoint => {
   if (typeof window === 'undefined' || !window.matchMedia) {
     return 'lg';

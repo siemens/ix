@@ -263,7 +263,7 @@ pnpm test --filter @siemens/ix-react    # React tests (Vitest)
 ### Visual regression testing
 
 **_Docker cli must be installed on your system_**  
-Visual regression tests run across multiple themes: `theme-classic-light`, `theme-classic-dark`, and brand variants.
+Visual regression tests run across multiple themes: `theme-community-light`, `theme-community-dark`, and brand variants.
 
 If you execute the visual-regression tests, please be sure to execute the build step before.
 

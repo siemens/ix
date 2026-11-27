@@ -179,7 +179,7 @@ const option: EChartsOption = {
 };
 
 switch (theme) {
-  case 'theme-classic-dark':
+  case 'theme-community-dark':
     option.color = [
       '#EF9A9A',
       '#F38FC2',
@@ -192,7 +192,7 @@ switch (theme) {
     ];
     break;
 
-  case 'theme-classic-light':
+  case 'theme-community-light':
     option.color = [
       '#9E5833',
       '#6F2542',

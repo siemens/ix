@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('toggle-button: basic', () => {
   regressionTest('should not have visual regressions', async ({ page }) => {
@@ -56,4 +56,18 @@ regressionTest.describe('toggle-button: basic', () => {
     await page.goto('toggle-button/loading');
     expect(await page.screenshot({ animations: 'disabled' })).toMatchSnapshot();
   });
+});
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: fit-content">
+      <ix-toggle-button>Toggle button</ix-toggle-button>
+    </div>`
+  );
+
+  await focusWithKeyboard(page, page.locator('ix-toggle-button'));
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
 });

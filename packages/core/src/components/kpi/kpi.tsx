@@ -14,7 +14,7 @@ import { KPI_STATE_ICONS, type KpiState } from './kpi.types';
 /**
  * Displays a key performance indicator with a label, value, and status.
  *
- * @documentation https://ix.siemens.io//docs/components/kpi/code.md
+ * @documentation https://ix.siemens.io/docs/components/kpi/code.md
  * @figma-main-component-id 423:3986
  */
 @Component({
@@ -42,6 +42,8 @@ export class Kpi {
    * Status of the KPI.
    * `neutral` and `accent` show no status icon.
    * Status icons are decorative (`aria-hidden`); convey status in visible text or the host accessible name when it matters for assistive technology.
+   *
+   * @breaking-change 6.0.0 Status state values renamed
    */
   @Prop() state: KpiState = 'neutral';
 
@@ -58,12 +60,7 @@ export class Kpi {
     }
 
     return (
-      <ix-icon
-        color="--ix-kpi-display-icon--color"
-        name={icon}
-        size="16"
-        aria-hidden={a11yBoolean(true)}
-      ></ix-icon>
+      <ix-icon name={icon} size="16" aria-hidden={a11yBoolean(true)}></ix-icon>
     );
   }
 

@@ -45,7 +45,7 @@ To customize the component itself, use its current scoped property:
 
 ```css
 ix-button {
-  --ix-button-primary--background: var(--si-sys-color-background-accent);
+  --ix-button--background--primary: var(--si-sys-color-background-accent);
 }
 ```
 

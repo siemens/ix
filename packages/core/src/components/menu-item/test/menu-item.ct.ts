@@ -10,6 +10,28 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
+regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
+  await mount(`
+    <ix-application>
+      <ix-menu>
+        <ix-menu-item notifications="5">Notifications</ix-menu-item>
+      </ix-menu>
+    </ix-application>
+  `);
+
+  const menuItem = page.locator('ix-menu-item');
+  await expect(menuItem).toHaveAttribute('hydrated');
+
+  const badge = menuItem.locator('ix-badge');
+  await expect(badge).toHaveAttribute('hydrated');
+  await expect(badge).toHaveAttribute('type', 'counter');
+  await expect(badge).toHaveAttribute('label', '5');
+  await expect(badge).toBeVisible();
+
+  const accessibilityScanResults = await makeAxeBuilder().analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`
     <ix-application>

@@ -8,7 +8,7 @@
  */
 
 import { expect } from '@playwright/test';
-import { regressionTest } from '@utils/test';
+import { focusWithKeyboard, regressionTest } from '@utils/test';
 
 regressionTest.describe('expanding-search', () => {
   regressionTest('basic', async ({ page }) => {
@@ -37,4 +37,18 @@ regressionTest.describe('expanding-search', () => {
     await page.waitForTimeout(1000);
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot();
   });
+});
+
+regressionTest('should show focus-visible outline', async ({ mount, page }) => {
+  const container = await mount(
+    `<div style="padding: 0.5rem; width: fit-content">
+      <ix-expanding-search></ix-expanding-search>
+    </div>`
+  );
+
+  await focusWithKeyboard(page, page.locator('ix-expanding-search'));
+
+  expect(
+    await container.screenshot({ animations: 'disabled' })
+  ).toMatchSnapshot();
 });

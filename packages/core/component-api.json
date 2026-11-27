@@ -2321,6 +2321,17 @@
       "deprecated": false,
       "properties": [
         {
+          "name": "ariaLabelMoreActions",
+          "attribute": "aria-label-more-actions",
+          "type": "string",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "'More actions'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "hasBackButton",
           "attribute": "has-back-button",
           "type": "boolean",
@@ -2389,7 +2400,8 @@
       "cssProperties": [],
       "slots": [
         "default",
-        "header"
+        "header",
+        "secondary-actions"
       ],
       "cssParts": [],
       "cssStates": []
@@ -2522,6 +2534,16 @@
           "reflectToAttribute": false,
           "default": "false",
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "displayFormat",
+          "attribute": "display-format",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -2791,6 +2813,16 @@
           "deprecated": false
         },
         {
+          "name": "displayFormat",
+          "attribute": "display-format",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "enableTopLayer",
           "attribute": "enable-top-layer",
           "type": "boolean",
@@ -3056,6 +3088,11 @@
         }
       ],
       "methods": [
+        {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
         {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
@@ -3403,6 +3440,16 @@
           "reflectToAttribute": false,
           "default": "false",
           "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "displayFormat",
+          "attribute": "display-format",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -4618,6 +4665,16 @@
           "deprecated": false
         },
         {
+          "name": "description",
+          "attribute": "description",
+          "type": "string | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "header",
           "attribute": "header",
           "type": "string",
@@ -4645,16 +4702,6 @@
           "reflectToAttribute": false,
           "default": "'large'",
           "optional": false,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "subHeader",
-          "attribute": "sub-header",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
           "required": false,
           "deprecated": false
         }
@@ -5037,7 +5084,7 @@
           "type": "\"auto\" | number",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "15.125",
+          "default": "242",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -5070,7 +5117,7 @@
           "type": "\"auto\" | number",
           "mutable": false,
           "reflectToAttribute": false,
-          "default": "16",
+          "default": "256",
           "optional": false,
           "required": false,
           "deprecated": false
@@ -5658,8 +5705,8 @@
       "deprecated": false,
       "properties": [
         {
-          "name": "copyText",
-          "attribute": "copy-text",
+          "name": "description",
+          "attribute": "description",
           "type": "string | undefined",
           "mutable": false,
           "reflectToAttribute": false,
@@ -5686,16 +5733,6 @@
           "reflectToAttribute": false,
           "default": "'--si-sys-color-background-warning'",
           "optional": false,
-          "required": false,
-          "deprecated": false
-        },
-        {
-          "name": "instructions",
-          "attribute": "instructions",
-          "type": "string | undefined",
-          "mutable": false,
-          "reflectToAttribute": false,
-          "optional": true,
           "required": false,
           "deprecated": false
         },
@@ -5934,6 +5971,11 @@
       ],
       "methods": [
         {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
+        {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
           "deprecated": false
@@ -6006,6 +6048,17 @@
           "deprecated": false
         },
         {
+          "name": "hideDivider",
+          "attribute": "hide-divider",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "icon",
           "attribute": "icon",
           "type": "string | undefined",
@@ -6060,6 +6113,17 @@
       "tag": "ix-key-value-list",
       "deprecated": false,
       "properties": [
+        {
+          "name": "hideDividers",
+          "attribute": "hide-dividers",
+          "type": "boolean",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "false",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
         {
           "name": "striped",
           "attribute": "striped",
@@ -6431,7 +6495,7 @@
           "attribute": "item-gap",
           "type": "\"lg\" | \"md\" | \"none\" | \"sm\"",
           "mutable": false,
-          "reflectToAttribute": false,
+          "reflectToAttribute": true,
           "default": "'sm'",
           "optional": false,
           "required": false,
@@ -8085,6 +8149,11 @@
       ],
       "methods": [
         {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
+        {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
           "deprecated": false
@@ -8092,6 +8161,11 @@
         {
           "name": "getNativeInputElement",
           "signature": "getNativeInputElement() => Promise<HTMLInputElement>",
+          "deprecated": false
+        },
+        {
+          "name": "getValidityState",
+          "signature": "getValidityState() => Promise<ValidityState>",
           "deprecated": false
         }
       ],
@@ -10629,6 +10703,11 @@
       ],
       "methods": [
         {
+          "name": "clear",
+          "signature": "clear() => Promise<void>",
+          "deprecated": false
+        },
+        {
           "name": "focusInput",
           "signature": "focusInput() => Promise<void>",
           "deprecated": false
@@ -10636,6 +10715,11 @@
         {
           "name": "getNativeInputElement",
           "signature": "getNativeInputElement() => Promise<HTMLTextAreaElement>",
+          "deprecated": false
+        },
+        {
+          "name": "getValidityState",
+          "signature": "getValidityState() => Promise<ValidityState>",
           "deprecated": false
         }
       ],
@@ -11494,7 +11578,7 @@
         {
           "name": "type",
           "attribute": "type",
-          "type": "\"caution\" | \"critical\" | \"danger\" | \"error\" | \"information\" | \"success\" | \"warning\"",
+          "type": "\"base\" | \"caution\" | \"critical\" | \"danger\" | \"error\" | \"information\" | \"success\" | \"warning\"",
           "mutable": false,
           "reflectToAttribute": true,
           "default": "'information'",
@@ -11809,6 +11893,16 @@
           "deprecated": false
         },
         {
+          "name": "hideDelay",
+          "attribute": "hide-delay",
+          "type": "number | undefined",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "optional": true,
+          "required": false,
+          "deprecated": false
+        },
+        {
           "name": "interactive",
           "attribute": "interactive",
           "type": "boolean",
@@ -11826,6 +11920,17 @@
           "mutable": false,
           "reflectToAttribute": false,
           "default": "'top'",
+          "optional": false,
+          "required": false,
+          "deprecated": false
+        },
+        {
+          "name": "showDelay",
+          "attribute": "show-delay",
+          "type": "number",
+          "mutable": false,
+          "reflectToAttribute": false,
+          "default": "0",
           "optional": false,
           "required": false,
           "deprecated": false

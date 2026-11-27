@@ -11,10 +11,10 @@
 @use '../foundation/scrollbar';
 
 :root {
-  --ix-safe-area-inset-top: 0rem;
-  --ix-safe-area-inset-right: 0rem;
-  --ix-safe-area-inset-bottom: 0rem;
-  --ix-safe-area-inset-left: 0rem;
+  --ix-safe-area-inset-top: 0px;
+  --ix-safe-area-inset-right: 0px;
+  --ix-safe-area-inset-bottom: 0px;
+  --ix-safe-area-inset-left: 0px;
 
   --theme-z-index-sticky: 1020;
   --theme-z-index-fixed: 1030;

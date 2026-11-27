@@ -137,3 +137,22 @@ regressionTest(
     });
   }
 );
+
+regressionTest(
+  'numeric item height is pixels independent of the root font size',
+  async ({ mount, page }) => {
+    await page.evaluate(() => {
+      document.documentElement.style.fontSize = '20px';
+    });
+    await mount(`
+    <ix-event-list item-height="60">
+      <ix-event-list-item item-color="--si-sys-color-background-accent">Text 1</ix-event-list-item>
+    </ix-event-list>
+  `);
+
+    await expect(page.locator('ix-event-list-item')).toHaveJSProperty(
+      'offsetHeight',
+      60
+    );
+  }
+);

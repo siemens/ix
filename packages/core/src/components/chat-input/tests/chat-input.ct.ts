@@ -9,7 +9,7 @@
 import { expect } from '@playwright/test';
 import { iconCircleStop, iconSendRightFilled } from '@siemens/ix-icons/icons';
 import {
-  getFormValue,
+  expectFormValue,
   preventFormSubmission,
   regressionTest,
 } from '@utils/test';
@@ -273,7 +273,7 @@ regressionTest(
   'ix-chat-input renders slotted attachments with selected layout',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat-input attachment-layout="scroll" style="width: 40rem; --ix-chat-input-max-width: 40rem">
+      <ix-chat-input attachment-layout="scroll" style="width: 640px; --ix-chat-input--max-width: 640px">
         <ix-chat-attachment slot="attachments" file-name="file_01.txt"></ix-chat-attachment>
         <ix-chat-attachment slot="attachments" status="loading"></ix-chat-attachment>
       </ix-chat-input>
@@ -300,7 +300,7 @@ regressionTest(
   'ix-chat-input adds scrollbar spacing only when attachments are scrollable',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat-input attachment-layout="scroll" style="width: 12rem; --ix-chat-input-max-width: 12rem">
+      <ix-chat-input attachment-layout="scroll" style="width: 192px; --ix-chat-input--max-width: 192px">
         ${Array.from(
           { length: 8 },
           (_, index) =>
@@ -318,8 +318,8 @@ regressionTest(
     await expect(attachments).toHaveCSS('padding-bottom', '4px');
 
     await chatInput.evaluate((element) => {
-      element.style.width = '90rem';
-      element.style.setProperty('--ix-chat-input-max-width', '90rem');
+      element.style.width = '1440px';
+      element.style.setProperty('--ix-chat-input--max-width', '1440px');
     });
 
     await expect(attachments).not.toHaveClass(/has-attachment-scrollbar/);
@@ -330,7 +330,7 @@ regressionTest(
   'ix-chat-input does not render an attachment overflow dropdown',
   async ({ mount, page }) => {
     await mount(`
-      <ix-chat-input style="width: 16rem; --ix-chat-input-max-width: 16rem">
+      <ix-chat-input style="width: 256px; --ix-chat-input--max-width: 256px">
         ${Array.from(
           { length: 10 },
           (_, index) =>
@@ -391,6 +391,5 @@ regressionTest(`form-ready - ix-chat-input`, async ({ mount, page }) => {
   await input.fill('Some prompt');
   await input.blur();
 
-  const formData = await getFormValue(formElement, 'my-field-name', page);
-  expect(formData).toBe('Some prompt');
+  await expectFormValue(formElement, 'my-field-name', 'Some prompt');
 });

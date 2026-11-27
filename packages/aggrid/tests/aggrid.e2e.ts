@@ -10,6 +10,145 @@ import { expect } from '@playwright/test';
 import { regressionTest } from '@utils/test';
 
 regressionTest.describe('aggrid', () => {
+  for (const fixture of [
+    'basic/basic.html',
+    'versions/v34/basic.html',
+    'versions/v35/basic.html',
+    'versions/v36/basic.html',
+  ]) {
+    regressionTest.describe(`checkbox and focus ${fixture}`, () => {
+      regressionTest.beforeEach(async ({ page }) => {
+        await page.goto(`${fixture}?cellFocus`);
+      });
+
+      regressionTest('rounds every checkbox state', async ({ page }) => {
+        const checkbox = page.getByRole('checkbox').nth(1);
+        const wrapper = checkbox.locator('..');
+        await expect(wrapper).toHaveCSS('border-radius', '2px');
+        await checkbox.focus();
+        await page.keyboard.press('Space');
+        await expect(checkbox).toBeChecked();
+        await expect(wrapper).toHaveCSS('border-radius', '2px');
+        await expect
+          .poll(() =>
+            wrapper.evaluate(
+              (element) => getComputedStyle(element, '::before').borderRadius
+            )
+          )
+          .toBe('2px');
+        const header = page.getByRole('checkbox').first().locator('..');
+        await expect(header).toHaveClass(/ag-indeterminate/);
+        await expect(header).toHaveCSS('border-radius', '2px');
+        await expect
+          .poll(() =>
+            header.evaluate(
+              (element) => getComputedStyle(element, '::before').borderRadius
+            )
+          )
+          .toBe('2px');
+      });
+
+      regressionTest(
+        'shows one keyboard checkbox focus ring',
+        async ({ page }) => {
+          const checkbox = page.getByRole('checkbox').first();
+          await page.keyboard.press('Tab');
+          await checkbox.focus();
+          await expect(checkbox).toBeFocused();
+          await expect(checkbox.locator('..')).toHaveCSS(
+            'outline-width',
+            '2px'
+          );
+          await expect(checkbox.locator('..')).toHaveCSS(
+            'outline-offset',
+            '1px'
+          );
+          await expect(checkbox.locator('..')).toHaveCSS(
+            'outline-style',
+            'solid'
+          );
+          await expect(checkbox.locator('..')).toHaveCSS('box-shadow', 'none');
+          await expect(checkbox).toHaveCSS('outline-style', 'none');
+          await expect(checkbox).toHaveCSS('box-shadow', 'none');
+          await checkbox.locator('..').evaluate((element) => {
+            element.style.setProperty(
+              '--si-sys-color-effects-focus',
+              'rgb(12, 34, 56)'
+            );
+          });
+          await expect(checkbox.locator('..')).toHaveCSS(
+            'outline-color',
+            'rgb(12, 34, 56)'
+          );
+        }
+      );
+
+      regressionTest(
+        'shows inset cell and header focus rings',
+        async ({ page }) => {
+          const cell = page.getByRole('gridcell', {
+            name: 'Toyota',
+            exact: true,
+          });
+          await cell.click();
+          await expect(cell).toHaveCSS('outline-width', '2px');
+          await expect(cell).toHaveCSS('outline-offset', '-2px');
+          await expect(cell).toHaveCSS('outline-style', 'solid');
+          await expect(cell).toHaveCSS('box-shadow', 'none');
+          const header = page.getByRole('columnheader', {
+            name: 'Make',
+            exact: true,
+          });
+          await page.keyboard.press('ArrowUp');
+          await expect(header).toBeFocused();
+          await expect(header).toHaveCSS('outline-width', '2px');
+          await expect(header).toHaveCSS('outline-offset', '-2px');
+          await expect(header).toHaveCSS('outline-style', 'solid');
+          await expect(header).toHaveCSS('box-shadow', 'none');
+          await header.evaluate((element) => {
+            element.style.setProperty(
+              '--si-sys-color-effects-focus',
+              'rgb(12, 34, 56)'
+            );
+          });
+          await expect(header).toHaveCSS('outline-color', 'rgb(12, 34, 56)');
+          await cell.click();
+          await cell.evaluate((element) => {
+            element.style.setProperty(
+              '--si-sys-color-effects-focus',
+              'rgb(12, 34, 56)'
+            );
+          });
+          await expect(cell).toHaveCSS('outline-color', 'rgb(12, 34, 56)');
+        }
+      );
+    });
+  }
+
+  regressionTest('keyboard focus appearance', async ({ page }) => {
+    await page.goto('basic/basic.html?cellFocus');
+    const checkbox = page.getByRole('checkbox').nth(1);
+    await checkbox.focus();
+    await page.keyboard.press('Space');
+    const cell = page.getByRole('gridcell', { name: 'Toyota', exact: true });
+    await cell.click();
+    await expect(cell).toHaveCSS('outline-style', 'solid');
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
+      'cell-focus.png'
+    );
+
+    await page.keyboard.press('Tab');
+    const headerCheckbox = page.getByRole('checkbox').first();
+    await headerCheckbox.focus();
+    await expect(headerCheckbox.locator('..')).toHaveCSS(
+      'outline-style',
+      'solid'
+    );
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
+      'checkbox-focus.png'
+    );
+  });
+
   regressionTest.describe('version', () => {
     regressionTest('v33', async ({ page }) => {
       await page.goto('basic/basic.html');
@@ -162,6 +301,57 @@ regressionTest.describe('aggrid', () => {
       'rgb(12, 34, 56) 1px 2px 3px 0px'
     );
   });
+
+  regressionTest(
+    'uses the theme font family token with SiemensSans Pro fallback',
+    async ({ page }) => {
+      await page.goto('basic/basic.html');
+      const grid = page.locator('.ag-root-wrapper');
+      const cell = page.getByRole('gridcell', { name: 'Toyota', exact: true });
+      await expect(grid).toBeVisible();
+
+      await expect(grid).toHaveCSS(
+        'font-family',
+        'Arial, helvetica, sans-serif'
+      );
+      await expect(cell).toHaveCSS(
+        'font-family',
+        'Arial, helvetica, sans-serif'
+      );
+
+      await page.evaluate(() => {
+        document.documentElement.style.setProperty(
+          '--si-ref-typography-font-family-sans',
+          '"SiemensSans Pro", sans-serif'
+        );
+      });
+
+      await expect(grid).toHaveCSS(
+        'font-family',
+        '"SiemensSans Pro", sans-serif'
+      );
+      await expect(cell).toHaveCSS(
+        'font-family',
+        '"SiemensSans Pro", sans-serif'
+      );
+
+      await page.evaluate(() => {
+        document.documentElement.style.setProperty(
+          '--si-ref-typography-font-family-sans',
+          'initial'
+        );
+      });
+
+      await expect(grid).toHaveCSS(
+        'font-family',
+        '"SiemensSans Pro VF", "SiemensSans Pro", sans-serif'
+      );
+      await expect(cell).toHaveCSS(
+        'font-family',
+        '"SiemensSans Pro VF", "SiemensSans Pro", sans-serif'
+      );
+    }
+  );
 
   regressionTest.describe('dropdown top layer (enableTopLayer=true)', () => {
     regressionTest(

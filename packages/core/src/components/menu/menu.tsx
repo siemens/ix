@@ -40,14 +40,13 @@ import {
 import { menuController } from '../utils/menu-service/menu-service';
 import { CustomCloseEvent } from '../utils/menu-tabs/menu-tabs-utils';
 import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
-import { convertToRemString } from '../utils/rwd.util';
 import { themeSwitcher } from '../utils/theme-switcher';
 import { Disposable } from '../utils/typed-event';
 
 /**
  * Primary side navigation menu of the application shell.
  *
- * @documentation https://ix.siemens.io//docs/components/application-menu/guide.md
+ * @documentation https://ix.siemens.io/docs/components/application-menu/guide.md
  * @figma-main-component-id 20977:55554
  *
  * @slot ix-menu-avatar - Avatar displayed in the menu header.
@@ -70,10 +69,54 @@ export class Menu {
    */
   @Prop({ mutable: true }) showSettings = false;
 
+  @Watch('showSettings')
+  onShowSettingsChange(show: boolean) {
+    if (!this.settings) {
+      return;
+    }
+
+    this.settings.show = show;
+
+    if (show) {
+      this.overlayCloseToken++;
+      const wasAboutVisible = this.showAbout && !this.isOverlayClosing;
+      this.isOverlayClosing = false;
+      this.showAbout = false;
+      if (this.about) {
+        this.about.show = false;
+      }
+      if (!wasAboutVisible) {
+        this.animateOverlayFadeIn();
+      }
+    }
+  }
+
   /**
    * Is about tab visible
    */
   @Prop({ mutable: true }) showAbout = false;
+
+  @Watch('showAbout')
+  onShowAboutChange(show: boolean) {
+    if (!this.about) {
+      return;
+    }
+
+    this.about.show = show;
+
+    if (show) {
+      this.overlayCloseToken++;
+      const wasSettingsVisible = this.showSettings && !this.isOverlayClosing;
+      this.isOverlayClosing = false;
+      this.showSettings = false;
+      if (this.settings) {
+        this.settings.show = false;
+      }
+      if (!wasSettingsVisible) {
+        this.animateOverlayFadeIn();
+      }
+    }
+  }
 
   /**
    * Show toggle between light and dark variant. Only if the provided theme have implemented both!
@@ -179,20 +222,16 @@ export class Menu {
 
   /**
    * Event emitted when the app switch button is clicked
-   *
-   * @since 3.0.0
    */
   @Event() openAppSwitch!: EventEmitter<void>;
 
   /**
    * Event emitted when the settings button is clicked
-   * @since 3.0.0
    */
   @Event() openSettings!: EventEmitter<void>;
 
   /**
    * Event emitted when the about button is clicked
-   * @since 3.0.0
    */
   @Event() openAbout!: EventEmitter<void>;
 
@@ -207,6 +246,10 @@ export class Menu {
   >;
   @State() isDarkMode: boolean = false;
   private isTransitionDisabled = false;
+  private isOverlayClosing = false;
+  private overlayCloseToken = 0;
+  private overlayFadeOutRaf?: number;
+  private overlayFadeInRaf?: number;
   private lastFocusedMenuItem?:
     | HTMLIxMenuItemElement
     | HTMLIxMenuCategoryElement;
@@ -357,6 +400,9 @@ export class Menu {
   }
 
   componentDidLoad() {
+    this.onShowSettingsChange(this.showSettings);
+    this.onShowAboutChange(this.showAbout);
+
     requestAnimationFrame(() => {
       this.suppressAnchorWrapperTabStops();
       this.handleOverflowIndicator();
@@ -419,6 +465,17 @@ export class Menu {
   }
 
   disconnectedCallback() {
+    if (this.isOverlayClosing) {
+      this.resetOverlay();
+    }
+    if (this.overlayFadeOutRaf) {
+      cancelAnimationFrame(this.overlayFadeOutRaf);
+      this.overlayFadeOutRaf = undefined;
+    }
+    if (this.overlayFadeInRaf) {
+      cancelAnimationFrame(this.overlayFadeInRaf);
+      this.overlayFadeInRaf = undefined;
+    }
     this.breakpointChangeDisposable?.dispose();
     this.breakpointChangeDisposable = undefined;
     this.themeNameDisposer?.dispose();
@@ -470,7 +527,7 @@ export class Menu {
     const offset =
       window.innerHeight -
       (rectAbout.bottom - rectAbout.height / 2 + heightArrow / 2 + offsetArrow);
-    return convertToRemString(offset);
+    return `${offset}px`;
   }
 
   private appendAboutNewsPopover() {
@@ -583,14 +640,12 @@ export class Menu {
       return;
     }
 
-    if (!this.isOverlayVisible()) {
-      this.animateOverlayFadeIn();
-    }
-
     if (show) {
-      this.resetOverlay();
-      this.showSettings = show;
-      this.settings.show = this.showSettings;
+      if (this.showSettings === show) {
+        this.onShowSettingsChange(show);
+      } else {
+        this.showSettings = show;
+      }
     } else {
       this.onOverlayClose();
     }
@@ -612,20 +667,20 @@ export class Menu {
       return;
     }
 
-    if (!this.isOverlayVisible()) {
-      this.animateOverlayFadeIn();
-    }
-
     if (show) {
-      this.resetOverlay();
-      this.showAbout = show;
-      this.about.show = this.showAbout;
+      if (this.showAbout === show) {
+        this.onShowAboutChange(show);
+      } else {
+        this.showAbout = show;
+      }
     } else {
       this.onOverlayClose();
     }
   }
 
   private resetOverlay() {
+    this.isOverlayClosing = false;
+    this.overlayCloseToken++;
     this.showSettings = false;
     this.showAbout = false;
 
@@ -657,8 +712,15 @@ export class Menu {
   @Listen('close')
   onOverlayClose(event?: CustomEvent<CustomCloseEvent>) {
     const shouldRestoreFocus = this.shouldRestoreMenuFocus(event);
+    this.isOverlayClosing = true;
+    const closeToken = ++this.overlayCloseToken;
 
     this.animateOverlayFadeOut(() => {
+      if (closeToken !== this.overlayCloseToken) {
+        return;
+      }
+
+      this.isOverlayClosing = false;
       this.resetOverlay();
 
       if (shouldRestoreFocus) {
@@ -684,7 +746,17 @@ export class Menu {
   }
 
   private animateOverlayFadeIn() {
-    requestAnimationFrame(() => {
+    if (this.overlayFadeOutRaf) {
+      cancelAnimationFrame(this.overlayFadeOutRaf);
+      this.overlayFadeOutRaf = undefined;
+    }
+
+    if (this.overlayFadeInRaf) {
+      cancelAnimationFrame(this.overlayFadeInRaf);
+    }
+
+    this.overlayFadeInRaf = requestAnimationFrame(() => {
+      this.overlayFadeInRaf = undefined;
       const overlayContainer = this.overlayContainer;
 
       if (!overlayContainer) {
@@ -696,11 +768,11 @@ export class Menu {
         [
           {
             backdropFilter: 'blur(0)',
-            transform: 'translateX(-4rem)',
+            transform: 'translateX(-64px)',
             opacity: 0,
           },
           {
-            backdropFilter: 'blur(1rem)',
+            backdropFilter: 'blur(16px)',
             transform: 'translateX(0)',
             opacity: 1,
           },
@@ -721,7 +793,17 @@ export class Menu {
   }
 
   private animateOverlayFadeOut(onComplete: Function) {
-    requestAnimationFrame(() => {
+    if (this.overlayFadeInRaf) {
+      cancelAnimationFrame(this.overlayFadeInRaf);
+      this.overlayFadeInRaf = undefined;
+    }
+
+    if (this.overlayFadeOutRaf) {
+      cancelAnimationFrame(this.overlayFadeOutRaf);
+    }
+
+    this.overlayFadeOutRaf = requestAnimationFrame(() => {
+      this.overlayFadeOutRaf = undefined;
       const overlayContainer = this.overlayContainer;
 
       if (!overlayContainer) {
@@ -733,13 +815,13 @@ export class Menu {
         overlayContainer,
         [
           {
-            backdropFilter: 'blur(1rem)',
+            backdropFilter: 'blur(16px)',
             transform: 'translateX(0)',
             opacity: 1,
           },
           {
             backdropFilter: 'blur(0)',
-            transform: 'translateX(-4rem)',
+            transform: 'translateX(-64px)',
             opacity: 0,
           },
         ],

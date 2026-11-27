@@ -79,7 +79,7 @@ const numberToPixel = (value?: number | null) =>
 /**
  * Floating panel anchored to a trigger element.
  *
- * @documentation https://ix.siemens.io//docs/components/popover/guide.md
+ * @documentation https://ix.siemens.io/docs/components/popover/guide.md
  * @figma-main-component-id 145668:12518
  * @slot - Child sections in order: `ix-popover-header`, `ix-popover-image`, `ix-popover-content`, and `ix-popover-footer`.
  *

@@ -133,7 +133,7 @@ function UserInfo(
 /**
  * Displays a user's profile image, initials, or a placeholder icon.
  *
- * @documentation https://ix.siemens.io//docs/components/avatar/guide.md
+ * @documentation https://ix.siemens.io/docs/components/avatar/guide.md
  * @figma-main-component-id 308:1151
  *
  * @slot - Dropdown content displayed below the avatar.
@@ -175,15 +175,11 @@ export class Avatar
 
   /**
    * Text to display in a tooltip when hovering over the avatar
-   *
-   * @since 4.0.0
    */
   @Prop() tooltipText?: string;
 
   /**
    * aria-label for the tooltip
-   *
-   * @since 4.0.0
    */
   @Prop() ariaLabelTooltip?: string;
 

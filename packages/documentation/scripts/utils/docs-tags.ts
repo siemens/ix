@@ -28,6 +28,15 @@ export function convertDocsTagsToTSXElement(
       template = `<DeprecatedTag message={\`${escapedText}\`} />`;
     }
 
+    if (name === 'breaking-change') {
+      // `@breaking-change <version> <summary>`, the summary is a plain text tooltip
+      const [version, ...summary] = (text ?? '').trim().split(/\s+/);
+      const description = summary.join(' ').replace(/`/g, '');
+      template = `<BreakingChangeTag message={${JSON.stringify(
+        version
+      )}} description={${JSON.stringify(description)}} />`;
+    }
+
     if (name === 'form-ready') {
       template = `<FormReady message={\`${escapedText}\`} />`;
     }

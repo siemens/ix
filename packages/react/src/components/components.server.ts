@@ -605,7 +605,8 @@ export const IxContentHeader: StencilReactComponent<IxContentHeaderElement, IxCo
         headerTitle: 'header-title',
         headerSubtitle: 'header-subtitle',
         textOverflow: 'text-overflow',
-        hasBackButton: 'has-back-button'
+        hasBackButton: 'has-back-button',
+        ariaLabelMoreActions: 'aria-label-more-actions'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxContentHeader as StencilReactComponent<IxContentHeaderElement, IxContentHeaderEvents, Components.IxContentHeader>,
@@ -641,6 +642,7 @@ export const IxDateDropdown: StencilReactComponent<IxDateDropdownElement, IxDate
     properties: {
         disabled: 'disabled',
         format: 'format',
+        displayFormat: 'display-format',
         singleSelection: 'single-selection',
         from: 'from',
         to: 'to',
@@ -681,6 +683,7 @@ export const IxDateInput: StencilReactComponent<IxDateInputElement, IxDateInputE
         maxDate: 'max-date',
         locale: 'locale',
         format: 'format',
+        displayFormat: 'display-format',
         required: 'required',
         helperText: 'helper-text',
         label: 'label',
@@ -761,6 +764,7 @@ export const IxDatetimeInput: StencilReactComponent<IxDatetimeInputElement, IxDa
         placeholder: 'placeholder',
         value: 'value',
         format: 'format',
+        displayFormat: 'display-format',
         locale: 'locale',
         required: 'required',
         disabled: 'disabled',
@@ -960,7 +964,7 @@ export const IxEmptyState: StencilReactComponent<IxEmptyStateElement, IxEmptySta
         layout: 'layout',
         icon: 'icon',
         header: 'header',
-        subHeader: 'sub-header',
+        description: 'description',
         action: 'action',
         ariaLabelEmptyStateIcon: 'aria-label-empty-state-icon'
     },
@@ -1158,7 +1162,8 @@ export const IxIconButton: StencilReactComponent<IxIconButtonElement, IxIconButt
         disabled: 'disabled',
         type: 'type',
         loading: 'loading',
-        inert: 'inert'
+        inert: 'inert',
+        dropdownIndicator: 'dropdown-indicator'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxIconButton as StencilReactComponent<IxIconButtonElement, IxIconButtonEvents, Components.IxIconButton>,
@@ -1193,8 +1198,7 @@ export const IxInfoPage: StencilReactComponent<IxInfoPageElement, IxInfoPageEven
         icon: 'icon',
         iconColor: 'icon-color',
         titleText: 'title-text',
-        copyText: 'copy-text',
-        instructions: 'instructions'
+        description: 'description'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxInfoPage as StencilReactComponent<IxInfoPageElement, IxInfoPageEvents, Components.IxInfoPage, 'titleText'>,
@@ -1246,7 +1250,8 @@ export const IxKeyValue: StencilReactComponent<IxKeyValueElement, IxKeyValueEven
         ariaLabelIcon: 'aria-label-icon',
         label: 'label',
         labelPosition: 'label-position',
-        value: 'value'
+        value: 'value',
+        hideDivider: 'hide-divider'
     },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxKeyValue as StencilReactComponent<IxKeyValueElement, IxKeyValueEvents, Components.IxKeyValue, 'label'>,
@@ -1257,7 +1262,10 @@ export type IxKeyValueListEvents = NonNullable<unknown>;
 
 export const IxKeyValueList: StencilReactComponent<IxKeyValueListElement, IxKeyValueListEvents, Components.IxKeyValueList> = /*@__PURE__*/ createComponent<IxKeyValueListElement, IxKeyValueListEvents, Components.IxKeyValueList>({
     tagName: 'ix-key-value-list',
-    properties: { striped: 'striped' },
+    properties: {
+        striped: 'striped',
+        hideDividers: 'hide-dividers'
+    },
     hydrateModule: typeof window === 'undefined' ? (import('@siemens/ix/hydrate') as Promise<HydrateModule>) : undefined,
     clientModule: clientComponents.IxKeyValueList as StencilReactComponent<IxKeyValueListElement, IxKeyValueListEvents, Components.IxKeyValueList>,
     serializeShadowRoot

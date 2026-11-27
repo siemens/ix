@@ -23,6 +23,26 @@ const getDateObj = async (page: Page) => {
   });
 };
 
+regressionTest('accessibility', async ({ mount, makeAxeBuilder }) => {
+  await mount(`<ix-date-picker from="2024/10/10"></ix-date-picker>`);
+
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+regressionTest(
+  'accessibility with narrow weekday labels',
+  async ({ mount, page, makeAxeBuilder }) => {
+    await mount(
+      `<ix-date-picker from="2024/10/10" locale="ar"></ix-date-picker>`
+    );
+    await expect(page.locator(DatePickerSelector)).toHaveAttribute('hydrated');
+
+    const results = await makeAxeBuilder().analyze();
+    expect(results.violations).toEqual([]);
+  }
+);
+
 regressionTest('renders', async ({ mount, page }) => {
   await mount(`<ix-date-picker from="2024/10/10"></ix-date-picker>`);
   const datePicker = page.locator(DatePickerSelector);
@@ -1078,10 +1098,10 @@ regressionTest.describe('week start index', () => {
       );
 
       const headers = await getColumnHeaders(page);
-      expect(headers[0]).toBe('Die');
+      expect(headers[0]).toBe('Di');
 
       // 1 April 2026 is a Wednesday, so it must sit under the Wednesday header.
-      expect(headers[await getColumnOfFirstDay(page)]).toBe('Mit');
+      expect(headers[await getColumnOfFirstDay(page)]).toBe('Mi');
     }
   );
 
@@ -1220,6 +1240,76 @@ regressionTest.describe('week start index', () => {
 
       // 1 December 2023 is a Friday, six columns along from Sunday.
       expect(headers[await getColumnOfFirstDay(page)]).toBe('Fri');
+    }
+  );
+});
+
+regressionTest.describe('weekday column headers', () => {
+  regressionTest(
+    'shows abbreviated names labelled with the full name',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/12/01" locale="en"></ix-date-picker>`
+      );
+
+      const monday = page.getByRole('columnheader', { name: 'Monday' });
+      await expect(monday).toHaveText('Mon');
+    }
+  );
+
+  regressionTest(
+    'falls back to narrow names when abbreviations are too long',
+    async ({ mount, page }) => {
+      // Arabic abbreviated weekday names equal the full names.
+      await mount(
+        `<ix-date-picker from="2023/12/01" locale="ar"></ix-date-picker>`
+      );
+
+      const monday = page.getByRole('columnheader', { name: 'الاثنين' });
+      await expect(monday).toHaveText('ن');
+    }
+  );
+
+  // Whether a label fits its column depends on the installed fonts, so the
+  // label choice is covered by the weekdayLabelsFrom unit tests and the
+  // rendering by the "weekday labels" visual regression test.
+  regressionTest(
+    'exposes the full weekday name in any locale',
+    async ({ mount, page }) => {
+      await mount(
+        `<ix-date-picker from="2023/12/01" locale="en"></ix-date-picker>`
+      );
+      const datePicker = page.locator(DatePickerSelector);
+
+      for (const locale of [
+        'zh',
+        'ja',
+        'de',
+        'fr',
+        'lv',
+        'he',
+        'ar',
+        'el',
+        'ta',
+        'km',
+        'my',
+      ]) {
+        await datePicker.evaluate(
+          (element: HTMLIxDatePickerElement, value) => (element.locale = value),
+          locale
+        );
+        await expect(
+          page.getByRole('columnheader').first()
+        ).toHaveAccessibleName(
+          await page.evaluate(
+            (value) =>
+              new Intl.DateTimeFormat(value, { weekday: 'long' }).format(
+                new Date(2024, 0, 1)
+              ),
+            locale
+          )
+        );
+      }
     }
   );
 });
@@ -1425,6 +1515,235 @@ regressionTest.describe('require confirmation', () => {
     }
   );
 });
+
+regressionTest.describe('month and year dropdowns', () => {
+  regressionTest.beforeEach(async ({ mount, page }) => {
+    await mount(`<ix-date-picker from="2023/12/01"></ix-date-picker>`);
+    await expect(page.locator(DatePickerSelector)).toHaveAttribute('hydrated');
+  });
+
+  regressionTest(
+    'scrolls the selected month into view when opened',
+    async ({ page }) => {
+      await page.getByRole('button', { name: 'Select month' }).click();
+
+      await expect(
+        page.locator('.month-selector ix-dropdown-item[checked]')
+      ).toBeInViewport({ ratio: 1 });
+    }
+  );
+
+  regressionTest.describe('year keyboard navigation', () => {
+    regressionTest.beforeEach(async ({ page }) => {
+      await page.getByRole('button', { name: 'Select year' }).focus();
+      await page.keyboard.press('Enter');
+      // The year items render on first open; wait for the initial focus on the
+      // selected year before navigating.
+      const selectedYear = page.locator(
+        '.year-selector ix-dropdown-item.ix-focused'
+      );
+      await expect(selectedYear).toHaveAttribute('data-year', '2023');
+      await expect(
+        page.getByRole('button', { name: 'Select year' })
+      ).toHaveAttribute(
+        'aria-activedescendant',
+        (await selectedYear.getAttribute('id')) ?? ''
+      );
+    });
+
+    /** Asserts the year exposed as active both visually and to assistive technology. */
+    const expectActiveYear = async (page: Page, year: string) => {
+      const activeYear = page.locator(
+        '.year-selector ix-dropdown-item.ix-focused'
+      );
+      await expect(activeYear).toHaveText(year);
+      await expect(
+        page.getByRole('button', { name: 'Select year' })
+      ).toHaveAttribute(
+        'aria-activedescendant',
+        (await activeYear.getAttribute('id')) ?? ''
+      );
+    };
+
+    regressionTest(
+      'ArrowDown on the last year extends the list instead of wrapping',
+      async ({ page }) => {
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2125');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2126');
+      }
+    );
+
+    regressionTest(
+      'ArrowUp on the first year extends the list instead of wrapping',
+      async ({ page }) => {
+        await page.keyboard.press('Home');
+        await expectActiveYear(page, '1922');
+
+        await page.keyboard.press('ArrowUp');
+        await expectActiveYear(page, '1921');
+      }
+    );
+
+    regressionTest(
+      'Enter selects the year added by extending the list',
+      async ({ page }) => {
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2125');
+
+        await page.keyboard.press('Enter');
+        await expect(
+          page.locator('.year-selector ix-dropdown-item[checked]')
+        ).toHaveAttribute('data-year', '2125');
+      }
+    );
+
+    regressionTest(
+      'extends the list in the standalone build without componentOnReady',
+      async ({ page }) => {
+        // Standalone custom elements (dist-custom-elements) don't provide
+        // componentOnReady, unlike the lazy-loaded build these tests run on.
+        await page.evaluate(() => {
+          const itemPrototype = customElements.get('ix-dropdown-item')
+            ?.prototype as Partial<HTMLIxDropdownItemElement> | undefined;
+          delete itemPrototype?.componentOnReady;
+        });
+        expect(
+          await page
+            .locator('.year-selector ix-dropdown-item')
+            .first()
+            .evaluate(
+              (item: HTMLIxDropdownItemElement) => typeof item.componentOnReady
+            )
+        ).toBe('undefined');
+
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2125');
+
+        await page.keyboard.press('ArrowDown');
+        await expectActiveYear(page, '2126');
+
+        await page.keyboard.press('Enter');
+        await expect(
+          page.locator('.year-selector ix-dropdown-item[checked]')
+        ).toHaveAttribute('data-year', '2126');
+      }
+    );
+
+    /**
+     * Dispatches keydowns back to back in a single task, so every key after the
+     * first arrives while the year list extension is still rendering.
+     */
+    const pressKeysInSameTask = (page: Page, keys: string[]) =>
+      page.evaluate((keys) => {
+        let target = document.activeElement;
+        while (target?.shadowRoot?.activeElement) {
+          target = target.shadowRoot.activeElement;
+        }
+        keys.forEach((key) =>
+          target?.dispatchEvent(
+            new KeyboardEvent('keydown', {
+              key,
+              bubbles: true,
+              composed: true,
+              cancelable: true,
+            })
+          )
+        );
+      }, keys);
+
+    regressionTest(
+      'discards Enter pressed while the year list is extending',
+      async ({ page }) => {
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await pressKeysInSameTask(page, ['ArrowDown', 'Enter']);
+
+        await expectActiveYear(page, '2125');
+        await expect(
+          page.locator('.year-selector ix-dropdown-item[checked]')
+        ).toHaveAttribute('data-year', '2023');
+      }
+    );
+
+    regressionTest(
+      'discards ArrowUp pressed while the year list is extending',
+      async ({ page }) => {
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await pressKeysInSameTask(page, ['ArrowDown', 'ArrowUp']);
+
+        await expectActiveYear(page, '2125');
+      }
+    );
+
+    regressionTest(
+      'marks the year list busy while it is extending',
+      async ({ page }) => {
+        const yearList = page.locator('.year-selector ix-dropdown');
+        await page.keyboard.press('End');
+        await expectActiveYear(page, '2124');
+
+        await yearList.evaluate((dropdown) => {
+          const states: (string | null)[] = [];
+          (window as unknown as { busyStates: typeof states }).busyStates =
+            states;
+          new MutationObserver(() =>
+            states.push(dropdown.getAttribute('aria-busy'))
+          ).observe(dropdown, { attributeFilter: ['aria-busy'] });
+        });
+        await page.keyboard.press('ArrowDown');
+
+        await expect
+          .poll(() =>
+            page.evaluate(
+              () =>
+                (window as unknown as { busyStates: (string | null)[] })
+                  .busyStates
+            )
+          )
+          .toEqual(['true', null]);
+        await expectActiveYear(page, '2125');
+      }
+    );
+  });
+});
+
+regressionTest(
+  'centering the selected month does not scroll the surrounding container',
+  async ({ mount, page }) => {
+    await mount(`
+      <div id="panel" style="height: 360px; overflow: auto; transform: translateZ(0)">
+        <ix-date-picker from="2023/12/01"></ix-date-picker>
+        <div style="height: 1000px"></div>
+      </div>
+    `);
+    await expect(page.locator(DatePickerSelector)).toHaveAttribute('hydrated');
+    const panel = page.locator('#panel');
+
+    await page.getByRole('button', { name: 'Select month' }).click();
+
+    const selectedMonth = page.locator(
+      '.month-selector ix-dropdown-item[checked]'
+    );
+    await expect(selectedMonth).toBeInViewport({ ratio: 1 });
+    await expect(page.locator('.month-selector ix-dropdown')).toBeVisible();
+    expect(await panel.evaluate((element) => element.scrollTop)).toBe(0);
+  }
+);
 
 regressionTest.describe('require confirmation option', () => {
   regressionTest(
