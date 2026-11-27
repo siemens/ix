@@ -1081,3 +1081,36 @@ regressionTest(
     );
   }
 );
+
+regressionTest(
+  'should not throw on window resize when the menu is not rendered yet',
+  async ({ mount, page }) => {
+    const pageErrors: Error[] = [];
+    page.on('pageerror', (error) => pageErrors.push(error));
+
+    const menu = await mount(`
+      <ix-menu>
+        <ix-menu-item>Home</ix-menu-item>
+      </ix-menu>
+    `);
+    await expect(page.locator('ix-menu')).toHaveAttribute('hydrated');
+
+    const consoleErrors = await menu.evaluate((element) => {
+      const errors: string[] = [];
+      const originalConsoleError = console.error;
+      console.error = (...args: unknown[]) => {
+        errors.push(args.map((arg) => String(arg)).join(' '));
+        originalConsoleError(...args);
+      };
+
+      element.shadowRoot!.querySelector('.menu')!.remove();
+      window.dispatchEvent(new Event('resize'));
+
+      console.error = originalConsoleError;
+      return errors;
+    });
+
+    expect(consoleErrors).toEqual([]);
+    expect(pageErrors).toEqual([]);
+  }
+);

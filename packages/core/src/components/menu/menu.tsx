@@ -273,11 +273,11 @@ export class Menu {
     return this.hostElement.shadowRoot!.querySelector('.menu');
   }
 
-  get menuItemsContainer(): HTMLDivElement {
+  get menuItemsContainer(): HTMLDivElement | null {
     const menuItemsContainer = this.menu?.querySelector('.tabs');
 
     if (!menuItemsContainer) {
-      throw new Error('Menu items container not found');
+      return null;
     }
 
     return menuItemsContainer as HTMLDivElement;
@@ -703,7 +703,13 @@ export class Menu {
 
   @Listen('resize', { target: 'window' })
   private handleOverflowIndicator() {
-    const { clientHeight, scrollTop, scrollHeight } = this.menuItemsContainer;
+    const menuItemsContainer = this.menuItemsContainer;
+
+    if (!menuItemsContainer) {
+      return;
+    }
+
+    const { clientHeight, scrollTop, scrollHeight } = menuItemsContainer;
     this.itemsScrollShadowTop = scrollTop > 0;
     this.itemsScrollShadowBottom =
       Math.round(scrollTop + clientHeight) < scrollHeight;
