@@ -18,6 +18,7 @@ import {
   h,
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
+import { hasFocusInDefaultSlot } from '../utils/shadow-dom';
 
 /**
  * Activity trace of an AI response: the ordered list of `ix-chat-trace-item` elements that shows how
@@ -83,10 +84,7 @@ export class ChatActivityTrace {
       !this.itemsContainer.hidden &&
       !this.isListVisible();
     this.moveFocusToToggle =
-      isHiding &&
-      Array.from(this.hostElement.children).some(
-        (child) => !child.hasAttribute('slot') && child.matches(':focus-within')
-      );
+      isHiding && hasFocusInDefaultSlot(this.hostElement);
   }
 
   componentDidRender() {

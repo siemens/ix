@@ -71,6 +71,15 @@ export function hasDefaultSlotContent(host: Element) {
   );
 }
 
+/**
+ * Whether focus is inside light DOM content assigned to the host's default slot.
+ */
+export function hasFocusInDefaultSlot(host: Element) {
+  return Array.from(host.children).some(
+    (child) => !child.hasAttribute('slot') && child.matches(':focus-within')
+  );
+}
+
 export function containsElement(target: Element, element: Element) {
   const hasShadowDom = target.shadowRoot;
 

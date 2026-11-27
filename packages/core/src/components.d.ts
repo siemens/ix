@@ -1070,6 +1070,7 @@ export namespace Components {
      * and the type `icon` otherwise. The state is part of the accessible name (e.g. "Read page.tsx, failed").
      * Without detail content the item is rendered as static text. With detail content the label becomes a
      * toggle button that shows and hides the detail.
+     * If the detail is hidden while it has focus, focus moves to the toggle button.
      * While the AI works and nothing specific is running, show a single running Trace item with a generic
      * label such as "Thinking…" instead of a loading indicator. Show interrupted steps as `warning` with an
      * explanatory label such as "Stopped".
@@ -1118,6 +1119,7 @@ export namespace Components {
     /**
      * One titled part of a Trace item's detail, such as its input, its output or its key findings.
      * Use one section per unit of data so that each part can be updated on its own (e.g. append streaming output).
+     * If the content of a collapsible section is hidden while it has focus, focus moves to the heading toggle.
      * @since 6.1.0
      */
     interface IxChatTraceItemSection {
@@ -6917,6 +6919,7 @@ declare global {
      * and the type `icon` otherwise. The state is part of the accessible name (e.g. "Read page.tsx, failed").
      * Without detail content the item is rendered as static text. With detail content the label becomes a
      * toggle button that shows and hides the detail.
+     * If the detail is hidden while it has focus, focus moves to the toggle button.
      * While the AI works and nothing specific is running, show a single running Trace item with a generic
      * label such as "Thinking…" instead of a loading indicator. Show interrupted steps as `warning` with an
      * explanatory label such as "Stopped".
@@ -6942,6 +6945,7 @@ declare global {
     /**
      * One titled part of a Trace item's detail, such as its input, its output or its key findings.
      * Use one section per unit of data so that each part can be updated on its own (e.g. append streaming output).
+     * If the content of a collapsible section is hidden while it has focus, focus moves to the heading toggle.
      * @since 6.1.0
      */
     interface HTMLIxChatTraceItemSectionElement extends Components.IxChatTraceItemSection, HTMLStencilElement {
@@ -9987,6 +9991,7 @@ declare namespace LocalJSX {
      * and the type `icon` otherwise. The state is part of the accessible name (e.g. "Read page.tsx, failed").
      * Without detail content the item is rendered as static text. With detail content the label becomes a
      * toggle button that shows and hides the detail.
+     * If the detail is hidden while it has focus, focus moves to the toggle button.
      * While the AI works and nothing specific is running, show a single running Trace item with a generic
      * label such as "Thinking…" instead of a loading indicator. Show interrupted steps as `warning` with an
      * explanatory label such as "Stopped".
@@ -10039,6 +10044,7 @@ declare namespace LocalJSX {
     /**
      * One titled part of a Trace item's detail, such as its input, its output or its key findings.
      * Use one section per unit of data so that each part can be updated on its own (e.g. append streaming output).
+     * If the content of a collapsible section is hidden while it has focus, focus moves to the heading toggle.
      * @since 6.1.0
      */
     interface IxChatTraceItemSection {
@@ -16915,6 +16921,7 @@ declare module "@stencil/core" {
              * and the type `icon` otherwise. The state is part of the accessible name (e.g. "Read page.tsx, failed").
              * Without detail content the item is rendered as static text. With detail content the label becomes a
              * toggle button that shows and hides the detail.
+             * If the detail is hidden while it has focus, focus moves to the toggle button.
              * While the AI works and nothing specific is running, show a single running Trace item with a generic
              * label such as "Thinking…" instead of a loading indicator. Show interrupted steps as `warning` with an
              * explanatory label such as "Stopped".
@@ -16924,6 +16931,7 @@ declare module "@stencil/core" {
             /**
              * One titled part of a Trace item's detail, such as its input, its output or its key findings.
              * Use one section per unit of data so that each part can be updated on its own (e.g. append streaming output).
+             * If the content of a collapsible section is hidden while it has focus, focus moves to the heading toggle.
              * @since 6.1.0
              */
             "ix-chat-trace-item-section": LocalJSX.IntrinsicElements["ix-chat-trace-item-section"] & JSXBase.HTMLAttributes<HTMLIxChatTraceItemSectionElement>;

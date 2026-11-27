@@ -8,12 +8,22 @@
  */
 
 import { iconChevronRightSmall } from '@siemens/ix-icons/icons';
-import { Component, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  Host,
+  Prop,
+  h,
+} from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
+import { hasFocusInDefaultSlot } from '../utils/shadow-dom';
 
 /**
  * One titled part of a Trace item's detail, such as its input, its output or its key findings.
  * Use one section per unit of data so that each part can be updated on its own (e.g. append streaming output).
+ * If the content of a collapsible section is hidden while it has focus, focus moves to the heading toggle.
  *
  * @since 6.1.0
  * @slot - Section content, e.g. text, an `ix-markdown`, an `ix-code-block` or `ix-chip`/`ix-pill` entities
@@ -47,6 +57,36 @@ export class ChatTraceItemSection {
    */
   @Event({ bubbles: false }) expandedChange!: EventEmitter<boolean>;
 
+  @Element() hostElement!: HTMLIxChatTraceItemSectionElement;
+
+  private toggleButton?: HTMLButtonElement;
+  private contentContainer?: HTMLDivElement;
+  private moveFocusToToggle = false;
+
+  private isCollapsible() {
+    return this.collapsible && !!this.heading;
+  }
+
+  private isContentVisible() {
+    return !this.isCollapsible() || this.expanded;
+  }
+
+  componentWillRender() {
+    const isHiding =
+      !!this.contentContainer &&
+      !this.contentContainer.hidden &&
+      !this.isContentVisible();
+    this.moveFocusToToggle =
+      isHiding && hasFocusInDefaultSlot(this.hostElement);
+  }
+
+  componentDidRender() {
+    if (this.moveFocusToToggle) {
+      this.moveFocusToToggle = false;
+      this.toggleButton?.focus();
+    }
+  }
+
   private toggle() {
     const expanded = !this.expanded;
     const { defaultPrevented } = this.expandedChange.emit(expanded);
@@ -56,8 +96,8 @@ export class ChatTraceItemSection {
   }
 
   render() {
-    const isCollapsible = this.collapsible && !!this.heading;
-    const isContentVisible = !isCollapsible || this.expanded;
+    const isCollapsible = this.isCollapsible();
+    const isContentVisible = this.isContentVisible();
 
     return (
       <Host>
@@ -68,6 +108,7 @@ export class ChatTraceItemSection {
           <button
             type="button"
             class="heading heading-toggle"
+            ref={(ref) => (this.toggleButton = ref)}
             aria-expanded={a11yBoolean(this.expanded)}
             aria-controls="content"
             onClick={() => this.toggle()}
@@ -81,7 +122,12 @@ export class ChatTraceItemSection {
             <span>{this.heading}</span>
           </button>
         )}
-        <div id="content" class="content" hidden={!isContentVisible}>
+        <div
+          id="content"
+          class="content"
+          hidden={!isContentVisible}
+          ref={(ref) => (this.contentContainer = ref)}
+        >
           <slot></slot>
         </div>
       </Host>

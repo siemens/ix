@@ -268,3 +268,29 @@ regressionTest(
     await expect(chevron).toHaveCSS('opacity', '1');
   }
 );
+
+regressionTest(
+  'moves focus to the toggle when the focused detail is hidden',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-chat-activity-trace>
+        <ix-chat-trace-item label="Read page.tsx" state="completed" expanded>
+          <button type="button">Open file</button>
+        </ix-chat-trace-item>
+      </ix-chat-activity-trace>
+    `);
+    const detailButton = page.getByRole('button', { name: 'Open file' });
+    await detailButton.focus();
+    await expect(detailButton).toBeFocused();
+
+    await page
+      .locator('ix-chat-trace-item')
+      .evaluate((element: HTMLIxChatTraceItemElement) => {
+        element.expanded = false;
+      });
+
+    await expect(
+      page.getByRole('button', { name: 'Read page.tsx, completed' })
+    ).toBeFocused();
+  }
+);
