@@ -99,6 +99,15 @@
     overflow: auto;
   }
 
+  main:focus-visible,
+  footer:focus-visible {
+    outline: cv.get-var('application-skip-link--outline-width--focus') solid
+      cv.get-var('application-skip-link--outline-color--focus');
+    outline-offset: calc(
+      -2 * #{cv.get-var('application-skip-link--outline-offset--focus')}
+    );
+  }
+
   footer {
     display: block;
     position: relative;
