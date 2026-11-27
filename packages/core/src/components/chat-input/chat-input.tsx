@@ -38,7 +38,7 @@ import { requestAnimationFrameNoNgZone } from '../utils/requestAnimationFrame';
  * @figma-main-component-id 133528:32836
  * @since 5.2.0
  * @form-ready
- * @slot follow-up - Optional refresh action and follow-up prompt buttons displayed above the chat input
+ * @slot follow-up - Optional refresh action and Follow-up prompts (`ix-chat-prompt-suggestion` or `ix-button`) displayed above the chat input
  * @slot attachments - Attachments displayed above the prompt text area
  * @slot start - Element will be displayed in the left action area
  * @slot end - Element will be displayed in the right action area before the submit button

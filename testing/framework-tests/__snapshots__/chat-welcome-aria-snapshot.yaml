@@ -1,0 +1,10 @@
+- main:
+  - heading "How can I help you today?" [level=2]
+  - paragraph: Ask about asset status, alarms or maintenance plans, or start with one of the suggestions below.
+  - button "Summarize the open alarms"
+  - button "Which assets need maintenance first?"
+  - button "Draft a status update for the plant manager"
+  - textbox "Chat input":
+    - /placeholder: Enter a command, question or topic...
+  - button "Submit prompt" [disabled]
+  - text: This content is AI-generated. Always verify the information for accuracy.

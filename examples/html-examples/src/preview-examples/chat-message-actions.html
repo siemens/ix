@@ -1,0 +1,110 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat message actions example</title>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconContextMenu,
+        iconCopy,
+        iconRefresh,
+        iconThumbDown,
+        iconThumbUp,
+      } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconContextMenu,
+        iconCopy,
+        iconRefresh,
+        iconThumbDown,
+        iconThumbUp,
+      });
+    </script>
+  </head>
+  <body>
+    <ix-chat class="chat-example__chat">
+      <ix-chat-user-message message="Which assets need maintenance first?">
+        <ix-icon-button
+          slot="actions"
+          aria-label="Copy"
+          icon="copy"
+          size="24"
+          variant="subtle-tertiary"
+        ></ix-icon-button>
+      </ix-chat-user-message>
+
+      <ix-chat-ai-message>
+        <p>
+          Compressor C-12 should be serviced first. Its vibration increased over
+          the last week, and the next service window is on Friday.
+        </p>
+        <ix-icon-button
+          slot="actions"
+          aria-label="Copy"
+          icon="copy"
+          size="24"
+          variant="subtle-tertiary"
+        ></ix-icon-button>
+        <ix-icon-button
+          slot="actions"
+          aria-label="Regenerate"
+          icon="refresh"
+          size="24"
+          variant="subtle-tertiary"
+        ></ix-icon-button>
+        <ix-icon-button
+          slot="actions"
+          aria-label="Good response"
+          icon="thumb-up"
+          size="24"
+          variant="subtle-tertiary"
+        ></ix-icon-button>
+        <ix-icon-button
+          slot="actions"
+          aria-label="Bad response"
+          icon="thumb-down"
+          size="24"
+          variant="subtle-tertiary"
+        ></ix-icon-button>
+        <ix-icon-button
+          id="moreActionsTrigger"
+          slot="actions"
+          aria-label="More actions"
+          icon="context-menu"
+          size="24"
+          variant="subtle-tertiary"
+        ></ix-icon-button>
+      </ix-chat-ai-message>
+
+      <ix-chat-input slot="prompt">
+        <ix-chat-prompt-suggestion slot="follow-up">
+          Show the vibration trend of C-12
+        </ix-chat-prompt-suggestion>
+        <ix-chat-prompt-suggestion slot="follow-up">
+          Create a work order for Friday
+        </ix-chat-prompt-suggestion>
+      </ix-chat-input>
+    </ix-chat>
+
+    <ix-dropdown trigger="moreActionsTrigger">
+      <ix-dropdown-item label="Share"></ix-dropdown-item>
+      <ix-dropdown-item label="Report"></ix-dropdown-item>
+    </ix-dropdown>
+
+    <script type="module" src="./init.js"></script>
+    <script type="module">
+      await window.ixInitPromise;
+    </script>
+  </body>
+</html>

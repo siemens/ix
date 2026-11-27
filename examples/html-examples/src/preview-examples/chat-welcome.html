@@ -1,0 +1,54 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat welcome example</title>
+  </head>
+  <body>
+    <ix-chat class="chat-example__chat" style="height: 30rem">
+      <ix-chat-welcome slot="welcome" heading="How can I help you today?">
+        <p>
+          Ask about asset status, alarms or maintenance plans, or start with one
+          of the suggestions below.
+        </p>
+        <ix-chat-prompt-suggestion slot="suggestions">
+          Summarize the open alarms
+        </ix-chat-prompt-suggestion>
+        <ix-chat-prompt-suggestion slot="suggestions">
+          Which assets need maintenance first?
+        </ix-chat-prompt-suggestion>
+        <ix-chat-prompt-suggestion slot="suggestions">
+          Draft a status update for the plant manager
+        </ix-chat-prompt-suggestion>
+      </ix-chat-welcome>
+      <ix-chat-input slot="prompt"></ix-chat-input>
+    </ix-chat>
+
+    <script type="module" src="./init.js"></script>
+    <script type="module">
+      await window.ixInitPromise;
+
+      const chat = document.querySelector('ix-chat');
+
+      function addUserMessage(message) {
+        const userMessage = document.createElement('ix-chat-user-message');
+        userMessage.message = message;
+        chat.appendChild(userMessage);
+      }
+
+      chat.addEventListener('suggestionSelect', ({ detail }) =>
+        addUserMessage(detail)
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<ix-chat class="chat-example__chat" style="height: 30rem">
+  <ix-chat-welcome slot="welcome" heading="How can I help you today?">
+    <p>
+      Ask about asset status, alarms or maintenance plans, or start with one of
+      the suggestions below.
+    </p>
+    @for (suggestion of suggestions; track suggestion) {
+    <ix-chat-prompt-suggestion
+      slot="suggestions"
+      (suggestionSelect)="messages.push($event.detail)"
+    >
+      {{ suggestion }}
+    </ix-chat-prompt-suggestion>
+    }
+  </ix-chat-welcome>
+  @for (message of messages; track $index) {
+  <ix-chat-user-message [message]="message"></ix-chat-user-message>
+  }
+  <ix-chat-input slot="prompt"></ix-chat-input>
+</ix-chat>

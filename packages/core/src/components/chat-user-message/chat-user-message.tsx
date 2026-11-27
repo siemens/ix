@@ -14,7 +14,7 @@ import { Component, Element, Host, Prop, State, h } from '@stencil/core';
  * @figma-main-component-id 133528:33294
  * @since 5.2.0
  * @slot - Message content displayed in the user message bubble
- * @slot actions - Optional actions displayed below the user message bubble
+ * @slot actions - Optional actions displayed below the user message bubble, e.g. an `ix-icon-button` with `variant="subtle-tertiary"` and an `aria-label` to copy the prompt. Use an `ix-icon-button` that triggers an `ix-dropdown` for further actions.
  * @slot attachments - ix-chat-attachment elements with variant="sent" displayed above the user message bubble
  */
 @Component({

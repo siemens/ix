@@ -16,7 +16,7 @@ import { hasDefaultSlotContent, isContentNode } from '../utils/shadow-dom';
  * @since 5.2.0
  * @slot - AI-generated message content
  * @slot trace - Optional Activity trace (`ix-chat-activity-trace`) displayed above the message content. While no content is slotted, only the trace is shown.
- * @slot actions - Optional actions displayed below the AI message
+ * @slot actions - Optional actions displayed below the AI message. Use `ix-icon-button`s with `variant="subtle-tertiary"` and an `aria-label` for copy, regenerate and feedback (thumb up and down), and an `ix-icon-button` that triggers an `ix-dropdown` for further actions.
  * @slot sources - Optional sources displayed next to the AI message actions
  */
 @Component({

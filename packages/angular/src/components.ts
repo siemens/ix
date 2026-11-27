@@ -605,6 +605,37 @@ Use it to cancel the running request and set `state` to `interrupting` until the
 
 
 @ProxyCmp({
+})
+@Component({
+  selector: 'ix-chat-prompt-suggestion',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  outputs: ['suggestionSelect'],
+  standalone: false
+})
+export class IxChatPromptSuggestion {
+  protected el: HTMLIxChatPromptSuggestionElement;
+  @Output() suggestionSelect = new EventEmitter<IxChatPromptSuggestionCustomEvent<string>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { IxChatPromptSuggestionCustomEvent } from '@siemens/ix';
+
+export declare interface IxChatPromptSuggestion extends Components.IxChatPromptSuggestion {
+  /**
+   * Emitted when the user selects the suggestion, with the suggestion text as detail.
+   */
+  suggestionSelect: EventEmitter<IxChatPromptSuggestionCustomEvent<string>>;
+}
+
+
+@ProxyCmp({
   inputs: ['expanded', 'i18nStateCompleted', 'i18nStateFailed', 'i18nStateRunning', 'i18nStateWarning', 'icon', 'label', 'state']
 })
 @Component({
@@ -693,6 +724,29 @@ export class IxChatUserMessage {
 
 
 export declare interface IxChatUserMessage extends Components.IxChatUserMessage {}
+
+
+@ProxyCmp({
+  inputs: ['heading']
+})
+@Component({
+  selector: 'ix-chat-welcome',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['heading'],
+  standalone: false
+})
+export class IxChatWelcome {
+  protected el: HTMLIxChatWelcomeElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IxChatWelcome extends Components.IxChatWelcome {}
 
 
 @ProxyCmp({

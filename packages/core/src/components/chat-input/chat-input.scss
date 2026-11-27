@@ -45,7 +45,8 @@
     flex: 0 1 auto;
   }
 
-  .follow-up-prompts ::slotted(ix-button) {
+  .follow-up-prompts ::slotted(ix-button),
+  .follow-up-prompts ::slotted(ix-chat-prompt-suggestion) {
     max-width: cv.get-var('chat-input-follow-up-prompts--max-width');
     min-width: cv.get-var('chat-input-follow-up-prompts--min-width');
   }
