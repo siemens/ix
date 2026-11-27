@@ -76,7 +76,7 @@
   }
 
   .actions {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: flex-end;
     gap: cv.get-var('chat-user-message-actions--gap');
@@ -88,6 +88,12 @@
 
   .actions ::slotted(ix-icon-button) {
     flex: 0 0 auto;
+  }
+}
+
+:host(.has-actions) {
+  .actions {
+    display: flex;
   }
 }
 

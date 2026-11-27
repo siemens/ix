@@ -36,6 +36,9 @@ export class ChatUserMessage {
 
   componentWillLoad() {
     this.updateHasMessageContent();
+    this.hasActions = Array.from(this.hostElement.children).some(
+      (child) => child.slot === 'actions'
+    );
   }
 
   private handleActionsSlotChange(event: Event) {
