@@ -231,9 +231,12 @@ export class MenuItem
   }
 
   private handleAnchorKeyDown(event: KeyboardEvent) {
-    // Native anchors only activate on Enter. Menu items inside a category
-    // are announced as `menuitem`, which is expected to activate on Space too.
-    if (event.key !== ' ' || !this.isHostedInsideCategory) {
+    // Native anchors only activate on Enter. Anchors announced as `menuitem`
+    // (inside the menu or a category) are expected to activate on Space too.
+    const isMenuItemRole =
+      this.getEffectiveRole(this.inheritAriaAttributes.role) === 'menuitem';
+
+    if (event.key !== ' ' || !isMenuItemRole) {
       return;
     }
 

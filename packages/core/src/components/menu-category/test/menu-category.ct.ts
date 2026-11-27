@@ -68,17 +68,19 @@ function menuWithCategory(items: string, { expanded = false } = {}) {
 }
 
 async function focusCategoryParent(page: Page) {
-  const categoryParent = page
-    .locator('ix-menu-category')
-    .locator('.category-parent');
+  const category = page.locator('ix-menu-category');
+  const categoryParent = category.locator('.category-parent');
 
-  // Focus can be lost while the menu is still initializing (hydration,
-  // roving tabindex), so retry until it sticks.
-  await expect(categoryParent).toHaveAttribute('hydrated');
-  await expect(async () => {
-    await categoryParent.focus();
-    await expect(categoryParent).toBeFocused({ timeout: 200 });
-  }).toPass({ timeout: 2000 });
+  // ix-menu sets the item position while initializing its roving tabindex;
+  // focusing before that can be dropped.
+  await expect(category).toHaveAttribute('aria-posinset', '1');
+  await categoryParent.focus();
+  await expect(categoryParent).toBeFocused();
+  // ix-menu moves the roving tabindex to the focused category header
+  await expect(categoryParent.getByRole('menuitem')).toHaveAttribute(
+    'tabindex',
+    '0'
+  );
 }
 
 async function openCategoryAndFocusSecondItem(page: Page) {
@@ -119,6 +121,21 @@ function getClickedMenuItems(page: Page) {
 
 function getUrlHash(page: Page) {
   return new URL(page.url()).hash;
+}
+
+/**
+ * Waits a few animation frames, past the deferred (double requestAnimationFrame)
+ * focus handling in ix-menu-category, so a later assertion sees the settled state.
+ */
+function waitForAnimationFrames(page: Page) {
+  return page.evaluate(
+    () =>
+      new Promise((resolve) =>
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => requestAnimationFrame(resolve))
+        )
+      )
+  );
 }
 
 regressionTest('accessibility', async ({ mount, page, makeAxeBuilder }) => {
@@ -684,6 +701,68 @@ for (const key of ['Enter', ' ']) {
 }
 
 regressionTest(
+  'should activate item once and close collapsed category dropdown on click',
+  async ({ mount, page }) => {
+    await mount(
+      menuWithCategory(`
+        <ix-menu-item>Item 1</ix-menu-item>
+        <ix-menu-item>Item 2</ix-menu-item>
+      `)
+    );
+    await trackMenuItemClicks(page);
+
+    const { category, dropdown } = await openCollapsedCategoryDropdown(page);
+    await category.getByRole('menuitem', { name: 'Item 2' }).click();
+
+    await expect.poll(() => getClickedMenuItems(page)).toEqual(['Item 2']);
+    await expect(dropdown).not.toBeVisible();
+    // Checked again after the dropdown closed to rule out a second activation
+    expect(await getClickedMenuItems(page)).toEqual(['Item 2']);
+  }
+);
+
+regressionTest(
+  'should keep focus moved by item action after collapsed category dropdown closes',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application>
+        <ix-menu>
+          <ix-menu-category label="Category label">
+            <ix-menu-item>Item 1</ix-menu-item>
+            <ix-menu-item>Item 2</ix-menu-item>
+          </ix-menu-category>
+        </ix-menu>
+      </ix-application>
+      <button id="target">Target</button>
+    `);
+    const category = page.locator('ix-menu-category');
+
+    // Simulates an item action moving focus elsewhere asynchronously, e.g. to
+    // the main content after a route change
+    await page.evaluate(() => {
+      document
+        .querySelectorAll('ix-menu-category ix-menu-item')
+        .forEach((item) =>
+          item.addEventListener('click', () =>
+            setTimeout(() => document.getElementById('target')?.focus())
+          )
+        );
+    });
+
+    await openCategoryAndFocusSecondItem(page);
+    await page.keyboard.press('Enter');
+
+    await expect(category.locator('ix-dropdown')).not.toBeVisible();
+    const target = page.getByRole('button', { name: 'Target' });
+    await expect(target).toBeFocused();
+    // The deferred focus restore runs after the dropdown closed; wait until
+    // the menu has had a chance to move focus back before asserting again.
+    await waitForAnimationFrames(page);
+    await expect(target).toBeFocused();
+  }
+);
+
+regressionTest(
   'should activate href item once when Space is held down',
   async ({ mount, page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
@@ -706,6 +785,38 @@ regressionTest(
     await page.keyboard.up(' ');
 
     await expect.poll(() => getUrlHash(page)).toBe('#item-2');
+    expect(await getClickedMenuItems(page)).toEqual(['Item 2']);
+  }
+);
+
+regressionTest(
+  'should not reopen collapsed category dropdown when Enter is held down after activating an item',
+  async ({ mount, page }) => {
+    await mount(
+      menuWithCategory(`
+        <ix-menu-item>Item 1</ix-menu-item>
+        <ix-menu-item>Item 2</ix-menu-item>
+      `)
+    );
+    const category = page.locator('ix-menu-category');
+    const dropdown = category.locator('ix-dropdown');
+    const categoryParent = category.locator('.category-parent');
+    await trackMenuItemClicks(page);
+
+    await openCategoryAndFocusSecondItem(page);
+    await page.keyboard.down('Enter');
+    await expect(dropdown).not.toBeVisible();
+    await expect(categoryParent).toBeFocused();
+
+    // Auto-repeated keydowns (`repeat: true`) now reach the category header
+    await page.keyboard.down('Enter');
+    await waitForAnimationFrames(page);
+    await page.keyboard.down('Enter');
+    await waitForAnimationFrames(page);
+    await page.keyboard.up('Enter');
+
+    await expect(dropdown).not.toBeVisible();
+    await expect(categoryParent).toBeFocused();
     expect(await getClickedMenuItems(page)).toEqual(['Item 2']);
   }
 );

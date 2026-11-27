@@ -397,3 +397,85 @@ for (const [variant, attributes] of [
     }
   );
 }
+
+regressionTest(
+  'activates top-level href item once with Space',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-application>
+        <ix-menu>
+          <ix-menu-item href="#item-1">Item 1</ix-menu-item>
+          <ix-menu-item href="#item-2">Item 2</ix-menu-item>
+        </ix-menu>
+      </ix-application>
+    `);
+
+    const menuItem = page.locator('ix-menu-item').nth(1);
+    const item = menuItem.getByRole('menuitem', { name: 'Item 2' });
+
+    await page.evaluate(() => {
+      const clicks: string[] = [];
+      (window as unknown as { __clicks: string[] }).__clicks = clicks;
+      document
+        .querySelectorAll('ix-menu-item')
+        .forEach((element) =>
+          element.addEventListener('click', () =>
+            clicks.push(element.textContent?.trim() ?? '')
+          )
+        );
+    });
+
+    // ix-menu sets the item position while initializing its roving tabindex;
+    // focusing before that can be dropped.
+    await expect(menuItem).toHaveAttribute('aria-posinset', '2');
+    await item.focus();
+    await expect(item).toBeFocused();
+    // ix-menu moves the roving tabindex to the focused item
+    await expect(item).toHaveAttribute('tabindex', '0');
+
+    // Repeated keydown without keyup is sent with `repeat: true`
+    await page.keyboard.down(' ');
+    await page.keyboard.down(' ');
+    await page.keyboard.up(' ');
+
+    await expect.poll(() => new URL(page.url()).hash).toBe('#item-2');
+    expect(
+      await page.evaluate(
+        () => (window as unknown as { __clicks: string[] }).__clicks
+      )
+    ).toEqual(['Item 2']);
+  }
+);
+
+regressionTest(
+  'keeps native link keyboard behavior outside of a menu',
+  async ({ mount, page }) => {
+    await mount(`<ix-menu-item href="#item">Item</ix-menu-item>`);
+
+    const menuItem = page.locator('ix-menu-item');
+    await expect(menuItem).toHaveAttribute('hydrated');
+
+    await page.evaluate(() => {
+      const clicks: string[] = [];
+      (window as unknown as { __clicks: string[] }).__clicks = clicks;
+      document
+        .querySelector('ix-menu-item')!
+        .addEventListener('click', () => clicks.push('host'));
+    });
+
+    const link = menuItem.getByRole('link', { name: 'Item' });
+    await link.focus();
+    await expect(link).toBeFocused();
+
+    await page.keyboard.press(' ');
+    // Enter is the native link activation; a single click proves Space did not activate
+    await page.keyboard.press('Enter');
+
+    await expect.poll(() => new URL(page.url()).hash).toBe('#item');
+    expect(
+      await page.evaluate(
+        () => (window as unknown as { __clicks: string[] }).__clicks
+      )
+    ).toEqual(['host']);
+  }
+);

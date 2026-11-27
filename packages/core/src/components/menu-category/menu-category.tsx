@@ -302,19 +302,35 @@ export class MenuCategory
       return;
     }
 
-    const activeElement = document.activeElement;
-    const isFocused = getComposedPath(activeElement as HTMLElement).includes(
-      this.hostElement
-    );
-
-    if (hasKeyboardMode() && isFocused) {
+    if (hasKeyboardMode() && this.isFocusInsideCategory()) {
       // Ugly workaround to restore focus to the category after the dropdown is closed,
       // because focus gets lost when the dropdown is removed from the DOM.
       // This is needed to ensure keyboard users can continue navigating after closing the dropdown with the keyboard.
       requestAnimationFrameNoNgZone(() =>
-        requestAnimationFrameNoNgZone(() => this.hostElement.focus())
+        requestAnimationFrameNoNgZone(() => {
+          // An item action (e.g. a route change) may have moved focus
+          // elsewhere in the meantime; only restore focus that is still lost.
+          if (this.isFocusLost() || this.isFocusInsideCategory()) {
+            this.hostElement.focus();
+          }
+        })
       );
     }
+  }
+
+  private isFocusInsideCategory() {
+    const activeElement = document.activeElement as HTMLElement | null;
+
+    return (
+      !!activeElement &&
+      getComposedPath(activeElement).includes(this.hostElement)
+    );
+  }
+
+  private isFocusLost() {
+    const activeElement = document.activeElement;
+
+    return !activeElement || activeElement === document.body;
   }
 
   private onDropdownShowChanged(dropdownShown: boolean) {
@@ -361,6 +377,13 @@ export class MenuCategory
   private onKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
+
+      // Toggle once per key press. A key held while activating a nested item
+      // keeps repeating on the header once focus returns to it.
+      if (event.repeat) {
+        return;
+      }
+
       const isClosingPanel = this.ixMenu?.expand && this.showItems;
       const isCollapsedMenu = !this.ixMenu?.expand;
       this.handleCategoryVisibility();
