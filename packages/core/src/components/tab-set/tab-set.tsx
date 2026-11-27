@@ -10,6 +10,19 @@
 import { Component, Element, Host, h } from '@stencil/core';
 import { queryElements } from '../utils/focus/focus-utilities';
 
+// ID references only resolve within the same DOM tree (document or shadow root)
+function setIdReference(
+  element: HTMLElement,
+  attribute: 'aria-controls' | 'aria-labelledby',
+  target?: HTMLElement
+) {
+  if (target?.id && target.getRootNode() === element.getRootNode()) {
+    element.setAttribute(attribute, target.id);
+  } else {
+    element.removeAttribute(attribute);
+  }
+}
+
 /**
  * Container that manages a set of tabs and their content.
  *
@@ -56,6 +69,8 @@ export class TabSet {
     this.panelsObserver.observe(this.hostElement, {
       childList: true,
       subtree: true,
+      attributes: true,
+      attributeFilter: ['id'],
     });
 
     this.onPanelComponentsChange();
@@ -71,36 +86,24 @@ export class TabSet {
 
   private onPanelComponentsChange() {
     const tabs = this.tabList;
-    const tabItems = this.tabListItems;
+    if (!tabs) {
+      return;
+    }
+
     const panels = this.tabPanels;
+    const tabItems = this.tabListItems;
+    tabItems.forEach((tab) => {
+      const panel = panels.find((panel) => panel.tabKey === tab.tabKey);
+      setIdReference(tab, 'aria-controls', panel);
+    });
+    panels.forEach((panel) => {
+      const tab = tabItems.find((tab) => tab.tabKey === panel.tabKey);
+      setIdReference(panel, 'aria-labelledby', tab);
+    });
 
-    if (!tabs || !tabItems || !panels) {
-      return;
+    if (tabs.activeTabKey) {
+      this.checkPanelsVisibility();
     }
-
-    const activeTabKey = tabs.activeTabKey;
-    if (!activeTabKey) {
-      return;
-    }
-
-    const activeTabElement = tabItems.find(
-      (tab) => tab.tabKey === activeTabKey
-    );
-
-    const activeTabPanel = panels.find(
-      (panel) => panel.tabKey === activeTabKey
-    );
-
-    if (!activeTabElement || !activeTabPanel) {
-      return;
-    }
-
-    const tabId = activeTabElement.getAttribute('id');
-    activeTabPanel.setAttribute('aria-labelledby', tabId ?? '');
-    const tabPanelId = activeTabPanel.getAttribute('id');
-    activeTabElement.setAttribute('aria-controls', tabPanelId ?? '');
-
-    this.checkPanelsVisibility();
   }
 
   private checkPanelsVisibility() {
