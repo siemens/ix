@@ -302,19 +302,35 @@ export class MenuCategory
       return;
     }
 
-    const activeElement = document.activeElement;
-    const isFocused = getComposedPath(activeElement as HTMLElement).includes(
-      this.hostElement
-    );
-
-    if (hasKeyboardMode() && isFocused) {
+    if (hasKeyboardMode() && this.isFocusInsideCategory()) {
       // Ugly workaround to restore focus to the category after the dropdown is closed,
       // because focus gets lost when the dropdown is removed from the DOM.
       // This is needed to ensure keyboard users can continue navigating after closing the dropdown with the keyboard.
       requestAnimationFrameNoNgZone(() =>
-        requestAnimationFrameNoNgZone(() => this.hostElement.focus())
+        requestAnimationFrameNoNgZone(() => {
+          // An item action (e.g. a route change) may have moved focus
+          // elsewhere in the meantime; only restore focus that is still lost.
+          if (this.isFocusLost() || this.isFocusInsideCategory()) {
+            this.hostElement.focus();
+          }
+        })
       );
     }
+  }
+
+  private isFocusInsideCategory() {
+    const activeElement = document.activeElement as HTMLElement | null;
+
+    return (
+      !!activeElement &&
+      getComposedPath(activeElement).includes(this.hostElement)
+    );
+  }
+
+  private isFocusLost() {
+    const activeElement = document.activeElement;
+
+    return !activeElement || activeElement === document.body;
   }
 
   private onDropdownShowChanged(dropdownShown: boolean) {
@@ -353,12 +369,6 @@ export class MenuCategory
     });
   }
 
-  private onNestedItemSelect() {
-    if (!this.ixMenu?.expand) {
-      this.showDropdown = false;
-    }
-  }
-
   private onCategoryClick(event: MouseEvent) {
     event.stopPropagation();
     this.handleCategoryVisibility();
@@ -367,6 +377,13 @@ export class MenuCategory
   private onKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
+
+      // Toggle once per key press. A key held while activating a nested item
+      // keeps repeating on the header once focus returns to it.
+      if (event.repeat) {
+        return;
+      }
+
       const isClosingPanel = this.ixMenu?.expand && this.showItems;
       const isCollapsedMenu = !this.ixMenu?.expand;
       this.handleCategoryVisibility();
@@ -561,7 +578,6 @@ export class MenuCategory
         class={{
           expanded: this.showItems,
         }}
-        onIxMenuCategoryItemSelect={() => this.onNestedItemSelect()}
         onPointerEnter={() => {
           this.showMenuItemDropdown();
         }}
@@ -624,6 +640,9 @@ export class MenuCategory
           hostRole="menu"
           aria-label={this.label}
           closeBehavior={'both'}
+          // Menu items activate natively (button click or anchor navigation),
+          // so the dropdown must not intercept Enter/Space on them.
+          keyboardItemTriggerKeys={[]}
           show={this.showDropdown}
           onShowChange={({ detail }) => this.onDropdownShowChange(detail)}
           onShowChanged={({ detail }) => this.onDropdownShowChanged(detail)}
@@ -641,7 +660,10 @@ export class MenuCategory
           onClick={(e) => {
             if (e.target instanceof HTMLElement) {
               if (e.target.tagName === 'IX-MENU-ITEM') {
-                this.showDropdown = false;
+                // Close through the dropdown controller so `showChange` fires
+                // while the item still has focus and keyboard focus is restored
+                // to the category.
+                this.hideMenuItemDropdown();
               } else {
                 e.preventDefault();
               }

@@ -230,10 +230,24 @@ export class MenuItem
     }
   }
 
-  private handleCategoryKeyDown(e: KeyboardEvent) {
-    if ((e.key === 'Enter' || e.key === ' ') && this.isHostedInsideCategory) {
-      this.returnFocusToParentCategoryMenuItem();
+  private handleAnchorKeyDown(event: KeyboardEvent) {
+    // Native anchors only activate on Enter. Anchors announced as `menuitem`
+    // (inside the menu or a category) are expected to activate on Space too.
+    const isMenuItemRole =
+      this.getEffectiveRole(this.inheritAriaAttributes.role) === 'menuitem';
+
+    if (event.key !== ' ' || !isMenuItemRole) {
+      return;
     }
+
+    event.preventDefault();
+
+    // Activate once per key press, like a native button, not on auto-repeat.
+    if (event.repeat) {
+      return;
+    }
+
+    this.buttonRef.current?.click();
   }
 
   private getAriaLabel() {
@@ -265,23 +279,6 @@ export class MenuItem
         : undefined;
 
     return externalRole ?? internalRole;
-  }
-
-  private returnFocusToParentCategoryMenuItem() {
-    const categoryElement =
-      this.hostElement.closest<HTMLElement>('ix-menu-category');
-    const categoryMenuItem = categoryElement?.shadowRoot?.querySelector(
-      'ix-menu-item.category-parent'
-    ) as HTMLElement | null;
-
-    categoryElement?.dispatchEvent(
-      new CustomEvent('ixMenuCategoryItemSelect', {
-        bubbles: true,
-        composed: true,
-      })
-    );
-
-    categoryMenuItem?.focus();
   }
 
   override render() {
@@ -356,7 +353,7 @@ export class MenuItem
                 : undefined
             }
             ref={this.buttonRef}
-            onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
+            onKeyDown={(e: KeyboardEvent) => this.handleAnchorKeyDown(e)}
             aria-disabled={a11yBoolean(this.disabled)}
             aria-label={ariaLabel}
             aria-current={this.active ? 'page' : undefined}
@@ -373,7 +370,6 @@ export class MenuItem
                 : undefined
             }
             ref={this.buttonRef}
-            onKeyDown={(e: KeyboardEvent) => this.handleCategoryKeyDown(e)}
             aria-disabled={a11yBoolean(this.disabled)}
             aria-label={ariaLabel}
             aria-current={this.active ? 'page' : undefined}
