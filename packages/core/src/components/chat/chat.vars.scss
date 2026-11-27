@@ -25,6 +25,12 @@
       'chat-messages--max-width': sys.$si-sys-sizing-size-200,
       'chat-messages--gap': sys.$si-sys-sizing-spacing-y-90,
       'chat-messages--padding': #{sys.$si-sys-sizing-spacing-y-90} #{sys.$si-sys-sizing-spacing-x-90},
+      'chat-messages--outline-color--focus': sys.$si-sys-color-effects-focus,
+      'chat-messages--outline-width--focus':
+        sys.$si-sys-sizing-border-width-default,
+      'chat-scroll-to-latest--offset': sys.$si-sys-sizing-spacing-y-50,
+      'chat-scroll-to-latest--background': sys.$si-sys-color-background-1,
+      'chat-scroll-to-latest--box-shadow': sys.$si-sys-color-effects-shadow-20,
       'chat-prompt--max-width': sys.$si-sys-sizing-size-200,
       'chat-prompt--padding': #{sys.$si-sys-sizing-spacing-y-90} #{sys.$si-sys-sizing-spacing-x-90},
     )

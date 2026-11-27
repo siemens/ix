@@ -23,12 +23,17 @@
 
   @include component.ix-component;
 
-  .messages {
+  .conversation {
+    position: relative;
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    align-items: center;
-    gap: cv.get-var('chat-messages--gap');
+    min-height: 0;
+    width: 100%;
+  }
+
+  .messages {
+    flex: 1 1 auto;
     min-height: 0;
     width: 100%;
     padding: cv.get-var('chat-messages--padding');
@@ -36,10 +41,37 @@
     overflow-y: auto;
   }
 
-  .messages ::slotted(*) {
+  .messages:focus-visible {
+    outline: cv.get-var('chat-messages--outline-width--focus') solid
+      cv.get-var('chat-messages--outline-color--focus');
+    outline-offset: calc(
+      -1 * #{cv.get-var('chat-messages--outline-width--focus')}
+    );
+  }
+
+  .messages-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: cv.get-var('chat-messages--gap');
+    width: 100%;
+  }
+
+  .messages-content ::slotted(*) {
     width: 100%;
     max-width: cv.get-var('chat-messages--max-width');
     flex: 0 0 auto;
+  }
+
+  .scroll-to-latest {
+    position: absolute;
+    inset-block-end: cv.get-var('chat-scroll-to-latest--offset');
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    border-radius: 50%;
+    background-color: cv.get-var('chat-scroll-to-latest--background');
+    box-shadow: cv.get-var('chat-scroll-to-latest--box-shadow');
   }
 
   .prompt {

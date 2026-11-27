@@ -434,13 +434,15 @@ export declare interface IxCategoryFilter extends Components.IxCategoryFilter {
 
 
 @ProxyCmp({
+  inputs: ['i18nScrollToLatest', 'suppressAutoScroll'],
+  methods: ['scrollToBottom', 'scrollToTop']
 })
 @Component({
   selector: 'ix-chat',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [],
+  inputs: ['i18nScrollToLatest', 'suppressAutoScroll'],
   standalone: false
 })
 export class IxChat {
