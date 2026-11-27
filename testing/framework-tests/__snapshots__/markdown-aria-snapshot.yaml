@@ -1,0 +1,43 @@
+- main:
+  - heading "Maintenance summary" [level=2]
+  - paragraph:
+    - text: /Pump P-\d+ shows/
+    - strong: elevated vibration
+    - text: since the last service.
+  - list:
+    - listitem:
+      - checkbox "Collect sensor data" [checked] [disabled]:
+        - button [disabled]:
+          - img
+        - text: ""
+    - listitem:
+      - checkbox "Schedule the maintenance window" [disabled]:
+        - button [disabled]:
+          - img
+        - text: ""
+  - button "Copy table as CSV"
+  - button "Download table as CSV"
+  - table:
+    - rowgroup:
+      - row "Asset Status Vibration (mm/s)":
+        - columnheader "Asset"
+        - columnheader "Status"
+        - columnheader "Vibration (mm/s)"
+    - rowgroup:
+      - row /P-\d+ Warning 7\.4/:
+        - cell /P-\d+/
+        - cell "Warning"
+        - cell "7.4"
+      - row /P-\d+ Normal 2\.1/:
+        - cell /P-\d+/
+        - cell "Normal"
+        - cell "2.1"
+  - text: check.ts ts
+  - status
+  - button "Copy code"
+  - code: "const limit = 6.5; export const isCritical = (value: number) => value > limit;"
+  - alert:
+    - strong: Heads up
+    - paragraph: /Vibration above 6\.5 mm\/s requires an inspection within \d+ hours\./
+  - paragraph:
+    - button "Create work order"

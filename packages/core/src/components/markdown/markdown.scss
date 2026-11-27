@@ -1,0 +1,213 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Siemens AG
+ *
+ * SPDX-License-Identifier: MIT
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+@use './markdown.vars';
+@use 'mixins/component-vars' as cv;
+
+:host {
+  display: block;
+  min-width: 0;
+  color: cv.get-var('markdown--color');
+  font: cv.get-var('markdown--font');
+  overflow-wrap: anywhere;
+
+  > * {
+    margin-top: 0;
+    margin-bottom: cv.get-var('markdown-block--gap');
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  p,
+  blockquote,
+  ul,
+  ol,
+  pre {
+    margin-top: 0;
+    margin-bottom: cv.get-var('markdown-block--gap');
+  }
+
+  :is(p, blockquote, ul, ol, pre, li):last-child {
+    margin-bottom: 0;
+  }
+
+  :is(h1, h2, h3, h4, h5, h6) {
+    margin: cv.get-var('markdown-heading--margin-top') 0
+      cv.get-var('markdown-block--gap');
+  }
+
+  > :is(h1, h2, h3, h4, h5, h6):first-child {
+    margin-top: 0;
+  }
+
+  .heading-1 {
+    font: cv.get-var('markdown-heading-1--font');
+  }
+
+  .heading-2 {
+    font: cv.get-var('markdown-heading-2--font');
+  }
+
+  .heading-3 {
+    font: cv.get-var('markdown-heading-3--font');
+  }
+
+  .heading-4 {
+    font: cv.get-var('markdown-heading-4--font');
+  }
+
+  .heading-5 {
+    font: cv.get-var('markdown-heading-5--font');
+  }
+
+  .heading-6 {
+    font: cv.get-var('markdown-heading-6--font');
+  }
+
+  ul,
+  ol {
+    padding-inline-start: cv.get-var('markdown-list--padding-inline-start');
+  }
+
+  li + li {
+    margin-top: cv.get-var('markdown-list-item--gap');
+  }
+
+  li > :is(ul, ol) {
+    margin-top: cv.get-var('markdown-list-item--gap');
+    margin-bottom: 0;
+  }
+
+  blockquote {
+    margin-inline: 0;
+    padding-inline-start: cv.get-var(
+      'markdown-blockquote--padding-inline-start'
+    );
+    border-inline-start: cv.get-var('markdown-blockquote--border-width') solid
+      cv.get-var('markdown-blockquote--border-color');
+    color: cv.get-var('markdown-blockquote--color');
+  }
+
+  a {
+    color: cv.get-var('markdown-link--color');
+    text-decoration: underline;
+
+    &:hover {
+      color: cv.get-var('markdown-link--color--hover');
+    }
+
+    &:active {
+      color: cv.get-var('markdown-link--color--active');
+    }
+
+    &:focus-visible {
+      outline: cv.get-var('markdown-link--outline-width--focus') solid
+        cv.get-var('markdown-link--outline-color--focus');
+    }
+  }
+
+  code {
+    font: cv.get-var('markdown-code--font');
+  }
+
+  .inline-code {
+    padding: 0 cv.get-var('markdown-inline-code--padding-x');
+    border: cv.get-var('markdown-code--border-width') solid
+      cv.get-var('markdown-code--border-color');
+    border-radius: cv.get-var('markdown-code--border-radius');
+    background-color: cv.get-var('markdown-code--background-color');
+  }
+
+  pre {
+    padding: cv.get-var('markdown-code-block--padding');
+    overflow: auto;
+    border: cv.get-var('markdown-code--border-width') solid
+      cv.get-var('markdown-code--border-color');
+    border-radius: cv.get-var('markdown-code--border-radius');
+    background-color: cv.get-var('markdown-code--background-color');
+  }
+
+  .table-block {
+    margin-top: 0;
+    margin-bottom: cv.get-var('markdown-block--gap');
+  }
+
+  .table-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: cv.get-var('markdown-table-actions--gap');
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  table {
+    border-collapse: collapse;
+    font: cv.get-var('markdown-table--font');
+  }
+
+  th,
+  td {
+    padding: cv.get-var('markdown-table-cell--padding');
+    border: cv.get-var('markdown-table--border-width') solid
+      cv.get-var('markdown-table--border-color');
+    text-align: start;
+    overflow-wrap: normal;
+  }
+
+  th {
+    font: cv.get-var('markdown-table-header--font');
+    color: cv.get-var('markdown-table-header--color');
+    background-color: cv.get-var('markdown-table-header--background-color');
+  }
+
+  .align-left {
+    text-align: left;
+  }
+
+  .align-center {
+    text-align: center;
+  }
+
+  .align-right {
+    text-align: right;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  li.task-list-item {
+    list-style: none;
+  }
+
+  ix-divider {
+    margin-block: cv.get-var('markdown-block--gap');
+  }
+
+  sup {
+    line-height: 0;
+  }
+
+  .footnotes {
+    margin-top: cv.get-var('markdown-block--gap');
+    padding-top: cv.get-var('markdown-block--gap');
+    border-top: cv.get-var('markdown-blockquote--border-width') solid
+      cv.get-var('markdown-blockquote--border-color');
+
+    ol {
+      margin: 0;
+    }
+  }
+}

@@ -18,3 +18,4 @@ export * from './providers/loading';
 export * from './directives/control-value-accessors';
 export { IxDropdownTriggerDirective } from './directives/dropdown-trigger';
 export { IxValueAccessorDirectives } from './utils/value-accessor-directives';
+export { createMarkdownComponent } from '@siemens/ix-angular/common';

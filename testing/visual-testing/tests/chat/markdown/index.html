@@ -1,0 +1,95 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Chat AI message with Markdown</title>
+    <style>
+      :root {
+        color: var(--si-sys-color-text-primary);
+        font-family: var(--si-ref-typography-font-family-sans);
+      }
+
+      .chat-visual-page {
+        min-height: 100vh;
+        box-sizing: border-box;
+        padding: 1.5rem;
+        background: var(--si-sys-color-background-0);
+      }
+
+      ix-chat-ai-message {
+        width: 40rem;
+      }
+    </style>
+    <script type="module">
+      import { addIcons } from '@siemens/ix-icons';
+      import {
+        iconCopy,
+        iconDownload,
+        iconInfo,
+        iconSingleCheck,
+        iconStar,
+      } from '@siemens/ix-icons/icons';
+
+      addIcons({
+        iconCopy,
+        iconDownload,
+        iconInfo,
+        iconSingleCheck,
+        star: iconStar,
+      });
+
+      const markdown = [
+        '# Maintenance summary',
+        '',
+        '## Findings',
+        '',
+        'Pump P-102 shows **elevated vibration** since the last service.',
+        '',
+        '### Next steps',
+        '',
+        '- Inspect the bearings',
+        '- Check the alignment',
+        '',
+        '- [x] Collect sensor data',
+        '- [ ] Schedule the maintenance window',
+        '',
+        '| Asset | Status | Vibration (mm/s) |',
+        '| :---- | :----: | ---------------: |',
+        '| P-102 | Warning | 7.4 |',
+        '| P-103 | Normal | 2.1 |',
+        '',
+        '```ts [check.ts]',
+        'const limit = 6.5;',
+        'export const isCritical = (value: number) => value > limit;',
+        '```',
+        '',
+        ':::callout{type=warning heading="Heads up"}',
+        'Vibration above 6.5 mm/s requires an inspection within 24 hours.',
+        ':::',
+        '',
+        ':button[Create work order]{variant=primary icon=star action=create-order}',
+      ].join('\n');
+
+      await customElements.whenDefined('ix-markdown');
+      document.querySelector('ix-markdown').markdown = markdown;
+    </script>
+  </head>
+  <body>
+    <main class="chat-visual-page">
+      <ix-chat-ai-message>
+        <ix-markdown></ix-markdown>
+      </ix-chat-ai-message>
+    </main>
+    <script src="./../../utils/test/runtime/main.ts" type="module"></script>
+  </body>
+</html>

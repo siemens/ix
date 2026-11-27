@@ -19,3 +19,4 @@ export {
 } from './directives/tab-set';
 export { TreeBaseDirective } from './directives/tree';
 export { createValueAccessorProvider } from './utils/create-value-accessor-provider';
+export { createMarkdownComponent } from './utils/markdown-component';

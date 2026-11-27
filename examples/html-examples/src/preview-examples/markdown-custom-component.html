@@ -1,0 +1,58 @@
+<!--
+SPDX-FileCopyrightText: 2026 Siemens AG
+
+SPDX-License-Identifier: MIT
+
+This source code is licensed under the MIT license found in the
+LICENSE file in the root directory of this source tree.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-ix-theme="classic" data-ix-color-schema="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markdown Custom component example</title>
+  </head>
+  <body>
+    <ix-markdown></ix-markdown>
+
+    <script type="module" src="./init.js"></script>
+    <script type="module">
+      await window.ixInitPromise;
+      await window.customElements.whenDefined('ix-markdown');
+
+      const asset = (ctx) => {
+        const element = document.createElement('div');
+        const label = document.createElement('span');
+        const button = document.createElement('ix-button');
+        button.variant = 'secondary';
+        button.textContent = 'Open asset';
+        button.addEventListener('click', () =>
+          ctx.emitAction('open-asset', { id: ctx.attributes.id })
+        );
+        element.append(label, ' ', button);
+
+        const update = (next) => {
+          ctx = next;
+          label.textContent = `${next.text} (${next.attributes.status})`;
+        };
+        update(ctx);
+
+        return { element, update };
+      };
+
+      const markdown = document.querySelector('ix-markdown');
+      markdown.options = { components: { asset } };
+      markdown.markdown = [
+        'The following asset needs attention:',
+        '',
+        '::asset[Pump P-102]{id=p-102 status=warning}',
+      ].join('\n');
+
+      markdown.addEventListener('actionClick', (event) => {
+        console.log('Markdown action', event.detail);
+      });
+    </script>
+  </body>
+</html>

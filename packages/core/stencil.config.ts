@@ -13,6 +13,7 @@ import { Config } from '@stencil/core';
 import { reactOutputTarget } from '@stencil/react-output-target';
 import { sass } from '@stencil/sass';
 import autoprefixer from 'autoprefixer';
+import path from 'node:path';
 import {
   customComponentDocGenerator,
   getDevAssets,
@@ -68,6 +69,23 @@ export const config: Config = {
   ],
   globalStyle: './scss/ix.scss',
   minifyCss: false,
+  rollupPlugins: {
+    before: [
+      {
+        // The browser build of this micromark dependency touches `document`
+        // at module load, which breaks server-side rendering.
+        name: 'ssr-safe-decode-named-character-reference',
+        resolveId(source: string) {
+          if (source !== 'decode-named-character-reference') {
+            return null;
+          }
+          return path.resolve(
+            'src/components/markdown/vendor/decode-named-character-reference.ts'
+          );
+        },
+      },
+    ],
+  },
   plugins: [
     sass({
       includePaths: ['./scss'],

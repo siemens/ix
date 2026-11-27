@@ -1,0 +1,4 @@
+- main:
+  - paragraph: "The following asset needs attention:"
+  - text: /Pump P-\d+ \(warning\)/
+  - button "Open asset"

@@ -20,6 +20,7 @@ import { LogicalFilterOperator } from "./components/category-filter/logical-filt
 import { InputState } from "./components/category-filter/input-state";
 import { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 import { ChipVariant } from "./components/chip/chip.types";
+import { CodeBlockHighlight } from "./components/code-block/code-block.types";
 import { ColumnSize } from "./components/col/col.types";
 import { ContentHeaderTextOverflow, ContentHeaderVariant } from "./components/content-header/content-header.types";
 import { CssGridTemplateType } from "./components/css-grid/css-grid.types";
@@ -46,6 +47,8 @@ import { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 import { KpiState } from "./components/kpi/kpi.types";
 import { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list.types";
 import { ListItemActionSlotAlignment, ListItemVariant } from "./components/list-item/list-item.types";
+import { MarkdownOptions } from "./components/markdown/markdown.types";
+import { MarkdownAction } from "./components/markdown/markdown";
 import { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 import { MessageBarType } from "./components/message-bar/message-bar.types";
 import { IxModalSize } from "./components/modal/modal.types";
@@ -82,6 +85,7 @@ export { LogicalFilterOperator } from "./components/category-filter/logical-filt
 export { InputState } from "./components/category-filter/input-state";
 export { ChatAttachmentStatus } from "./components/chat-attachment/chat-attachment.types";
 export { ChipVariant } from "./components/chip/chip.types";
+export { CodeBlockHighlight } from "./components/code-block/code-block.types";
 export { ColumnSize } from "./components/col/col.types";
 export { ContentHeaderTextOverflow, ContentHeaderVariant } from "./components/content-header/content-header.types";
 export { CssGridTemplateType } from "./components/css-grid/css-grid.types";
@@ -108,6 +112,8 @@ export { KeyValueLabelPosition } from "./components/key-value/key-value.types";
 export { KpiState } from "./components/kpi/kpi.types";
 export { ListDragBehavior, ListItemGap, ListItemOrderChangeEvent } from "./components/list/list.types";
 export { ListItemActionSlotAlignment, ListItemVariant } from "./components/list-item/list-item.types";
+export { MarkdownOptions } from "./components/markdown/markdown.types";
+export { MarkdownAction } from "./components/markdown/markdown";
 export { CustomCloseEvent, CustomLabelChangeEvent } from "./components/utils/menu-tabs/menu-tabs-utils";
 export { MessageBarType } from "./components/message-bar/message-bar.types";
 export { IxModalSize } from "./components/modal/modal.types";
@@ -1155,6 +1161,38 @@ export namespace Components {
           * @default 'accent'
          */
         "variant": ChipVariant;
+    }
+    /**
+     * @since 6.1.0
+     */
+    interface IxCodeBlock {
+        /**
+          * The code to display.
+          * @default ''
+         */
+        "code": string;
+        /**
+          * Optional filename, shown as a chip in the header.
+         */
+        "filename"?: string;
+        /**
+          * Optional syntax highlighter. Receives the code and language and returns a DOM node that replaces the plain code body. HTML strings are not supported.
+         */
+        "highlight"?: CodeBlockHighlight;
+        /**
+          * Label announced and shown after the code was copied.
+          * @default 'Copied'
+         */
+        "i18nCopied": string;
+        /**
+          * Accessible label of the copy button.
+          * @default 'Copy code'
+         */
+        "i18nCopy": string;
+        /**
+          * Language of the code, shown as a label in the header.
+         */
+        "language"?: string;
     }
     /**
      * Column within the responsive layout grid.
@@ -3408,6 +3446,38 @@ export namespace Components {
      * @since 6.0.0
      */
     interface IxListItemSeparator {
+    }
+    /**
+     * Renders Markdown with iX look and feel. Raw HTML is shown as text,
+     * only `<br>` becomes a line break. Links are limited to http(s), mailto and
+     * relative URLs, images to http(s) URLs.
+     * @since 6.1.0
+     */
+    interface IxMarkdown {
+        /**
+          * Accessible name of the button that copies a table as CSV.
+          * @default 'Copy table as CSV'
+         */
+        "i18nCopyTable": string;
+        /**
+          * Accessible name of the button that downloads a table as CSV file.
+          * @default 'Download table as CSV'
+         */
+        "i18nDownloadTable": string;
+        /**
+          * Markdown source to render.
+          * @default ''
+         */
+        "markdown": string;
+        /**
+          * Options for rendering: remark `plugins`, `components` that map node types or Directive names to Custom components, `extensions` and a `highlight` hook for fenced code. A plain object that can be shared between views. Replace the object to apply changes.
+         */
+        "options"?: MarkdownOptions;
+        /**
+          * Set while the Markdown source is still growing, e.g. while an LLM answer is streamed. The unfinished last block is repaired for display, completed blocks keep their DOM. When it turns `false`, the final result is reconciled.
+          * @default false
+         */
+        "streaming": boolean;
     }
     /**
      * Primary side navigation menu of the application shell.
@@ -6162,6 +6232,10 @@ export interface IxListItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxListItemElement;
 }
+export interface IxMarkdownCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIxMarkdownElement;
+}
 export interface IxMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIxMenuElement;
@@ -6718,6 +6792,15 @@ declare global {
     var HTMLIxChipElement: {
         prototype: HTMLIxChipElement;
         new (): HTMLIxChipElement;
+    };
+    /**
+     * @since 6.1.0
+     */
+    interface HTMLIxCodeBlockElement extends Components.IxCodeBlock, HTMLStencilElement {
+    }
+    var HTMLIxCodeBlockElement: {
+        prototype: HTMLIxCodeBlockElement;
+        new (): HTMLIxCodeBlockElement;
     };
     /**
      * Column within the responsive layout grid.
@@ -7442,6 +7525,29 @@ declare global {
     var HTMLIxListItemSeparatorElement: {
         prototype: HTMLIxListItemSeparatorElement;
         new (): HTMLIxListItemSeparatorElement;
+    };
+    interface HTMLIxMarkdownElementEventMap {
+        "actionClick": MarkdownAction;
+    }
+    /**
+     * Renders Markdown with iX look and feel. Raw HTML is shown as text,
+     * only `<br>` becomes a line break. Links are limited to http(s), mailto and
+     * relative URLs, images to http(s) URLs.
+     * @since 6.1.0
+     */
+    interface HTMLIxMarkdownElement extends Components.IxMarkdown, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIxMarkdownElementEventMap>(type: K, listener: (this: HTMLIxMarkdownElement, ev: IxMarkdownCustomEvent<HTMLIxMarkdownElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIxMarkdownElementEventMap>(type: K, listener: (this: HTMLIxMarkdownElement, ev: IxMarkdownCustomEvent<HTMLIxMarkdownElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIxMarkdownElement: {
+        prototype: HTMLIxMarkdownElement;
+        new (): HTMLIxMarkdownElement;
     };
     interface HTMLIxMenuElementEventMap {
         "expandChange": boolean;
@@ -8528,6 +8634,7 @@ declare global {
         "ix-checkbox": HTMLIxCheckboxElement;
         "ix-checkbox-group": HTMLIxCheckboxGroupElement;
         "ix-chip": HTMLIxChipElement;
+        "ix-code-block": HTMLIxCodeBlockElement;
         "ix-col": HTMLIxColElement;
         "ix-content": HTMLIxContentElement;
         "ix-content-header": HTMLIxContentHeaderElement;
@@ -8572,6 +8679,7 @@ declare global {
         "ix-list": HTMLIxListElement;
         "ix-list-item": HTMLIxListItemElement;
         "ix-list-item-separator": HTMLIxListItemSeparatorElement;
+        "ix-markdown": HTMLIxMarkdownElement;
         "ix-menu": HTMLIxMenuElement;
         "ix-menu-about": HTMLIxMenuAboutElement;
         "ix-menu-about-item": HTMLIxMenuAboutItemElement;
@@ -9750,6 +9858,38 @@ declare namespace LocalJSX {
           * @default 'accent'
          */
         "variant"?: ChipVariant;
+    }
+    /**
+     * @since 6.1.0
+     */
+    interface IxCodeBlock {
+        /**
+          * The code to display.
+          * @default ''
+         */
+        "code"?: string;
+        /**
+          * Optional filename, shown as a chip in the header.
+         */
+        "filename"?: string;
+        /**
+          * Optional syntax highlighter. Receives the code and language and returns a DOM node that replaces the plain code body. HTML strings are not supported.
+         */
+        "highlight"?: CodeBlockHighlight;
+        /**
+          * Label announced and shown after the code was copied.
+          * @default 'Copied'
+         */
+        "i18nCopied"?: string;
+        /**
+          * Accessible label of the copy button.
+          * @default 'Copy code'
+         */
+        "i18nCopy"?: string;
+        /**
+          * Language of the code, shown as a label in the header.
+         */
+        "language"?: string;
     }
     /**
      * Column within the responsive layout grid.
@@ -12085,6 +12225,42 @@ declare namespace LocalJSX {
      * @since 6.0.0
      */
     interface IxListItemSeparator {
+    }
+    /**
+     * Renders Markdown with iX look and feel. Raw HTML is shown as text,
+     * only `<br>` becomes a line break. Links are limited to http(s), mailto and
+     * relative URLs, images to http(s) URLs.
+     * @since 6.1.0
+     */
+    interface IxMarkdown {
+        /**
+          * Accessible name of the button that copies a table as CSV.
+          * @default 'Copy table as CSV'
+         */
+        "i18nCopyTable"?: string;
+        /**
+          * Accessible name of the button that downloads a table as CSV file.
+          * @default 'Download table as CSV'
+         */
+        "i18nDownloadTable"?: string;
+        /**
+          * Markdown source to render.
+          * @default ''
+         */
+        "markdown"?: string;
+        /**
+          * Emitted when a button Directive with an `action` attribute is clicked or a Custom component calls `emitAction`.
+         */
+        "onActionClick"?: (event: IxMarkdownCustomEvent<MarkdownAction>) => void;
+        /**
+          * Options for rendering: remark `plugins`, `components` that map node types or Directive names to Custom components, `extensions` and a `highlight` hook for fenced code. A plain object that can be shared between views. Replace the object to apply changes.
+         */
+        "options"?: MarkdownOptions;
+        /**
+          * Set while the Markdown source is still growing, e.g. while an LLM answer is streamed. The unfinished last block is repaired for display, completed blocks keep their DOM. When it turns `false`, the final result is reconciled.
+          * @default false
+         */
+        "streaming"?: boolean;
     }
     /**
      * Primary side navigation menu of the application shell.
@@ -15057,6 +15233,13 @@ declare namespace LocalJSX {
         "centerContent": boolean;
         "ariaLabelCloseButton": string;
     }
+    interface IxCodeBlockAttributes {
+        "code": string;
+        "language": string;
+        "filename": string;
+        "i18nCopy": string;
+        "i18nCopied": string;
+    }
     interface IxColAttributes {
         "size": ColumnSize;
         "sizeSm": ColumnSize;
@@ -15498,6 +15681,12 @@ declare namespace LocalJSX {
         "divider": boolean;
         "actionOnHover": boolean;
         "actionSlotAlignment": ListItemActionSlotAlignment;
+    }
+    interface IxMarkdownAttributes {
+        "markdown": string;
+        "streaming": boolean;
+        "i18nCopyTable": string;
+        "i18nDownloadTable": string;
     }
     interface IxMenuAttributes {
         "showSettings": boolean;
@@ -16059,6 +16248,7 @@ declare namespace LocalJSX {
         "ix-checkbox": Omit<IxCheckbox, keyof IxCheckboxAttributes> & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes]?: IxCheckbox[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `attr:${K}`]?: IxCheckboxAttributes[K] } & { [K in keyof IxCheckbox & keyof IxCheckboxAttributes as `prop:${K}`]?: IxCheckbox[K] };
         "ix-checkbox-group": Omit<IxCheckboxGroup, keyof IxCheckboxGroupAttributes> & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes]?: IxCheckboxGroup[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `attr:${K}`]?: IxCheckboxGroupAttributes[K] } & { [K in keyof IxCheckboxGroup & keyof IxCheckboxGroupAttributes as `prop:${K}`]?: IxCheckboxGroup[K] };
         "ix-chip": Omit<IxChip, keyof IxChipAttributes> & { [K in keyof IxChip & keyof IxChipAttributes]?: IxChip[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `attr:${K}`]?: IxChipAttributes[K] } & { [K in keyof IxChip & keyof IxChipAttributes as `prop:${K}`]?: IxChip[K] };
+        "ix-code-block": Omit<IxCodeBlock, keyof IxCodeBlockAttributes> & { [K in keyof IxCodeBlock & keyof IxCodeBlockAttributes]?: IxCodeBlock[K] } & { [K in keyof IxCodeBlock & keyof IxCodeBlockAttributes as `attr:${K}`]?: IxCodeBlockAttributes[K] } & { [K in keyof IxCodeBlock & keyof IxCodeBlockAttributes as `prop:${K}`]?: IxCodeBlock[K] };
         "ix-col": Omit<IxCol, keyof IxColAttributes> & { [K in keyof IxCol & keyof IxColAttributes]?: IxCol[K] } & { [K in keyof IxCol & keyof IxColAttributes as `attr:${K}`]?: IxColAttributes[K] } & { [K in keyof IxCol & keyof IxColAttributes as `prop:${K}`]?: IxCol[K] };
         "ix-content": IxContent;
         "ix-content-header": Omit<IxContentHeader, keyof IxContentHeaderAttributes> & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes]?: IxContentHeader[K] } & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes as `attr:${K}`]?: IxContentHeaderAttributes[K] } & { [K in keyof IxContentHeader & keyof IxContentHeaderAttributes as `prop:${K}`]?: IxContentHeader[K] };
@@ -16103,6 +16293,7 @@ declare namespace LocalJSX {
         "ix-list": Omit<IxList, keyof IxListAttributes> & { [K in keyof IxList & keyof IxListAttributes]?: IxList[K] } & { [K in keyof IxList & keyof IxListAttributes as `attr:${K}`]?: IxListAttributes[K] } & { [K in keyof IxList & keyof IxListAttributes as `prop:${K}`]?: IxList[K] };
         "ix-list-item": Omit<IxListItem, keyof IxListItemAttributes> & { [K in keyof IxListItem & keyof IxListItemAttributes]?: IxListItem[K] } & { [K in keyof IxListItem & keyof IxListItemAttributes as `attr:${K}`]?: IxListItemAttributes[K] } & { [K in keyof IxListItem & keyof IxListItemAttributes as `prop:${K}`]?: IxListItem[K] };
         "ix-list-item-separator": IxListItemSeparator;
+        "ix-markdown": Omit<IxMarkdown, keyof IxMarkdownAttributes> & { [K in keyof IxMarkdown & keyof IxMarkdownAttributes]?: IxMarkdown[K] } & { [K in keyof IxMarkdown & keyof IxMarkdownAttributes as `attr:${K}`]?: IxMarkdownAttributes[K] } & { [K in keyof IxMarkdown & keyof IxMarkdownAttributes as `prop:${K}`]?: IxMarkdown[K] };
         "ix-menu": Omit<IxMenu, keyof IxMenuAttributes> & { [K in keyof IxMenu & keyof IxMenuAttributes]?: IxMenu[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `attr:${K}`]?: IxMenuAttributes[K] } & { [K in keyof IxMenu & keyof IxMenuAttributes as `prop:${K}`]?: IxMenu[K] };
         "ix-menu-about": Omit<IxMenuAbout, keyof IxMenuAboutAttributes> & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes]?: IxMenuAbout[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `attr:${K}`]?: IxMenuAboutAttributes[K] } & { [K in keyof IxMenuAbout & keyof IxMenuAboutAttributes as `prop:${K}`]?: IxMenuAbout[K] };
         "ix-menu-about-item": Omit<IxMenuAboutItem, keyof IxMenuAboutItemAttributes> & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes]?: IxMenuAboutItem[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `attr:${K}`]?: IxMenuAboutItemAttributes[K] } & { [K in keyof IxMenuAboutItem & keyof IxMenuAboutItemAttributes as `prop:${K}`]?: IxMenuAboutItem[K] } & OneOf<"tabKey", IxMenuAboutItem["tabKey"], IxMenuAboutItemAttributes["tabKey"]>;
@@ -16317,6 +16508,10 @@ declare module "@stencil/core" {
              * @figma-main-component-id 286:1758
              */
             "ix-chip": LocalJSX.IntrinsicElements["ix-chip"] & JSXBase.HTMLAttributes<HTMLIxChipElement>;
+            /**
+             * @since 6.1.0
+             */
+            "ix-code-block": LocalJSX.IntrinsicElements["ix-code-block"] & JSXBase.HTMLAttributes<HTMLIxCodeBlockElement>;
             /**
              * Column within the responsive layout grid.
              * @documentation https://ix.siemens.io/docs/components/layout-grid/guide.md
@@ -16574,6 +16769,13 @@ declare module "@stencil/core" {
              * @since 6.0.0
              */
             "ix-list-item-separator": LocalJSX.IntrinsicElements["ix-list-item-separator"] & JSXBase.HTMLAttributes<HTMLIxListItemSeparatorElement>;
+            /**
+             * Renders Markdown with iX look and feel. Raw HTML is shown as text,
+             * only `<br>` becomes a line break. Links are limited to http(s), mailto and
+             * relative URLs, images to http(s) URLs.
+             * @since 6.1.0
+             */
+            "ix-markdown": LocalJSX.IntrinsicElements["ix-markdown"] & JSXBase.HTMLAttributes<HTMLIxMarkdownElement>;
             /**
              * Primary side navigation menu of the application shell.
              * @documentation https://ix.siemens.io/docs/components/application-menu/guide.md

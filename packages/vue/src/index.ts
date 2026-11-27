@@ -7,5 +7,6 @@ export * from './plugin';
 export * from './tab-set';
 export * from './toast';
 export * from './message';
+export * from './markdown-component';
 
 export type HTMLRefElement<T> = { $el: T };

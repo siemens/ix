@@ -1,0 +1,5 @@
+- main:
+  - text: check.ts ts
+  - status
+  - button "Copy code"
+  - code: "const limit = 6.5; export const isCritical = (value: number) => value > limit;"
