@@ -35,8 +35,8 @@ export class ChatWelcome {
 
   componentWillLoad() {
     this.hasContent = hasDefaultSlotContent(this.hostElement);
-    this.hasSuggestions = !!this.hostElement.querySelector(
-      ':scope > [slot="suggestions"]'
+    this.hasSuggestions = Array.from(this.hostElement.children).some(
+      (el) => el.getAttribute('slot') === 'suggestions'
     );
   }
 
