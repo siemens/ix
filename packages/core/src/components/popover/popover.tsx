@@ -15,6 +15,7 @@ import {
   flip,
   hide,
   offset,
+  Placement,
   shift,
 } from '@floating-ui/dom';
 import {
@@ -794,6 +795,19 @@ export class Popover
     this.triggerElement = undefined;
   }
 
+  // The spike sits on the popover edge facing the trigger, opposite to the placement
+  private getSpikeSide(
+    placement: Placement
+  ): 'top' | 'right' | 'bottom' | 'left' {
+    const opposite = {
+      top: 'bottom',
+      right: 'left',
+      bottom: 'top',
+      left: 'right',
+    } as const;
+    return opposite[placement.split('-')[0] as keyof typeof opposite];
+  }
+
   private computeSpikePosition({
     placement,
     middlewareData,
@@ -893,6 +907,7 @@ export class Popover
         const spikePos = this.computeSpikePosition(result);
         if (spikePos && this.spikeElement) {
           Object.assign(this.spikeElement.style, spikePos);
+          this.spikeElement.dataset.side = this.getSpikeSide(result.placement);
         }
       }
 

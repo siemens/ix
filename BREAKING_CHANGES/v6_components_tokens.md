@@ -1062,7 +1062,7 @@ ix-button {
 | ------------------------------------- | --------------------------------- |
 | `--theme-pane-floating--background`   | `--si-sys-color-background-1`     |
 | `--theme-pane-floating--border-color` | `--si-sys-color-border-4`         |
-| `--theme-pane-floating--box-shadow`   | `--si-sys-color-effects-shadow-20` |
+| `--theme-pane-floating--box-shadow`   | `--si-sys-color-effects-shadow-30` |
 | `--theme-pane-floating--color`        | `--si-sys-color-text-primary`     |
 | `--theme-pane-inline--background`     | `--si-sys-color-background-0`     |
 | `--theme-pane-inline--border-color`   | `--si-sys-color-border-3`         |
@@ -1737,7 +1737,7 @@ ix-button {
 | `--theme-toast--border-radius`          | `--si-sys-sizing-border-radius-sm`  |
 | `--theme-toast--border-radus`           | `--si-sys-sizing-border-radius-sm`  |
 | `--theme-toast--border-thickness`       | `--si-sys-sizing-border-width-none` |
-| `--theme-toast--box-shadow`             | `--si-sys-color-effects-shadow-40`   |
+| `--theme-toast--box-shadow`             | `--si-sys-color-effects-shadow-30`   |
 | `--theme-toast--color`                  | `--si-sys-color-text-primary`       |
 | `--theme-toast-timer-track--background` | no replacement                      |
 | `--theme-toast-timer-value--background` | no replacement                      |
