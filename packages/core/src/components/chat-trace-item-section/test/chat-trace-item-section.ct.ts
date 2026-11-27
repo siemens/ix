@@ -116,3 +116,25 @@ regressionTest(
     await expect(page.getByText('42 rows')).toBeHidden();
   }
 );
+
+regressionTest(
+  'moves focus to the toggle when the focused content is hidden',
+  async ({ mount, page }) => {
+    await mount(`
+      <ix-chat-trace-item-section heading="Output" collapsible expanded>
+        <button type="button">Copy output</button>
+      </ix-chat-trace-item-section>
+    `);
+    const contentButton = page.getByRole('button', { name: 'Copy output' });
+    await contentButton.focus();
+    await expect(contentButton).toBeFocused();
+
+    await page
+      .locator('ix-chat-trace-item-section')
+      .evaluate((element: HTMLIxChatTraceItemSectionElement) => {
+        element.expanded = false;
+      });
+
+    await expect(page.getByRole('button', { name: 'Output' })).toBeFocused();
+  }
+);

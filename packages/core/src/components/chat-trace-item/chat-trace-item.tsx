@@ -25,7 +25,11 @@ import {
 } from '@stencil/core';
 import { a11yBoolean } from '../utils/a11y';
 import type { ChatTraceItemState } from './chat-trace-item.types';
-import { hasDefaultSlotContent, isContentNode } from '../utils/shadow-dom';
+import {
+  hasDefaultSlotContent,
+  hasFocusInDefaultSlot,
+  isContentNode,
+} from '../utils/shadow-dom';
 
 /**
  * One step in an Activity trace, e.g. reasoning, reading a file or a tool call.
@@ -36,6 +40,7 @@ import { hasDefaultSlotContent, isContentNode } from '../utils/shadow-dom';
  *
  * Without detail content the item is rendered as static text. With detail content the label becomes a
  * toggle button that shows and hides the detail.
+ * If the detail is hidden while it has focus, focus moves to the toggle button.
  *
  * While the AI works and nothing specific is running, show a single running Trace item with a generic
  * label such as "Thinking…" instead of a loading indicator. Show interrupted steps as `warning` with an
@@ -121,8 +126,32 @@ export class ChatTraceItem {
 
   @State() hasDetail = false;
 
+  private toggleButton?: HTMLButtonElement;
+  private detailContainer?: HTMLDivElement;
+  private moveFocusToToggle = false;
+
   componentWillLoad() {
     this.hasDetail = hasDefaultSlotContent(this.hostElement);
+  }
+
+  private isDetailVisible() {
+    return this.hasDetail && this.expanded;
+  }
+
+  componentWillRender() {
+    const isHiding =
+      !!this.detailContainer &&
+      !this.detailContainer.hidden &&
+      !this.isDetailVisible();
+    this.moveFocusToToggle =
+      isHiding && hasFocusInDefaultSlot(this.hostElement);
+  }
+
+  componentDidRender() {
+    if (this.moveFocusToToggle) {
+      this.moveFocusToToggle = false;
+      this.toggleButton?.focus();
+    }
   }
 
   private handleSlotChange(event: Event) {
@@ -183,7 +212,7 @@ export class ChatTraceItem {
   }
 
   render() {
-    const isExpanded = this.hasDetail && this.expanded;
+    const isExpanded = this.isDetailVisible();
 
     return (
       <Host
@@ -198,6 +227,7 @@ export class ChatTraceItem {
           <button
             type="button"
             class="summary toggle"
+            ref={(ref) => (this.toggleButton = ref)}
             aria-expanded={a11yBoolean(isExpanded)}
             aria-controls="detail"
             onClick={() => this.toggle()}
@@ -213,7 +243,12 @@ export class ChatTraceItem {
         ) : (
           <div class="summary">{this.renderSummary()}</div>
         )}
-        <div id="detail" class="detail" hidden={!isExpanded}>
+        <div
+          id="detail"
+          class="detail"
+          hidden={!isExpanded}
+          ref={(ref) => (this.detailContainer = ref)}
+        >
           <slot onSlotchange={(event) => this.handleSlotChange(event)}></slot>
         </div>
       </Host>
