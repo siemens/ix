@@ -189,6 +189,28 @@ regressionTest.describe('ix-popover', () => {
       );
     });
 
+    (
+      [
+        ['top', 'bottom'],
+        ['bottom', 'top'],
+        ['left', 'right'],
+        ['right', 'left'],
+      ] as const
+    ).forEach(([placement, side]) => {
+      regressionTest(
+        `places spike on the ${side} edge for placement ${placement}`,
+        async ({ mount, page }) => {
+          await mount(placementTestMarkup(placement));
+          const popover = new PopoverPage(page);
+          await popover.open();
+
+          await expect(
+            (await popover.getPopover()).locator('.spike')
+          ).toHaveAttribute('data-side', side);
+        }
+      );
+    });
+
     regressionTest(
       'shows spike when hasSpike is true',
       async ({ mount, page }) => {

@@ -9,6 +9,9 @@
 
 @use './popover.vars' as *;
 @use 'mixins/component-vars' as cv;
+
+$spike-shadow-bleed: -16px;
+
 :host {
   dialog.dialog {
     margin: 0;
@@ -47,29 +50,48 @@
     width: 100%;
   }
 
-  .popover-container:has(.spike) {
-    box-shadow: none;
-    filter: cv.get-var('popover--elevation-filter');
-  }
-
   .spike,
   .spike::before {
     position: absolute;
     width: cv.get-var('popover-spike--width');
     height: cv.get-var('popover-spike--height');
-    background: inherit;
   }
 
+  // Only the half of the rotated square that sticks out of the container is
+  // kept, so its shadow never darkens the popover body. The negative insets
+  // leave room for the shadow of the outer half.
   .spike {
-    visibility: hidden;
     z-index: 0;
     pointer-events: none;
+    &[data-side='top'] {
+      clip-path: inset(
+        $spike-shadow-bleed $spike-shadow-bleed 50% $spike-shadow-bleed
+      );
+    }
+
+    &[data-side='right'] {
+      clip-path: inset(
+        $spike-shadow-bleed $spike-shadow-bleed $spike-shadow-bleed 50%
+      );
+    }
+
+    &[data-side='bottom'] {
+      clip-path: inset(
+        50% $spike-shadow-bleed $spike-shadow-bleed $spike-shadow-bleed
+      );
+    }
+
+    &[data-side='left'] {
+      clip-path: inset(
+        $spike-shadow-bleed 50% $spike-shadow-bleed $spike-shadow-bleed
+      );
+    }
   }
 
   .spike::before {
-    visibility: visible;
     content: '';
     transform: rotate(45deg);
     background-color: cv.get-var('popover--background');
+    box-shadow: cv.get-var('popover--box-shadow');
   }
 }
