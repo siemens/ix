@@ -54,9 +54,21 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
   @AttachInternals() formInternals!: ElementInternals;
 
   /**
-   * The state of the chat input, which can be either 'input' or 'processing'.
+   * The state of the chat input.
+   *
+   * - `input`: The user can enter and submit a prompt.
+   * - `processing`: A response is being generated. Submitting is blocked and the stop button is shown.
+   * - `interrupting`: An Interrupt was requested and is being processed. Submitting is blocked and the stop button is disabled and shows progress.
    */
-  @Prop() state?: 'input' | 'processing' = 'input';
+  @Prop() state?: 'input' | 'processing' | 'interrupting' = 'input';
+
+  /**
+   * If true, the stop button is enabled while `state` is `processing` and emits `promptInterrupt` when activated.
+   * If false, the stop button is shown disabled while processing.
+   *
+   * @since 6.1.0
+   */
+  @Prop() interruptible: boolean = false;
 
   /**
    * The name of the chat input.
@@ -119,6 +131,15 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
     "You're nearing the limit ({current} / {limit} characters)";
 
   /**
+   * i18n accessible label for the stop button shown while processing or interrupting.
+   *
+   * @since 6.1.0
+   */
+  // eslint-disable-next-line @stencil-community/decorators-style
+  @Prop({ attribute: 'i18n-stop-generating' })
+  i18nStopGenerating = 'Stop generating';
+
+  /**
    * Percentage of the character limit that triggers the soft warning. Define a number between 0 and 1 (e.g. 0.8 for 80%).
    */
   @Prop() characterLimitWarningThreshold: number = 0.9;
@@ -163,6 +184,14 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
    * Event emitted when the prompt is submitted by the send button or Enter key.
    */
   @Event() promptSubmit!: EventEmitter<string>;
+
+  /**
+   * Event emitted when the user activates the stop button while `interruptible` is set and `state` is `processing`.
+   * Use it to cancel the running request and set `state` to `interrupting` until the Interrupt is confirmed.
+   *
+   * @since 6.1.0
+   */
+  @Event() promptInterrupt!: EventEmitter<void>;
 
   /** @internal */
   public initialValue?: string;
@@ -250,8 +279,32 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
     return (await this.getNativeInputElement()).focus();
   }
 
+  private isBusy() {
+    return this.state === 'processing' || this.state === 'interrupting';
+  }
+
+  private canInterrupt() {
+    return this.interruptible && this.state === 'processing' && !this.disabled;
+  }
+
   private canSubmit() {
-    return !this.disabled && !this.readonly && this.value.trim().length > 0;
+    return (
+      !this.isBusy() &&
+      !this.disabled &&
+      !this.readonly &&
+      this.value.trim().length > 0
+    );
+  }
+
+  private handleSubmitButtonClick() {
+    if (this.isBusy()) {
+      if (this.canInterrupt()) {
+        this.promptInterrupt.emit();
+      }
+      return;
+    }
+
+    this.submitPrompt();
   }
 
   private emitIxChangeIfNeeded() {
@@ -397,7 +450,7 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
       event.ctrlKey ||
       event.metaKey ||
       this.insertLineBreakOnEnter ||
-      this.state === 'processing'
+      this.isBusy()
     ) {
       return;
     }
@@ -511,12 +564,12 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
   }
 
   override render() {
-    const isProcessing = this.state === 'processing';
-    const disabledSubmitButton =
-      isProcessing || (!this.canSubmit() && this.state === 'input');
-    const submitButtonIcon = isProcessing
-      ? iconCircleStop
-      : iconSendRightFilled;
+    const isBusy = this.isBusy();
+    const isInterrupting = this.state === 'interrupting';
+    const disabledSubmitButton = isBusy
+      ? !this.canInterrupt()
+      : !this.canSubmit();
+    const submitButtonIcon = isBusy ? iconCircleStop : iconSendRightFilled;
 
     return (
       <Host
@@ -580,12 +633,13 @@ export class ChatInput extends Mixin(...DefaultMixins, ComponentIdMixin) {
             <div class="right-actions">
               <slot name="end"></slot>
               <ix-icon-button
-                aria-label={isProcessing ? 'Stop processing' : 'Submit prompt'}
+                aria-label={isBusy ? this.i18nStopGenerating : 'Submit prompt'}
                 class="submit-button"
                 disabled={disabledSubmitButton}
+                loading={isInterrupting}
                 icon={submitButtonIcon}
                 variant="tertiary"
-                onClick={() => this.submitPrompt()}
+                onClick={() => this.handleSubmitButtonClick()}
               ></ix-icon-button>
             </div>
           </div>
